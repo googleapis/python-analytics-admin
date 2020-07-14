@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:googleapis/python-analytics-admin",
+        "sha": "59bd391a0bc6f126cd0f79001e1d690dd2bcd9bc"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "1d3ca22734bfd1c00d229e49009547c43f2d7a48",
+        "internalRef": "322667213"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "d07b7b7afa718686db7b095317f608a2f1b6b1cb"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "d07b7b7afa718686db7b095317f608a2f1b6b1cb"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "admin",
+        "apiVersion": "v1alpha",
+        "language": "python",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
