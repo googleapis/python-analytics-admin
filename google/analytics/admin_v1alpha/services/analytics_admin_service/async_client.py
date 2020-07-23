@@ -48,20 +48,20 @@ class AnalyticsAdminServiceAsyncClient:
     DEFAULT_ENDPOINT = AnalyticsAdminServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = AnalyticsAdminServiceClient.DEFAULT_MTLS_ENDPOINT
 
-    android_app_data_stream_path = staticmethod(
-        AnalyticsAdminServiceClient.android_app_data_stream_path
-    )
+    account_path = staticmethod(AnalyticsAdminServiceClient.account_path)
 
     property_path = staticmethod(AnalyticsAdminServiceClient.property_path)
 
-    user_link_path = staticmethod(AnalyticsAdminServiceClient.user_link_path)
+    google_ads_link_path = staticmethod(
+        AnalyticsAdminServiceClient.google_ads_link_path
+    )
 
     enhanced_measurement_settings_path = staticmethod(
         AnalyticsAdminServiceClient.enhanced_measurement_settings_path
     )
 
-    google_ads_link_path = staticmethod(
-        AnalyticsAdminServiceClient.google_ads_link_path
+    ios_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.ios_app_data_stream_path
     )
 
     firebase_link_path = staticmethod(AnalyticsAdminServiceClient.firebase_link_path)
@@ -70,11 +70,11 @@ class AnalyticsAdminServiceAsyncClient:
         AnalyticsAdminServiceClient.web_data_stream_path
     )
 
-    ios_app_data_stream_path = staticmethod(
-        AnalyticsAdminServiceClient.ios_app_data_stream_path
-    )
+    user_link_path = staticmethod(AnalyticsAdminServiceClient.user_link_path)
 
-    account_path = staticmethod(AnalyticsAdminServiceClient.account_path)
+    android_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.android_app_data_stream_path
+    )
 
     from_service_account_file = AnalyticsAdminServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file

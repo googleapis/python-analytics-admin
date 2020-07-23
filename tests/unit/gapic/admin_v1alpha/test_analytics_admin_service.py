@@ -11528,28 +11528,22 @@ def test_analytics_admin_service_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_android_app_data_stream_path():
-    property = "squid"
-    android_app_data_stream = "clam"
+def test_account_path():
+    account = "squid"
 
-    expected = "properties/{property}/androidAppDataStreams/{android_app_data_stream}".format(
-        property=property, android_app_data_stream=android_app_data_stream,
-    )
-    actual = AnalyticsAdminServiceClient.android_app_data_stream_path(
-        property, android_app_data_stream
-    )
+    expected = "accounts/{account}".format(account=account,)
+    actual = AnalyticsAdminServiceClient.account_path(account)
     assert expected == actual
 
 
-def test_parse_android_app_data_stream_path():
+def test_parse_account_path():
     expected = {
-        "property": "whelk",
-        "android_app_data_stream": "octopus",
+        "account": "clam",
     }
-    path = AnalyticsAdminServiceClient.android_app_data_stream_path(**expected)
+    path = AnalyticsAdminServiceClient.account_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = AnalyticsAdminServiceClient.parse_android_app_data_stream_path(path)
+    actual = AnalyticsAdminServiceClient.parse_account_path(path)
     assert expected == actual
 
 
@@ -11572,26 +11566,26 @@ def test_parse_property_path():
     assert expected == actual
 
 
-def test_user_link_path():
-    account = "squid"
-    user_link = "clam"
+def test_google_ads_link_path():
+    property = "squid"
+    google_ads_link = "clam"
 
-    expected = "accounts/{account}/userLinks/{user_link}".format(
-        account=account, user_link=user_link,
+    expected = "properties/{property}/googleAdsLinks/{google_ads_link}".format(
+        property=property, google_ads_link=google_ads_link,
     )
-    actual = AnalyticsAdminServiceClient.user_link_path(account, user_link)
+    actual = AnalyticsAdminServiceClient.google_ads_link_path(property, google_ads_link)
     assert expected == actual
 
 
-def test_parse_user_link_path():
+def test_parse_google_ads_link_path():
     expected = {
-        "account": "whelk",
-        "user_link": "octopus",
+        "property": "whelk",
+        "google_ads_link": "octopus",
     }
-    path = AnalyticsAdminServiceClient.user_link_path(**expected)
+    path = AnalyticsAdminServiceClient.google_ads_link_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = AnalyticsAdminServiceClient.parse_user_link_path(path)
+    actual = AnalyticsAdminServiceClient.parse_google_ads_link_path(path)
     assert expected == actual
 
 
@@ -11620,26 +11614,28 @@ def test_parse_enhanced_measurement_settings_path():
     assert expected == actual
 
 
-def test_google_ads_link_path():
+def test_ios_app_data_stream_path():
     property = "squid"
-    google_ads_link = "clam"
+    ios_app_data_stream = "clam"
 
-    expected = "properties/{property}/googleAdsLinks/{google_ads_link}".format(
-        property=property, google_ads_link=google_ads_link,
+    expected = "properties/{property}/iosAppDataStreams/{ios_app_data_stream}".format(
+        property=property, ios_app_data_stream=ios_app_data_stream,
     )
-    actual = AnalyticsAdminServiceClient.google_ads_link_path(property, google_ads_link)
+    actual = AnalyticsAdminServiceClient.ios_app_data_stream_path(
+        property, ios_app_data_stream
+    )
     assert expected == actual
 
 
-def test_parse_google_ads_link_path():
+def test_parse_ios_app_data_stream_path():
     expected = {
         "property": "whelk",
-        "google_ads_link": "octopus",
+        "ios_app_data_stream": "octopus",
     }
-    path = AnalyticsAdminServiceClient.google_ads_link_path(**expected)
+    path = AnalyticsAdminServiceClient.ios_app_data_stream_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = AnalyticsAdminServiceClient.parse_google_ads_link_path(path)
+    actual = AnalyticsAdminServiceClient.parse_ios_app_data_stream_path(path)
     assert expected == actual
 
 
@@ -11689,45 +11685,49 @@ def test_parse_web_data_stream_path():
     assert expected == actual
 
 
-def test_ios_app_data_stream_path():
-    property = "squid"
-    ios_app_data_stream = "clam"
+def test_user_link_path():
+    account = "squid"
+    user_link = "clam"
 
-    expected = "properties/{property}/iosAppDataStreams/{ios_app_data_stream}".format(
-        property=property, ios_app_data_stream=ios_app_data_stream,
+    expected = "accounts/{account}/userLinks/{user_link}".format(
+        account=account, user_link=user_link,
     )
-    actual = AnalyticsAdminServiceClient.ios_app_data_stream_path(
-        property, ios_app_data_stream
+    actual = AnalyticsAdminServiceClient.user_link_path(account, user_link)
+    assert expected == actual
+
+
+def test_parse_user_link_path():
+    expected = {
+        "account": "whelk",
+        "user_link": "octopus",
+    }
+    path = AnalyticsAdminServiceClient.user_link_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = AnalyticsAdminServiceClient.parse_user_link_path(path)
+    assert expected == actual
+
+
+def test_android_app_data_stream_path():
+    property = "squid"
+    android_app_data_stream = "clam"
+
+    expected = "properties/{property}/androidAppDataStreams/{android_app_data_stream}".format(
+        property=property, android_app_data_stream=android_app_data_stream,
+    )
+    actual = AnalyticsAdminServiceClient.android_app_data_stream_path(
+        property, android_app_data_stream
     )
     assert expected == actual
 
 
-def test_parse_ios_app_data_stream_path():
+def test_parse_android_app_data_stream_path():
     expected = {
         "property": "whelk",
-        "ios_app_data_stream": "octopus",
+        "android_app_data_stream": "octopus",
     }
-    path = AnalyticsAdminServiceClient.ios_app_data_stream_path(**expected)
+    path = AnalyticsAdminServiceClient.android_app_data_stream_path(**expected)
 
     # Check that the path construction is reversible.
-    actual = AnalyticsAdminServiceClient.parse_ios_app_data_stream_path(path)
-    assert expected == actual
-
-
-def test_account_path():
-    account = "squid"
-
-    expected = "accounts/{account}".format(account=account,)
-    actual = AnalyticsAdminServiceClient.account_path(account)
-    assert expected == actual
-
-
-def test_parse_account_path():
-    expected = {
-        "account": "clam",
-    }
-    path = AnalyticsAdminServiceClient.account_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = AnalyticsAdminServiceClient.parse_account_path(path)
+    actual = AnalyticsAdminServiceClient.parse_android_app_data_stream_path(path)
     assert expected == actual

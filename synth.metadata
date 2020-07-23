@@ -3,8 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-analytics-admin",
-        "sha": "37c5c6a341bd2df94953cd6dd7ac22033dd5dc7d"
+        "remote": "https://github.com/googleapis/python-analytics-admin.git",
+        "sha": "a2b95ffe0758a414add7f44eb8ead1d7b24f3db4"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "a1c9dba23852947c0232f7c13dd1e92108f92153",
+        "internalRef": "322700241"
       }
     },
     {
