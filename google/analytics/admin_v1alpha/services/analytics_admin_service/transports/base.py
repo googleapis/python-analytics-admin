@@ -17,14 +17,25 @@
 
 import abc
 import typing
+import pkg_resources
 
 from google import auth
 from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
 from google.analytics.admin_v1alpha.types import analytics_admin
 from google.analytics.admin_v1alpha.types import resources
 from google.protobuf import empty_pb2 as empty  # type: ignore
+
+
+try:
+    _client_info = gapic_v1.client_info.ClientInfo(
+        gapic_version=pkg_resources.get_distribution("google-analytics-admin",).version,
+    )
+except pkg_resources.DistributionNotFound:
+    _client_info = gapic_v1.client_info.ClientInfo()
 
 
 class AnalyticsAdminServiceTransport(abc.ABC):
@@ -87,6 +98,219 @@ class AnalyticsAdminServiceTransport(abc.ABC):
 
         # Save the credentials.
         self._credentials = credentials
+
+        # Lifted into its own function so it can be stubbed out during tests.
+        self._prep_wrapped_messages()
+
+    def _prep_wrapped_messages(self):
+        # Precompute the wrapped methods.
+        self._wrapped_methods = {
+            self.get_account: gapic_v1.method.wrap_method(
+                self.get_account, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.list_accounts: gapic_v1.method.wrap_method(
+                self.list_accounts, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.delete_account: gapic_v1.method.wrap_method(
+                self.delete_account, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.update_account: gapic_v1.method.wrap_method(
+                self.update_account, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.provision_account_ticket: gapic_v1.method.wrap_method(
+                self.provision_account_ticket,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_property: gapic_v1.method.wrap_method(
+                self.get_property, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.list_properties: gapic_v1.method.wrap_method(
+                self.list_properties, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.create_property: gapic_v1.method.wrap_method(
+                self.create_property, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.delete_property: gapic_v1.method.wrap_method(
+                self.delete_property, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.update_property: gapic_v1.method.wrap_method(
+                self.update_property, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.get_user_link: gapic_v1.method.wrap_method(
+                self.get_user_link, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.batch_get_user_links: gapic_v1.method.wrap_method(
+                self.batch_get_user_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_user_links: gapic_v1.method.wrap_method(
+                self.list_user_links, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.audit_user_links: gapic_v1.method.wrap_method(
+                self.audit_user_links, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.create_user_link: gapic_v1.method.wrap_method(
+                self.create_user_link, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.batch_create_user_links: gapic_v1.method.wrap_method(
+                self.batch_create_user_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_user_link: gapic_v1.method.wrap_method(
+                self.update_user_link, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.batch_update_user_links: gapic_v1.method.wrap_method(
+                self.batch_update_user_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_user_link: gapic_v1.method.wrap_method(
+                self.delete_user_link, default_timeout=60.0, client_info=_client_info,
+            ),
+            self.batch_delete_user_links: gapic_v1.method.wrap_method(
+                self.batch_delete_user_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_web_data_stream: gapic_v1.method.wrap_method(
+                self.get_web_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_web_data_stream: gapic_v1.method.wrap_method(
+                self.delete_web_data_stream,
+                default_timeout=None,
+                client_info=_client_info,
+            ),
+            self.update_web_data_stream: gapic_v1.method.wrap_method(
+                self.update_web_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.create_web_data_stream: gapic_v1.method.wrap_method(
+                self.create_web_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_web_data_streams: gapic_v1.method.wrap_method(
+                self.list_web_data_streams,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_ios_app_data_stream: gapic_v1.method.wrap_method(
+                self.get_ios_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_ios_app_data_stream: gapic_v1.method.wrap_method(
+                self.delete_ios_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_ios_app_data_stream: gapic_v1.method.wrap_method(
+                self.update_ios_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.create_ios_app_data_stream: gapic_v1.method.wrap_method(
+                self.create_ios_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_ios_app_data_streams: gapic_v1.method.wrap_method(
+                self.list_ios_app_data_streams,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_android_app_data_stream: gapic_v1.method.wrap_method(
+                self.get_android_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_android_app_data_stream: gapic_v1.method.wrap_method(
+                self.delete_android_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_android_app_data_stream: gapic_v1.method.wrap_method(
+                self.update_android_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.create_android_app_data_stream: gapic_v1.method.wrap_method(
+                self.create_android_app_data_stream,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_android_app_data_streams: gapic_v1.method.wrap_method(
+                self.list_android_app_data_streams,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_enhanced_measurement_settings: gapic_v1.method.wrap_method(
+                self.get_enhanced_measurement_settings,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_enhanced_measurement_settings: gapic_v1.method.wrap_method(
+                self.update_enhanced_measurement_settings,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.create_firebase_link: gapic_v1.method.wrap_method(
+                self.create_firebase_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_firebase_link: gapic_v1.method.wrap_method(
+                self.update_firebase_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_firebase_link: gapic_v1.method.wrap_method(
+                self.delete_firebase_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_firebase_links: gapic_v1.method.wrap_method(
+                self.list_firebase_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_global_site_tag: gapic_v1.method.wrap_method(
+                self.get_global_site_tag,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.create_google_ads_link: gapic_v1.method.wrap_method(
+                self.create_google_ads_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.update_google_ads_link: gapic_v1.method.wrap_method(
+                self.update_google_ads_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.delete_google_ads_link: gapic_v1.method.wrap_method(
+                self.delete_google_ads_link,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.list_google_ads_links: gapic_v1.method.wrap_method(
+                self.list_google_ads_links,
+                default_timeout=60.0,
+                client_info=_client_info,
+            ),
+            self.get_data_sharing_settings: gapic_v1.method.wrap_method(
+                self.get_data_sharing_settings,
+                default_timeout=None,
+                client_info=_client_info,
+            ),
+        }
 
     @property
     def get_account(

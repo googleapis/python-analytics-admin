@@ -395,25 +395,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetAccountRequest):
+            request = analytics_admin.GetAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_account, default_timeout=60.0, client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -462,15 +466,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ListAccountsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListAccountsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListAccountsRequest):
+            request = analytics_admin.ListAccountsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_accounts,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_accounts]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -526,27 +531,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteAccountRequest):
+            request = analytics_admin.DeleteAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_account,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -603,29 +610,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([account, update_mask]):
+        has_flattened_params = any([account, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateAccountRequest):
+            request = analytics_admin.UpdateAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if account is not None:
-            request.account = account
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if account is not None:
+                request.account = account
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_account,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -670,15 +679,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ProvisionAccountTicketRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ProvisionAccountTicketRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ProvisionAccountTicketRequest):
+            request = analytics_admin.ProvisionAccountTicketRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.provision_account_ticket,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.provision_account_ticket]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -725,27 +735,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetPropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetPropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetPropertyRequest):
+            request = analytics_admin.GetPropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -797,15 +809,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ListPropertiesRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListPropertiesRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListPropertiesRequest):
+            request = analytics_admin.ListPropertiesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_properties,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_properties]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -858,27 +871,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([property]):
+        has_flattened_params = any([property])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreatePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreatePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreatePropertyRequest):
+            request = analytics_admin.CreatePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if property is not None:
-            request.property = property
+            if property is not None:
+                request.property = property
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_property]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -929,27 +944,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeletePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeletePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeletePropertyRequest):
+            request = analytics_admin.DeletePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1007,29 +1024,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([property, update_mask]):
+        has_flattened_params = any([property, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdatePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdatePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdatePropertyRequest):
+            request = analytics_admin.UpdatePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if property is not None:
-            request.property = property
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if property is not None:
+                request.property = property
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1083,27 +1102,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetUserLinkRequest):
+            request = analytics_admin.GetUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1147,15 +1168,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchGetUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchGetUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchGetUserLinksRequest):
+            request = analytics_admin.BatchGetUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_get_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_get_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1209,27 +1231,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListUserLinksRequest):
+            request = analytics_admin.ListUserLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1291,15 +1315,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.AuditUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.AuditUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.AuditUserLinksRequest):
+            request = analytics_admin.AuditUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.audit_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.audit_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1375,29 +1400,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, user_link]):
+        has_flattened_params = any([parent, user_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateUserLinkRequest):
+            request = analytics_admin.CreateUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if user_link is not None:
-            request.user_link = user_link
+            if parent is not None:
+                request.parent = parent
+            if user_link is not None:
+                request.user_link = user_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1443,15 +1470,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchCreateUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchCreateUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchCreateUserLinksRequest):
+            request = analytics_admin.BatchCreateUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_create_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_create_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1502,27 +1530,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([user_link]):
+        has_flattened_params = any([user_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateUserLinkRequest):
+            request = analytics_admin.UpdateUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if user_link is not None:
-            request.user_link = user_link
+            if user_link is not None:
+                request.user_link = user_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1568,15 +1598,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchUpdateUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchUpdateUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchUpdateUserLinksRequest):
+            request = analytics_admin.BatchUpdateUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_update_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_update_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1621,27 +1652,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteUserLinkRequest):
+            request = analytics_admin.DeleteUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1678,15 +1711,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchDeleteUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchDeleteUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchDeleteUserLinksRequest):
+            request = analytics_admin.BatchDeleteUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_delete_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_delete_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1741,27 +1775,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetWebDataStreamRequest):
+            request = analytics_admin.GetWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1808,27 +1844,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteWebDataStreamRequest):
+            request = analytics_admin.DeleteWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_web_data_stream,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1885,29 +1923,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([web_data_stream, update_mask]):
+        has_flattened_params = any([web_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateWebDataStreamRequest):
+            request = analytics_admin.UpdateWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if web_data_stream is not None:
-            request.web_data_stream = web_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if web_data_stream is not None:
+                request.web_data_stream = web_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1968,29 +2008,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, web_data_stream]):
+        has_flattened_params = any([parent, web_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateWebDataStreamRequest):
+            request = analytics_admin.CreateWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if web_data_stream is not None:
-            request.web_data_stream = web_data_stream
+            if parent is not None:
+                request.parent = parent
+            if web_data_stream is not None:
+                request.web_data_stream = web_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2050,27 +2092,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListWebDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListWebDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListWebDataStreamsRequest):
+            request = analytics_admin.ListWebDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_web_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_web_data_streams]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2132,27 +2176,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetIosAppDataStreamRequest):
+            request = analytics_admin.GetIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_ios_app_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2199,27 +2245,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteIosAppDataStreamRequest):
+            request = analytics_admin.DeleteIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2277,29 +2327,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([ios_app_data_stream, update_mask]):
+        has_flattened_params = any([ios_app_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateIosAppDataStreamRequest):
+            request = analytics_admin.UpdateIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if ios_app_data_stream is not None:
-            request.ios_app_data_stream = ios_app_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if ios_app_data_stream is not None:
+                request.ios_app_data_stream = ios_app_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2361,29 +2415,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, ios_app_data_stream]):
+        has_flattened_params = any([parent, ios_app_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateIosAppDataStreamRequest):
+            request = analytics_admin.CreateIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if ios_app_data_stream is not None:
-            request.ios_app_data_stream = ios_app_data_stream
+            if parent is not None:
+                request.parent = parent
+            if ios_app_data_stream is not None:
+                request.ios_app_data_stream = ios_app_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2443,27 +2501,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListIosAppDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListIosAppDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListIosAppDataStreamsRequest):
+            request = analytics_admin.ListIosAppDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_ios_app_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_ios_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2525,27 +2587,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetAndroidAppDataStreamRequest):
+            request = analytics_admin.GetAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2592,27 +2658,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteAndroidAppDataStreamRequest):
+            request = analytics_admin.DeleteAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2670,29 +2740,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([android_app_data_stream, update_mask]):
+        has_flattened_params = any([android_app_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateAndroidAppDataStreamRequest):
+            request = analytics_admin.UpdateAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if android_app_data_stream is not None:
-            request.android_app_data_stream = android_app_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if android_app_data_stream is not None:
+                request.android_app_data_stream = android_app_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2759,29 +2833,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, android_app_data_stream]):
+        has_flattened_params = any([parent, android_app_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateAndroidAppDataStreamRequest):
+            request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if android_app_data_stream is not None:
-            request.android_app_data_stream = android_app_data_stream
+            if parent is not None:
+                request.parent = parent
+            if android_app_data_stream is not None:
+                request.android_app_data_stream = android_app_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2841,27 +2919,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListAndroidAppDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListAndroidAppDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListAndroidAppDataStreamsRequest):
+            request = analytics_admin.ListAndroidAppDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_android_app_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_android_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2924,27 +3006,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetEnhancedMeasurementSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(
+            request, analytics_admin.GetEnhancedMeasurementSettingsRequest
+        ):
+            request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_enhanced_measurement_settings,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3006,29 +3094,35 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([enhanced_measurement_settings, update_mask]):
+        has_flattened_params = any([enhanced_measurement_settings, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateEnhancedMeasurementSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(
+            request, analytics_admin.UpdateEnhancedMeasurementSettingsRequest
+        ):
+            request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if enhanced_measurement_settings is not None:
-            request.enhanced_measurement_settings = enhanced_measurement_settings
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if enhanced_measurement_settings is not None:
+                request.enhanced_measurement_settings = enhanced_measurement_settings
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_enhanced_measurement_settings,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3094,29 +3188,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, firebase_link]):
+        has_flattened_params = any([parent, firebase_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateFirebaseLinkRequest):
+            request = analytics_admin.CreateFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if firebase_link is not None:
-            request.firebase_link = firebase_link
+            if parent is not None:
+                request.parent = parent
+            if firebase_link is not None:
+                request.firebase_link = firebase_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3174,29 +3270,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([firebase_link, update_mask]):
+        has_flattened_params = any([firebase_link, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateFirebaseLinkRequest):
+            request = analytics_admin.UpdateFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if firebase_link is not None:
-            request.firebase_link = firebase_link
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if firebase_link is not None:
+                request.firebase_link = firebase_link
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3244,27 +3342,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteFirebaseLinkRequest):
+            request = analytics_admin.DeleteFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3315,27 +3415,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListFirebaseLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListFirebaseLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListFirebaseLinksRequest):
+            request = analytics_admin.ListFirebaseLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_firebase_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_firebase_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3392,27 +3494,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetGlobalSiteTagRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetGlobalSiteTagRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetGlobalSiteTagRequest):
+            request = analytics_admin.GetGlobalSiteTagRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_global_site_tag,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_global_site_tag]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3470,29 +3574,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, google_ads_link]):
+        has_flattened_params = any([parent, google_ads_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateGoogleAdsLinkRequest):
+            request = analytics_admin.CreateGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if google_ads_link is not None:
-            request.google_ads_link = google_ads_link
+            if parent is not None:
+                request.parent = parent
+            if google_ads_link is not None:
+                request.google_ads_link = google_ads_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3549,29 +3655,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([google_ads_link, update_mask]):
+        has_flattened_params = any([google_ads_link, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateGoogleAdsLinkRequest):
+            request = analytics_admin.UpdateGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if google_ads_link is not None:
-            request.google_ads_link = google_ads_link
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if google_ads_link is not None:
+                request.google_ads_link = google_ads_link
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3618,27 +3726,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteGoogleAdsLinkRequest):
+            request = analytics_admin.DeleteGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3691,27 +3801,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListGoogleAdsLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListGoogleAdsLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListGoogleAdsLinksRequest):
+            request = analytics_admin.ListGoogleAdsLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_google_ads_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_google_ads_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3773,27 +3885,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetDataSharingSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetDataSharingSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetDataSharingSettingsRequest):
+            request = analytics_admin.GetDataSharingSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_data_sharing_settings,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_data_sharing_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
