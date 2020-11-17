@@ -28,17 +28,22 @@ class AnalyticsAdminServiceGrpcTransport(object):
     which can be used to take advantage of advanced
     features of gRPC.
     """
+
     # The scopes needed to make gRPC calls to all of the methods defined
     # in this service.
     _OAUTH_SCOPES = (
-        'https://www.googleapis.com/auth/analytics.edit',
-        'https://www.googleapis.com/auth/analytics.manage.users',
-        'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-        'https://www.googleapis.com/auth/analytics.readonly',
+        "https://www.googleapis.com/auth/analytics.edit",
+        "https://www.googleapis.com/auth/analytics.manage.users",
+        "https://www.googleapis.com/auth/analytics.manage.users.readonly",
+        "https://www.googleapis.com/auth/analytics.readonly",
     )
 
-    def __init__(self, channel=None, credentials=None,
-                 address='analyticsadmin.googleapis.com:443'):
+    def __init__(
+        self,
+        channel=None,
+        credentials=None,
+        address="analyticsadmin.googleapis.com:443",
+    ):
         """Instantiate the transport class.
 
         Args:
@@ -56,8 +61,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
         # exception (channels come with credentials baked in already).
         if channel is not None and credentials is not None:
             raise ValueError(
-                'The `channel` and `credentials` arguments are mutually '
-                'exclusive.',
+                "The `channel` and `credentials` arguments are mutually " "exclusive.",
             )
 
         # Create the channel.
@@ -66,8 +70,8 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 address=address,
                 credentials=credentials,
                 options={
-                    'grpc.max_send_message_length': -1,
-                    'grpc.max_receive_message_length': -1,
+                    "grpc.max_send_message_length": -1,
+                    "grpc.max_receive_message_length": -1,
                 }.items(),
             )
 
@@ -76,16 +80,15 @@ class AnalyticsAdminServiceGrpcTransport(object):
         # gRPC uses objects called "stubs" that are bound to the
         # channel and provide a basic method for each RPC.
         self._stubs = {
-            'analytics_admin_service_stub': analytics_admin_pb2_grpc.AnalyticsAdminServiceStub(channel),
+            "analytics_admin_service_stub": analytics_admin_pb2_grpc.AnalyticsAdminServiceStub(
+                channel
+            ),
         }
-
 
     @classmethod
     def create_channel(
-                cls,
-                address='analyticsadmin.googleapis.com:443',
-                credentials=None,
-                **kwargs):
+        cls, address="analyticsadmin.googleapis.com:443", credentials=None, **kwargs
+    ):
         """Create and return a gRPC channel object.
 
         Args:
@@ -102,10 +105,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
             grpc.Channel: A gRPC channel object.
         """
         return google.api_core.grpc_helpers.create_channel(
-            address,
-            credentials=credentials,
-            scopes=cls._OAUTH_SCOPES,
-            **kwargs
+            address, credentials=credentials, scopes=cls._OAUTH_SCOPES, **kwargs
         )
 
     @property
@@ -130,7 +130,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetAccount
+        return self._stubs["analytics_admin_service_stub"].GetAccount
 
     @property
     def list_accounts(self):
@@ -147,7 +147,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListAccounts
+        return self._stubs["analytics_admin_service_stub"].ListAccounts
 
     @property
     def delete_account(self):
@@ -170,7 +170,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteAccount
+        return self._stubs["analytics_admin_service_stub"].DeleteAccount
 
     @property
     def update_account(self):
@@ -183,7 +183,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateAccount
+        return self._stubs["analytics_admin_service_stub"].UpdateAccount
 
     @property
     def provision_account_ticket(self):
@@ -196,7 +196,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ProvisionAccountTicket
+        return self._stubs["analytics_admin_service_stub"].ProvisionAccountTicket
 
     @property
     def list_account_summaries(self):
@@ -209,7 +209,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListAccountSummaries
+        return self._stubs["analytics_admin_service_stub"].ListAccountSummaries
 
     @property
     def get_property(self):
@@ -225,7 +225,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetProperty
+        return self._stubs["analytics_admin_service_stub"].GetProperty
 
     @property
     def list_properties(self):
@@ -243,7 +243,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListProperties
+        return self._stubs["analytics_admin_service_stub"].ListProperties
 
     @property
     def create_property(self):
@@ -256,7 +256,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateProperty
+        return self._stubs["analytics_admin_service_stub"].CreateProperty
 
     @property
     def delete_property(self):
@@ -279,7 +279,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteProperty
+        return self._stubs["analytics_admin_service_stub"].DeleteProperty
 
     @property
     def update_property(self):
@@ -292,7 +292,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateProperty
+        return self._stubs["analytics_admin_service_stub"].UpdateProperty
 
     @property
     def get_user_link(self):
@@ -305,7 +305,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetUserLink
+        return self._stubs["analytics_admin_service_stub"].GetUserLink
 
     @property
     def batch_get_user_links(self):
@@ -318,7 +318,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].BatchGetUserLinks
+        return self._stubs["analytics_admin_service_stub"].BatchGetUserLinks
 
     @property
     def list_user_links(self):
@@ -331,7 +331,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListUserLinks
+        return self._stubs["analytics_admin_service_stub"].ListUserLinks
 
     @property
     def audit_user_links(self):
@@ -352,7 +352,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].AuditUserLinks
+        return self._stubs["analytics_admin_service_stub"].AuditUserLinks
 
     @property
     def create_user_link(self):
@@ -369,7 +369,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateUserLink
+        return self._stubs["analytics_admin_service_stub"].CreateUserLink
 
     @property
     def batch_create_user_links(self):
@@ -385,7 +385,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].BatchCreateUserLinks
+        return self._stubs["analytics_admin_service_stub"].BatchCreateUserLinks
 
     @property
     def update_user_link(self):
@@ -398,7 +398,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateUserLink
+        return self._stubs["analytics_admin_service_stub"].UpdateUserLink
 
     @property
     def batch_update_user_links(self):
@@ -411,7 +411,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].BatchUpdateUserLinks
+        return self._stubs["analytics_admin_service_stub"].BatchUpdateUserLinks
 
     @property
     def delete_user_link(self):
@@ -424,7 +424,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteUserLink
+        return self._stubs["analytics_admin_service_stub"].DeleteUserLink
 
     @property
     def batch_delete_user_links(self):
@@ -437,7 +437,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].BatchDeleteUserLinks
+        return self._stubs["analytics_admin_service_stub"].BatchDeleteUserLinks
 
     @property
     def get_web_data_stream(self):
@@ -453,7 +453,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetWebDataStream
+        return self._stubs["analytics_admin_service_stub"].GetWebDataStream
 
     @property
     def delete_web_data_stream(self):
@@ -466,7 +466,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteWebDataStream
+        return self._stubs["analytics_admin_service_stub"].DeleteWebDataStream
 
     @property
     def update_web_data_stream(self):
@@ -479,7 +479,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateWebDataStream
+        return self._stubs["analytics_admin_service_stub"].UpdateWebDataStream
 
     @property
     def create_web_data_stream(self):
@@ -492,7 +492,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateWebDataStream
+        return self._stubs["analytics_admin_service_stub"].CreateWebDataStream
 
     @property
     def list_web_data_streams(self):
@@ -508,7 +508,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListWebDataStreams
+        return self._stubs["analytics_admin_service_stub"].ListWebDataStreams
 
     @property
     def get_ios_app_data_stream(self):
@@ -524,7 +524,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetIosAppDataStream
+        return self._stubs["analytics_admin_service_stub"].GetIosAppDataStream
 
     @property
     def delete_ios_app_data_stream(self):
@@ -537,7 +537,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteIosAppDataStream
+        return self._stubs["analytics_admin_service_stub"].DeleteIosAppDataStream
 
     @property
     def update_ios_app_data_stream(self):
@@ -550,7 +550,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateIosAppDataStream
+        return self._stubs["analytics_admin_service_stub"].UpdateIosAppDataStream
 
     @property
     def create_ios_app_data_stream(self):
@@ -563,7 +563,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateIosAppDataStream
+        return self._stubs["analytics_admin_service_stub"].CreateIosAppDataStream
 
     @property
     def list_ios_app_data_streams(self):
@@ -579,7 +579,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListIosAppDataStreams
+        return self._stubs["analytics_admin_service_stub"].ListIosAppDataStreams
 
     @property
     def get_android_app_data_stream(self):
@@ -595,7 +595,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetAndroidAppDataStream
+        return self._stubs["analytics_admin_service_stub"].GetAndroidAppDataStream
 
     @property
     def delete_android_app_data_stream(self):
@@ -608,7 +608,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteAndroidAppDataStream
+        return self._stubs["analytics_admin_service_stub"].DeleteAndroidAppDataStream
 
     @property
     def update_android_app_data_stream(self):
@@ -621,7 +621,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateAndroidAppDataStream
+        return self._stubs["analytics_admin_service_stub"].UpdateAndroidAppDataStream
 
     @property
     def create_android_app_data_stream(self):
@@ -634,7 +634,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateAndroidAppDataStream
+        return self._stubs["analytics_admin_service_stub"].CreateAndroidAppDataStream
 
     @property
     def list_android_app_data_streams(self):
@@ -650,7 +650,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListAndroidAppDataStreams
+        return self._stubs["analytics_admin_service_stub"].ListAndroidAppDataStreams
 
     @property
     def get_enhanced_measurement_settings(self):
@@ -665,7 +665,9 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetEnhancedMeasurementSettings
+        return self._stubs[
+            "analytics_admin_service_stub"
+        ].GetEnhancedMeasurementSettings
 
     @property
     def update_enhanced_measurement_settings(self):
@@ -680,7 +682,9 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateEnhancedMeasurementSettings
+        return self._stubs[
+            "analytics_admin_service_stub"
+        ].UpdateEnhancedMeasurementSettings
 
     @property
     def create_firebase_link(self):
@@ -695,7 +699,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateFirebaseLink
+        return self._stubs["analytics_admin_service_stub"].CreateFirebaseLink
 
     @property
     def update_firebase_link(self):
@@ -708,7 +712,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateFirebaseLink
+        return self._stubs["analytics_admin_service_stub"].UpdateFirebaseLink
 
     @property
     def delete_firebase_link(self):
@@ -721,7 +725,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteFirebaseLink
+        return self._stubs["analytics_admin_service_stub"].DeleteFirebaseLink
 
     @property
     def list_firebase_links(self):
@@ -735,7 +739,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListFirebaseLinks
+        return self._stubs["analytics_admin_service_stub"].ListFirebaseLinks
 
     @property
     def get_global_site_tag(self):
@@ -749,7 +753,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetGlobalSiteTag
+        return self._stubs["analytics_admin_service_stub"].GetGlobalSiteTag
 
     @property
     def create_google_ads_link(self):
@@ -762,7 +766,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].CreateGoogleAdsLink
+        return self._stubs["analytics_admin_service_stub"].CreateGoogleAdsLink
 
     @property
     def update_google_ads_link(self):
@@ -775,7 +779,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].UpdateGoogleAdsLink
+        return self._stubs["analytics_admin_service_stub"].UpdateGoogleAdsLink
 
     @property
     def delete_google_ads_link(self):
@@ -788,7 +792,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].DeleteGoogleAdsLink
+        return self._stubs["analytics_admin_service_stub"].DeleteGoogleAdsLink
 
     @property
     def list_google_ads_links(self):
@@ -801,7 +805,7 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].ListGoogleAdsLinks
+        return self._stubs["analytics_admin_service_stub"].ListGoogleAdsLinks
 
     @property
     def get_data_sharing_settings(self):
@@ -815,4 +819,4 @@ class AnalyticsAdminServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['analytics_admin_service_stub'].GetDataSharingSettings
+        return self._stubs["analytics_admin_service_stub"].GetDataSharingSettings

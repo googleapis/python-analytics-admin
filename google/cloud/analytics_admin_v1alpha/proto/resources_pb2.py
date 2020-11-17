@@ -7,6 +7,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -19,203 +20,304 @@ from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='google/cloud/analytics_admin_v1alpha/proto/resources.proto',
-  package='google.analytics.admin.v1alpha',
-  syntax='proto3',
-  serialized_options=b'\n\"com.google.analytics.admin.v1alphaB\016ResourcesProtoP\001ZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;admin',
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n:google/cloud/analytics_admin_v1alpha/proto/resources.proto\x12\x1egoogle.analytics.admin.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8f\x02\n\x07\x41\x63\x63ount\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\x0c\x64isplay_name\x18\x04 \x01(\tB\x03\xe0\x41\x02\x12\x14\n\x0c\x63ountry_code\x18\x05 \x01(\t\x12\x14\n\x07\x64\x65leted\x18\x06 \x01(\x08\x42\x03\xe0\x41\x03:>\xea\x41;\n%analyticsadmin.googleapis.com/Account\x12\x12\x61\x63\x63ounts/{account}\"\x8a\x03\n\x08Property\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x13\n\x06parent\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x19\n\x0c\x64isplay_name\x18\x05 \x01(\tB\x03\xe0\x41\x02\x12K\n\x11industry_category\x18\x06 \x01(\x0e\x32\x30.google.analytics.admin.v1alpha.IndustryCategory\x12\x11\n\ttime_zone\x18\x07 \x01(\t\x12\x15\n\rcurrency_code\x18\x08 \x01(\t\x12\x14\n\x07\x64\x65leted\x18\t \x01(\x08\x42\x03\xe0\x41\x03:B\xea\x41?\n&analyticsadmin.googleapis.com/Property\x12\x15properties/{property}\"\xe4\x02\n\x14\x41ndroidAppDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\x0cpackage_name\x18\x05 \x01(\tB\x03\xe0\x41\x05\x12\x14\n\x0c\x64isplay_name\x18\x06 \x01(\t:~\xea\x41{\n2analyticsadmin.googleapis.com/AndroidAppDataStream\x12\x45properties/{property}/androidAppDataStreams/{android_app_data_stream}\"\xd4\x02\n\x10IosAppDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\tbundle_id\x18\x05 \x01(\tB\x06\xe0\x41\x05\xe0\x41\x02\x12\x14\n\x0c\x64isplay_name\x18\x06 \x01(\t:r\xea\x41o\n.analyticsadmin.googleapis.com/IosAppDataStream\x12=properties/{property}/iosAppDataStreams/{ios_app_data_stream}\"\xe8\x02\n\rWebDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1b\n\x0emeasurement_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x03 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x18\n\x0b\x64\x65\x66\x61ult_uri\x18\x06 \x01(\tB\x03\xe0\x41\x05\x12\x19\n\x0c\x64isplay_name\x18\x07 \x01(\tB\x03\xe0\x41\x02:h\xea\x41\x65\n+analyticsadmin.googleapis.com/WebDataStream\x12\x36properties/{property}/webDataStreams/{web_data_stream}\"\xca\x01\n\x08UserLink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\remail_address\x18\x02 \x01(\t\x12\x14\n\x0c\x64irect_roles\x18\x03 \x03(\t:\x82\x01\xea\x41\x7f\n&analyticsadmin.googleapis.com/UserLink\x12(accounts/{account}/userLinks/{user_link}\x12+properties/{property}/userLinks/{user_link}\"c\n\rAuditUserLink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\remail_address\x18\x02 \x01(\t\x12\x14\n\x0c\x64irect_roles\x18\x03 \x03(\t\x12\x17\n\x0f\x65\x66\x66\x65\x63tive_roles\x18\x04 \x03(\t\"\xe8\x05\n\x1b\x45nhancedMeasurementSettings\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x16\n\x0estream_enabled\x18\x02 \x01(\x08\x12\x1f\n\x12page_views_enabled\x18\x03 \x01(\x08\x42\x03\xe0\x41\x03\x12\x17\n\x0fscrolls_enabled\x18\x04 \x01(\x08\x12\x1f\n\x17outbound_clicks_enabled\x18\x05 \x01(\x08\x12\x1d\n\x15\x63ontent_views_enabled\x18\x06 \x01(\x08\x12\x1b\n\x13site_search_enabled\x18\x07 \x01(\x08\x12!\n\x19\x66orm_interactions_enabled\x18\x08 \x01(\x08\x12 \n\x18video_engagement_enabled\x18\t \x01(\x08\x12\x1e\n\x16\x66ile_downloads_enabled\x18\n \x01(\x08\x12*\n\"data_tagged_element_clicks_enabled\x18\x0b \x01(\x08\x12\x1a\n\x12page_loads_enabled\x18\x0c \x01(\x08\x12\x1c\n\x14page_changes_enabled\x18\r \x01(\x08\x12\"\n\x1a\x61rticles_and_blogs_enabled\x18\x0e \x01(\x08\x12&\n\x1eproducts_and_ecommerce_enabled\x18\x0f \x01(\x08\x12#\n\x16search_query_parameter\x18\x10 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x13url_query_parameter\x18\x11 \x01(\t\x12\x18\n\x10\x65xcluded_domains\x18\x12 \x01(\t:\x93\x01\xea\x41\x8f\x01\n9analyticsadmin.googleapis.com/EnhancedMeasurementSettings\x12Rproperties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings\"\xa3\x02\n\x0c\x46irebaseLink\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x14\n\x07project\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12N\n\x13maximum_user_access\x18\x04 \x01(\x0e\x32\x31.google.analytics.admin.v1alpha.MaximumUserAccess:d\xea\x41\x61\n*analyticsadmin.googleapis.com/FirebaseLink\x12\x33properties/{property}/firebaseLinks/{firebase_link}\"|\n\rGlobalSiteTag\x12\x14\n\x07snippet\x18\x01 \x01(\tB\x03\xe0\x41\x05:U\xea\x41R\n+analyticsadmin.googleapis.com/GlobalSiteTag\x12#properties/{property}/globalSiteTag\"\xa5\x03\n\rGoogleAdsLink\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x13\n\x06parent\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x18\n\x0b\x63ustomer_id\x18\x03 \x01(\tB\x03\xe0\x41\x05\x12\x1f\n\x12\x63\x61n_manage_clients\x18\x04 \x01(\x08\x42\x03\xe0\x41\x03\x12?\n\x1b\x61\x64s_personalization_enabled\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.BoolValue\x12\x1a\n\remail_address\x18\x06 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03:h\xea\x41\x65\n+analyticsadmin.googleapis.com/GoogleAdsLink\x12\x36properties/{property}/googleAdsLinks/{google_ads_link}\"\xeb\x02\n\x13\x44\x61taSharingSettings\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12+\n#sharing_with_google_support_enabled\x18\x02 \x01(\x08\x12\x32\n*sharing_with_google_assigned_sales_enabled\x18\x03 \x01(\x08\x12-\n%sharing_with_google_any_sales_enabled\x18\x04 \x01(\x08\x12,\n$sharing_with_google_products_enabled\x18\x05 \x01(\x08\x12#\n\x1bsharing_with_others_enabled\x18\x06 \x01(\x08:^\xea\x41[\n1analyticsadmin.googleapis.com/DataSharingSettings\x12&accounts/{account}/dataSharingSettings\"\x95\x02\n\x0e\x41\x63\x63ountSummary\x12\x0c\n\x04name\x18\x01 \x01(\t\x12;\n\x07\x61\x63\x63ount\x18\x02 \x01(\tB*\xfa\x41\'\n%analyticsadmin.googleapis.com/Account\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12K\n\x12property_summaries\x18\x04 \x03(\x0b\x32/.google.analytics.admin.v1alpha.PropertySummary:U\xea\x41R\n,analyticsadmin.googleapis.com/AccountSummary\x12\"accountSummaries/{account_summary}\"f\n\x0fPropertySummary\x12=\n\x08property\x18\x01 \x01(\tB+\xfa\x41(\n&analyticsadmin.googleapis.com/Property\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t*\xa7\x01\n\x11MaximumUserAccess\x12#\n\x1fMAXIMUM_USER_ACCESS_UNSPECIFIED\x10\x00\x12\r\n\tNO_ACCESS\x10\x01\x12\x14\n\x10READ_AND_ANALYZE\x10\x02\x12\"\n\x1e\x45\x44ITOR_WITHOUT_LINK_MANAGEMENT\x10\x03\x12$\n EDITOR_INCLUDING_LINK_MANAGEMENT\x10\x04*\xaa\x04\n\x10IndustryCategory\x12!\n\x1dINDUSTRY_CATEGORY_UNSPECIFIED\x10\x00\x12\x0e\n\nAUTOMOTIVE\x10\x01\x12#\n\x1f\x42USINESS_AND_INDUSTRIAL_MARKETS\x10\x02\x12\x0b\n\x07\x46INANCE\x10\x03\x12\x0e\n\nHEALTHCARE\x10\x04\x12\x0e\n\nTECHNOLOGY\x10\x05\x12\n\n\x06TRAVEL\x10\x06\x12\t\n\x05OTHER\x10\x07\x12\x1a\n\x16\x41RTS_AND_ENTERTAINMENT\x10\x08\x12\x16\n\x12\x42\x45\x41UTY_AND_FITNESS\x10\t\x12\x18\n\x14\x42OOKS_AND_LITERATURE\x10\n\x12\x12\n\x0e\x46OOD_AND_DRINK\x10\x0b\x12\t\n\x05GAMES\x10\x0c\x12\x17\n\x13HOBBIES_AND_LEISURE\x10\r\x12\x13\n\x0fHOME_AND_GARDEN\x10\x0e\x12\x18\n\x14INTERNET_AND_TELECOM\x10\x0f\x12\x16\n\x12LAW_AND_GOVERNMENT\x10\x10\x12\x08\n\x04NEWS\x10\x11\x12\x16\n\x12ONLINE_COMMUNITIES\x10\x12\x12\x16\n\x12PEOPLE_AND_SOCIETY\x10\x13\x12\x14\n\x10PETS_AND_ANIMALS\x10\x14\x12\x0f\n\x0bREAL_ESTATE\x10\x15\x12\r\n\tREFERENCE\x10\x16\x12\x0b\n\x07SCIENCE\x10\x17\x12\n\n\x06SPORTS\x10\x18\x12\x16\n\x12JOBS_AND_EDUCATION\x10\x19\x12\x0c\n\x08SHOPPING\x10\x1a\x42{\n\"com.google.analytics.admin.v1alphaB\x0eResourcesProtoP\x01ZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminb\x06proto3'
-  ,
-  dependencies=[google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,google_dot_api_dot_resource__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,])
+    name="google/cloud/analytics_admin_v1alpha/proto/resources.proto",
+    package="google.analytics.admin.v1alpha",
+    syntax="proto3",
+    serialized_options=b'\n"com.google.analytics.admin.v1alphaB\016ResourcesProtoP\001ZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;admin',
+    create_key=_descriptor._internal_create_key,
+    serialized_pb=b'\n:google/cloud/analytics_admin_v1alpha/proto/resources.proto\x12\x1egoogle.analytics.admin.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto"\x8f\x02\n\x07\x41\x63\x63ount\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\x0c\x64isplay_name\x18\x04 \x01(\tB\x03\xe0\x41\x02\x12\x14\n\x0c\x63ountry_code\x18\x05 \x01(\t\x12\x14\n\x07\x64\x65leted\x18\x06 \x01(\x08\x42\x03\xe0\x41\x03:>\xea\x41;\n%analyticsadmin.googleapis.com/Account\x12\x12\x61\x63\x63ounts/{account}"\x8a\x03\n\x08Property\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x13\n\x06parent\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x19\n\x0c\x64isplay_name\x18\x05 \x01(\tB\x03\xe0\x41\x02\x12K\n\x11industry_category\x18\x06 \x01(\x0e\x32\x30.google.analytics.admin.v1alpha.IndustryCategory\x12\x11\n\ttime_zone\x18\x07 \x01(\t\x12\x15\n\rcurrency_code\x18\x08 \x01(\t\x12\x14\n\x07\x64\x65leted\x18\t \x01(\x08\x42\x03\xe0\x41\x03:B\xea\x41?\n&analyticsadmin.googleapis.com/Property\x12\x15properties/{property}"\xe4\x02\n\x14\x41ndroidAppDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\x0cpackage_name\x18\x05 \x01(\tB\x03\xe0\x41\x05\x12\x14\n\x0c\x64isplay_name\x18\x06 \x01(\t:~\xea\x41{\n2analyticsadmin.googleapis.com/AndroidAppDataStream\x12\x45properties/{property}/androidAppDataStreams/{android_app_data_stream}"\xd4\x02\n\x10IosAppDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x19\n\tbundle_id\x18\x05 \x01(\tB\x06\xe0\x41\x05\xe0\x41\x02\x12\x14\n\x0c\x64isplay_name\x18\x06 \x01(\t:r\xea\x41o\n.analyticsadmin.googleapis.com/IosAppDataStream\x12=properties/{property}/iosAppDataStreams/{ios_app_data_stream}"\xe8\x02\n\rWebDataStream\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x1b\n\x0emeasurement_id\x18\x02 \x01(\tB\x03\xe0\x41\x03\x12\x1c\n\x0f\x66irebase_app_id\x18\x03 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x18\n\x0b\x64\x65\x66\x61ult_uri\x18\x06 \x01(\tB\x03\xe0\x41\x05\x12\x19\n\x0c\x64isplay_name\x18\x07 \x01(\tB\x03\xe0\x41\x02:h\xea\x41\x65\n+analyticsadmin.googleapis.com/WebDataStream\x12\x36properties/{property}/webDataStreams/{web_data_stream}"\xca\x01\n\x08UserLink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\remail_address\x18\x02 \x01(\t\x12\x14\n\x0c\x64irect_roles\x18\x03 \x03(\t:\x82\x01\xea\x41\x7f\n&analyticsadmin.googleapis.com/UserLink\x12(accounts/{account}/userLinks/{user_link}\x12+properties/{property}/userLinks/{user_link}"c\n\rAuditUserLink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\remail_address\x18\x02 \x01(\t\x12\x14\n\x0c\x64irect_roles\x18\x03 \x03(\t\x12\x17\n\x0f\x65\x66\x66\x65\x63tive_roles\x18\x04 \x03(\t"\xe8\x05\n\x1b\x45nhancedMeasurementSettings\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x16\n\x0estream_enabled\x18\x02 \x01(\x08\x12\x1f\n\x12page_views_enabled\x18\x03 \x01(\x08\x42\x03\xe0\x41\x03\x12\x17\n\x0fscrolls_enabled\x18\x04 \x01(\x08\x12\x1f\n\x17outbound_clicks_enabled\x18\x05 \x01(\x08\x12\x1d\n\x15\x63ontent_views_enabled\x18\x06 \x01(\x08\x12\x1b\n\x13site_search_enabled\x18\x07 \x01(\x08\x12!\n\x19\x66orm_interactions_enabled\x18\x08 \x01(\x08\x12 \n\x18video_engagement_enabled\x18\t \x01(\x08\x12\x1e\n\x16\x66ile_downloads_enabled\x18\n \x01(\x08\x12*\n"data_tagged_element_clicks_enabled\x18\x0b \x01(\x08\x12\x1a\n\x12page_loads_enabled\x18\x0c \x01(\x08\x12\x1c\n\x14page_changes_enabled\x18\r \x01(\x08\x12"\n\x1a\x61rticles_and_blogs_enabled\x18\x0e \x01(\x08\x12&\n\x1eproducts_and_ecommerce_enabled\x18\x0f \x01(\x08\x12#\n\x16search_query_parameter\x18\x10 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x13url_query_parameter\x18\x11 \x01(\t\x12\x18\n\x10\x65xcluded_domains\x18\x12 \x01(\t:\x93\x01\xea\x41\x8f\x01\n9analyticsadmin.googleapis.com/EnhancedMeasurementSettings\x12Rproperties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings"\xa3\x02\n\x0c\x46irebaseLink\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x14\n\x07project\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12N\n\x13maximum_user_access\x18\x04 \x01(\x0e\x32\x31.google.analytics.admin.v1alpha.MaximumUserAccess:d\xea\x41\x61\n*analyticsadmin.googleapis.com/FirebaseLink\x12\x33properties/{property}/firebaseLinks/{firebase_link}"|\n\rGlobalSiteTag\x12\x14\n\x07snippet\x18\x01 \x01(\tB\x03\xe0\x41\x05:U\xea\x41R\n+analyticsadmin.googleapis.com/GlobalSiteTag\x12#properties/{property}/globalSiteTag"\xa5\x03\n\rGoogleAdsLink\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x13\n\x06parent\x18\x02 \x01(\tB\x03\xe0\x41\x05\x12\x18\n\x0b\x63ustomer_id\x18\x03 \x01(\tB\x03\xe0\x41\x05\x12\x1f\n\x12\x63\x61n_manage_clients\x18\x04 \x01(\x08\x42\x03\xe0\x41\x03\x12?\n\x1b\x61\x64s_personalization_enabled\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.BoolValue\x12\x1a\n\remail_address\x18\x06 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0bupdate_time\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03:h\xea\x41\x65\n+analyticsadmin.googleapis.com/GoogleAdsLink\x12\x36properties/{property}/googleAdsLinks/{google_ads_link}"\xeb\x02\n\x13\x44\x61taSharingSettings\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12+\n#sharing_with_google_support_enabled\x18\x02 \x01(\x08\x12\x32\n*sharing_with_google_assigned_sales_enabled\x18\x03 \x01(\x08\x12-\n%sharing_with_google_any_sales_enabled\x18\x04 \x01(\x08\x12,\n$sharing_with_google_products_enabled\x18\x05 \x01(\x08\x12#\n\x1bsharing_with_others_enabled\x18\x06 \x01(\x08:^\xea\x41[\n1analyticsadmin.googleapis.com/DataSharingSettings\x12&accounts/{account}/dataSharingSettings"\x95\x02\n\x0e\x41\x63\x63ountSummary\x12\x0c\n\x04name\x18\x01 \x01(\t\x12;\n\x07\x61\x63\x63ount\x18\x02 \x01(\tB*\xfa\x41\'\n%analyticsadmin.googleapis.com/Account\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12K\n\x12property_summaries\x18\x04 \x03(\x0b\x32/.google.analytics.admin.v1alpha.PropertySummary:U\xea\x41R\n,analyticsadmin.googleapis.com/AccountSummary\x12"accountSummaries/{account_summary}"f\n\x0fPropertySummary\x12=\n\x08property\x18\x01 \x01(\tB+\xfa\x41(\n&analyticsadmin.googleapis.com/Property\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t*\xa7\x01\n\x11MaximumUserAccess\x12#\n\x1fMAXIMUM_USER_ACCESS_UNSPECIFIED\x10\x00\x12\r\n\tNO_ACCESS\x10\x01\x12\x14\n\x10READ_AND_ANALYZE\x10\x02\x12"\n\x1e\x45\x44ITOR_WITHOUT_LINK_MANAGEMENT\x10\x03\x12$\n EDITOR_INCLUDING_LINK_MANAGEMENT\x10\x04*\xaa\x04\n\x10IndustryCategory\x12!\n\x1dINDUSTRY_CATEGORY_UNSPECIFIED\x10\x00\x12\x0e\n\nAUTOMOTIVE\x10\x01\x12#\n\x1f\x42USINESS_AND_INDUSTRIAL_MARKETS\x10\x02\x12\x0b\n\x07\x46INANCE\x10\x03\x12\x0e\n\nHEALTHCARE\x10\x04\x12\x0e\n\nTECHNOLOGY\x10\x05\x12\n\n\x06TRAVEL\x10\x06\x12\t\n\x05OTHER\x10\x07\x12\x1a\n\x16\x41RTS_AND_ENTERTAINMENT\x10\x08\x12\x16\n\x12\x42\x45\x41UTY_AND_FITNESS\x10\t\x12\x18\n\x14\x42OOKS_AND_LITERATURE\x10\n\x12\x12\n\x0e\x46OOD_AND_DRINK\x10\x0b\x12\t\n\x05GAMES\x10\x0c\x12\x17\n\x13HOBBIES_AND_LEISURE\x10\r\x12\x13\n\x0fHOME_AND_GARDEN\x10\x0e\x12\x18\n\x14INTERNET_AND_TELECOM\x10\x0f\x12\x16\n\x12LAW_AND_GOVERNMENT\x10\x10\x12\x08\n\x04NEWS\x10\x11\x12\x16\n\x12ONLINE_COMMUNITIES\x10\x12\x12\x16\n\x12PEOPLE_AND_SOCIETY\x10\x13\x12\x14\n\x10PETS_AND_ANIMALS\x10\x14\x12\x0f\n\x0bREAL_ESTATE\x10\x15\x12\r\n\tREFERENCE\x10\x16\x12\x0b\n\x07SCIENCE\x10\x17\x12\n\n\x06SPORTS\x10\x18\x12\x16\n\x12JOBS_AND_EDUCATION\x10\x19\x12\x0c\n\x08SHOPPING\x10\x1a\x42{\n"com.google.analytics.admin.v1alphaB\x0eResourcesProtoP\x01ZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminb\x06proto3',
+    dependencies=[
+        google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
+        google_dot_api_dot_resource__pb2.DESCRIPTOR,
+        google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,
+        google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,
+    ],
+)
 
 _MAXIMUMUSERACCESS = _descriptor.EnumDescriptor(
-  name='MaximumUserAccess',
-  full_name='google.analytics.admin.v1alpha.MaximumUserAccess',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='MAXIMUM_USER_ACCESS_UNSPECIFIED', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='NO_ACCESS', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='READ_AND_ANALYZE', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='EDITOR_WITHOUT_LINK_MANAGEMENT', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='EDITOR_INCLUDING_LINK_MANAGEMENT', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=4603,
-  serialized_end=4770,
+    name="MaximumUserAccess",
+    full_name="google.analytics.admin.v1alpha.MaximumUserAccess",
+    filename=None,
+    file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
+    values=[
+        _descriptor.EnumValueDescriptor(
+            name="MAXIMUM_USER_ACCESS_UNSPECIFIED",
+            index=0,
+            number=0,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="NO_ACCESS",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="READ_AND_ANALYZE",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="EDITOR_WITHOUT_LINK_MANAGEMENT",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="EDITOR_INCLUDING_LINK_MANAGEMENT",
+            index=4,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    containing_type=None,
+    serialized_options=None,
+    serialized_start=4603,
+    serialized_end=4770,
 )
 _sym_db.RegisterEnumDescriptor(_MAXIMUMUSERACCESS)
 
 MaximumUserAccess = enum_type_wrapper.EnumTypeWrapper(_MAXIMUMUSERACCESS)
 _INDUSTRYCATEGORY = _descriptor.EnumDescriptor(
-  name='IndustryCategory',
-  full_name='google.analytics.admin.v1alpha.IndustryCategory',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='INDUSTRY_CATEGORY_UNSPECIFIED', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='AUTOMOTIVE', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='BUSINESS_AND_INDUSTRIAL_MARKETS', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FINANCE', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='HEALTHCARE', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='TECHNOLOGY', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='TRAVEL', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='OTHER', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='ARTS_AND_ENTERTAINMENT', index=8, number=8,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='BEAUTY_AND_FITNESS', index=9, number=9,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='BOOKS_AND_LITERATURE', index=10, number=10,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FOOD_AND_DRINK', index=11, number=11,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='GAMES', index=12, number=12,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='HOBBIES_AND_LEISURE', index=13, number=13,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='HOME_AND_GARDEN', index=14, number=14,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='INTERNET_AND_TELECOM', index=15, number=15,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LAW_AND_GOVERNMENT', index=16, number=16,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='NEWS', index=17, number=17,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='ONLINE_COMMUNITIES', index=18, number=18,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='PEOPLE_AND_SOCIETY', index=19, number=19,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='PETS_AND_ANIMALS', index=20, number=20,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='REAL_ESTATE', index=21, number=21,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='REFERENCE', index=22, number=22,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='SCIENCE', index=23, number=23,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='SPORTS', index=24, number=24,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='JOBS_AND_EDUCATION', index=25, number=25,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='SHOPPING', index=26, number=26,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=4773,
-  serialized_end=5327,
+    name="IndustryCategory",
+    full_name="google.analytics.admin.v1alpha.IndustryCategory",
+    filename=None,
+    file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
+    values=[
+        _descriptor.EnumValueDescriptor(
+            name="INDUSTRY_CATEGORY_UNSPECIFIED",
+            index=0,
+            number=0,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="AUTOMOTIVE",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="BUSINESS_AND_INDUSTRIAL_MARKETS",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="FINANCE",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="HEALTHCARE",
+            index=4,
+            number=4,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="TECHNOLOGY",
+            index=5,
+            number=5,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="TRAVEL",
+            index=6,
+            number=6,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="OTHER",
+            index=7,
+            number=7,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="ARTS_AND_ENTERTAINMENT",
+            index=8,
+            number=8,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="BEAUTY_AND_FITNESS",
+            index=9,
+            number=9,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="BOOKS_AND_LITERATURE",
+            index=10,
+            number=10,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="FOOD_AND_DRINK",
+            index=11,
+            number=11,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="GAMES",
+            index=12,
+            number=12,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="HOBBIES_AND_LEISURE",
+            index=13,
+            number=13,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="HOME_AND_GARDEN",
+            index=14,
+            number=14,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="INTERNET_AND_TELECOM",
+            index=15,
+            number=15,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="LAW_AND_GOVERNMENT",
+            index=16,
+            number=16,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="NEWS",
+            index=17,
+            number=17,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="ONLINE_COMMUNITIES",
+            index=18,
+            number=18,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="PEOPLE_AND_SOCIETY",
+            index=19,
+            number=19,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="PETS_AND_ANIMALS",
+            index=20,
+            number=20,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="REAL_ESTATE",
+            index=21,
+            number=21,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="REFERENCE",
+            index=22,
+            number=22,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="SCIENCE",
+            index=23,
+            number=23,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="SPORTS",
+            index=24,
+            number=24,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="JOBS_AND_EDUCATION",
+            index=25,
+            number=25,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.EnumValueDescriptor(
+            name="SHOPPING",
+            index=26,
+            number=26,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    containing_type=None,
+    serialized_options=None,
+    serialized_start=4773,
+    serialized_end=5327,
 )
 _sym_db.RegisterEnumDescriptor(_INDUSTRYCATEGORY)
 
@@ -254,984 +356,1981 @@ JOBS_AND_EDUCATION = 25
 SHOPPING = 26
 
 
-
 _ACCOUNT = _descriptor.Descriptor(
-  name='Account',
-  full_name='google.analytics.admin.v1alpha.Account',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.Account.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.Account.create_time', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.Account.update_time', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.Account.display_name', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\002', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='country_code', full_name='google.analytics.admin.v1alpha.Account.country_code', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='deleted', full_name='google.analytics.admin.v1alpha.Account.deleted', index=5,
-      number=6, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A;\n%analyticsadmin.googleapis.com/Account\022\022accounts/{account}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=220,
-  serialized_end=491,
+    name="Account",
+    full_name="google.analytics.admin.v1alpha.Account",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.Account.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.Account.create_time",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.Account.update_time",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.Account.display_name",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\002",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="country_code",
+            full_name="google.analytics.admin.v1alpha.Account.country_code",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="deleted",
+            full_name="google.analytics.admin.v1alpha.Account.deleted",
+            index=5,
+            number=6,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A;\n%analyticsadmin.googleapis.com/Account\022\022accounts/{account}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=220,
+    serialized_end=491,
 )
 
 
 _PROPERTY = _descriptor.Descriptor(
-  name='Property',
-  full_name='google.analytics.admin.v1alpha.Property',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.Property.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.Property.create_time', index=1,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.Property.update_time', index=2,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='parent', full_name='google.analytics.admin.v1alpha.Property.parent', index=3,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.Property.display_name', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\002', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='industry_category', full_name='google.analytics.admin.v1alpha.Property.industry_category', index=5,
-      number=6, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time_zone', full_name='google.analytics.admin.v1alpha.Property.time_zone', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='currency_code', full_name='google.analytics.admin.v1alpha.Property.currency_code', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='deleted', full_name='google.analytics.admin.v1alpha.Property.deleted', index=8,
-      number=9, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A?\n&analyticsadmin.googleapis.com/Property\022\025properties/{property}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=494,
-  serialized_end=888,
+    name="Property",
+    full_name="google.analytics.admin.v1alpha.Property",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.Property.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.Property.create_time",
+            index=1,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.Property.update_time",
+            index=2,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="parent",
+            full_name="google.analytics.admin.v1alpha.Property.parent",
+            index=3,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.Property.display_name",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\002",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="industry_category",
+            full_name="google.analytics.admin.v1alpha.Property.industry_category",
+            index=5,
+            number=6,
+            type=14,
+            cpp_type=8,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="time_zone",
+            full_name="google.analytics.admin.v1alpha.Property.time_zone",
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="currency_code",
+            full_name="google.analytics.admin.v1alpha.Property.currency_code",
+            index=7,
+            number=8,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="deleted",
+            full_name="google.analytics.admin.v1alpha.Property.deleted",
+            index=8,
+            number=9,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A?\n&analyticsadmin.googleapis.com/Property\022\025properties/{property}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=494,
+    serialized_end=888,
 )
 
 
 _ANDROIDAPPDATASTREAM = _descriptor.Descriptor(
-  name='AndroidAppDataStream',
-  full_name='google.analytics.admin.v1alpha.AndroidAppDataStream',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='firebase_app_id', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.firebase_app_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.create_time', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.update_time', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='package_name', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.package_name', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.AndroidAppDataStream.display_name', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A{\n2analyticsadmin.googleapis.com/AndroidAppDataStream\022Eproperties/{property}/androidAppDataStreams/{android_app_data_stream}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=891,
-  serialized_end=1247,
+    name="AndroidAppDataStream",
+    full_name="google.analytics.admin.v1alpha.AndroidAppDataStream",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="firebase_app_id",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.firebase_app_id",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.create_time",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.update_time",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="package_name",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.package_name",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.AndroidAppDataStream.display_name",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A{\n2analyticsadmin.googleapis.com/AndroidAppDataStream\022Eproperties/{property}/androidAppDataStreams/{android_app_data_stream}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=891,
+    serialized_end=1247,
 )
 
 
 _IOSAPPDATASTREAM = _descriptor.Descriptor(
-  name='IosAppDataStream',
-  full_name='google.analytics.admin.v1alpha.IosAppDataStream',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.IosAppDataStream.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='firebase_app_id', full_name='google.analytics.admin.v1alpha.IosAppDataStream.firebase_app_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.IosAppDataStream.create_time', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.IosAppDataStream.update_time', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='bundle_id', full_name='google.analytics.admin.v1alpha.IosAppDataStream.bundle_id', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005\340A\002', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.IosAppDataStream.display_name', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352Ao\n.analyticsadmin.googleapis.com/IosAppDataStream\022=properties/{property}/iosAppDataStreams/{ios_app_data_stream}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1250,
-  serialized_end=1590,
+    name="IosAppDataStream",
+    full_name="google.analytics.admin.v1alpha.IosAppDataStream",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="firebase_app_id",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.firebase_app_id",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.create_time",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.update_time",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="bundle_id",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.bundle_id",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005\340A\002",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.IosAppDataStream.display_name",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352Ao\n.analyticsadmin.googleapis.com/IosAppDataStream\022=properties/{property}/iosAppDataStreams/{ios_app_data_stream}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1250,
+    serialized_end=1590,
 )
 
 
 _WEBDATASTREAM = _descriptor.Descriptor(
-  name='WebDataStream',
-  full_name='google.analytics.admin.v1alpha.WebDataStream',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.WebDataStream.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='measurement_id', full_name='google.analytics.admin.v1alpha.WebDataStream.measurement_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='firebase_app_id', full_name='google.analytics.admin.v1alpha.WebDataStream.firebase_app_id', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.WebDataStream.create_time', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.WebDataStream.update_time', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='default_uri', full_name='google.analytics.admin.v1alpha.WebDataStream.default_uri', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.WebDataStream.display_name', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\002', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352Ae\n+analyticsadmin.googleapis.com/WebDataStream\0226properties/{property}/webDataStreams/{web_data_stream}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1593,
-  serialized_end=1953,
+    name="WebDataStream",
+    full_name="google.analytics.admin.v1alpha.WebDataStream",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="measurement_id",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.measurement_id",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="firebase_app_id",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.firebase_app_id",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.create_time",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.update_time",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="default_uri",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.default_uri",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.WebDataStream.display_name",
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\002",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352Ae\n+analyticsadmin.googleapis.com/WebDataStream\0226properties/{property}/webDataStreams/{web_data_stream}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1593,
+    serialized_end=1953,
 )
 
 
 _USERLINK = _descriptor.Descriptor(
-  name='UserLink',
-  full_name='google.analytics.admin.v1alpha.UserLink',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.UserLink.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='email_address', full_name='google.analytics.admin.v1alpha.UserLink.email_address', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='direct_roles', full_name='google.analytics.admin.v1alpha.UserLink.direct_roles', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A\177\n&analyticsadmin.googleapis.com/UserLink\022(accounts/{account}/userLinks/{user_link}\022+properties/{property}/userLinks/{user_link}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1956,
-  serialized_end=2158,
+    name="UserLink",
+    full_name="google.analytics.admin.v1alpha.UserLink",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.UserLink.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="email_address",
+            full_name="google.analytics.admin.v1alpha.UserLink.email_address",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="direct_roles",
+            full_name="google.analytics.admin.v1alpha.UserLink.direct_roles",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A\177\n&analyticsadmin.googleapis.com/UserLink\022(accounts/{account}/userLinks/{user_link}\022+properties/{property}/userLinks/{user_link}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1956,
+    serialized_end=2158,
 )
 
 
 _AUDITUSERLINK = _descriptor.Descriptor(
-  name='AuditUserLink',
-  full_name='google.analytics.admin.v1alpha.AuditUserLink',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.AuditUserLink.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='email_address', full_name='google.analytics.admin.v1alpha.AuditUserLink.email_address', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='direct_roles', full_name='google.analytics.admin.v1alpha.AuditUserLink.direct_roles', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='effective_roles', full_name='google.analytics.admin.v1alpha.AuditUserLink.effective_roles', index=3,
-      number=4, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2160,
-  serialized_end=2259,
+    name="AuditUserLink",
+    full_name="google.analytics.admin.v1alpha.AuditUserLink",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.AuditUserLink.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="email_address",
+            full_name="google.analytics.admin.v1alpha.AuditUserLink.email_address",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="direct_roles",
+            full_name="google.analytics.admin.v1alpha.AuditUserLink.direct_roles",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="effective_roles",
+            full_name="google.analytics.admin.v1alpha.AuditUserLink.effective_roles",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2160,
+    serialized_end=2259,
 )
 
 
 _ENHANCEDMEASUREMENTSETTINGS = _descriptor.Descriptor(
-  name='EnhancedMeasurementSettings',
-  full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='stream_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.stream_enabled', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='page_views_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_views_enabled', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scrolls_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.scrolls_enabled', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='outbound_clicks_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.outbound_clicks_enabled', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='content_views_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.content_views_enabled', index=5,
-      number=6, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='site_search_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.site_search_enabled', index=6,
-      number=7, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='form_interactions_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.form_interactions_enabled', index=7,
-      number=8, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='video_engagement_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.video_engagement_enabled', index=8,
-      number=9, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='file_downloads_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.file_downloads_enabled', index=9,
-      number=10, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='data_tagged_element_clicks_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.data_tagged_element_clicks_enabled', index=10,
-      number=11, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='page_loads_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_loads_enabled', index=11,
-      number=12, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='page_changes_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_changes_enabled', index=12,
-      number=13, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='articles_and_blogs_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.articles_and_blogs_enabled', index=13,
-      number=14, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='products_and_ecommerce_enabled', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.products_and_ecommerce_enabled', index=14,
-      number=15, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='search_query_parameter', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.search_query_parameter', index=15,
-      number=16, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\002', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='url_query_parameter', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.url_query_parameter', index=16,
-      number=17, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='excluded_domains', full_name='google.analytics.admin.v1alpha.EnhancedMeasurementSettings.excluded_domains', index=17,
-      number=18, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A\217\001\n9analyticsadmin.googleapis.com/EnhancedMeasurementSettings\022Rproperties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2262,
-  serialized_end=3006,
+    name="EnhancedMeasurementSettings",
+    full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="stream_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.stream_enabled",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="page_views_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_views_enabled",
+            index=2,
+            number=3,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="scrolls_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.scrolls_enabled",
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="outbound_clicks_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.outbound_clicks_enabled",
+            index=4,
+            number=5,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="content_views_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.content_views_enabled",
+            index=5,
+            number=6,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="site_search_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.site_search_enabled",
+            index=6,
+            number=7,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="form_interactions_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.form_interactions_enabled",
+            index=7,
+            number=8,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="video_engagement_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.video_engagement_enabled",
+            index=8,
+            number=9,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="file_downloads_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.file_downloads_enabled",
+            index=9,
+            number=10,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="data_tagged_element_clicks_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.data_tagged_element_clicks_enabled",
+            index=10,
+            number=11,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="page_loads_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_loads_enabled",
+            index=11,
+            number=12,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="page_changes_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.page_changes_enabled",
+            index=12,
+            number=13,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="articles_and_blogs_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.articles_and_blogs_enabled",
+            index=13,
+            number=14,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="products_and_ecommerce_enabled",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.products_and_ecommerce_enabled",
+            index=14,
+            number=15,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="search_query_parameter",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.search_query_parameter",
+            index=15,
+            number=16,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\002",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="url_query_parameter",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.url_query_parameter",
+            index=16,
+            number=17,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="excluded_domains",
+            full_name="google.analytics.admin.v1alpha.EnhancedMeasurementSettings.excluded_domains",
+            index=17,
+            number=18,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A\217\001\n9analyticsadmin.googleapis.com/EnhancedMeasurementSettings\022Rproperties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2262,
+    serialized_end=3006,
 )
 
 
 _FIREBASELINK = _descriptor.Descriptor(
-  name='FirebaseLink',
-  full_name='google.analytics.admin.v1alpha.FirebaseLink',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.FirebaseLink.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='project', full_name='google.analytics.admin.v1alpha.FirebaseLink.project', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.FirebaseLink.create_time', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='maximum_user_access', full_name='google.analytics.admin.v1alpha.FirebaseLink.maximum_user_access', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352Aa\n*analyticsadmin.googleapis.com/FirebaseLink\0223properties/{property}/firebaseLinks/{firebase_link}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3009,
-  serialized_end=3300,
+    name="FirebaseLink",
+    full_name="google.analytics.admin.v1alpha.FirebaseLink",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.FirebaseLink.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="project",
+            full_name="google.analytics.admin.v1alpha.FirebaseLink.project",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.FirebaseLink.create_time",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="maximum_user_access",
+            full_name="google.analytics.admin.v1alpha.FirebaseLink.maximum_user_access",
+            index=3,
+            number=4,
+            type=14,
+            cpp_type=8,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352Aa\n*analyticsadmin.googleapis.com/FirebaseLink\0223properties/{property}/firebaseLinks/{firebase_link}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=3009,
+    serialized_end=3300,
 )
 
 
 _GLOBALSITETAG = _descriptor.Descriptor(
-  name='GlobalSiteTag',
-  full_name='google.analytics.admin.v1alpha.GlobalSiteTag',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='snippet', full_name='google.analytics.admin.v1alpha.GlobalSiteTag.snippet', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352AR\n+analyticsadmin.googleapis.com/GlobalSiteTag\022#properties/{property}/globalSiteTag',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3302,
-  serialized_end=3426,
+    name="GlobalSiteTag",
+    full_name="google.analytics.admin.v1alpha.GlobalSiteTag",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="snippet",
+            full_name="google.analytics.admin.v1alpha.GlobalSiteTag.snippet",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352AR\n+analyticsadmin.googleapis.com/GlobalSiteTag\022#properties/{property}/globalSiteTag",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=3302,
+    serialized_end=3426,
 )
 
 
 _GOOGLEADSLINK = _descriptor.Descriptor(
-  name='GoogleAdsLink',
-  full_name='google.analytics.admin.v1alpha.GoogleAdsLink',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='parent', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.parent', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='customer_id', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.customer_id', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\005', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='can_manage_clients', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.can_manage_clients', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ads_personalization_enabled', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.ads_personalization_enabled', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='email_address', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.email_address', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='create_time', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.create_time', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='update_time', full_name='google.analytics.admin.v1alpha.GoogleAdsLink.update_time', index=7,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352Ae\n+analyticsadmin.googleapis.com/GoogleAdsLink\0226properties/{property}/googleAdsLinks/{google_ads_link}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3429,
-  serialized_end=3850,
+    name="GoogleAdsLink",
+    full_name="google.analytics.admin.v1alpha.GoogleAdsLink",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="parent",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.parent",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="customer_id",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.customer_id",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\005",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="can_manage_clients",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.can_manage_clients",
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="ads_personalization_enabled",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.ads_personalization_enabled",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="email_address",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.email_address",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="create_time",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.create_time",
+            index=6,
+            number=7,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="update_time",
+            full_name="google.analytics.admin.v1alpha.GoogleAdsLink.update_time",
+            index=7,
+            number=8,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352Ae\n+analyticsadmin.googleapis.com/GoogleAdsLink\0226properties/{property}/googleAdsLinks/{google_ads_link}",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=3429,
+    serialized_end=3850,
 )
 
 
 _DATASHARINGSETTINGS = _descriptor.Descriptor(
-  name='DataSharingSettings',
-  full_name='google.analytics.admin.v1alpha.DataSharingSettings',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.DataSharingSettings.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\340A\003', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sharing_with_google_support_enabled', full_name='google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_support_enabled', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sharing_with_google_assigned_sales_enabled', full_name='google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_assigned_sales_enabled', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sharing_with_google_any_sales_enabled', full_name='google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_any_sales_enabled', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sharing_with_google_products_enabled', full_name='google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_products_enabled', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sharing_with_others_enabled', full_name='google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_others_enabled', index=5,
-      number=6, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352A[\n1analyticsadmin.googleapis.com/DataSharingSettings\022&accounts/{account}/dataSharingSettings',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3853,
-  serialized_end=4216,
+    name="DataSharingSettings",
+    full_name="google.analytics.admin.v1alpha.DataSharingSettings",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\340A\003",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sharing_with_google_support_enabled",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_support_enabled",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sharing_with_google_assigned_sales_enabled",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_assigned_sales_enabled",
+            index=2,
+            number=3,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sharing_with_google_any_sales_enabled",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_any_sales_enabled",
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sharing_with_google_products_enabled",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_google_products_enabled",
+            index=4,
+            number=5,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sharing_with_others_enabled",
+            full_name="google.analytics.admin.v1alpha.DataSharingSettings.sharing_with_others_enabled",
+            index=5,
+            number=6,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"\352A[\n1analyticsadmin.googleapis.com/DataSharingSettings\022&accounts/{account}/dataSharingSettings",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=3853,
+    serialized_end=4216,
 )
 
 
 _ACCOUNTSUMMARY = _descriptor.Descriptor(
-  name='AccountSummary',
-  full_name='google.analytics.admin.v1alpha.AccountSummary',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='google.analytics.admin.v1alpha.AccountSummary.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='account', full_name='google.analytics.admin.v1alpha.AccountSummary.account', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\372A\'\n%analyticsadmin.googleapis.com/Account', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.AccountSummary.display_name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='property_summaries', full_name='google.analytics.admin.v1alpha.AccountSummary.property_summaries', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'\352AR\n,analyticsadmin.googleapis.com/AccountSummary\022\"accountSummaries/{account_summary}',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4219,
-  serialized_end=4496,
+    name="AccountSummary",
+    full_name="google.analytics.admin.v1alpha.AccountSummary",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="google.analytics.admin.v1alpha.AccountSummary.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="account",
+            full_name="google.analytics.admin.v1alpha.AccountSummary.account",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\372A'\n%analyticsadmin.googleapis.com/Account",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.AccountSummary.display_name",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="property_summaries",
+            full_name="google.analytics.admin.v1alpha.AccountSummary.property_summaries",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b'\352AR\n,analyticsadmin.googleapis.com/AccountSummary\022"accountSummaries/{account_summary}',
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=4219,
+    serialized_end=4496,
 )
 
 
 _PROPERTYSUMMARY = _descriptor.Descriptor(
-  name='PropertySummary',
-  full_name='google.analytics.admin.v1alpha.PropertySummary',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='property', full_name='google.analytics.admin.v1alpha.PropertySummary.property', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\372A(\n&analyticsadmin.googleapis.com/Property', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='display_name', full_name='google.analytics.admin.v1alpha.PropertySummary.display_name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4498,
-  serialized_end=4600,
+    name="PropertySummary",
+    full_name="google.analytics.admin.v1alpha.PropertySummary",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="property",
+            full_name="google.analytics.admin.v1alpha.PropertySummary.property",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=b"\372A(\n&analyticsadmin.googleapis.com/Property",
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="display_name",
+            full_name="google.analytics.admin.v1alpha.PropertySummary.display_name",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=4498,
+    serialized_end=4600,
 )
 
-_ACCOUNT.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_ACCOUNT.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PROPERTY.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PROPERTY.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PROPERTY.fields_by_name['industry_category'].enum_type = _INDUSTRYCATEGORY
-_ANDROIDAPPDATASTREAM.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_ANDROIDAPPDATASTREAM.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_IOSAPPDATASTREAM.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_IOSAPPDATASTREAM.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_WEBDATASTREAM.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_WEBDATASTREAM.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_FIREBASELINK.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_FIREBASELINK.fields_by_name['maximum_user_access'].enum_type = _MAXIMUMUSERACCESS
-_GOOGLEADSLINK.fields_by_name['ads_personalization_enabled'].message_type = google_dot_protobuf_dot_wrappers__pb2._BOOLVALUE
-_GOOGLEADSLINK.fields_by_name['create_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_GOOGLEADSLINK.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_ACCOUNTSUMMARY.fields_by_name['property_summaries'].message_type = _PROPERTYSUMMARY
-DESCRIPTOR.message_types_by_name['Account'] = _ACCOUNT
-DESCRIPTOR.message_types_by_name['Property'] = _PROPERTY
-DESCRIPTOR.message_types_by_name['AndroidAppDataStream'] = _ANDROIDAPPDATASTREAM
-DESCRIPTOR.message_types_by_name['IosAppDataStream'] = _IOSAPPDATASTREAM
-DESCRIPTOR.message_types_by_name['WebDataStream'] = _WEBDATASTREAM
-DESCRIPTOR.message_types_by_name['UserLink'] = _USERLINK
-DESCRIPTOR.message_types_by_name['AuditUserLink'] = _AUDITUSERLINK
-DESCRIPTOR.message_types_by_name['EnhancedMeasurementSettings'] = _ENHANCEDMEASUREMENTSETTINGS
-DESCRIPTOR.message_types_by_name['FirebaseLink'] = _FIREBASELINK
-DESCRIPTOR.message_types_by_name['GlobalSiteTag'] = _GLOBALSITETAG
-DESCRIPTOR.message_types_by_name['GoogleAdsLink'] = _GOOGLEADSLINK
-DESCRIPTOR.message_types_by_name['DataSharingSettings'] = _DATASHARINGSETTINGS
-DESCRIPTOR.message_types_by_name['AccountSummary'] = _ACCOUNTSUMMARY
-DESCRIPTOR.message_types_by_name['PropertySummary'] = _PROPERTYSUMMARY
-DESCRIPTOR.enum_types_by_name['MaximumUserAccess'] = _MAXIMUMUSERACCESS
-DESCRIPTOR.enum_types_by_name['IndustryCategory'] = _INDUSTRYCATEGORY
+_ACCOUNT.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_ACCOUNT.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_PROPERTY.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_PROPERTY.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_PROPERTY.fields_by_name["industry_category"].enum_type = _INDUSTRYCATEGORY
+_ANDROIDAPPDATASTREAM.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_ANDROIDAPPDATASTREAM.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_IOSAPPDATASTREAM.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_IOSAPPDATASTREAM.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_WEBDATASTREAM.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_WEBDATASTREAM.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_FIREBASELINK.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_FIREBASELINK.fields_by_name["maximum_user_access"].enum_type = _MAXIMUMUSERACCESS
+_GOOGLEADSLINK.fields_by_name[
+    "ads_personalization_enabled"
+].message_type = google_dot_protobuf_dot_wrappers__pb2._BOOLVALUE
+_GOOGLEADSLINK.fields_by_name[
+    "create_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GOOGLEADSLINK.fields_by_name[
+    "update_time"
+].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_ACCOUNTSUMMARY.fields_by_name["property_summaries"].message_type = _PROPERTYSUMMARY
+DESCRIPTOR.message_types_by_name["Account"] = _ACCOUNT
+DESCRIPTOR.message_types_by_name["Property"] = _PROPERTY
+DESCRIPTOR.message_types_by_name["AndroidAppDataStream"] = _ANDROIDAPPDATASTREAM
+DESCRIPTOR.message_types_by_name["IosAppDataStream"] = _IOSAPPDATASTREAM
+DESCRIPTOR.message_types_by_name["WebDataStream"] = _WEBDATASTREAM
+DESCRIPTOR.message_types_by_name["UserLink"] = _USERLINK
+DESCRIPTOR.message_types_by_name["AuditUserLink"] = _AUDITUSERLINK
+DESCRIPTOR.message_types_by_name[
+    "EnhancedMeasurementSettings"
+] = _ENHANCEDMEASUREMENTSETTINGS
+DESCRIPTOR.message_types_by_name["FirebaseLink"] = _FIREBASELINK
+DESCRIPTOR.message_types_by_name["GlobalSiteTag"] = _GLOBALSITETAG
+DESCRIPTOR.message_types_by_name["GoogleAdsLink"] = _GOOGLEADSLINK
+DESCRIPTOR.message_types_by_name["DataSharingSettings"] = _DATASHARINGSETTINGS
+DESCRIPTOR.message_types_by_name["AccountSummary"] = _ACCOUNTSUMMARY
+DESCRIPTOR.message_types_by_name["PropertySummary"] = _PROPERTYSUMMARY
+DESCRIPTOR.enum_types_by_name["MaximumUserAccess"] = _MAXIMUMUSERACCESS
+DESCRIPTOR.enum_types_by_name["IndustryCategory"] = _INDUSTRYCATEGORY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Account = _reflection.GeneratedProtocolMessageType('Account', (_message.Message,), {
-  'DESCRIPTOR' : _ACCOUNT,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a Google Analytics account.
+Account = _reflection.GeneratedProtocolMessageType(
+    "Account",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ACCOUNT,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a Google Analytics account.
   
   Attributes:
       name:
@@ -1253,15 +2352,18 @@ Account = _reflection.GeneratedProtocolMessageType('Account', (_message.Message,
           not. Deleted accounts are excluded from List results unless
           specifically requested.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.Account)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.Account)
+    },
+)
 _sym_db.RegisterMessage(Account)
 
-Property = _reflection.GeneratedProtocolMessageType('Property', (_message.Message,), {
-  'DESCRIPTOR' : _PROPERTY,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a Google Analytics GA4 property.
+Property = _reflection.GeneratedProtocolMessageType(
+    "Property",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _PROPERTY,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a Google Analytics GA4 property.
   
   Attributes:
       name:
@@ -1298,15 +2400,18 @@ Property = _reflection.GeneratedProtocolMessageType('Property', (_message.Messag
           or not. Deleted properties are excluded from List results
           unless specifically requested.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.Property)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.Property)
+    },
+)
 _sym_db.RegisterMessage(Property)
 
-AndroidAppDataStream = _reflection.GeneratedProtocolMessageType('AndroidAppDataStream', (_message.Message,), {
-  'DESCRIPTOR' : _ANDROIDAPPDATASTREAM,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a Google Analytics Android app stream.
+AndroidAppDataStream = _reflection.GeneratedProtocolMessageType(
+    "AndroidAppDataStream",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ANDROIDAPPDATASTREAM,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a Google Analytics Android app stream.
   
   Attributes:
       name:
@@ -1329,15 +2434,18 @@ AndroidAppDataStream = _reflection.GeneratedProtocolMessageType('AndroidAppDataS
           Human-readable display name for the Data Stream.  The max
           allowed display name length is 255 UTF-16 code units.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AndroidAppDataStream)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AndroidAppDataStream)
+    },
+)
 _sym_db.RegisterMessage(AndroidAppDataStream)
 
-IosAppDataStream = _reflection.GeneratedProtocolMessageType('IosAppDataStream', (_message.Message,), {
-  'DESCRIPTOR' : _IOSAPPDATASTREAM,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a Google Analytics IOS app stream.
+IosAppDataStream = _reflection.GeneratedProtocolMessageType(
+    "IosAppDataStream",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _IOSAPPDATASTREAM,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a Google Analytics IOS app stream.
   
   Attributes:
       name:
@@ -1360,15 +2468,18 @@ IosAppDataStream = _reflection.GeneratedProtocolMessageType('IosAppDataStream', 
           Human-readable display name for the Data Stream.  The max
           allowed display name length is 255 UTF-16 code units.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.IosAppDataStream)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.IosAppDataStream)
+    },
+)
 _sym_db.RegisterMessage(IosAppDataStream)
 
-WebDataStream = _reflection.GeneratedProtocolMessageType('WebDataStream', (_message.Message,), {
-  'DESCRIPTOR' : _WEBDATASTREAM,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a Google Analytics web stream.
+WebDataStream = _reflection.GeneratedProtocolMessageType(
+    "WebDataStream",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _WEBDATASTREAM,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a Google Analytics web stream.
   
   Attributes:
       name:
@@ -1395,15 +2506,18 @@ WebDataStream = _reflection.GeneratedProtocolMessageType('WebDataStream', (_mess
           Required. Human-readable display name for the Data Stream.
           The max allowed display name length is 100 UTF-16 code units.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.WebDataStream)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.WebDataStream)
+    },
+)
 _sym_db.RegisterMessage(WebDataStream)
 
-UserLink = _reflection.GeneratedProtocolMessageType('UserLink', (_message.Message,), {
-  'DESCRIPTOR' : _USERLINK,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing a user’s permissions on an Account or
+UserLink = _reflection.GeneratedProtocolMessageType(
+    "UserLink",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _USERLINK,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing a user’s permissions on an Account or
   Property resource.
   
   Attributes:
@@ -1420,15 +2534,18 @@ UserLink = _reflection.GeneratedProtocolMessageType('UserLink', (_message.Messag
           admin role.  A UserLink that is updated to have an empty list
           of direct_roles will be deleted.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.UserLink)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.UserLink)
+    },
+)
 _sym_db.RegisterMessage(UserLink)
 
-AuditUserLink = _reflection.GeneratedProtocolMessageType('AuditUserLink', (_message.Message,), {
-  'DESCRIPTOR' : _AUDITUSERLINK,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """Read-only resource used to summarize a principal’s effective roles.
+AuditUserLink = _reflection.GeneratedProtocolMessageType(
+    "AuditUserLink",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _AUDITUSERLINK,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """Read-only resource used to summarize a principal’s effective roles.
   
   Attributes:
       name:
@@ -1445,15 +2562,18 @@ AuditUserLink = _reflection.GeneratedProtocolMessageType('AuditUserLink', (_mess
           property (includes direct permissions, group-inherited
           permissions, etc.).  Format: predefinedRoles/read
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AuditUserLink)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AuditUserLink)
+    },
+)
 _sym_db.RegisterMessage(AuditUserLink)
 
-EnhancedMeasurementSettings = _reflection.GeneratedProtocolMessageType('EnhancedMeasurementSettings', (_message.Message,), {
-  'DESCRIPTOR' : _ENHANCEDMEASUREMENTSETTINGS,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """Singleton resource under a WebDataStream, configuring measurement of
+EnhancedMeasurementSettings = _reflection.GeneratedProtocolMessageType(
+    "EnhancedMeasurementSettings",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ENHANCEDMEASUREMENTSETTINGS,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """Singleton resource under a WebDataStream, configuring measurement of
   additional site interactions and content.
   
   Attributes:
@@ -1519,15 +2639,18 @@ EnhancedMeasurementSettings = _reflection.GeneratedProtocolMessageType('Enhanced
           Domains to exclude from measurement. Max length is 1024
           characters.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.EnhancedMeasurementSettings)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.EnhancedMeasurementSettings)
+    },
+)
 _sym_db.RegisterMessage(EnhancedMeasurementSettings)
 
-FirebaseLink = _reflection.GeneratedProtocolMessageType('FirebaseLink', (_message.Message,), {
-  'DESCRIPTOR' : _FIREBASELINK,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A link between an GA4 property and a Firebase project.
+FirebaseLink = _reflection.GeneratedProtocolMessageType(
+    "FirebaseLink",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _FIREBASELINK,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A link between an GA4 property and a Firebase project.
   
   Attributes:
       name:
@@ -1547,15 +2670,18 @@ FirebaseLink = _reflection.GeneratedProtocolMessageType('FirebaseLink', (_messag
           Maximum user access to the GA4 property allowed to admins of
           the linked Firebase project.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.FirebaseLink)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.FirebaseLink)
+    },
+)
 _sym_db.RegisterMessage(FirebaseLink)
 
-GlobalSiteTag = _reflection.GeneratedProtocolMessageType('GlobalSiteTag', (_message.Message,), {
-  'DESCRIPTOR' : _GLOBALSITETAG,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """Read-only resource with the tag for sending data from a website to a
+GlobalSiteTag = _reflection.GeneratedProtocolMessageType(
+    "GlobalSiteTag",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _GLOBALSITETAG,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """Read-only resource with the tag for sending data from a website to a
   WebDataStream.
   
   Attributes:
@@ -1563,15 +2689,18 @@ GlobalSiteTag = _reflection.GeneratedProtocolMessageType('GlobalSiteTag', (_mess
           Immutable. JavaScript code snippet to be pasted as the first
           item into the head tag of every webpage to measure.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.GlobalSiteTag)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.GlobalSiteTag)
+    },
+)
 _sym_db.RegisterMessage(GlobalSiteTag)
 
-GoogleAdsLink = _reflection.GeneratedProtocolMessageType('GoogleAdsLink', (_message.Message,), {
-  'DESCRIPTOR' : _GOOGLEADSLINK,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A link between an GA4 property and a Google Ads account.
+GoogleAdsLink = _reflection.GeneratedProtocolMessageType(
+    "GoogleAdsLink",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _GOOGLEADSLINK,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A link between an GA4 property and a Google Ads account.
   
   Attributes:
       name:
@@ -1601,15 +2730,18 @@ GoogleAdsLink = _reflection.GeneratedProtocolMessageType('GoogleAdsLink', (_mess
       update_time:
           Output only. Time when this link was last updated.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.GoogleAdsLink)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.GoogleAdsLink)
+    },
+)
 _sym_db.RegisterMessage(GoogleAdsLink)
 
-DataSharingSettings = _reflection.GeneratedProtocolMessageType('DataSharingSettings', (_message.Message,), {
-  'DESCRIPTOR' : _DATASHARINGSETTINGS,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A resource message representing data sharing settings of a Google
+DataSharingSettings = _reflection.GeneratedProtocolMessageType(
+    "DataSharingSettings",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _DATASHARINGSETTINGS,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A resource message representing data sharing settings of a Google
   Analytics account.
   
   Attributes:
@@ -1635,15 +2767,18 @@ DataSharingSettings = _reflection.GeneratedProtocolMessageType('DataSharingSetti
           Allows Google to share the data anonymously in aggregate form
           with others.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.DataSharingSettings)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.DataSharingSettings)
+    },
+)
 _sym_db.RegisterMessage(DataSharingSettings)
 
-AccountSummary = _reflection.GeneratedProtocolMessageType('AccountSummary', (_message.Message,), {
-  'DESCRIPTOR' : _ACCOUNTSUMMARY,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A virtual resource representing an overview of an account and all its
+AccountSummary = _reflection.GeneratedProtocolMessageType(
+    "AccountSummary",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ACCOUNTSUMMARY,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A virtual resource representing an overview of an account and all its
   child GA4 properties.
   
   Attributes:
@@ -1659,15 +2794,18 @@ AccountSummary = _reflection.GeneratedProtocolMessageType('AccountSummary', (_me
       property_summaries:
           List of summaries for child accounts of this account.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AccountSummary)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.AccountSummary)
+    },
+)
 _sym_db.RegisterMessage(AccountSummary)
 
-PropertySummary = _reflection.GeneratedProtocolMessageType('PropertySummary', (_message.Message,), {
-  'DESCRIPTOR' : _PROPERTYSUMMARY,
-  '__module__' : 'google.cloud.analytics_admin_v1alpha.proto.resources_pb2'
-  ,
-  '__doc__': """A virtual resource representing metadata for an GA4 property.
+PropertySummary = _reflection.GeneratedProtocolMessageType(
+    "PropertySummary",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _PROPERTYSUMMARY,
+        "__module__": "google.cloud.analytics_admin_v1alpha.proto.resources_pb2",
+        "__doc__": """A virtual resource representing metadata for an GA4 property.
   
   Attributes:
       property:
@@ -1677,67 +2815,68 @@ PropertySummary = _reflection.GeneratedProtocolMessageType('PropertySummary', (_
           Display name for the property referred to in this account
           summary.
   """,
-  # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.PropertySummary)
-  })
+        # @@protoc_insertion_point(class_scope:google.analytics.admin.v1alpha.PropertySummary)
+    },
+)
 _sym_db.RegisterMessage(PropertySummary)
 
 
 DESCRIPTOR._options = None
-_ACCOUNT.fields_by_name['name']._options = None
-_ACCOUNT.fields_by_name['create_time']._options = None
-_ACCOUNT.fields_by_name['update_time']._options = None
-_ACCOUNT.fields_by_name['display_name']._options = None
-_ACCOUNT.fields_by_name['deleted']._options = None
+_ACCOUNT.fields_by_name["name"]._options = None
+_ACCOUNT.fields_by_name["create_time"]._options = None
+_ACCOUNT.fields_by_name["update_time"]._options = None
+_ACCOUNT.fields_by_name["display_name"]._options = None
+_ACCOUNT.fields_by_name["deleted"]._options = None
 _ACCOUNT._options = None
-_PROPERTY.fields_by_name['name']._options = None
-_PROPERTY.fields_by_name['create_time']._options = None
-_PROPERTY.fields_by_name['update_time']._options = None
-_PROPERTY.fields_by_name['parent']._options = None
-_PROPERTY.fields_by_name['display_name']._options = None
-_PROPERTY.fields_by_name['deleted']._options = None
+_PROPERTY.fields_by_name["name"]._options = None
+_PROPERTY.fields_by_name["create_time"]._options = None
+_PROPERTY.fields_by_name["update_time"]._options = None
+_PROPERTY.fields_by_name["parent"]._options = None
+_PROPERTY.fields_by_name["display_name"]._options = None
+_PROPERTY.fields_by_name["deleted"]._options = None
 _PROPERTY._options = None
-_ANDROIDAPPDATASTREAM.fields_by_name['name']._options = None
-_ANDROIDAPPDATASTREAM.fields_by_name['firebase_app_id']._options = None
-_ANDROIDAPPDATASTREAM.fields_by_name['create_time']._options = None
-_ANDROIDAPPDATASTREAM.fields_by_name['update_time']._options = None
-_ANDROIDAPPDATASTREAM.fields_by_name['package_name']._options = None
+_ANDROIDAPPDATASTREAM.fields_by_name["name"]._options = None
+_ANDROIDAPPDATASTREAM.fields_by_name["firebase_app_id"]._options = None
+_ANDROIDAPPDATASTREAM.fields_by_name["create_time"]._options = None
+_ANDROIDAPPDATASTREAM.fields_by_name["update_time"]._options = None
+_ANDROIDAPPDATASTREAM.fields_by_name["package_name"]._options = None
 _ANDROIDAPPDATASTREAM._options = None
-_IOSAPPDATASTREAM.fields_by_name['name']._options = None
-_IOSAPPDATASTREAM.fields_by_name['firebase_app_id']._options = None
-_IOSAPPDATASTREAM.fields_by_name['create_time']._options = None
-_IOSAPPDATASTREAM.fields_by_name['update_time']._options = None
-_IOSAPPDATASTREAM.fields_by_name['bundle_id']._options = None
+_IOSAPPDATASTREAM.fields_by_name["name"]._options = None
+_IOSAPPDATASTREAM.fields_by_name["firebase_app_id"]._options = None
+_IOSAPPDATASTREAM.fields_by_name["create_time"]._options = None
+_IOSAPPDATASTREAM.fields_by_name["update_time"]._options = None
+_IOSAPPDATASTREAM.fields_by_name["bundle_id"]._options = None
 _IOSAPPDATASTREAM._options = None
-_WEBDATASTREAM.fields_by_name['name']._options = None
-_WEBDATASTREAM.fields_by_name['measurement_id']._options = None
-_WEBDATASTREAM.fields_by_name['firebase_app_id']._options = None
-_WEBDATASTREAM.fields_by_name['create_time']._options = None
-_WEBDATASTREAM.fields_by_name['update_time']._options = None
-_WEBDATASTREAM.fields_by_name['default_uri']._options = None
-_WEBDATASTREAM.fields_by_name['display_name']._options = None
+_WEBDATASTREAM.fields_by_name["name"]._options = None
+_WEBDATASTREAM.fields_by_name["measurement_id"]._options = None
+_WEBDATASTREAM.fields_by_name["firebase_app_id"]._options = None
+_WEBDATASTREAM.fields_by_name["create_time"]._options = None
+_WEBDATASTREAM.fields_by_name["update_time"]._options = None
+_WEBDATASTREAM.fields_by_name["default_uri"]._options = None
+_WEBDATASTREAM.fields_by_name["display_name"]._options = None
 _WEBDATASTREAM._options = None
 _USERLINK._options = None
-_ENHANCEDMEASUREMENTSETTINGS.fields_by_name['name']._options = None
-_ENHANCEDMEASUREMENTSETTINGS.fields_by_name['page_views_enabled']._options = None
-_ENHANCEDMEASUREMENTSETTINGS.fields_by_name['search_query_parameter']._options = None
+_ENHANCEDMEASUREMENTSETTINGS.fields_by_name["name"]._options = None
+_ENHANCEDMEASUREMENTSETTINGS.fields_by_name["page_views_enabled"]._options = None
+_ENHANCEDMEASUREMENTSETTINGS.fields_by_name["search_query_parameter"]._options = None
 _ENHANCEDMEASUREMENTSETTINGS._options = None
-_FIREBASELINK.fields_by_name['name']._options = None
-_FIREBASELINK.fields_by_name['project']._options = None
-_FIREBASELINK.fields_by_name['create_time']._options = None
+_FIREBASELINK.fields_by_name["name"]._options = None
+_FIREBASELINK.fields_by_name["project"]._options = None
+_FIREBASELINK.fields_by_name["create_time"]._options = None
 _FIREBASELINK._options = None
-_GLOBALSITETAG.fields_by_name['snippet']._options = None
+_GLOBALSITETAG.fields_by_name["snippet"]._options = None
 _GLOBALSITETAG._options = None
-_GOOGLEADSLINK.fields_by_name['name']._options = None
-_GOOGLEADSLINK.fields_by_name['parent']._options = None
-_GOOGLEADSLINK.fields_by_name['customer_id']._options = None
-_GOOGLEADSLINK.fields_by_name['can_manage_clients']._options = None
-_GOOGLEADSLINK.fields_by_name['email_address']._options = None
-_GOOGLEADSLINK.fields_by_name['create_time']._options = None
-_GOOGLEADSLINK.fields_by_name['update_time']._options = None
+_GOOGLEADSLINK.fields_by_name["name"]._options = None
+_GOOGLEADSLINK.fields_by_name["parent"]._options = None
+_GOOGLEADSLINK.fields_by_name["customer_id"]._options = None
+_GOOGLEADSLINK.fields_by_name["can_manage_clients"]._options = None
+_GOOGLEADSLINK.fields_by_name["email_address"]._options = None
+_GOOGLEADSLINK.fields_by_name["create_time"]._options = None
+_GOOGLEADSLINK.fields_by_name["update_time"]._options = None
 _GOOGLEADSLINK._options = None
-_DATASHARINGSETTINGS.fields_by_name['name']._options = None
+_DATASHARINGSETTINGS.fields_by_name["name"]._options = None
 _DATASHARINGSETTINGS._options = None
-_ACCOUNTSUMMARY.fields_by_name['account']._options = None
+_ACCOUNTSUMMARY.fields_by_name["account"]._options = None
 _ACCOUNTSUMMARY._options = None
-_PROPERTYSUMMARY.fields_by_name['property']._options = None
+_PROPERTYSUMMARY.fields_by_name["property"]._options = None
 # @@protoc_insertion_point(module_scope)

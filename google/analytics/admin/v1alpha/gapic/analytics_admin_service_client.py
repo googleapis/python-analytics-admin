@@ -33,7 +33,9 @@ import grpc
 
 from google.analytics.admin.v1alpha.gapic import analytics_admin_service_client_config
 from google.analytics.admin.v1alpha.gapic import enums
-from google.analytics.admin.v1alpha.gapic.transports import analytics_admin_service_grpc_transport
+from google.analytics.admin.v1alpha.gapic.transports import (
+    analytics_admin_service_grpc_transport,
+)
 from google.analytics.admin.v1alpha.proto import analytics_admin_pb2
 from google.analytics.admin.v1alpha.proto import analytics_admin_pb2_grpc
 from google.analytics.admin.v1alpha.proto import resources_pb2
@@ -41,22 +43,20 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 
 
-
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'google-cloud-analytics-admin',
+    "google-cloud-analytics-admin",
 ).version
 
 
 class AnalyticsAdminServiceClient(object):
     """Service Interface for the Analytics Admin API (GA4)."""
 
-    SERVICE_ADDRESS = 'analyticsadmin.googleapis.com:443'
+    SERVICE_ADDRESS = "analyticsadmin.googleapis.com:443"
     """The default address of the service."""
 
     # The name of the interface for this client. This is the key used to
     # find the method configuration in the client_config dictionary.
-    _INTERFACE_NAME = 'google.analytics.admin.v1alpha.AnalyticsAdminService'
-
+    _INTERFACE_NAME = "google.analytics.admin.v1alpha.AnalyticsAdminService"
 
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
@@ -72,27 +72,24 @@ class AnalyticsAdminServiceClient(object):
         Returns:
             AnalyticsAdminServiceClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
-
 
     @classmethod
     def account_path(cls, account):
         """Return a fully-qualified account string."""
         return google.api_core.path_template.expand(
-            'accounts/{account}',
-            account=account,
+            "accounts/{account}", account=account,
         )
 
     @classmethod
     def android_app_data_stream_path(cls, property_, android_app_data_stream):
         """Return a fully-qualified android_app_data_stream string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/androidAppDataStreams/{android_app_data_stream}',
+            "properties/{property}/androidAppDataStreams/{android_app_data_stream}",
             property=property_,
             android_app_data_stream=android_app_data_stream,
         )
@@ -101,15 +98,14 @@ class AnalyticsAdminServiceClient(object):
     def data_sharing_settings_path(cls, account):
         """Return a fully-qualified data_sharing_settings string."""
         return google.api_core.path_template.expand(
-            'accounts/{account}/dataSharingSettings',
-            account=account,
+            "accounts/{account}/dataSharingSettings", account=account,
         )
 
     @classmethod
     def enhanced_measurement_settings_path(cls, property_, web_data_stream):
         """Return a fully-qualified enhanced_measurement_settings string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings',
+            "properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings",
             property=property_,
             web_data_stream=web_data_stream,
         )
@@ -118,7 +114,7 @@ class AnalyticsAdminServiceClient(object):
     def firebase_link_path(cls, property_, firebase_link):
         """Return a fully-qualified firebase_link string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/firebaseLinks/{firebase_link}',
+            "properties/{property}/firebaseLinks/{firebase_link}",
             property=property_,
             firebase_link=firebase_link,
         )
@@ -127,15 +123,14 @@ class AnalyticsAdminServiceClient(object):
     def global_site_tag_path(cls, property_):
         """Return a fully-qualified global_site_tag string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/globalSiteTag',
-            property=property_,
+            "properties/{property}/globalSiteTag", property=property_,
         )
 
     @classmethod
     def google_ads_link_path(cls, property_, google_ads_link):
         """Return a fully-qualified google_ads_link string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/googleAdsLinks/{google_ads_link}',
+            "properties/{property}/googleAdsLinks/{google_ads_link}",
             property=property_,
             google_ads_link=google_ads_link,
         )
@@ -144,7 +139,7 @@ class AnalyticsAdminServiceClient(object):
     def ios_app_data_stream_path(cls, property_, ios_app_data_stream):
         """Return a fully-qualified ios_app_data_stream string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/iosAppDataStreams/{ios_app_data_stream}',
+            "properties/{property}/iosAppDataStreams/{ios_app_data_stream}",
             property=property_,
             ios_app_data_stream=ios_app_data_stream,
         )
@@ -153,15 +148,14 @@ class AnalyticsAdminServiceClient(object):
     def property_path(cls, property_):
         """Return a fully-qualified property string."""
         return google.api_core.path_template.expand(
-            'properties/{property}',
-            property=property_,
+            "properties/{property}", property=property_,
         )
 
     @classmethod
     def user_link_path(cls, account, user_link):
         """Return a fully-qualified user_link string."""
         return google.api_core.path_template.expand(
-            'accounts/{account}/userLinks/{user_link}',
+            "accounts/{account}/userLinks/{user_link}",
             account=account,
             user_link=user_link,
         )
@@ -170,13 +164,20 @@ class AnalyticsAdminServiceClient(object):
     def web_data_stream_path(cls, property_, web_data_stream):
         """Return a fully-qualified web_data_stream string."""
         return google.api_core.path_template.expand(
-            'properties/{property}/webDataStreams/{web_data_stream}',
+            "properties/{property}/webDataStreams/{web_data_stream}",
             property=property_,
             web_data_stream=web_data_stream,
         )
 
-    def __init__(self, transport=None, channel=None, credentials=None,
-            client_config=None, client_info=None, client_options=None):
+    def __init__(
+        self,
+        transport=None,
+        channel=None,
+        credentials=None,
+        client_config=None,
+        client_info=None,
+        client_options=None,
+    ):
         """Constructor.
 
         Args:
@@ -212,20 +213,27 @@ class AnalyticsAdminServiceClient(object):
         """
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
-            warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning, stacklevel=2)
+            warnings.warn(
+                "The `client_config` argument is deprecated.",
+                PendingDeprecationWarning,
+                stacklevel=2,
+            )
         else:
             client_config = analytics_admin_service_client_config.config
 
         if channel:
-            warnings.warn('The `channel` argument is deprecated; use '
-                          '`transport` instead.',
-                          PendingDeprecationWarning, stacklevel=2)
+            warnings.warn(
+                "The `channel` argument is deprecated; use " "`transport` instead.",
+                PendingDeprecationWarning,
+                stacklevel=2,
+            )
 
         api_endpoint = self.SERVICE_ADDRESS
         if client_options:
             if type(client_options) == dict:
-                client_options = google.api_core.client_options.from_dict(client_options)
+                client_options = google.api_core.client_options.from_dict(
+                    client_options
+                )
             if client_options.api_endpoint:
                 api_endpoint = client_options.api_endpoint
 
@@ -242,15 +250,13 @@ class AnalyticsAdminServiceClient(object):
             else:
                 if credentials:
                     raise ValueError(
-                        'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.'
+                        "Received both a transport instance and "
+                        "credentials; these are mutually exclusive."
                     )
                 self.transport = transport
         else:
             self.transport = analytics_admin_service_grpc_transport.AnalyticsAdminServiceGrpcTransport(
-                address=api_endpoint,
-                channel=channel,
-                credentials=credentials,
+                address=api_endpoint, channel=channel, credentials=credentials,
             )
 
         if client_info is None:
@@ -266,7 +272,7 @@ class AnalyticsAdminServiceClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME],
+            client_config["interfaces"][self._INTERFACE_NAME],
         )
 
         # Save a dictionary of cached API call functions.
@@ -277,11 +283,12 @@ class AnalyticsAdminServiceClient(object):
 
     # Service calls
     def get_account(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lookup for a single Account.
         Throws "Target not found" if no such account found, or if caller does not
@@ -320,37 +327,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_account' not in self._inner_api_calls:
-            self._inner_api_calls['get_account'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_account" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_account"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_account,
-                default_retry=self._method_configs['GetAccount'].retry,
-                default_timeout=self._method_configs['GetAccount'].timeout,
+                default_retry=self._method_configs["GetAccount"].retry,
+                default_timeout=self._method_configs["GetAccount"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetAccountRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetAccountRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_account'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_account"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_accounts(
-            self,
-            page_size=None,
-            show_deleted=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        page_size=None,
+        show_deleted=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns all accounts accessible by the caller.
 
@@ -409,34 +421,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_accounts' not in self._inner_api_calls:
-            self._inner_api_calls['list_accounts'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_accounts" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_accounts"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_accounts,
-                default_retry=self._method_configs['ListAccounts'].retry,
-                default_timeout=self._method_configs['ListAccounts'].timeout,
+                default_retry=self._method_configs["ListAccounts"].retry,
+                default_timeout=self._method_configs["ListAccounts"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListAccountsRequest(
-            page_size=page_size,
-            show_deleted=show_deleted,
+            page_size=page_size, show_deleted=show_deleted,
         )
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_accounts'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_accounts"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='accounts',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="accounts",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def delete_account(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks target Account as soft-deleted (ie: "trashed") and returns it.
 
@@ -480,37 +499,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_account' not in self._inner_api_calls:
-            self._inner_api_calls['delete_account'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_account" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_account"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_account,
-                default_retry=self._method_configs['DeleteAccount'].retry,
-                default_timeout=self._method_configs['DeleteAccount'].timeout,
+                default_retry=self._method_configs["DeleteAccount"].retry,
+                default_timeout=self._method_configs["DeleteAccount"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteAccountRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteAccountRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_account'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_account"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_account(
-            self,
-            account,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        account,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates an account.
 
@@ -554,38 +578,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_account' not in self._inner_api_calls:
-            self._inner_api_calls['update_account'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_account" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_account"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_account,
-                default_retry=self._method_configs['UpdateAccount'].retry,
-                default_timeout=self._method_configs['UpdateAccount'].timeout,
+                default_retry=self._method_configs["UpdateAccount"].retry,
+                default_timeout=self._method_configs["UpdateAccount"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateAccountRequest(
-            account=account,
-            update_mask=update_mask,
+            account=account, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('account.name', account.name)]
+            routing_header = [("account.name", account.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_account'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_account"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def provision_account_ticket(
-            self,
-            account=None,
-            redirect_uri=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        account=None,
+        redirect_uri=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Requests a ticket for creating an account.
 
@@ -623,26 +653,30 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'provision_account_ticket' not in self._inner_api_calls:
-            self._inner_api_calls['provision_account_ticket'] = google.api_core.gapic_v1.method.wrap_method(
+        if "provision_account_ticket" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "provision_account_ticket"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.provision_account_ticket,
-                default_retry=self._method_configs['ProvisionAccountTicket'].retry,
-                default_timeout=self._method_configs['ProvisionAccountTicket'].timeout,
+                default_retry=self._method_configs["ProvisionAccountTicket"].retry,
+                default_timeout=self._method_configs["ProvisionAccountTicket"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ProvisionAccountTicketRequest(
-            account=account,
-            redirect_uri=redirect_uri,
+            account=account, redirect_uri=redirect_uri,
         )
-        return self._inner_api_calls['provision_account_ticket'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["provision_account_ticket"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_account_summaries(
-            self,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns summaries of all accounts accessible by the caller.
 
@@ -694,33 +728,39 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_account_summaries' not in self._inner_api_calls:
-            self._inner_api_calls['list_account_summaries'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_account_summaries" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_account_summaries"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_account_summaries,
-                default_retry=self._method_configs['ListAccountSummaries'].retry,
-                default_timeout=self._method_configs['ListAccountSummaries'].timeout,
+                default_retry=self._method_configs["ListAccountSummaries"].retry,
+                default_timeout=self._method_configs["ListAccountSummaries"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.ListAccountSummariesRequest(
-            page_size=page_size,
-        )
+        request = analytics_admin_pb2.ListAccountSummariesRequest(page_size=page_size,)
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_account_summaries'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_account_summaries"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='account_summaries',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="account_summaries",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_property(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lookup for a single "GA4" Property.
 
@@ -759,38 +799,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_property' not in self._inner_api_calls:
-            self._inner_api_calls['get_property'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_property" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_property"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_property,
-                default_retry=self._method_configs['GetProperty'].retry,
-                default_timeout=self._method_configs['GetProperty'].timeout,
+                default_retry=self._method_configs["GetProperty"].retry,
+                default_timeout=self._method_configs["GetProperty"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetPropertyRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetPropertyRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_property'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_property"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_properties(
-            self,
-            filter_,
-            page_size=None,
-            show_deleted=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        filter_,
+        page_size=None,
+        show_deleted=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns child Properties under the specified parent Account.
 
@@ -863,35 +908,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_properties' not in self._inner_api_calls:
-            self._inner_api_calls['list_properties'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_properties" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_properties"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_properties,
-                default_retry=self._method_configs['ListProperties'].retry,
-                default_timeout=self._method_configs['ListProperties'].timeout,
+                default_retry=self._method_configs["ListProperties"].retry,
+                default_timeout=self._method_configs["ListProperties"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListPropertiesRequest(
-            filter=filter_,
-            page_size=page_size,
-            show_deleted=show_deleted,
+            filter=filter_, page_size=page_size, show_deleted=show_deleted,
         )
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_properties'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_properties"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='properties',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="properties",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def create_property(
-            self,
-            property_,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        property_,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates an "GA4" property with the specified location and attributes.
 
@@ -931,25 +982,28 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_property' not in self._inner_api_calls:
-            self._inner_api_calls['create_property'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_property" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_property"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_property,
-                default_retry=self._method_configs['CreateProperty'].retry,
-                default_timeout=self._method_configs['CreateProperty'].timeout,
+                default_retry=self._method_configs["CreateProperty"].retry,
+                default_timeout=self._method_configs["CreateProperty"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.CreatePropertyRequest(
-            property=property_,
+        request = analytics_admin_pb2.CreatePropertyRequest(property=property_,)
+        return self._inner_api_calls["create_property"](
+            request, retry=retry, timeout=timeout, metadata=metadata
         )
-        return self._inner_api_calls['create_property'](request, retry=retry, timeout=timeout, metadata=metadata)
 
     def delete_property(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks target Property as soft-deleted (ie: "trashed") and returns it.
 
@@ -992,37 +1046,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_property' not in self._inner_api_calls:
-            self._inner_api_calls['delete_property'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_property" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_property"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_property,
-                default_retry=self._method_configs['DeleteProperty'].retry,
-                default_timeout=self._method_configs['DeleteProperty'].timeout,
+                default_retry=self._method_configs["DeleteProperty"].retry,
+                default_timeout=self._method_configs["DeleteProperty"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeletePropertyRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeletePropertyRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_property'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_property"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_property(
-            self,
-            property_,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        property_,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates a property.
 
@@ -1066,37 +1125,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_property' not in self._inner_api_calls:
-            self._inner_api_calls['update_property'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_property" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_property"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_property,
-                default_retry=self._method_configs['UpdateProperty'].retry,
-                default_timeout=self._method_configs['UpdateProperty'].timeout,
+                default_retry=self._method_configs["UpdateProperty"].retry,
+                default_timeout=self._method_configs["UpdateProperty"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdatePropertyRequest(
-            property=property_,
-            update_mask=update_mask,
+            property=property_, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('property.name', property.name)]
+            routing_header = [("property.name", property.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_property'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_property"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def get_user_link(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Gets information about a user's link to an account or property.
 
@@ -1132,37 +1197,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_user_link' not in self._inner_api_calls:
-            self._inner_api_calls['get_user_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_user_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_user_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_user_link,
-                default_retry=self._method_configs['GetUserLink'].retry,
-                default_timeout=self._method_configs['GetUserLink'].timeout,
+                default_retry=self._method_configs["GetUserLink"].retry,
+                default_timeout=self._method_configs["GetUserLink"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetUserLinkRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetUserLinkRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_user_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_user_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def batch_get_user_links(
-            self,
-            parent,
-            names,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        names,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Gets information about multiple users' links to an account or property.
 
@@ -1206,38 +1276,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'batch_get_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['batch_get_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "batch_get_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_get_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.batch_get_user_links,
-                default_retry=self._method_configs['BatchGetUserLinks'].retry,
-                default_timeout=self._method_configs['BatchGetUserLinks'].timeout,
+                default_retry=self._method_configs["BatchGetUserLinks"].retry,
+                default_timeout=self._method_configs["BatchGetUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.BatchGetUserLinksRequest(
-            parent=parent,
-            names=names,
+            parent=parent, names=names,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['batch_get_user_links'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["batch_get_user_links"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_user_links(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists all user links on an account or property.
 
@@ -1292,46 +1368,55 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['list_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_user_links,
-                default_retry=self._method_configs['ListUserLinks'].retry,
-                default_timeout=self._method_configs['ListUserLinks'].timeout,
+                default_retry=self._method_configs["ListUserLinks"].retry,
+                default_timeout=self._method_configs["ListUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListUserLinksRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_user_links'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_user_links"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='user_links',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="user_links",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def audit_user_links(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists all user links on an account or property, including implicit ones
         that come from effective permissions granted by groups or organization
@@ -1394,47 +1479,56 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'audit_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['audit_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "audit_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "audit_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.audit_user_links,
-                default_retry=self._method_configs['AuditUserLinks'].retry,
-                default_timeout=self._method_configs['AuditUserLinks'].timeout,
+                default_retry=self._method_configs["AuditUserLinks"].retry,
+                default_timeout=self._method_configs["AuditUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.AuditUserLinksRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['audit_user_links'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["audit_user_links"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='user_links',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="user_links",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def create_user_link(
-            self,
-            parent,
-            user_link,
-            notify_new_user=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        user_link,
+        notify_new_user=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates a user link on an account or property.
 
@@ -1482,40 +1576,45 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_user_link' not in self._inner_api_calls:
-            self._inner_api_calls['create_user_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_user_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_user_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_user_link,
-                default_retry=self._method_configs['CreateUserLink'].retry,
-                default_timeout=self._method_configs['CreateUserLink'].timeout,
+                default_retry=self._method_configs["CreateUserLink"].retry,
+                default_timeout=self._method_configs["CreateUserLink"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateUserLinkRequest(
-            parent=parent,
-            user_link=user_link,
-            notify_new_user=notify_new_user,
+            parent=parent, user_link=user_link, notify_new_user=notify_new_user,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_user_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_user_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def batch_create_user_links(
-            self,
-            parent,
-            requests,
-            notify_new_users=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        requests,
+        notify_new_users=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates information about multiple users' links to an account or property.
 
@@ -1568,38 +1667,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'batch_create_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['batch_create_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "batch_create_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_create_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.batch_create_user_links,
-                default_retry=self._method_configs['BatchCreateUserLinks'].retry,
-                default_timeout=self._method_configs['BatchCreateUserLinks'].timeout,
+                default_retry=self._method_configs["BatchCreateUserLinks"].retry,
+                default_timeout=self._method_configs["BatchCreateUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.BatchCreateUserLinksRequest(
-            parent=parent,
-            requests=requests,
-            notify_new_users=notify_new_users,
+            parent=parent, requests=requests, notify_new_users=notify_new_users,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['batch_create_user_links'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["batch_create_user_links"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_user_link(
-            self,
-            user_link,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        user_link,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates a user link on an account or property.
 
@@ -1638,37 +1742,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_user_link' not in self._inner_api_calls:
-            self._inner_api_calls['update_user_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_user_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_user_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_user_link,
-                default_retry=self._method_configs['UpdateUserLink'].retry,
-                default_timeout=self._method_configs['UpdateUserLink'].timeout,
+                default_retry=self._method_configs["UpdateUserLink"].retry,
+                default_timeout=self._method_configs["UpdateUserLink"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.UpdateUserLinkRequest(
-            user_link=user_link,
-        )
+        request = analytics_admin_pb2.UpdateUserLinkRequest(user_link=user_link,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('user_link.name', user_link.name)]
+            routing_header = [("user_link.name", user_link.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_user_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_user_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def batch_update_user_links(
-            self,
-            parent,
-            requests,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        requests,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates information about multiple users' links to an account or property.
 
@@ -1714,37 +1823,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'batch_update_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['batch_update_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "batch_update_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_update_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.batch_update_user_links,
-                default_retry=self._method_configs['BatchUpdateUserLinks'].retry,
-                default_timeout=self._method_configs['BatchUpdateUserLinks'].timeout,
+                default_retry=self._method_configs["BatchUpdateUserLinks"].retry,
+                default_timeout=self._method_configs["BatchUpdateUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.BatchUpdateUserLinksRequest(
-            parent=parent,
-            requests=requests,
+            parent=parent, requests=requests,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['batch_update_user_links'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["batch_update_user_links"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_user_link(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes a user link on an account or property.
 
@@ -1777,37 +1892,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_user_link' not in self._inner_api_calls:
-            self._inner_api_calls['delete_user_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_user_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_user_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_user_link,
-                default_retry=self._method_configs['DeleteUserLink'].retry,
-                default_timeout=self._method_configs['DeleteUserLink'].timeout,
+                default_retry=self._method_configs["DeleteUserLink"].retry,
+                default_timeout=self._method_configs["DeleteUserLink"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteUserLinkRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteUserLinkRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_user_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_user_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def batch_delete_user_links(
-            self,
-            parent,
-            requests,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        requests,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes information about multiple users' links to an account or property.
 
@@ -1850,37 +1970,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'batch_delete_user_links' not in self._inner_api_calls:
-            self._inner_api_calls['batch_delete_user_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "batch_delete_user_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "batch_delete_user_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.batch_delete_user_links,
-                default_retry=self._method_configs['BatchDeleteUserLinks'].retry,
-                default_timeout=self._method_configs['BatchDeleteUserLinks'].timeout,
+                default_retry=self._method_configs["BatchDeleteUserLinks"].retry,
+                default_timeout=self._method_configs["BatchDeleteUserLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.BatchDeleteUserLinksRequest(
-            parent=parent,
-            requests=requests,
+            parent=parent, requests=requests,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['batch_delete_user_links'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["batch_delete_user_links"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def get_web_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lookup for a single WebDataStream
 
@@ -1920,36 +2046,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_web_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['get_web_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_web_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_web_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_web_data_stream,
-                default_retry=self._method_configs['GetWebDataStream'].retry,
-                default_timeout=self._method_configs['GetWebDataStream'].timeout,
+                default_retry=self._method_configs["GetWebDataStream"].retry,
+                default_timeout=self._method_configs["GetWebDataStream"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetWebDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetWebDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_web_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_web_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_web_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes a web stream on a property.
 
@@ -1983,37 +2114,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_web_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['delete_web_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_web_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_web_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_web_data_stream,
-                default_retry=self._method_configs['DeleteWebDataStream'].retry,
-                default_timeout=self._method_configs['DeleteWebDataStream'].timeout,
+                default_retry=self._method_configs["DeleteWebDataStream"].retry,
+                default_timeout=self._method_configs["DeleteWebDataStream"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteWebDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteWebDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_web_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_web_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_web_data_stream(
-            self,
-            web_data_stream,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        web_data_stream,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates a web stream on a property.
 
@@ -2057,38 +2193,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_web_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['update_web_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_web_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_web_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_web_data_stream,
-                default_retry=self._method_configs['UpdateWebDataStream'].retry,
-                default_timeout=self._method_configs['UpdateWebDataStream'].timeout,
+                default_retry=self._method_configs["UpdateWebDataStream"].retry,
+                default_timeout=self._method_configs["UpdateWebDataStream"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateWebDataStreamRequest(
-            web_data_stream=web_data_stream,
-            update_mask=update_mask,
+            web_data_stream=web_data_stream, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('web_data_stream.name', web_data_stream.name)]
+            routing_header = [("web_data_stream.name", web_data_stream.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_web_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_web_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def create_web_data_stream(
-            self,
-            web_data_stream,
-            parent,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        web_data_stream,
+        parent,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates a web stream with the specified location and attributes.
 
@@ -2130,38 +2272,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_web_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['create_web_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_web_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_web_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_web_data_stream,
-                default_retry=self._method_configs['CreateWebDataStream'].retry,
-                default_timeout=self._method_configs['CreateWebDataStream'].timeout,
+                default_retry=self._method_configs["CreateWebDataStream"].retry,
+                default_timeout=self._method_configs["CreateWebDataStream"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateWebDataStreamRequest(
-            web_data_stream=web_data_stream,
-            parent=parent,
+            web_data_stream=web_data_stream, parent=parent,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_web_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_web_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_web_data_streams(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns child web data streams under the specified parent property.
 
@@ -2221,45 +2369,54 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_web_data_streams' not in self._inner_api_calls:
-            self._inner_api_calls['list_web_data_streams'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_web_data_streams" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_web_data_streams"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_web_data_streams,
-                default_retry=self._method_configs['ListWebDataStreams'].retry,
-                default_timeout=self._method_configs['ListWebDataStreams'].timeout,
+                default_retry=self._method_configs["ListWebDataStreams"].retry,
+                default_timeout=self._method_configs["ListWebDataStreams"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListWebDataStreamsRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_web_data_streams'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_web_data_streams"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='web_data_streams',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="web_data_streams",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_ios_app_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lookup for a single IosAppDataStream
 
@@ -2299,36 +2456,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_ios_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['get_ios_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_ios_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_ios_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_ios_app_data_stream,
-                default_retry=self._method_configs['GetIosAppDataStream'].retry,
-                default_timeout=self._method_configs['GetIosAppDataStream'].timeout,
+                default_retry=self._method_configs["GetIosAppDataStream"].retry,
+                default_timeout=self._method_configs["GetIosAppDataStream"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetIosAppDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetIosAppDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_ios_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_ios_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_ios_app_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes an iOS app stream on a property.
 
@@ -2362,37 +2524,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_ios_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['delete_ios_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_ios_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_ios_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_ios_app_data_stream,
-                default_retry=self._method_configs['DeleteIosAppDataStream'].retry,
-                default_timeout=self._method_configs['DeleteIosAppDataStream'].timeout,
+                default_retry=self._method_configs["DeleteIosAppDataStream"].retry,
+                default_timeout=self._method_configs["DeleteIosAppDataStream"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteIosAppDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteIosAppDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_ios_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_ios_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_ios_app_data_stream(
-            self,
-            ios_app_data_stream,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        ios_app_data_stream,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates an iOS app stream on a property.
 
@@ -2436,38 +2603,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_ios_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['update_ios_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_ios_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_ios_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_ios_app_data_stream,
-                default_retry=self._method_configs['UpdateIosAppDataStream'].retry,
-                default_timeout=self._method_configs['UpdateIosAppDataStream'].timeout,
+                default_retry=self._method_configs["UpdateIosAppDataStream"].retry,
+                default_timeout=self._method_configs["UpdateIosAppDataStream"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateIosAppDataStreamRequest(
-            ios_app_data_stream=ios_app_data_stream,
-            update_mask=update_mask,
+            ios_app_data_stream=ios_app_data_stream, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('ios_app_data_stream.name', ios_app_data_stream.name)]
+            routing_header = [("ios_app_data_stream.name", ios_app_data_stream.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_ios_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_ios_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def create_ios_app_data_stream(
-            self,
-            ios_app_data_stream,
-            parent,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        ios_app_data_stream,
+        parent,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates an iOS app data stream with the specified location and attributes.
 
@@ -2509,38 +2682,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_ios_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['create_ios_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_ios_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_ios_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_ios_app_data_stream,
-                default_retry=self._method_configs['CreateIosAppDataStream'].retry,
-                default_timeout=self._method_configs['CreateIosAppDataStream'].timeout,
+                default_retry=self._method_configs["CreateIosAppDataStream"].retry,
+                default_timeout=self._method_configs["CreateIosAppDataStream"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateIosAppDataStreamRequest(
-            ios_app_data_stream=ios_app_data_stream,
-            parent=parent,
+            ios_app_data_stream=ios_app_data_stream, parent=parent,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_ios_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_ios_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_ios_app_data_streams(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns child iOS app data streams under the specified parent property.
 
@@ -2600,45 +2779,54 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_ios_app_data_streams' not in self._inner_api_calls:
-            self._inner_api_calls['list_ios_app_data_streams'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_ios_app_data_streams" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_ios_app_data_streams"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_ios_app_data_streams,
-                default_retry=self._method_configs['ListIosAppDataStreams'].retry,
-                default_timeout=self._method_configs['ListIosAppDataStreams'].timeout,
+                default_retry=self._method_configs["ListIosAppDataStreams"].retry,
+                default_timeout=self._method_configs["ListIosAppDataStreams"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListIosAppDataStreamsRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_ios_app_data_streams'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_ios_app_data_streams"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='ios_app_data_streams',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="ios_app_data_streams",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_android_app_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lookup for a single AndroidAppDataStream
 
@@ -2678,36 +2866,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_android_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['get_android_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_android_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_android_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_android_app_data_stream,
-                default_retry=self._method_configs['GetAndroidAppDataStream'].retry,
-                default_timeout=self._method_configs['GetAndroidAppDataStream'].timeout,
+                default_retry=self._method_configs["GetAndroidAppDataStream"].retry,
+                default_timeout=self._method_configs["GetAndroidAppDataStream"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetAndroidAppDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetAndroidAppDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_android_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_android_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_android_app_data_stream(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes an android app stream on a property.
 
@@ -2741,37 +2934,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_android_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['delete_android_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_android_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_android_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_android_app_data_stream,
-                default_retry=self._method_configs['DeleteAndroidAppDataStream'].retry,
-                default_timeout=self._method_configs['DeleteAndroidAppDataStream'].timeout,
+                default_retry=self._method_configs["DeleteAndroidAppDataStream"].retry,
+                default_timeout=self._method_configs[
+                    "DeleteAndroidAppDataStream"
+                ].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteAndroidAppDataStreamRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteAndroidAppDataStreamRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_android_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_android_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_android_app_data_stream(
-            self,
-            android_app_data_stream,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        android_app_data_stream,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates an android app stream on a property.
 
@@ -2815,38 +3015,48 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_android_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['update_android_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_android_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_android_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_android_app_data_stream,
-                default_retry=self._method_configs['UpdateAndroidAppDataStream'].retry,
-                default_timeout=self._method_configs['UpdateAndroidAppDataStream'].timeout,
+                default_retry=self._method_configs["UpdateAndroidAppDataStream"].retry,
+                default_timeout=self._method_configs[
+                    "UpdateAndroidAppDataStream"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateAndroidAppDataStreamRequest(
-            android_app_data_stream=android_app_data_stream,
-            update_mask=update_mask,
+            android_app_data_stream=android_app_data_stream, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('android_app_data_stream.name', android_app_data_stream.name)]
+            routing_header = [
+                ("android_app_data_stream.name", android_app_data_stream.name)
+            ]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_android_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_android_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def create_android_app_data_stream(
-            self,
-            android_app_data_stream,
-            parent,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        android_app_data_stream,
+        parent,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates an android app stream with the specified location and attributes.
 
@@ -2888,38 +3098,46 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_android_app_data_stream' not in self._inner_api_calls:
-            self._inner_api_calls['create_android_app_data_stream'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_android_app_data_stream" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_android_app_data_stream"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_android_app_data_stream,
-                default_retry=self._method_configs['CreateAndroidAppDataStream'].retry,
-                default_timeout=self._method_configs['CreateAndroidAppDataStream'].timeout,
+                default_retry=self._method_configs["CreateAndroidAppDataStream"].retry,
+                default_timeout=self._method_configs[
+                    "CreateAndroidAppDataStream"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateAndroidAppDataStreamRequest(
-            android_app_data_stream=android_app_data_stream,
-            parent=parent,
+            android_app_data_stream=android_app_data_stream, parent=parent,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_android_app_data_stream'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_android_app_data_stream"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_android_app_data_streams(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns child android app streams under the specified parent property.
 
@@ -2979,45 +3197,56 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_android_app_data_streams' not in self._inner_api_calls:
-            self._inner_api_calls['list_android_app_data_streams'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_android_app_data_streams" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_android_app_data_streams"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_android_app_data_streams,
-                default_retry=self._method_configs['ListAndroidAppDataStreams'].retry,
-                default_timeout=self._method_configs['ListAndroidAppDataStreams'].timeout,
+                default_retry=self._method_configs["ListAndroidAppDataStreams"].retry,
+                default_timeout=self._method_configs[
+                    "ListAndroidAppDataStreams"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListAndroidAppDataStreamsRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_android_app_data_streams'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_android_app_data_streams"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='android_app_data_streams',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="android_app_data_streams",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_enhanced_measurement_settings(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns the singleton enhanced measurement settings for this web stream.
         Note that the stream must enable enhanced measurement for these settings to
@@ -3058,37 +3287,46 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_enhanced_measurement_settings' not in self._inner_api_calls:
-            self._inner_api_calls['get_enhanced_measurement_settings'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_enhanced_measurement_settings" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_enhanced_measurement_settings"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_enhanced_measurement_settings,
-                default_retry=self._method_configs['GetEnhancedMeasurementSettings'].retry,
-                default_timeout=self._method_configs['GetEnhancedMeasurementSettings'].timeout,
+                default_retry=self._method_configs[
+                    "GetEnhancedMeasurementSettings"
+                ].retry,
+                default_timeout=self._method_configs[
+                    "GetEnhancedMeasurementSettings"
+                ].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetEnhancedMeasurementSettingsRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetEnhancedMeasurementSettingsRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_enhanced_measurement_settings'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_enhanced_measurement_settings"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_enhanced_measurement_settings(
-            self,
-            enhanced_measurement_settings,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        enhanced_measurement_settings,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates the singleton enhanced measurement settings for this web stream.
         Note that the stream must enable enhanced measurement for these settings to
@@ -3134,11 +3372,17 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_enhanced_measurement_settings' not in self._inner_api_calls:
-            self._inner_api_calls['update_enhanced_measurement_settings'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_enhanced_measurement_settings" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_enhanced_measurement_settings"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_enhanced_measurement_settings,
-                default_retry=self._method_configs['UpdateEnhancedMeasurementSettings'].retry,
-                default_timeout=self._method_configs['UpdateEnhancedMeasurementSettings'].timeout,
+                default_retry=self._method_configs[
+                    "UpdateEnhancedMeasurementSettings"
+                ].retry,
+                default_timeout=self._method_configs[
+                    "UpdateEnhancedMeasurementSettings"
+                ].timeout,
                 client_info=self._client_info,
             )
 
@@ -3150,22 +3394,32 @@ class AnalyticsAdminServiceClient(object):
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('enhanced_measurement_settings.name', enhanced_measurement_settings.name)]
+            routing_header = [
+                (
+                    "enhanced_measurement_settings.name",
+                    enhanced_measurement_settings.name,
+                )
+            ]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_enhanced_measurement_settings'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_enhanced_measurement_settings"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def create_firebase_link(
-            self,
-            parent,
-            firebase_link,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        firebase_link,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates a FirebaseLink.
 
@@ -3209,38 +3463,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_firebase_link' not in self._inner_api_calls:
-            self._inner_api_calls['create_firebase_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_firebase_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_firebase_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_firebase_link,
-                default_retry=self._method_configs['CreateFirebaseLink'].retry,
-                default_timeout=self._method_configs['CreateFirebaseLink'].timeout,
+                default_retry=self._method_configs["CreateFirebaseLink"].retry,
+                default_timeout=self._method_configs["CreateFirebaseLink"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateFirebaseLinkRequest(
-            parent=parent,
-            firebase_link=firebase_link,
+            parent=parent, firebase_link=firebase_link,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_firebase_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_firebase_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_firebase_link(
-            self,
-            firebase_link,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        firebase_link,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates a FirebaseLink on a property
 
@@ -3283,37 +3543,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_firebase_link' not in self._inner_api_calls:
-            self._inner_api_calls['update_firebase_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_firebase_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_firebase_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_firebase_link,
-                default_retry=self._method_configs['UpdateFirebaseLink'].retry,
-                default_timeout=self._method_configs['UpdateFirebaseLink'].timeout,
+                default_retry=self._method_configs["UpdateFirebaseLink"].retry,
+                default_timeout=self._method_configs["UpdateFirebaseLink"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateFirebaseLinkRequest(
-            firebase_link=firebase_link,
-            update_mask=update_mask,
+            firebase_link=firebase_link, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('firebase_link.name', firebase_link.name)]
+            routing_header = [("firebase_link.name", firebase_link.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_firebase_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_firebase_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_firebase_link(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes a FirebaseLink on a property
 
@@ -3347,36 +3613,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_firebase_link' not in self._inner_api_calls:
-            self._inner_api_calls['delete_firebase_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_firebase_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_firebase_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_firebase_link,
-                default_retry=self._method_configs['DeleteFirebaseLink'].retry,
-                default_timeout=self._method_configs['DeleteFirebaseLink'].timeout,
+                default_retry=self._method_configs["DeleteFirebaseLink"].retry,
+                default_timeout=self._method_configs["DeleteFirebaseLink"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteFirebaseLinkRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteFirebaseLinkRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_firebase_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_firebase_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_firebase_links(
-            self,
-            parent,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
@@ -3412,36 +3683,41 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_firebase_links' not in self._inner_api_calls:
-            self._inner_api_calls['list_firebase_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_firebase_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_firebase_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_firebase_links,
-                default_retry=self._method_configs['ListFirebaseLinks'].retry,
-                default_timeout=self._method_configs['ListFirebaseLinks'].timeout,
+                default_retry=self._method_configs["ListFirebaseLinks"].retry,
+                default_timeout=self._method_configs["ListFirebaseLinks"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.ListFirebaseLinksRequest(
-            parent=parent,
-        )
+        request = analytics_admin_pb2.ListFirebaseLinksRequest(parent=parent,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['list_firebase_links'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["list_firebase_links"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def get_global_site_tag(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Returns the Site Tag for the specified web stream.
         Site Tags are immutable singletons.
@@ -3480,37 +3756,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_global_site_tag' not in self._inner_api_calls:
-            self._inner_api_calls['get_global_site_tag'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_global_site_tag" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_global_site_tag"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_global_site_tag,
-                default_retry=self._method_configs['GetGlobalSiteTag'].retry,
-                default_timeout=self._method_configs['GetGlobalSiteTag'].timeout,
+                default_retry=self._method_configs["GetGlobalSiteTag"].retry,
+                default_timeout=self._method_configs["GetGlobalSiteTag"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetGlobalSiteTagRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetGlobalSiteTagRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_global_site_tag'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_global_site_tag"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def create_google_ads_link(
-            self,
-            parent,
-            google_ads_link,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        google_ads_link,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Creates a GoogleAdsLink.
 
@@ -3552,38 +3833,44 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'create_google_ads_link' not in self._inner_api_calls:
-            self._inner_api_calls['create_google_ads_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "create_google_ads_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "create_google_ads_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.create_google_ads_link,
-                default_retry=self._method_configs['CreateGoogleAdsLink'].retry,
-                default_timeout=self._method_configs['CreateGoogleAdsLink'].timeout,
+                default_retry=self._method_configs["CreateGoogleAdsLink"].retry,
+                default_timeout=self._method_configs["CreateGoogleAdsLink"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.CreateGoogleAdsLinkRequest(
-            parent=parent,
-            google_ads_link=google_ads_link,
+            parent=parent, google_ads_link=google_ads_link,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['create_google_ads_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["create_google_ads_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def update_google_ads_link(
-            self,
-            google_ads_link=None,
-            update_mask=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        google_ads_link=None,
+        update_mask=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Updates a GoogleAdsLink on a property
 
@@ -3623,37 +3910,43 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'update_google_ads_link' not in self._inner_api_calls:
-            self._inner_api_calls['update_google_ads_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "update_google_ads_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "update_google_ads_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.update_google_ads_link,
-                default_retry=self._method_configs['UpdateGoogleAdsLink'].retry,
-                default_timeout=self._method_configs['UpdateGoogleAdsLink'].timeout,
+                default_retry=self._method_configs["UpdateGoogleAdsLink"].retry,
+                default_timeout=self._method_configs["UpdateGoogleAdsLink"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.UpdateGoogleAdsLinkRequest(
-            google_ads_link=google_ads_link,
-            update_mask=update_mask,
+            google_ads_link=google_ads_link, update_mask=update_mask,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('google_ads_link.name', google_ads_link.name)]
+            routing_header = [("google_ads_link.name", google_ads_link.name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['update_google_ads_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["update_google_ads_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def delete_google_ads_link(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Deletes a GoogleAdsLink on a property
 
@@ -3685,37 +3978,42 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'delete_google_ads_link' not in self._inner_api_calls:
-            self._inner_api_calls['delete_google_ads_link'] = google.api_core.gapic_v1.method.wrap_method(
+        if "delete_google_ads_link" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_google_ads_link"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.delete_google_ads_link,
-                default_retry=self._method_configs['DeleteGoogleAdsLink'].retry,
-                default_timeout=self._method_configs['DeleteGoogleAdsLink'].timeout,
+                default_retry=self._method_configs["DeleteGoogleAdsLink"].retry,
+                default_timeout=self._method_configs["DeleteGoogleAdsLink"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.DeleteGoogleAdsLinkRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.DeleteGoogleAdsLinkRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        self._inner_api_calls['delete_google_ads_link'](request, retry=retry, timeout=timeout, metadata=metadata)
+        self._inner_api_calls["delete_google_ads_link"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_google_ads_links(
-            self,
-            parent,
-            page_size=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists GoogleAdsLinks on a property.
 
@@ -3770,45 +4068,54 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_google_ads_links' not in self._inner_api_calls:
-            self._inner_api_calls['list_google_ads_links'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_google_ads_links" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_google_ads_links"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_google_ads_links,
-                default_retry=self._method_configs['ListGoogleAdsLinks'].retry,
-                default_timeout=self._method_configs['ListGoogleAdsLinks'].timeout,
+                default_retry=self._method_configs["ListGoogleAdsLinks"].retry,
+                default_timeout=self._method_configs["ListGoogleAdsLinks"].timeout,
                 client_info=self._client_info,
             )
 
         request = analytics_admin_pb2.ListGoogleAdsLinksRequest(
-            parent=parent,
-            page_size=page_size,
+            parent=parent, page_size=page_size,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_google_ads_links'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_google_ads_links"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='google_ads_links',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="google_ads_links",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_data_sharing_settings(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Get data sharing settings on an account.
         Data sharing settings are singletons.
@@ -3846,26 +4153,30 @@ class AnalyticsAdminServiceClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_data_sharing_settings' not in self._inner_api_calls:
-            self._inner_api_calls['get_data_sharing_settings'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_data_sharing_settings" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_data_sharing_settings"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_data_sharing_settings,
-                default_retry=self._method_configs['GetDataSharingSettings'].retry,
-                default_timeout=self._method_configs['GetDataSharingSettings'].timeout,
+                default_retry=self._method_configs["GetDataSharingSettings"].retry,
+                default_timeout=self._method_configs["GetDataSharingSettings"].timeout,
                 client_info=self._client_info,
             )
 
-        request = analytics_admin_pb2.GetDataSharingSettingsRequest(
-            name=name,
-        )
+        request = analytics_admin_pb2.GetDataSharingSettingsRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_data_sharing_settings'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_data_sharing_settings"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
