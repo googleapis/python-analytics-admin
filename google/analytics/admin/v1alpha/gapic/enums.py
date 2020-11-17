@@ -52,7 +52,6 @@ class IndustryCategory(enum.IntEnum):
       JOBS_AND_EDUCATION (int): Jobs and education
       SHOPPING (int): Shopping
     """
-
     INDUSTRY_CATEGORY_UNSPECIFIED = 0
     AUTOMOTIVE = 1
     BUSINESS_AND_INDUSTRIAL_MARKETS = 2
@@ -96,7 +95,6 @@ class MaximumUserAccess(enum.IntEnum):
       EDITOR_INCLUDING_LINK_MANAGEMENT (int): Firebase users have edit access to the Analytics property and may manage
       the Firebase link.
     """
-
     MAXIMUM_USER_ACCESS_UNSPECIFIED = 0
     NO_ACCESS = 1
     READ_AND_ANALYZE = 2

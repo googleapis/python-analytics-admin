@@ -2,12 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from google.cloud.analytics_admin_v1alpha.proto import (
-    analytics_admin_pb2 as google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2,
-)
-from google.cloud.analytics_admin_v1alpha.proto import (
-    resources_pb2 as google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2,
-)
+from google.cloud.analytics_admin_v1alpha.proto import analytics_admin_pb2 as google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2
+from google.cloud.analytics_admin_v1alpha.proto import resources_pb2 as google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
@@ -22,245 +18,245 @@ class AnalyticsAdminServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GetAccount = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccount",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAccountRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccount',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAccountRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
+                )
         self.ListAccounts = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccounts",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccounts',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsResponse.FromString,
+                )
         self.DeleteAccount = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAccountRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAccountRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.UpdateAccount = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccount",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAccountRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccount',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAccountRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
+                )
         self.ProvisionAccountTicket = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionAccountTicket",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionAccountTicket',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketResponse.FromString,
+                )
         self.ListAccountSummaries = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccountSummaries",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccountSummaries',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesResponse.FromString,
+                )
         self.GetProperty = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetProperty",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetPropertyRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetProperty',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetPropertyRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
+                )
         self.ListProperties = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListProperties",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListProperties',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesResponse.FromString,
+                )
         self.CreateProperty = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateProperty",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreatePropertyRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateProperty',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreatePropertyRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
+                )
         self.DeleteProperty = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeletePropertyRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeletePropertyRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.UpdateProperty = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateProperty",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdatePropertyRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateProperty',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdatePropertyRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
+                )
         self.GetUserLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetUserLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetUserLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetUserLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetUserLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
+                )
         self.BatchGetUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksResponse.FromString,
+                )
         self.ListUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksResponse.FromString,
+                )
         self.AuditUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/AuditUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/AuditUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksResponse.FromString,
+                )
         self.CreateUserLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateUserLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateUserLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateUserLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateUserLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
+                )
         self.BatchCreateUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksResponse.FromString,
+                )
         self.UpdateUserLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateUserLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateUserLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateUserLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateUserLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
+                )
         self.BatchUpdateUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksResponse.FromString,
+                )
         self.DeleteUserLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteUserLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteUserLinkRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteUserLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteUserLinkRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.BatchDeleteUserLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteUserLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchDeleteUserLinksRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteUserLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchDeleteUserLinksRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.GetWebDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetWebDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetWebDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
+                )
         self.DeleteWebDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteWebDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteWebDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.UpdateWebDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateWebDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateWebDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
+                )
         self.CreateWebDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateWebDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateWebDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
+                )
         self.ListWebDataStreams = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsResponse.FromString,
+                )
         self.GetIosAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetIosAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetIosAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
+                )
         self.DeleteIosAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteIosAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteIosAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.UpdateIosAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateIosAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateIosAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
+                )
         self.CreateIosAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateIosAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateIosAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
+                )
         self.ListIosAppDataStreams = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsResponse.FromString,
+                )
         self.GetAndroidAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAndroidAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAndroidAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
+                )
         self.DeleteAndroidAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAndroidAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAndroidAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.UpdateAndroidAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAndroidAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAndroidAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
+                )
         self.CreateAndroidAppDataStream = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateAndroidAppDataStreamRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateAndroidAppDataStreamRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
+                )
         self.ListAndroidAppDataStreams = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsResponse.FromString,
+                )
         self.GetEnhancedMeasurementSettings = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetEnhancedMeasurementSettingsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetEnhancedMeasurementSettingsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
+                )
         self.UpdateEnhancedMeasurementSettings = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateEnhancedMeasurementSettingsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateEnhancedMeasurementSettingsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
+                )
         self.CreateFirebaseLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateFirebaseLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateFirebaseLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateFirebaseLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateFirebaseLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
+                )
         self.UpdateFirebaseLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateFirebaseLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateFirebaseLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
+                )
         self.DeleteFirebaseLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteFirebaseLinkRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteFirebaseLinkRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.ListFirebaseLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListFirebaseLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListFirebaseLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksResponse.FromString,
+                )
         self.GetGlobalSiteTag = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGlobalSiteTag",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetGlobalSiteTagRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GlobalSiteTag.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGlobalSiteTag',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetGlobalSiteTagRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GlobalSiteTag.FromString,
+                )
         self.CreateGoogleAdsLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateGoogleAdsLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateGoogleAdsLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateGoogleAdsLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateGoogleAdsLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
+                )
         self.UpdateGoogleAdsLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateGoogleAdsLinkRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateGoogleAdsLinkRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
+                )
         self.DeleteGoogleAdsLink = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteGoogleAdsLinkRequest.SerializeToString,
-            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteGoogleAdsLinkRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.ListGoogleAdsLinks = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListGoogleAdsLinks",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksResponse.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListGoogleAdsLinks',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksResponse.FromString,
+                )
         self.GetDataSharingSettings = channel.unary_unary(
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings",
-            request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetDataSharingSettingsRequest.SerializeToString,
-            response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.DataSharingSettings.FromString,
-        )
+                '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings',
+                request_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetDataSharingSettingsRequest.SerializeToString,
+                response_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.DataSharingSettings.FromString,
+                )
 
 
 class AnalyticsAdminServiceServicer(object):
@@ -273,8 +269,8 @@ class AnalyticsAdminServiceServicer(object):
         have permissions to access it.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListAccounts(self, request, context):
         """Returns all accounts accessible by the caller.
@@ -284,8 +280,8 @@ class AnalyticsAdminServiceServicer(object):
         Returns an empty list if no relevant accounts are found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteAccount(self, request, context):
         """Marks target Account as soft-deleted (ie: "trashed") and returns it.
@@ -301,29 +297,29 @@ class AnalyticsAdminServiceServicer(object):
         Returns an error if the target is not found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateAccount(self, request, context):
         """Updates an account.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ProvisionAccountTicket(self, request, context):
         """Requests a ticket for creating an account.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListAccountSummaries(self, request, context):
         """Returns summaries of all accounts accessible by the caller.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetProperty(self, request, context):
         """Lookup for a single "GA4" Property.
@@ -332,8 +328,8 @@ class AnalyticsAdminServiceServicer(object):
         of the type "GA4", or if caller does not have permissions to access it.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListProperties(self, request, context):
         """Returns child Properties under the specified parent Account.
@@ -344,15 +340,15 @@ class AnalyticsAdminServiceServicer(object):
         Returns an empty list if no relevant properties are found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateProperty(self, request, context):
         """Creates an "GA4" property with the specified location and attributes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteProperty(self, request, context):
         """Marks target Property as soft-deleted (ie: "trashed") and returns it.
@@ -368,36 +364,36 @@ class AnalyticsAdminServiceServicer(object):
         Returns an error if the target is not found, or is not an GA4 Property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateProperty(self, request, context):
         """Updates a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetUserLink(self, request, context):
         """Gets information about a user's link to an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def BatchGetUserLinks(self, request, context):
         """Gets information about multiple users' links to an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListUserLinks(self, request, context):
         """Lists all user links on an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def AuditUserLinks(self, request, context):
         """Lists all user links on an account or property, including implicit ones
@@ -411,8 +407,8 @@ class AnalyticsAdminServiceServicer(object):
         UIs.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateUserLink(self, request, context):
         """Creates a user link on an account or property.
@@ -422,8 +418,8 @@ class AnalyticsAdminServiceServicer(object):
         with the permissions specified in the new UserLink.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def BatchCreateUserLinks(self, request, context):
         """Creates information about multiple users' links to an account or property.
@@ -432,36 +428,36 @@ class AnalyticsAdminServiceServicer(object):
         the UserLinks will be created.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateUserLink(self, request, context):
         """Updates a user link on an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def BatchUpdateUserLinks(self, request, context):
         """Updates information about multiple users' links to an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteUserLink(self, request, context):
         """Deletes a user link on an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def BatchDeleteUserLinks(self, request, context):
         """Deletes information about multiple users' links to an account or property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetWebDataStream(self, request, context):
         """Lookup for a single WebDataStream
@@ -470,29 +466,29 @@ class AnalyticsAdminServiceServicer(object):
         caller does not have permissions to access it.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteWebDataStream(self, request, context):
         """Deletes a web stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateWebDataStream(self, request, context):
         """Updates a web stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateWebDataStream(self, request, context):
         """Creates a web stream with the specified location and attributes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListWebDataStreams(self, request, context):
         """Returns child web data streams under the specified parent property.
@@ -501,8 +497,8 @@ class AnalyticsAdminServiceServicer(object):
         Returns an empty list if no relevant web data streams are found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetIosAppDataStream(self, request, context):
         """Lookup for a single IosAppDataStream
@@ -511,29 +507,29 @@ class AnalyticsAdminServiceServicer(object):
         caller does not have permissions to access it.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteIosAppDataStream(self, request, context):
         """Deletes an iOS app stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateIosAppDataStream(self, request, context):
         """Updates an iOS app stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateIosAppDataStream(self, request, context):
         """Creates an iOS app data stream with the specified location and attributes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListIosAppDataStreams(self, request, context):
         """Returns child iOS app data streams under the specified parent property.
@@ -542,8 +538,8 @@ class AnalyticsAdminServiceServicer(object):
         Returns an empty list if no relevant iOS app data streams are found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetAndroidAppDataStream(self, request, context):
         """Lookup for a single AndroidAppDataStream
@@ -552,29 +548,29 @@ class AnalyticsAdminServiceServicer(object):
         the caller does not have permissions to access it.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteAndroidAppDataStream(self, request, context):
         """Deletes an android app stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateAndroidAppDataStream(self, request, context):
         """Updates an android app stream on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateAndroidAppDataStream(self, request, context):
         """Creates an android app stream with the specified location and attributes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListAndroidAppDataStreams(self, request, context):
         """Returns child android app streams under the specified parent property.
@@ -583,8 +579,8 @@ class AnalyticsAdminServiceServicer(object):
         Returns an empty list if no relevant android app streams are found.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetEnhancedMeasurementSettings(self, request, context):
         """Returns the singleton enhanced measurement settings for this web stream.
@@ -592,8 +588,8 @@ class AnalyticsAdminServiceServicer(object):
         take effect.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateEnhancedMeasurementSettings(self, request, context):
         """Updates the singleton enhanced measurement settings for this web stream.
@@ -601,8 +597,8 @@ class AnalyticsAdminServiceServicer(object):
         take effect.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateFirebaseLink(self, request, context):
         """Creates a FirebaseLink.
@@ -610,1718 +606,1141 @@ class AnalyticsAdminServiceServicer(object):
         Properties can have at most one FirebaseLink.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateFirebaseLink(self, request, context):
         """Updates a FirebaseLink on a property
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteFirebaseLink(self, request, context):
         """Deletes a FirebaseLink on a property
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListFirebaseLinks(self, request, context):
         """Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetGlobalSiteTag(self, request, context):
         """Returns the Site Tag for the specified web stream.
         Site Tags are immutable singletons.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateGoogleAdsLink(self, request, context):
         """Creates a GoogleAdsLink.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateGoogleAdsLink(self, request, context):
         """Updates a GoogleAdsLink on a property
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def DeleteGoogleAdsLink(self, request, context):
         """Deletes a GoogleAdsLink on a property
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListGoogleAdsLinks(self, request, context):
         """Lists GoogleAdsLinks on a property.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetDataSharingSettings(self, request, context):
         """Get data sharing settings on an account.
         Data sharing settings are singletons.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_AnalyticsAdminServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "GetAccount": grpc.unary_unary_rpc_method_handler(
-            servicer.GetAccount,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAccountRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.SerializeToString,
-        ),
-        "ListAccounts": grpc.unary_unary_rpc_method_handler(
-            servicer.ListAccounts,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsResponse.SerializeToString,
-        ),
-        "DeleteAccount": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteAccount,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAccountRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "UpdateAccount": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateAccount,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAccountRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.SerializeToString,
-        ),
-        "ProvisionAccountTicket": grpc.unary_unary_rpc_method_handler(
-            servicer.ProvisionAccountTicket,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketResponse.SerializeToString,
-        ),
-        "ListAccountSummaries": grpc.unary_unary_rpc_method_handler(
-            servicer.ListAccountSummaries,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesResponse.SerializeToString,
-        ),
-        "GetProperty": grpc.unary_unary_rpc_method_handler(
-            servicer.GetProperty,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetPropertyRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
-        ),
-        "ListProperties": grpc.unary_unary_rpc_method_handler(
-            servicer.ListProperties,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesResponse.SerializeToString,
-        ),
-        "CreateProperty": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateProperty,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreatePropertyRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
-        ),
-        "DeleteProperty": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteProperty,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeletePropertyRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "UpdateProperty": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateProperty,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdatePropertyRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
-        ),
-        "GetUserLink": grpc.unary_unary_rpc_method_handler(
-            servicer.GetUserLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetUserLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
-        ),
-        "BatchGetUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.BatchGetUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksResponse.SerializeToString,
-        ),
-        "ListUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.ListUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksResponse.SerializeToString,
-        ),
-        "AuditUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.AuditUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksResponse.SerializeToString,
-        ),
-        "CreateUserLink": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateUserLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateUserLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
-        ),
-        "BatchCreateUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.BatchCreateUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksResponse.SerializeToString,
-        ),
-        "UpdateUserLink": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateUserLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateUserLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
-        ),
-        "BatchUpdateUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.BatchUpdateUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksResponse.SerializeToString,
-        ),
-        "DeleteUserLink": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteUserLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteUserLinkRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "BatchDeleteUserLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.BatchDeleteUserLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchDeleteUserLinksRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "GetWebDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.GetWebDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetWebDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
-        ),
-        "DeleteWebDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteWebDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteWebDataStreamRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "UpdateWebDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateWebDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateWebDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
-        ),
-        "CreateWebDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateWebDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateWebDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
-        ),
-        "ListWebDataStreams": grpc.unary_unary_rpc_method_handler(
-            servicer.ListWebDataStreams,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsResponse.SerializeToString,
-        ),
-        "GetIosAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.GetIosAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetIosAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
-        ),
-        "DeleteIosAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteIosAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteIosAppDataStreamRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "UpdateIosAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateIosAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateIosAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
-        ),
-        "CreateIosAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateIosAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateIosAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
-        ),
-        "ListIosAppDataStreams": grpc.unary_unary_rpc_method_handler(
-            servicer.ListIosAppDataStreams,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsResponse.SerializeToString,
-        ),
-        "GetAndroidAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.GetAndroidAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAndroidAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
-        ),
-        "DeleteAndroidAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteAndroidAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAndroidAppDataStreamRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "UpdateAndroidAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateAndroidAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAndroidAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
-        ),
-        "CreateAndroidAppDataStream": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateAndroidAppDataStream,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateAndroidAppDataStreamRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
-        ),
-        "ListAndroidAppDataStreams": grpc.unary_unary_rpc_method_handler(
-            servicer.ListAndroidAppDataStreams,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsResponse.SerializeToString,
-        ),
-        "GetEnhancedMeasurementSettings": grpc.unary_unary_rpc_method_handler(
-            servicer.GetEnhancedMeasurementSettings,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetEnhancedMeasurementSettingsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.SerializeToString,
-        ),
-        "UpdateEnhancedMeasurementSettings": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateEnhancedMeasurementSettings,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateEnhancedMeasurementSettingsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.SerializeToString,
-        ),
-        "CreateFirebaseLink": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateFirebaseLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateFirebaseLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.SerializeToString,
-        ),
-        "UpdateFirebaseLink": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateFirebaseLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateFirebaseLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.SerializeToString,
-        ),
-        "DeleteFirebaseLink": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteFirebaseLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteFirebaseLinkRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "ListFirebaseLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.ListFirebaseLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksResponse.SerializeToString,
-        ),
-        "GetGlobalSiteTag": grpc.unary_unary_rpc_method_handler(
-            servicer.GetGlobalSiteTag,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetGlobalSiteTagRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GlobalSiteTag.SerializeToString,
-        ),
-        "CreateGoogleAdsLink": grpc.unary_unary_rpc_method_handler(
-            servicer.CreateGoogleAdsLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateGoogleAdsLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.SerializeToString,
-        ),
-        "UpdateGoogleAdsLink": grpc.unary_unary_rpc_method_handler(
-            servicer.UpdateGoogleAdsLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateGoogleAdsLinkRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.SerializeToString,
-        ),
-        "DeleteGoogleAdsLink": grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteGoogleAdsLink,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteGoogleAdsLinkRequest.FromString,
-            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-        ),
-        "ListGoogleAdsLinks": grpc.unary_unary_rpc_method_handler(
-            servicer.ListGoogleAdsLinks,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksResponse.SerializeToString,
-        ),
-        "GetDataSharingSettings": grpc.unary_unary_rpc_method_handler(
-            servicer.GetDataSharingSettings,
-            request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetDataSharingSettingsRequest.FromString,
-            response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.DataSharingSettings.SerializeToString,
-        ),
+            'GetAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAccount,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAccountRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.SerializeToString,
+            ),
+            'ListAccounts': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAccounts,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsResponse.SerializeToString,
+            ),
+            'DeleteAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteAccount,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAccountRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAccount,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAccountRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.SerializeToString,
+            ),
+            'ProvisionAccountTicket': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProvisionAccountTicket,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketResponse.SerializeToString,
+            ),
+            'ListAccountSummaries': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAccountSummaries,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesResponse.SerializeToString,
+            ),
+            'GetProperty': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetProperty,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetPropertyRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
+            ),
+            'ListProperties': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListProperties,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesResponse.SerializeToString,
+            ),
+            'CreateProperty': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateProperty,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreatePropertyRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
+            ),
+            'DeleteProperty': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteProperty,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeletePropertyRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateProperty': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateProperty,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdatePropertyRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.SerializeToString,
+            ),
+            'GetUserLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUserLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetUserLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
+            ),
+            'BatchGetUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchGetUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksResponse.SerializeToString,
+            ),
+            'ListUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksResponse.SerializeToString,
+            ),
+            'AuditUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.AuditUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksResponse.SerializeToString,
+            ),
+            'CreateUserLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateUserLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateUserLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
+            ),
+            'BatchCreateUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchCreateUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksResponse.SerializeToString,
+            ),
+            'UpdateUserLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateUserLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateUserLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.SerializeToString,
+            ),
+            'BatchUpdateUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchUpdateUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksResponse.SerializeToString,
+            ),
+            'DeleteUserLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUserLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteUserLinkRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'BatchDeleteUserLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteUserLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchDeleteUserLinksRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetWebDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetWebDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetWebDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
+            ),
+            'DeleteWebDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteWebDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteWebDataStreamRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateWebDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateWebDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateWebDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
+            ),
+            'CreateWebDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateWebDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateWebDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.SerializeToString,
+            ),
+            'ListWebDataStreams': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListWebDataStreams,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsResponse.SerializeToString,
+            ),
+            'GetIosAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetIosAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetIosAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
+            ),
+            'DeleteIosAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteIosAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteIosAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateIosAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateIosAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateIosAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
+            ),
+            'CreateIosAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateIosAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateIosAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.SerializeToString,
+            ),
+            'ListIosAppDataStreams': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListIosAppDataStreams,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsResponse.SerializeToString,
+            ),
+            'GetAndroidAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAndroidAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAndroidAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
+            ),
+            'DeleteAndroidAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteAndroidAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAndroidAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateAndroidAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAndroidAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAndroidAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
+            ),
+            'CreateAndroidAppDataStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAndroidAppDataStream,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateAndroidAppDataStreamRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.SerializeToString,
+            ),
+            'ListAndroidAppDataStreams': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAndroidAppDataStreams,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsResponse.SerializeToString,
+            ),
+            'GetEnhancedMeasurementSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEnhancedMeasurementSettings,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetEnhancedMeasurementSettingsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.SerializeToString,
+            ),
+            'UpdateEnhancedMeasurementSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateEnhancedMeasurementSettings,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateEnhancedMeasurementSettingsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.SerializeToString,
+            ),
+            'CreateFirebaseLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFirebaseLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateFirebaseLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.SerializeToString,
+            ),
+            'UpdateFirebaseLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateFirebaseLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateFirebaseLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.SerializeToString,
+            ),
+            'DeleteFirebaseLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFirebaseLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteFirebaseLinkRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'ListFirebaseLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListFirebaseLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksResponse.SerializeToString,
+            ),
+            'GetGlobalSiteTag': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGlobalSiteTag,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetGlobalSiteTagRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GlobalSiteTag.SerializeToString,
+            ),
+            'CreateGoogleAdsLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateGoogleAdsLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateGoogleAdsLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.SerializeToString,
+            ),
+            'UpdateGoogleAdsLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateGoogleAdsLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateGoogleAdsLinkRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.SerializeToString,
+            ),
+            'DeleteGoogleAdsLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteGoogleAdsLink,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteGoogleAdsLinkRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'ListGoogleAdsLinks': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListGoogleAdsLinks,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksResponse.SerializeToString,
+            ),
+            'GetDataSharingSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDataSharingSettings,
+                    request_deserializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetDataSharingSettingsRequest.FromString,
+                    response_serializer=google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.DataSharingSettings.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "google.analytics.admin.v1alpha.AnalyticsAdminService", rpc_method_handlers
-    )
+            'google.analytics.admin.v1alpha.AnalyticsAdminService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
-# This class is part of an EXPERIMENTAL API.
+ # This class is part of an EXPERIMENTAL API.
 class AnalyticsAdminService(object):
     """Service Interface for the Analytics Admin API (GA4).
     """
 
     @staticmethod
-    def GetAccount(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetAccount(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccount",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccount',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAccountRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListAccounts(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListAccounts(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccounts",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccounts',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteAccount(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteAccount(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAccountRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateAccount(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateAccount(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccount",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccount',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAccountRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Account.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ProvisionAccountTicket(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ProvisionAccountTicket(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionAccountTicket",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionAccountTicket',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ProvisionAccountTicketResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListAccountSummaries(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListAccountSummaries(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccountSummaries",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccountSummaries',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAccountSummariesResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetProperty(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetProperty(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetProperty",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetProperty',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetPropertyRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListProperties(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListProperties(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListProperties",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListProperties',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListPropertiesResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateProperty(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateProperty(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateProperty",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateProperty',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreatePropertyRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteProperty(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteProperty(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeletePropertyRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateProperty(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateProperty(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateProperty",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateProperty',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdatePropertyRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.Property.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetUserLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetUserLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetUserLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetUserLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetUserLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def BatchGetUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def BatchGetUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchGetUserLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListUserLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def AuditUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def AuditUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/AuditUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/AuditUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.AuditUserLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateUserLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateUserLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateUserLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateUserLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateUserLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def BatchCreateUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def BatchCreateUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchCreateUserLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateUserLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateUserLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateUserLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateUserLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateUserLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.UserLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def BatchUpdateUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def BatchUpdateUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchUpdateUserLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteUserLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteUserLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteUserLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteUserLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteUserLinkRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def BatchDeleteUserLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def BatchDeleteUserLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteUserLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteUserLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.BatchDeleteUserLinksRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetWebDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetWebDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetWebDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteWebDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteWebDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteWebDataStreamRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateWebDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateWebDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateWebDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateWebDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateWebDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateWebDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.WebDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListWebDataStreams(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListWebDataStreams(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListWebDataStreamsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetIosAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetIosAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetIosAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteIosAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteIosAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteIosAppDataStreamRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateIosAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateIosAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateIosAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateIosAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateIosAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateIosAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.IosAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListIosAppDataStreams(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListIosAppDataStreams(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListIosAppDataStreamsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetAndroidAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetAndroidAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetAndroidAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteAndroidAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteAndroidAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteAndroidAppDataStreamRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateAndroidAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateAndroidAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateAndroidAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateAndroidAppDataStream(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateAndroidAppDataStream(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateAndroidAppDataStreamRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.AndroidAppDataStream.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListAndroidAppDataStreams(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListAndroidAppDataStreams(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListAndroidAppDataStreamsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetEnhancedMeasurementSettings(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetEnhancedMeasurementSettings(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetEnhancedMeasurementSettingsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateEnhancedMeasurementSettings(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateEnhancedMeasurementSettings(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateEnhancedMeasurementSettingsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.EnhancedMeasurementSettings.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateFirebaseLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateFirebaseLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateFirebaseLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateFirebaseLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateFirebaseLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateFirebaseLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateFirebaseLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateFirebaseLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.FirebaseLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteFirebaseLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteFirebaseLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteFirebaseLinkRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListFirebaseLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListFirebaseLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListFirebaseLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListFirebaseLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListFirebaseLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetGlobalSiteTag(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetGlobalSiteTag(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGlobalSiteTag",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGlobalSiteTag',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetGlobalSiteTagRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GlobalSiteTag.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateGoogleAdsLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def CreateGoogleAdsLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateGoogleAdsLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateGoogleAdsLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.CreateGoogleAdsLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateGoogleAdsLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def UpdateGoogleAdsLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.UpdateGoogleAdsLinkRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.GoogleAdsLink.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteGoogleAdsLink(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def DeleteGoogleAdsLink(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.DeleteGoogleAdsLinkRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListGoogleAdsLinks(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def ListGoogleAdsLinks(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListGoogleAdsLinks",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListGoogleAdsLinks',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.ListGoogleAdsLinksResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetDataSharingSettings(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def GetDataSharingSettings(request,
             target,
-            "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings',
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_analytics__admin__pb2.GetDataSharingSettingsRequest.SerializeToString,
             google_dot_cloud_dot_analytics__admin__v1alpha_dot_proto_dot_resources__pb2.DataSharingSettings.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

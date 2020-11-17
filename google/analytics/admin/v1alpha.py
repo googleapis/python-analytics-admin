@@ -23,7 +23,7 @@ from google.analytics.admin.v1alpha import types
 
 
 __all__ = (
-    "enums",
-    "types",
-    "AnalyticsAdminServiceClient",
+    'enums',
+    'types',
+    'AnalyticsAdminServiceClient',
 )
