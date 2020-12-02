@@ -28,6 +28,8 @@ from .resources import (
     GlobalSiteTag,
     GoogleAdsLink,
     DataSharingSettings,
+    AccountSummary,
+    PropertySummary,
 )
 from .analytics_admin import (
     GetAccountRequest,
@@ -90,6 +92,8 @@ from .analytics_admin import (
     ListGoogleAdsLinksRequest,
     ListGoogleAdsLinksResponse,
     GetDataSharingSettingsRequest,
+    ListAccountSummariesRequest,
+    ListAccountSummariesResponse,
 )
 
 
@@ -106,6 +110,8 @@ __all__ = (
     "GlobalSiteTag",
     "GoogleAdsLink",
     "DataSharingSettings",
+    "AccountSummary",
+    "PropertySummary",
     "GetAccountRequest",
     "ListAccountsRequest",
     "ListAccountsResponse",
@@ -166,4 +172,6 @@ __all__ = (
     "ListGoogleAdsLinksRequest",
     "ListGoogleAdsLinksResponse",
     "GetDataSharingSettingsRequest",
+    "ListAccountSummariesRequest",
+    "ListAccountSummariesResponse",
 )
