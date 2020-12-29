@@ -38,12 +38,15 @@ class ListAccountsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListAccountsResponse],
-            request: analytics_admin.ListAccountsRequest,
-            response: analytics_admin.ListAccountsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListAccountsResponse],
+        request: analytics_admin.ListAccountsRequest,
+        response: analytics_admin.ListAccountsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -77,7 +80,7 @@ class ListAccountsPager:
             yield from page.accounts
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListAccountsAsyncPager:
@@ -97,12 +100,15 @@ class ListAccountsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListAccountsResponse]],
-            request: analytics_admin.ListAccountsRequest,
-            response: analytics_admin.ListAccountsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListAccountsResponse]],
+        request: analytics_admin.ListAccountsRequest,
+        response: analytics_admin.ListAccountsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -140,7 +146,7 @@ class ListAccountsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListAccountSummariesPager:
@@ -160,12 +166,15 @@ class ListAccountSummariesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListAccountSummariesResponse],
-            request: analytics_admin.ListAccountSummariesRequest,
-            response: analytics_admin.ListAccountSummariesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListAccountSummariesResponse],
+        request: analytics_admin.ListAccountSummariesRequest,
+        response: analytics_admin.ListAccountSummariesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -199,7 +208,7 @@ class ListAccountSummariesPager:
             yield from page.account_summaries
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListAccountSummariesAsyncPager:
@@ -219,12 +228,15 @@ class ListAccountSummariesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListAccountSummariesResponse]],
-            request: analytics_admin.ListAccountSummariesRequest,
-            response: analytics_admin.ListAccountSummariesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListAccountSummariesResponse]],
+        request: analytics_admin.ListAccountSummariesRequest,
+        response: analytics_admin.ListAccountSummariesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -246,7 +258,9 @@ class ListAccountSummariesAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[analytics_admin.ListAccountSummariesResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[analytics_admin.ListAccountSummariesResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -262,7 +276,7 @@ class ListAccountSummariesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListPropertiesPager:
@@ -282,12 +296,15 @@ class ListPropertiesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListPropertiesResponse],
-            request: analytics_admin.ListPropertiesRequest,
-            response: analytics_admin.ListPropertiesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListPropertiesResponse],
+        request: analytics_admin.ListPropertiesRequest,
+        response: analytics_admin.ListPropertiesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -321,7 +338,7 @@ class ListPropertiesPager:
             yield from page.properties
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListPropertiesAsyncPager:
@@ -341,12 +358,15 @@ class ListPropertiesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListPropertiesResponse]],
-            request: analytics_admin.ListPropertiesRequest,
-            response: analytics_admin.ListPropertiesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListPropertiesResponse]],
+        request: analytics_admin.ListPropertiesRequest,
+        response: analytics_admin.ListPropertiesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -384,7 +404,7 @@ class ListPropertiesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListUserLinksPager:
@@ -404,12 +424,15 @@ class ListUserLinksPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListUserLinksResponse],
-            request: analytics_admin.ListUserLinksRequest,
-            response: analytics_admin.ListUserLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListUserLinksResponse],
+        request: analytics_admin.ListUserLinksRequest,
+        response: analytics_admin.ListUserLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -443,7 +466,7 @@ class ListUserLinksPager:
             yield from page.user_links
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListUserLinksAsyncPager:
@@ -463,12 +486,15 @@ class ListUserLinksAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListUserLinksResponse]],
-            request: analytics_admin.ListUserLinksRequest,
-            response: analytics_admin.ListUserLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListUserLinksResponse]],
+        request: analytics_admin.ListUserLinksRequest,
+        response: analytics_admin.ListUserLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -506,7 +532,7 @@ class ListUserLinksAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class AuditUserLinksPager:
@@ -526,12 +552,15 @@ class AuditUserLinksPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.AuditUserLinksResponse],
-            request: analytics_admin.AuditUserLinksRequest,
-            response: analytics_admin.AuditUserLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.AuditUserLinksResponse],
+        request: analytics_admin.AuditUserLinksRequest,
+        response: analytics_admin.AuditUserLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -565,7 +594,7 @@ class AuditUserLinksPager:
             yield from page.user_links
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class AuditUserLinksAsyncPager:
@@ -585,12 +614,15 @@ class AuditUserLinksAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.AuditUserLinksResponse]],
-            request: analytics_admin.AuditUserLinksRequest,
-            response: analytics_admin.AuditUserLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.AuditUserLinksResponse]],
+        request: analytics_admin.AuditUserLinksRequest,
+        response: analytics_admin.AuditUserLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -628,7 +660,7 @@ class AuditUserLinksAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListWebDataStreamsPager:
@@ -648,12 +680,15 @@ class ListWebDataStreamsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListWebDataStreamsResponse],
-            request: analytics_admin.ListWebDataStreamsRequest,
-            response: analytics_admin.ListWebDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListWebDataStreamsResponse],
+        request: analytics_admin.ListWebDataStreamsRequest,
+        response: analytics_admin.ListWebDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -687,7 +722,7 @@ class ListWebDataStreamsPager:
             yield from page.web_data_streams
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListWebDataStreamsAsyncPager:
@@ -707,12 +742,15 @@ class ListWebDataStreamsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListWebDataStreamsResponse]],
-            request: analytics_admin.ListWebDataStreamsRequest,
-            response: analytics_admin.ListWebDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListWebDataStreamsResponse]],
+        request: analytics_admin.ListWebDataStreamsRequest,
+        response: analytics_admin.ListWebDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -750,7 +788,7 @@ class ListWebDataStreamsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListIosAppDataStreamsPager:
@@ -770,12 +808,15 @@ class ListIosAppDataStreamsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListIosAppDataStreamsResponse],
-            request: analytics_admin.ListIosAppDataStreamsRequest,
-            response: analytics_admin.ListIosAppDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListIosAppDataStreamsResponse],
+        request: analytics_admin.ListIosAppDataStreamsRequest,
+        response: analytics_admin.ListIosAppDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -809,7 +850,7 @@ class ListIosAppDataStreamsPager:
             yield from page.ios_app_data_streams
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListIosAppDataStreamsAsyncPager:
@@ -829,12 +870,15 @@ class ListIosAppDataStreamsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListIosAppDataStreamsResponse]],
-            request: analytics_admin.ListIosAppDataStreamsRequest,
-            response: analytics_admin.ListIosAppDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListIosAppDataStreamsResponse]],
+        request: analytics_admin.ListIosAppDataStreamsRequest,
+        response: analytics_admin.ListIosAppDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -856,7 +900,9 @@ class ListIosAppDataStreamsAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[analytics_admin.ListIosAppDataStreamsResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[analytics_admin.ListIosAppDataStreamsResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -872,7 +918,7 @@ class ListIosAppDataStreamsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListAndroidAppDataStreamsPager:
@@ -892,12 +938,15 @@ class ListAndroidAppDataStreamsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListAndroidAppDataStreamsResponse],
-            request: analytics_admin.ListAndroidAppDataStreamsRequest,
-            response: analytics_admin.ListAndroidAppDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListAndroidAppDataStreamsResponse],
+        request: analytics_admin.ListAndroidAppDataStreamsRequest,
+        response: analytics_admin.ListAndroidAppDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -931,7 +980,7 @@ class ListAndroidAppDataStreamsPager:
             yield from page.android_app_data_streams
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListAndroidAppDataStreamsAsyncPager:
@@ -951,12 +1000,17 @@ class ListAndroidAppDataStreamsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListAndroidAppDataStreamsResponse]],
-            request: analytics_admin.ListAndroidAppDataStreamsRequest,
-            response: analytics_admin.ListAndroidAppDataStreamsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[
+            ..., Awaitable[analytics_admin.ListAndroidAppDataStreamsResponse]
+        ],
+        request: analytics_admin.ListAndroidAppDataStreamsRequest,
+        response: analytics_admin.ListAndroidAppDataStreamsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -978,7 +1032,9 @@ class ListAndroidAppDataStreamsAsyncPager:
         return getattr(self._response, name)
 
     @property
-    async def pages(self) -> AsyncIterable[analytics_admin.ListAndroidAppDataStreamsResponse]:
+    async def pages(
+        self,
+    ) -> AsyncIterable[analytics_admin.ListAndroidAppDataStreamsResponse]:
         yield self._response
         while self._response.next_page_token:
             self._request.page_token = self._response.next_page_token
@@ -994,7 +1050,7 @@ class ListAndroidAppDataStreamsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListGoogleAdsLinksPager:
@@ -1014,12 +1070,15 @@ class ListGoogleAdsLinksPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., analytics_admin.ListGoogleAdsLinksResponse],
-            request: analytics_admin.ListGoogleAdsLinksRequest,
-            response: analytics_admin.ListGoogleAdsLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListGoogleAdsLinksResponse],
+        request: analytics_admin.ListGoogleAdsLinksRequest,
+        response: analytics_admin.ListGoogleAdsLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -1053,7 +1112,7 @@ class ListGoogleAdsLinksPager:
             yield from page.google_ads_links
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListGoogleAdsLinksAsyncPager:
@@ -1073,12 +1132,15 @@ class ListGoogleAdsLinksAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[analytics_admin.ListGoogleAdsLinksResponse]],
-            request: analytics_admin.ListGoogleAdsLinksRequest,
-            response: analytics_admin.ListGoogleAdsLinksResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListGoogleAdsLinksResponse]],
+        request: analytics_admin.ListGoogleAdsLinksRequest,
+        response: analytics_admin.ListGoogleAdsLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -1116,4 +1178,4 @@ class ListGoogleAdsLinksAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

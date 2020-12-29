@@ -19,6 +19,6 @@ from .client import AnalyticsAdminServiceClient
 from .async_client import AnalyticsAdminServiceAsyncClient
 
 __all__ = (
-    'AnalyticsAdminServiceClient',
-    'AnalyticsAdminServiceAsyncClient',
+    "AnalyticsAdminServiceClient",
+    "AnalyticsAdminServiceAsyncClient",
 )

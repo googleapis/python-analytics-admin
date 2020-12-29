@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.analytics.admin_v1alpha.services.analytics_admin_service import pagers
 from google.analytics.admin_v1alpha.types import analytics_admin
@@ -50,43 +50,95 @@ class AnalyticsAdminServiceAsyncClient:
 
     account_path = staticmethod(AnalyticsAdminServiceClient.account_path)
     parse_account_path = staticmethod(AnalyticsAdminServiceClient.parse_account_path)
-    account_summary_path = staticmethod(AnalyticsAdminServiceClient.account_summary_path)
-    parse_account_summary_path = staticmethod(AnalyticsAdminServiceClient.parse_account_summary_path)
-    android_app_data_stream_path = staticmethod(AnalyticsAdminServiceClient.android_app_data_stream_path)
-    parse_android_app_data_stream_path = staticmethod(AnalyticsAdminServiceClient.parse_android_app_data_stream_path)
-    data_sharing_settings_path = staticmethod(AnalyticsAdminServiceClient.data_sharing_settings_path)
-    parse_data_sharing_settings_path = staticmethod(AnalyticsAdminServiceClient.parse_data_sharing_settings_path)
-    enhanced_measurement_settings_path = staticmethod(AnalyticsAdminServiceClient.enhanced_measurement_settings_path)
-    parse_enhanced_measurement_settings_path = staticmethod(AnalyticsAdminServiceClient.parse_enhanced_measurement_settings_path)
+    account_summary_path = staticmethod(
+        AnalyticsAdminServiceClient.account_summary_path
+    )
+    parse_account_summary_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_account_summary_path
+    )
+    android_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.android_app_data_stream_path
+    )
+    parse_android_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_android_app_data_stream_path
+    )
+    data_sharing_settings_path = staticmethod(
+        AnalyticsAdminServiceClient.data_sharing_settings_path
+    )
+    parse_data_sharing_settings_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_data_sharing_settings_path
+    )
+    enhanced_measurement_settings_path = staticmethod(
+        AnalyticsAdminServiceClient.enhanced_measurement_settings_path
+    )
+    parse_enhanced_measurement_settings_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_enhanced_measurement_settings_path
+    )
     firebase_link_path = staticmethod(AnalyticsAdminServiceClient.firebase_link_path)
-    parse_firebase_link_path = staticmethod(AnalyticsAdminServiceClient.parse_firebase_link_path)
-    global_site_tag_path = staticmethod(AnalyticsAdminServiceClient.global_site_tag_path)
-    parse_global_site_tag_path = staticmethod(AnalyticsAdminServiceClient.parse_global_site_tag_path)
-    google_ads_link_path = staticmethod(AnalyticsAdminServiceClient.google_ads_link_path)
-    parse_google_ads_link_path = staticmethod(AnalyticsAdminServiceClient.parse_google_ads_link_path)
-    ios_app_data_stream_path = staticmethod(AnalyticsAdminServiceClient.ios_app_data_stream_path)
-    parse_ios_app_data_stream_path = staticmethod(AnalyticsAdminServiceClient.parse_ios_app_data_stream_path)
+    parse_firebase_link_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_firebase_link_path
+    )
+    global_site_tag_path = staticmethod(
+        AnalyticsAdminServiceClient.global_site_tag_path
+    )
+    parse_global_site_tag_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_global_site_tag_path
+    )
+    google_ads_link_path = staticmethod(
+        AnalyticsAdminServiceClient.google_ads_link_path
+    )
+    parse_google_ads_link_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_google_ads_link_path
+    )
+    ios_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.ios_app_data_stream_path
+    )
+    parse_ios_app_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_ios_app_data_stream_path
+    )
     property_path = staticmethod(AnalyticsAdminServiceClient.property_path)
     parse_property_path = staticmethod(AnalyticsAdminServiceClient.parse_property_path)
     user_link_path = staticmethod(AnalyticsAdminServiceClient.user_link_path)
-    parse_user_link_path = staticmethod(AnalyticsAdminServiceClient.parse_user_link_path)
-    web_data_stream_path = staticmethod(AnalyticsAdminServiceClient.web_data_stream_path)
-    parse_web_data_stream_path = staticmethod(AnalyticsAdminServiceClient.parse_web_data_stream_path)
+    parse_user_link_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_user_link_path
+    )
+    web_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.web_data_stream_path
+    )
+    parse_web_data_stream_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_web_data_stream_path
+    )
 
-    common_billing_account_path = staticmethod(AnalyticsAdminServiceClient.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(AnalyticsAdminServiceClient.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        AnalyticsAdminServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_common_billing_account_path
+    )
 
     common_folder_path = staticmethod(AnalyticsAdminServiceClient.common_folder_path)
-    parse_common_folder_path = staticmethod(AnalyticsAdminServiceClient.parse_common_folder_path)
+    parse_common_folder_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_common_folder_path
+    )
 
-    common_organization_path = staticmethod(AnalyticsAdminServiceClient.common_organization_path)
-    parse_common_organization_path = staticmethod(AnalyticsAdminServiceClient.parse_common_organization_path)
+    common_organization_path = staticmethod(
+        AnalyticsAdminServiceClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_common_organization_path
+    )
 
     common_project_path = staticmethod(AnalyticsAdminServiceClient.common_project_path)
-    parse_common_project_path = staticmethod(AnalyticsAdminServiceClient.parse_common_project_path)
+    parse_common_project_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_common_project_path
+    )
 
-    common_location_path = staticmethod(AnalyticsAdminServiceClient.common_location_path)
-    parse_common_location_path = staticmethod(AnalyticsAdminServiceClient.parse_common_location_path)
+    common_location_path = staticmethod(
+        AnalyticsAdminServiceClient.common_location_path
+    )
+    parse_common_location_path = staticmethod(
+        AnalyticsAdminServiceClient.parse_common_location_path
+    )
 
     from_service_account_file = AnalyticsAdminServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
@@ -100,14 +152,19 @@ class AnalyticsAdminServiceAsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(AnalyticsAdminServiceClient).get_transport_class, type(AnalyticsAdminServiceClient))
+    get_transport_class = functools.partial(
+        type(AnalyticsAdminServiceClient).get_transport_class,
+        type(AnalyticsAdminServiceClient),
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, AnalyticsAdminServiceTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, AnalyticsAdminServiceTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the analytics admin service client.
 
         Args:
@@ -146,17 +203,17 @@ class AnalyticsAdminServiceAsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def get_account(self,
-            request: analytics_admin.GetAccountRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Account:
+    async def get_account(
+        self,
+        request: analytics_admin.GetAccountRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Account:
         r"""Lookup for a single Account.
         Throws "Target not found" if no such account found, or
         if caller does not have permissions to access it.
@@ -189,8 +246,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetAccountRequest(request)
 
@@ -211,29 +270,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_accounts(self,
-            request: analytics_admin.ListAccountsRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAccountsAsyncPager:
+    async def list_accounts(
+        self,
+        request: analytics_admin.ListAccountsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAccountsAsyncPager:
         r"""Returns all accounts accessible by the caller.
         Note that these accounts might not currently have GA4
         properties. Soft-deleted (ie: "trashed") accounts are
@@ -272,33 +325,26 @@ class AnalyticsAdminServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListAccountsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def delete_account(self,
-            request: analytics_admin.DeleteAccountRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_account(
+        self,
+        request: analytics_admin.DeleteAccountRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Marks target Account as soft-deleted (ie: "trashed")
         and returns it.
         This API does not have a method to restore soft-deleted
@@ -334,8 +380,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteAccountRequest(request)
 
@@ -356,28 +404,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def update_account(self,
-            request: analytics_admin.UpdateAccountRequest = None,
-            *,
-            account: resources.Account = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Account:
+    async def update_account(
+        self,
+        request: analytics_admin.UpdateAccountRequest = None,
+        *,
+        account: resources.Account = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Account:
         r"""Updates an account.
 
         Args:
@@ -414,8 +458,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([account, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateAccountRequest(request)
 
@@ -438,29 +484,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('account.name', request.account.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("account.name", request.account.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def provision_account_ticket(self,
-            request: analytics_admin.ProvisionAccountTicketRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.ProvisionAccountTicketResponse:
+    async def provision_account_ticket(
+        self,
+        request: analytics_admin.ProvisionAccountTicketRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.ProvisionAccountTicketResponse:
         r"""Requests a ticket for creating an account.
 
         Args:
@@ -493,23 +535,19 @@ class AnalyticsAdminServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_account_summaries(self,
-            request: analytics_admin.ListAccountSummariesRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAccountSummariesAsyncPager:
+    async def list_account_summaries(
+        self,
+        request: analytics_admin.ListAccountSummariesRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAccountSummariesAsyncPager:
         r"""Returns summaries of all accounts accessible by the
         caller.
 
@@ -546,33 +584,26 @@ class AnalyticsAdminServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListAccountSummariesAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_property(self,
-            request: analytics_admin.GetPropertyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    async def get_property(
+        self,
+        request: analytics_admin.GetPropertyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Lookup for a single "GA4" Property.
         Throws "Target not found" if no such property found, if
         property is not of the type "GA4", or if caller does not
@@ -605,8 +636,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetPropertyRequest(request)
 
@@ -627,29 +660,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_properties(self,
-            request: analytics_admin.ListPropertiesRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListPropertiesAsyncPager:
+    async def list_properties(
+        self,
+        request: analytics_admin.ListPropertiesRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListPropertiesAsyncPager:
         r"""Returns child Properties under the specified parent
         Account.
         Only "GA4" properties will be returned.
@@ -691,33 +718,26 @@ class AnalyticsAdminServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListPropertiesAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def create_property(self,
-            request: analytics_admin.CreatePropertyRequest = None,
-            *,
-            property: resources.Property = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    async def create_property(
+        self,
+        request: analytics_admin.CreatePropertyRequest = None,
+        *,
+        property: resources.Property = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Creates an "GA4" property with the specified location
         and attributes.
 
@@ -750,8 +770,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([property])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreatePropertyRequest(request)
 
@@ -770,24 +792,20 @@ class AnalyticsAdminServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_property(self,
-            request: analytics_admin.DeletePropertyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_property(
+        self,
+        request: analytics_admin.DeletePropertyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Marks target Property as soft-deleted (ie: "trashed")
         and returns it.
         This API does not have a method to restore soft-deleted
@@ -824,8 +842,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeletePropertyRequest(request)
 
@@ -846,28 +866,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def update_property(self,
-            request: analytics_admin.UpdatePropertyRequest = None,
-            *,
-            property: resources.Property = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    async def update_property(
+        self,
+        request: analytics_admin.UpdatePropertyRequest = None,
+        *,
+        property: resources.Property = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Updates a property.
 
         Args:
@@ -905,8 +921,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([property, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdatePropertyRequest(request)
 
@@ -929,30 +947,26 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('property.name', request.property.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("property.name", request.property.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_user_link(self,
-            request: analytics_admin.GetUserLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    async def get_user_link(
+        self,
+        request: analytics_admin.GetUserLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Gets information about a user's link to an account or
         property.
 
@@ -984,8 +998,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetUserLinkRequest(request)
 
@@ -1006,29 +1022,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def batch_get_user_links(self,
-            request: analytics_admin.BatchGetUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchGetUserLinksResponse:
+    async def batch_get_user_links(
+        self,
+        request: analytics_admin.BatchGetUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchGetUserLinksResponse:
         r"""Gets information about multiple users' links to an
         account or property.
 
@@ -1064,30 +1074,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_user_links(self,
-            request: analytics_admin.ListUserLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListUserLinksAsyncPager:
+    async def list_user_links(
+        self,
+        request: analytics_admin.ListUserLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListUserLinksAsyncPager:
         r"""Lists all user links on an account or property.
 
         Args:
@@ -1121,8 +1125,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListUserLinksRequest(request)
 
@@ -1143,38 +1149,29 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListUserLinksAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def audit_user_links(self,
-            request: analytics_admin.AuditUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.AuditUserLinksAsyncPager:
+    async def audit_user_links(
+        self,
+        request: analytics_admin.AuditUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.AuditUserLinksAsyncPager:
         r"""Lists all user links on an account or property,
         including implicit ones that come from effective
         permissions granted by groups or organization admin
@@ -1222,40 +1219,31 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.AuditUserLinksAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def create_user_link(self,
-            request: analytics_admin.CreateUserLinkRequest = None,
-            *,
-            parent: str = None,
-            user_link: resources.UserLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    async def create_user_link(
+        self,
+        request: analytics_admin.CreateUserLinkRequest = None,
+        *,
+        parent: str = None,
+        user_link: resources.UserLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Creates a user link on an account or property.
         If the user with the specified email already has
         permissions on the account or property, then the user's
@@ -1304,8 +1292,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, user_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateUserLinkRequest(request)
 
@@ -1328,29 +1318,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def batch_create_user_links(self,
-            request: analytics_admin.BatchCreateUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchCreateUserLinksResponse:
+    async def batch_create_user_links(
+        self,
+        request: analytics_admin.BatchCreateUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchCreateUserLinksResponse:
         r"""Creates information about multiple users' links to an
         account or property.
         This method is transactional. If any UserLink cannot be
@@ -1388,30 +1372,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_user_link(self,
-            request: analytics_admin.UpdateUserLinkRequest = None,
-            *,
-            user_link: resources.UserLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    async def update_user_link(
+        self,
+        request: analytics_admin.UpdateUserLinkRequest = None,
+        *,
+        user_link: resources.UserLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Updates a user link on an account or property.
 
         Args:
@@ -1442,8 +1420,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([user_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateUserLinkRequest(request)
 
@@ -1464,29 +1444,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('user_link.name', request.user_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("user_link.name", request.user_link.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def batch_update_user_links(self,
-            request: analytics_admin.BatchUpdateUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchUpdateUserLinksResponse:
+    async def batch_update_user_links(
+        self,
+        request: analytics_admin.BatchUpdateUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchUpdateUserLinksResponse:
         r"""Updates information about multiple users' links to an
         account or property.
 
@@ -1522,30 +1498,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_user_link(self,
-            request: analytics_admin.DeleteUserLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_user_link(
+        self,
+        request: analytics_admin.DeleteUserLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a user link on an account or property.
 
         Args:
@@ -1570,8 +1540,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteUserLinkRequest(request)
 
@@ -1592,26 +1564,22 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def batch_delete_user_links(self,
-            request: analytics_admin.BatchDeleteUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def batch_delete_user_links(
+        self,
+        request: analytics_admin.BatchDeleteUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes information about multiple users' links to an
         account or property.
 
@@ -1641,27 +1609,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def get_web_data_stream(self,
-            request: analytics_admin.GetWebDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    async def get_web_data_stream(
+        self,
+        request: analytics_admin.GetWebDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Lookup for a single WebDataStream
         Throws "Target not found" if no such web data stream
         found, or if the caller does not have permissions to
@@ -1697,8 +1661,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetWebDataStreamRequest(request)
 
@@ -1719,30 +1685,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_web_data_stream(self,
-            request: analytics_admin.DeleteWebDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_web_data_stream(
+        self,
+        request: analytics_admin.DeleteWebDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a web stream on a property.
 
         Args:
@@ -1769,8 +1729,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteWebDataStreamRequest(request)
 
@@ -1791,28 +1753,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def update_web_data_stream(self,
-            request: analytics_admin.UpdateWebDataStreamRequest = None,
-            *,
-            web_data_stream: resources.WebDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    async def update_web_data_stream(
+        self,
+        request: analytics_admin.UpdateWebDataStreamRequest = None,
+        *,
+        web_data_stream: resources.WebDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Updates a web stream on a property.
 
         Args:
@@ -1849,8 +1807,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([web_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateWebDataStreamRequest(request)
 
@@ -1873,31 +1833,27 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('web_data_stream.name', request.web_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("web_data_stream.name", request.web_data_stream.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_web_data_stream(self,
-            request: analytics_admin.CreateWebDataStreamRequest = None,
-            *,
-            parent: str = None,
-            web_data_stream: resources.WebDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    async def create_web_data_stream(
+        self,
+        request: analytics_admin.CreateWebDataStreamRequest = None,
+        *,
+        parent: str = None,
+        web_data_stream: resources.WebDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Creates a web stream with the specified location and
         attributes.
 
@@ -1935,8 +1891,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, web_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateWebDataStreamRequest(request)
 
@@ -1959,30 +1917,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_web_data_streams(self,
-            request: analytics_admin.ListWebDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListWebDataStreamsAsyncPager:
+    async def list_web_data_streams(
+        self,
+        request: analytics_admin.ListWebDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListWebDataStreamsAsyncPager:
         r"""Returns child web data streams under the specified
         parent property.
         Web data streams will be excluded if the caller does not
@@ -2022,8 +1974,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListWebDataStreamsRequest(request)
 
@@ -2044,39 +1998,30 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListWebDataStreamsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_ios_app_data_stream(self,
-            request: analytics_admin.GetIosAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    async def get_ios_app_data_stream(
+        self,
+        request: analytics_admin.GetIosAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Lookup for a single IosAppDataStream
         Throws "Target not found" if no such iOS app data stream
         found, or if the caller does not have permissions to
@@ -2112,8 +2057,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetIosAppDataStreamRequest(request)
 
@@ -2134,30 +2081,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_ios_app_data_stream(self,
-            request: analytics_admin.DeleteIosAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_ios_app_data_stream(
+        self,
+        request: analytics_admin.DeleteIosAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes an iOS app stream on a property.
 
         Args:
@@ -2184,8 +2125,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteIosAppDataStreamRequest(request)
 
@@ -2206,28 +2149,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def update_ios_app_data_stream(self,
-            request: analytics_admin.UpdateIosAppDataStreamRequest = None,
-            *,
-            ios_app_data_stream: resources.IosAppDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    async def update_ios_app_data_stream(
+        self,
+        request: analytics_admin.UpdateIosAppDataStreamRequest = None,
+        *,
+        ios_app_data_stream: resources.IosAppDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Updates an iOS app stream on a property.
 
         Args:
@@ -2265,8 +2204,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([ios_app_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateIosAppDataStreamRequest(request)
 
@@ -2289,31 +2230,27 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('ios_app_data_stream.name', request.ios_app_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("ios_app_data_stream.name", request.ios_app_data_stream.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_ios_app_data_stream(self,
-            request: analytics_admin.CreateIosAppDataStreamRequest = None,
-            *,
-            parent: str = None,
-            ios_app_data_stream: resources.IosAppDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    async def create_ios_app_data_stream(
+        self,
+        request: analytics_admin.CreateIosAppDataStreamRequest = None,
+        *,
+        parent: str = None,
+        ios_app_data_stream: resources.IosAppDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Creates an iOS app data stream with the specified
         location and attributes.
 
@@ -2352,8 +2289,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, ios_app_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateIosAppDataStreamRequest(request)
 
@@ -2376,30 +2315,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_ios_app_data_streams(self,
-            request: analytics_admin.ListIosAppDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListIosAppDataStreamsAsyncPager:
+    async def list_ios_app_data_streams(
+        self,
+        request: analytics_admin.ListIosAppDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListIosAppDataStreamsAsyncPager:
         r"""Returns child iOS app data streams under the
         specified parent property.
         iOS app data streams will be excluded if the caller does
@@ -2439,8 +2372,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListIosAppDataStreamsRequest(request)
 
@@ -2461,39 +2396,30 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListIosAppDataStreamsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_android_app_data_stream(self,
-            request: analytics_admin.GetAndroidAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    async def get_android_app_data_stream(
+        self,
+        request: analytics_admin.GetAndroidAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Lookup for a single AndroidAppDataStream
         Throws "Target not found" if no such android app data
         stream found, or if the caller does not have permissions
@@ -2529,8 +2455,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetAndroidAppDataStreamRequest(request)
 
@@ -2551,30 +2479,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_android_app_data_stream(self,
-            request: analytics_admin.DeleteAndroidAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_android_app_data_stream(
+        self,
+        request: analytics_admin.DeleteAndroidAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes an android app stream on a property.
 
         Args:
@@ -2601,8 +2523,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteAndroidAppDataStreamRequest(request)
 
@@ -2623,28 +2547,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def update_android_app_data_stream(self,
-            request: analytics_admin.UpdateAndroidAppDataStreamRequest = None,
-            *,
-            android_app_data_stream: resources.AndroidAppDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    async def update_android_app_data_stream(
+        self,
+        request: analytics_admin.UpdateAndroidAppDataStreamRequest = None,
+        *,
+        android_app_data_stream: resources.AndroidAppDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Updates an android app stream on a property.
 
         Args:
@@ -2682,8 +2602,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([android_app_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateAndroidAppDataStreamRequest(request)
 
@@ -2706,31 +2628,32 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('android_app_data_stream.name', request.android_app_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (
+                    (
+                        "android_app_data_stream.name",
+                        request.android_app_data_stream.name,
+                    ),
+                )
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_android_app_data_stream(self,
-            request: analytics_admin.CreateAndroidAppDataStreamRequest = None,
-            *,
-            parent: str = None,
-            android_app_data_stream: resources.AndroidAppDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    async def create_android_app_data_stream(
+        self,
+        request: analytics_admin.CreateAndroidAppDataStreamRequest = None,
+        *,
+        parent: str = None,
+        android_app_data_stream: resources.AndroidAppDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Creates an android app stream with the specified
         location and attributes.
 
@@ -2769,8 +2692,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, android_app_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
 
@@ -2793,30 +2718,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def list_android_app_data_streams(self,
-            request: analytics_admin.ListAndroidAppDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAndroidAppDataStreamsAsyncPager:
+    async def list_android_app_data_streams(
+        self,
+        request: analytics_admin.ListAndroidAppDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAndroidAppDataStreamsAsyncPager:
         r"""Returns child android app streams under the specified
         parent property.
         Android app streams will be excluded if the caller does
@@ -2856,8 +2775,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListAndroidAppDataStreamsRequest(request)
 
@@ -2878,39 +2799,30 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListAndroidAppDataStreamsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_enhanced_measurement_settings(self,
-            request: analytics_admin.GetEnhancedMeasurementSettingsRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.EnhancedMeasurementSettings:
+    async def get_enhanced_measurement_settings(
+        self,
+        request: analytics_admin.GetEnhancedMeasurementSettingsRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.EnhancedMeasurementSettings:
         r"""Returns the singleton enhanced measurement settings
         for this web stream. Note that the stream must enable
         enhanced measurement for these settings to take effect.
@@ -2948,8 +2860,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
 
@@ -2970,31 +2884,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_enhanced_measurement_settings(self,
-            request: analytics_admin.UpdateEnhancedMeasurementSettingsRequest = None,
-            *,
-            enhanced_measurement_settings: resources.EnhancedMeasurementSettings = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.EnhancedMeasurementSettings:
+    async def update_enhanced_measurement_settings(
+        self,
+        request: analytics_admin.UpdateEnhancedMeasurementSettingsRequest = None,
+        *,
+        enhanced_measurement_settings: resources.EnhancedMeasurementSettings = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.EnhancedMeasurementSettings:
         r"""Updates the singleton enhanced measurement settings
         for this web stream. Note that the stream must enable
         enhanced measurement for these settings to take effect.
@@ -3035,8 +2943,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([enhanced_measurement_settings, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
 
@@ -3059,31 +2969,32 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('enhanced_measurement_settings.name', request.enhanced_measurement_settings.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (
+                    (
+                        "enhanced_measurement_settings.name",
+                        request.enhanced_measurement_settings.name,
+                    ),
+                )
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_firebase_link(self,
-            request: analytics_admin.CreateFirebaseLinkRequest = None,
-            *,
-            parent: str = None,
-            firebase_link: resources.FirebaseLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.FirebaseLink:
+    async def create_firebase_link(
+        self,
+        request: analytics_admin.CreateFirebaseLinkRequest = None,
+        *,
+        parent: str = None,
+        firebase_link: resources.FirebaseLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.FirebaseLink:
         r"""Creates a FirebaseLink.
         Properties can have at most one FirebaseLink.
 
@@ -3121,8 +3032,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, firebase_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateFirebaseLinkRequest(request)
 
@@ -3145,31 +3058,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_firebase_link(self,
-            request: analytics_admin.UpdateFirebaseLinkRequest = None,
-            *,
-            firebase_link: resources.FirebaseLink = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.FirebaseLink:
+    async def update_firebase_link(
+        self,
+        request: analytics_admin.UpdateFirebaseLinkRequest = None,
+        *,
+        firebase_link: resources.FirebaseLink = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.FirebaseLink:
         r"""Updates a FirebaseLink on a property
 
         Args:
@@ -3206,8 +3113,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([firebase_link, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateFirebaseLinkRequest(request)
 
@@ -3230,30 +3139,26 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('firebase_link.name', request.firebase_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("firebase_link.name", request.firebase_link.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_firebase_link(self,
-            request: analytics_admin.DeleteFirebaseLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_firebase_link(
+        self,
+        request: analytics_admin.DeleteFirebaseLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a FirebaseLink on a property
 
         Args:
@@ -3279,8 +3184,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteFirebaseLinkRequest(request)
 
@@ -3301,27 +3208,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def list_firebase_links(self,
-            request: analytics_admin.ListFirebaseLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.ListFirebaseLinksResponse:
+    async def list_firebase_links(
+        self,
+        request: analytics_admin.ListFirebaseLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.ListFirebaseLinksResponse:
         r"""Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
 
@@ -3353,8 +3256,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListFirebaseLinksRequest(request)
 
@@ -3375,30 +3280,24 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_global_site_tag(self,
-            request: analytics_admin.GetGlobalSiteTagRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GlobalSiteTag:
+    async def get_global_site_tag(
+        self,
+        request: analytics_admin.GetGlobalSiteTagRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GlobalSiteTag:
         r"""Returns the Site Tag for the specified web stream.
         Site Tags are immutable singletons.
 
@@ -3435,8 +3334,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetGlobalSiteTagRequest(request)
 
@@ -3457,31 +3358,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_google_ads_link(self,
-            request: analytics_admin.CreateGoogleAdsLinkRequest = None,
-            *,
-            parent: str = None,
-            google_ads_link: resources.GoogleAdsLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GoogleAdsLink:
+    async def create_google_ads_link(
+        self,
+        request: analytics_admin.CreateGoogleAdsLinkRequest = None,
+        *,
+        parent: str = None,
+        google_ads_link: resources.GoogleAdsLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GoogleAdsLink:
         r"""Creates a GoogleAdsLink.
 
         Args:
@@ -3518,8 +3413,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, google_ads_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.CreateGoogleAdsLinkRequest(request)
 
@@ -3542,31 +3439,25 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_google_ads_link(self,
-            request: analytics_admin.UpdateGoogleAdsLinkRequest = None,
-            *,
-            google_ads_link: resources.GoogleAdsLink = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GoogleAdsLink:
+    async def update_google_ads_link(
+        self,
+        request: analytics_admin.UpdateGoogleAdsLinkRequest = None,
+        *,
+        google_ads_link: resources.GoogleAdsLink = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GoogleAdsLink:
         r"""Updates a GoogleAdsLink on a property
 
         Args:
@@ -3602,8 +3493,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([google_ads_link, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.UpdateGoogleAdsLinkRequest(request)
 
@@ -3626,30 +3519,26 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('google_ads_link.name', request.google_ads_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("google_ads_link.name", request.google_ads_link.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def delete_google_ads_link(self,
-            request: analytics_admin.DeleteGoogleAdsLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    async def delete_google_ads_link(
+        self,
+        request: analytics_admin.DeleteGoogleAdsLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a GoogleAdsLink on a property
 
         Args:
@@ -3674,8 +3563,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.DeleteGoogleAdsLinkRequest(request)
 
@@ -3696,27 +3587,23 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    async def list_google_ads_links(self,
-            request: analytics_admin.ListGoogleAdsLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListGoogleAdsLinksAsyncPager:
+    async def list_google_ads_links(
+        self,
+        request: analytics_admin.ListGoogleAdsLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListGoogleAdsLinksAsyncPager:
         r"""Lists GoogleAdsLinks on a property.
 
         Args:
@@ -3750,8 +3637,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.ListGoogleAdsLinksRequest(request)
 
@@ -3772,39 +3661,30 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListGoogleAdsLinksAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_data_sharing_settings(self,
-            request: analytics_admin.GetDataSharingSettingsRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.DataSharingSettings:
+    async def get_data_sharing_settings(
+        self,
+        request: analytics_admin.GetDataSharingSettingsRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.DataSharingSettings:
         r"""Get data sharing settings on an account.
         Data sharing settings are singletons.
 
@@ -3840,8 +3720,10 @@ class AnalyticsAdminServiceAsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = analytics_admin.GetDataSharingSettingsRequest(request)
 
@@ -3862,38 +3744,22 @@ class AnalyticsAdminServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-analytics-admin',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-analytics-admin",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'AnalyticsAdminServiceAsyncClient',
-)
+__all__ = ("AnalyticsAdminServiceAsyncClient",)

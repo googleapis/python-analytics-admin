@@ -24,12 +24,14 @@ from .grpc_asyncio import AnalyticsAdminServiceGrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[AnalyticsAdminServiceTransport]]
-_transport_registry['grpc'] = AnalyticsAdminServiceGrpcTransport
-_transport_registry['grpc_asyncio'] = AnalyticsAdminServiceGrpcAsyncIOTransport
+_transport_registry = (
+    OrderedDict()
+)  # type: Dict[str, Type[AnalyticsAdminServiceTransport]]
+_transport_registry["grpc"] = AnalyticsAdminServiceGrpcTransport
+_transport_registry["grpc_asyncio"] = AnalyticsAdminServiceGrpcAsyncIOTransport
 
 __all__ = (
-    'AnalyticsAdminServiceTransport',
-    'AnalyticsAdminServiceGrpcTransport',
-    'AnalyticsAdminServiceGrpcAsyncIOTransport',
+    "AnalyticsAdminServiceTransport",
+    "AnalyticsAdminServiceGrpcTransport",
+    "AnalyticsAdminServiceGrpcAsyncIOTransport",
 )

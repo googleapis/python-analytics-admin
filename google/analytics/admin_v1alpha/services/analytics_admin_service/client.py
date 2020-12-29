@@ -23,14 +23,14 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions                            # type: ignore
-from google.api_core import gapic_v1                              # type: ignore
-from google.api_core import retry as retries                      # type: ignore
-from google.auth import credentials                               # type: ignore
-from google.auth.transport import mtls                            # type: ignore
-from google.auth.transport.grpc import SslCredentials             # type: ignore
-from google.auth.exceptions import MutualTLSChannelError          # type: ignore
-from google.oauth2 import service_account                         # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.exceptions import MutualTLSChannelError  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.analytics.admin_v1alpha.services.analytics_admin_service import pagers
 from google.analytics.admin_v1alpha.types import analytics_admin
@@ -51,13 +51,16 @@ class AnalyticsAdminServiceClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[AnalyticsAdminServiceTransport]]
-    _transport_registry['grpc'] = AnalyticsAdminServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = AnalyticsAdminServiceGrpcAsyncIOTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[AnalyticsAdminServiceTransport]:
+    _transport_registry = (
+        OrderedDict()
+    )  # type: Dict[str, Type[AnalyticsAdminServiceTransport]]
+    _transport_registry["grpc"] = AnalyticsAdminServiceGrpcTransport
+    _transport_registry["grpc_asyncio"] = AnalyticsAdminServiceGrpcAsyncIOTransport
+
+    def get_transport_class(
+        cls, label: str = None,
+    ) -> Type[AnalyticsAdminServiceTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -108,7 +111,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'analyticsadmin.googleapis.com'
+    DEFAULT_ENDPOINT = "analyticsadmin.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -127,9 +130,8 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
@@ -146,10 +148,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     @staticmethod
     def account_path(account: str,) -> str:
         """Return a fully-qualified account string."""
-        return "accounts/{account}".format(account=account, )
+        return "accounts/{account}".format(account=account,)
 
     @staticmethod
-    def parse_account_path(path: str) -> Dict[str,str]:
+    def parse_account_path(path: str) -> Dict[str, str]:
         """Parse a account path into its component segments."""
         m = re.match(r"^accounts/(?P<account>.+?)$", path)
         return m.groupdict() if m else {}
@@ -157,185 +159,226 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     @staticmethod
     def account_summary_path(account_summary: str,) -> str:
         """Return a fully-qualified account_summary string."""
-        return "accountSummaries/{account_summary}".format(account_summary=account_summary, )
+        return "accountSummaries/{account_summary}".format(
+            account_summary=account_summary,
+        )
 
     @staticmethod
-    def parse_account_summary_path(path: str) -> Dict[str,str]:
+    def parse_account_summary_path(path: str) -> Dict[str, str]:
         """Parse a account_summary path into its component segments."""
         m = re.match(r"^accountSummaries/(?P<account_summary>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def android_app_data_stream_path(property: str,android_app_data_stream: str,) -> str:
+    def android_app_data_stream_path(
+        property: str, android_app_data_stream: str,
+    ) -> str:
         """Return a fully-qualified android_app_data_stream string."""
-        return "properties/{property}/androidAppDataStreams/{android_app_data_stream}".format(property=property, android_app_data_stream=android_app_data_stream, )
+        return "properties/{property}/androidAppDataStreams/{android_app_data_stream}".format(
+            property=property, android_app_data_stream=android_app_data_stream,
+        )
 
     @staticmethod
-    def parse_android_app_data_stream_path(path: str) -> Dict[str,str]:
+    def parse_android_app_data_stream_path(path: str) -> Dict[str, str]:
         """Parse a android_app_data_stream path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/androidAppDataStreams/(?P<android_app_data_stream>.+?)$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/androidAppDataStreams/(?P<android_app_data_stream>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
     def data_sharing_settings_path(account: str,) -> str:
         """Return a fully-qualified data_sharing_settings string."""
-        return "accounts/{account}/dataSharingSettings".format(account=account, )
+        return "accounts/{account}/dataSharingSettings".format(account=account,)
 
     @staticmethod
-    def parse_data_sharing_settings_path(path: str) -> Dict[str,str]:
+    def parse_data_sharing_settings_path(path: str) -> Dict[str, str]:
         """Parse a data_sharing_settings path into its component segments."""
         m = re.match(r"^accounts/(?P<account>.+?)/dataSharingSettings$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def enhanced_measurement_settings_path(property: str,web_data_stream: str,) -> str:
+    def enhanced_measurement_settings_path(property: str, web_data_stream: str,) -> str:
         """Return a fully-qualified enhanced_measurement_settings string."""
-        return "properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings".format(property=property, web_data_stream=web_data_stream, )
+        return "properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings".format(
+            property=property, web_data_stream=web_data_stream,
+        )
 
     @staticmethod
-    def parse_enhanced_measurement_settings_path(path: str) -> Dict[str,str]:
+    def parse_enhanced_measurement_settings_path(path: str) -> Dict[str, str]:
         """Parse a enhanced_measurement_settings path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/webDataStreams/(?P<web_data_stream>.+?)/enhancedMeasurementSettings$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/webDataStreams/(?P<web_data_stream>.+?)/enhancedMeasurementSettings$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def firebase_link_path(property: str,firebase_link: str,) -> str:
+    def firebase_link_path(property: str, firebase_link: str,) -> str:
         """Return a fully-qualified firebase_link string."""
-        return "properties/{property}/firebaseLinks/{firebase_link}".format(property=property, firebase_link=firebase_link, )
+        return "properties/{property}/firebaseLinks/{firebase_link}".format(
+            property=property, firebase_link=firebase_link,
+        )
 
     @staticmethod
-    def parse_firebase_link_path(path: str) -> Dict[str,str]:
+    def parse_firebase_link_path(path: str) -> Dict[str, str]:
         """Parse a firebase_link path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/firebaseLinks/(?P<firebase_link>.+?)$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/firebaseLinks/(?P<firebase_link>.+?)$", path
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
     def global_site_tag_path(property: str,) -> str:
         """Return a fully-qualified global_site_tag string."""
-        return "properties/{property}/globalSiteTag".format(property=property, )
+        return "properties/{property}/globalSiteTag".format(property=property,)
 
     @staticmethod
-    def parse_global_site_tag_path(path: str) -> Dict[str,str]:
+    def parse_global_site_tag_path(path: str) -> Dict[str, str]:
         """Parse a global_site_tag path into its component segments."""
         m = re.match(r"^properties/(?P<property>.+?)/globalSiteTag$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def google_ads_link_path(property: str,google_ads_link: str,) -> str:
+    def google_ads_link_path(property: str, google_ads_link: str,) -> str:
         """Return a fully-qualified google_ads_link string."""
-        return "properties/{property}/googleAdsLinks/{google_ads_link}".format(property=property, google_ads_link=google_ads_link, )
+        return "properties/{property}/googleAdsLinks/{google_ads_link}".format(
+            property=property, google_ads_link=google_ads_link,
+        )
 
     @staticmethod
-    def parse_google_ads_link_path(path: str) -> Dict[str,str]:
+    def parse_google_ads_link_path(path: str) -> Dict[str, str]:
         """Parse a google_ads_link path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/googleAdsLinks/(?P<google_ads_link>.+?)$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/googleAdsLinks/(?P<google_ads_link>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def ios_app_data_stream_path(property: str,ios_app_data_stream: str,) -> str:
+    def ios_app_data_stream_path(property: str, ios_app_data_stream: str,) -> str:
         """Return a fully-qualified ios_app_data_stream string."""
-        return "properties/{property}/iosAppDataStreams/{ios_app_data_stream}".format(property=property, ios_app_data_stream=ios_app_data_stream, )
+        return "properties/{property}/iosAppDataStreams/{ios_app_data_stream}".format(
+            property=property, ios_app_data_stream=ios_app_data_stream,
+        )
 
     @staticmethod
-    def parse_ios_app_data_stream_path(path: str) -> Dict[str,str]:
+    def parse_ios_app_data_stream_path(path: str) -> Dict[str, str]:
         """Parse a ios_app_data_stream path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/iosAppDataStreams/(?P<ios_app_data_stream>.+?)$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/iosAppDataStreams/(?P<ios_app_data_stream>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
     def property_path(property: str,) -> str:
         """Return a fully-qualified property string."""
-        return "properties/{property}".format(property=property, )
+        return "properties/{property}".format(property=property,)
 
     @staticmethod
-    def parse_property_path(path: str) -> Dict[str,str]:
+    def parse_property_path(path: str) -> Dict[str, str]:
         """Parse a property path into its component segments."""
         m = re.match(r"^properties/(?P<property>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def user_link_path(account: str,user_link: str,) -> str:
+    def user_link_path(account: str, user_link: str,) -> str:
         """Return a fully-qualified user_link string."""
-        return "accounts/{account}/userLinks/{user_link}".format(account=account, user_link=user_link, )
+        return "accounts/{account}/userLinks/{user_link}".format(
+            account=account, user_link=user_link,
+        )
 
     @staticmethod
-    def parse_user_link_path(path: str) -> Dict[str,str]:
+    def parse_user_link_path(path: str) -> Dict[str, str]:
         """Parse a user_link path into its component segments."""
         m = re.match(r"^accounts/(?P<account>.+?)/userLinks/(?P<user_link>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def web_data_stream_path(property: str,web_data_stream: str,) -> str:
+    def web_data_stream_path(property: str, web_data_stream: str,) -> str:
         """Return a fully-qualified web_data_stream string."""
-        return "properties/{property}/webDataStreams/{web_data_stream}".format(property=property, web_data_stream=web_data_stream, )
+        return "properties/{property}/webDataStreams/{web_data_stream}".format(
+            property=property, web_data_stream=web_data_stream,
+        )
 
     @staticmethod
-    def parse_web_data_stream_path(path: str) -> Dict[str,str]:
+    def parse_web_data_stream_path(path: str) -> Dict[str, str]:
         """Parse a web_data_stream path into its component segments."""
-        m = re.match(r"^properties/(?P<property>.+?)/webDataStreams/(?P<web_data_stream>.+?)$", path)
+        m = re.match(
+            r"^properties/(?P<property>.+?)/webDataStreams/(?P<web_data_stream>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_billing_account_path(billing_account: str, ) -> str:
+    def common_billing_account_path(billing_account: str,) -> str:
         """Return a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
+        return "billingAccounts/{billing_account}".format(
+            billing_account=billing_account,
+        )
 
     @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
+    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
         """Parse a billing_account path into its component segments."""
         m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_folder_path(folder: str, ) -> str:
+    def common_folder_path(folder: str,) -> str:
         """Return a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder, )
+        return "folders/{folder}".format(folder=folder,)
 
     @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str,str]:
+    def parse_common_folder_path(path: str) -> Dict[str, str]:
         """Parse a folder path into its component segments."""
         m = re.match(r"^folders/(?P<folder>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_organization_path(organization: str, ) -> str:
+    def common_organization_path(organization: str,) -> str:
         """Return a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization, )
+        return "organizations/{organization}".format(organization=organization,)
 
     @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str,str]:
+    def parse_common_organization_path(path: str) -> Dict[str, str]:
         """Parse a organization path into its component segments."""
         m = re.match(r"^organizations/(?P<organization>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_project_path(project: str, ) -> str:
+    def common_project_path(project: str,) -> str:
         """Return a fully-qualified project string."""
-        return "projects/{project}".format(project=project, )
+        return "projects/{project}".format(project=project,)
 
     @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str,str]:
+    def parse_common_project_path(path: str) -> Dict[str, str]:
         """Parse a project path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
-    def common_location_path(project: str, location: str, ) -> str:
+    def common_location_path(project: str, location: str,) -> str:
         """Return a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(project=project, location=location, )
+        return "projects/{project}/locations/{location}".format(
+            project=project, location=location,
+        )
 
     @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str,str]:
+    def parse_common_location_path(path: str) -> Dict[str, str]:
         """Parse a location path into its component segments."""
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
-    def __init__(self, *,
-            credentials: Optional[credentials.Credentials] = None,
-            transport: Union[str, AnalyticsAdminServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: Optional[credentials.Credentials] = None,
+        transport: Union[str, AnalyticsAdminServiceTransport, None] = None,
+        client_options: Optional[client_options_lib.ClientOptions] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the analytics admin service client.
 
         Args:
@@ -379,7 +422,9 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
+        use_client_cert = bool(
+            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
+        )
 
         ssl_credentials = None
         is_mtls = False
@@ -407,7 +452,9 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             elif use_mtls_env == "always":
                 api_endpoint = self.DEFAULT_MTLS_ENDPOINT
             elif use_mtls_env == "auto":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                api_endpoint = (
+                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
+                )
             else:
                 raise MutualTLSChannelError(
                     "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
@@ -419,8 +466,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         if isinstance(transport, AnalyticsAdminServiceTransport):
             # transport is a AnalyticsAdminServiceTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -439,14 +488,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 client_info=client_info,
             )
 
-    def get_account(self,
-            request: analytics_admin.GetAccountRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Account:
+    def get_account(
+        self,
+        request: analytics_admin.GetAccountRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Account:
         r"""Lookup for a single Account.
         Throws "Target not found" if no such account found, or
         if caller does not have permissions to access it.
@@ -479,8 +529,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetAccountRequest.
@@ -502,29 +554,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_accounts(self,
-            request: analytics_admin.ListAccountsRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAccountsPager:
+    def list_accounts(
+        self,
+        request: analytics_admin.ListAccountsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAccountsPager:
         r"""Returns all accounts accessible by the caller.
         Note that these accounts might not currently have GA4
         properties. Soft-deleted (ie: "trashed") accounts are
@@ -564,33 +610,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         rpc = self._transport._wrapped_methods[self._transport.list_accounts]
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListAccountsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def delete_account(self,
-            request: analytics_admin.DeleteAccountRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_account(
+        self,
+        request: analytics_admin.DeleteAccountRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Marks target Account as soft-deleted (ie: "trashed")
         and returns it.
         This API does not have a method to restore soft-deleted
@@ -626,8 +665,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteAccountRequest.
@@ -649,28 +690,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def update_account(self,
-            request: analytics_admin.UpdateAccountRequest = None,
-            *,
-            account: resources.Account = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Account:
+    def update_account(
+        self,
+        request: analytics_admin.UpdateAccountRequest = None,
+        *,
+        account: resources.Account = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Account:
         r"""Updates an account.
 
         Args:
@@ -707,8 +744,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([account, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateAccountRequest.
@@ -732,29 +771,25 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('account.name', request.account.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("account.name", request.account.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def provision_account_ticket(self,
-            request: analytics_admin.ProvisionAccountTicketRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.ProvisionAccountTicketResponse:
+    def provision_account_ticket(
+        self,
+        request: analytics_admin.ProvisionAccountTicketRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.ProvisionAccountTicketResponse:
         r"""Requests a ticket for creating an account.
 
         Args:
@@ -788,23 +823,19 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         rpc = self._transport._wrapped_methods[self._transport.provision_account_ticket]
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_account_summaries(self,
-            request: analytics_admin.ListAccountSummariesRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAccountSummariesPager:
+    def list_account_summaries(
+        self,
+        request: analytics_admin.ListAccountSummariesRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAccountSummariesPager:
         r"""Returns summaries of all accounts accessible by the
         caller.
 
@@ -842,33 +873,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         rpc = self._transport._wrapped_methods[self._transport.list_account_summaries]
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListAccountSummariesPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_property(self,
-            request: analytics_admin.GetPropertyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    def get_property(
+        self,
+        request: analytics_admin.GetPropertyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Lookup for a single "GA4" Property.
         Throws "Target not found" if no such property found, if
         property is not of the type "GA4", or if caller does not
@@ -901,8 +925,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetPropertyRequest.
@@ -924,29 +950,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_properties(self,
-            request: analytics_admin.ListPropertiesRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListPropertiesPager:
+    def list_properties(
+        self,
+        request: analytics_admin.ListPropertiesRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListPropertiesPager:
         r"""Returns child Properties under the specified parent
         Account.
         Only "GA4" properties will be returned.
@@ -989,33 +1009,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         rpc = self._transport._wrapped_methods[self._transport.list_properties]
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListPropertiesPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def create_property(self,
-            request: analytics_admin.CreatePropertyRequest = None,
-            *,
-            property: resources.Property = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    def create_property(
+        self,
+        request: analytics_admin.CreatePropertyRequest = None,
+        *,
+        property: resources.Property = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Creates an "GA4" property with the specified location
         and attributes.
 
@@ -1048,8 +1061,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([property])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreatePropertyRequest.
@@ -1069,24 +1084,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         rpc = self._transport._wrapped_methods[self._transport.create_property]
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_property(self,
-            request: analytics_admin.DeletePropertyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_property(
+        self,
+        request: analytics_admin.DeletePropertyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Marks target Property as soft-deleted (ie: "trashed")
         and returns it.
         This API does not have a method to restore soft-deleted
@@ -1123,8 +1134,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeletePropertyRequest.
@@ -1146,28 +1159,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def update_property(self,
-            request: analytics_admin.UpdatePropertyRequest = None,
-            *,
-            property: resources.Property = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.Property:
+    def update_property(
+        self,
+        request: analytics_admin.UpdatePropertyRequest = None,
+        *,
+        property: resources.Property = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.Property:
         r"""Updates a property.
 
         Args:
@@ -1205,8 +1214,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([property, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdatePropertyRequest.
@@ -1230,30 +1241,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('property.name', request.property.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("property.name", request.property.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_user_link(self,
-            request: analytics_admin.GetUserLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    def get_user_link(
+        self,
+        request: analytics_admin.GetUserLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Gets information about a user's link to an account or
         property.
 
@@ -1285,8 +1292,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetUserLinkRequest.
@@ -1308,29 +1317,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def batch_get_user_links(self,
-            request: analytics_admin.BatchGetUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchGetUserLinksResponse:
+    def batch_get_user_links(
+        self,
+        request: analytics_admin.BatchGetUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchGetUserLinksResponse:
         r"""Gets information about multiple users' links to an
         account or property.
 
@@ -1367,30 +1370,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_user_links(self,
-            request: analytics_admin.ListUserLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListUserLinksPager:
+    def list_user_links(
+        self,
+        request: analytics_admin.ListUserLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListUserLinksPager:
         r"""Lists all user links on an account or property.
 
         Args:
@@ -1424,8 +1421,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListUserLinksRequest.
@@ -1447,38 +1446,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListUserLinksPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def audit_user_links(self,
-            request: analytics_admin.AuditUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.AuditUserLinksPager:
+    def audit_user_links(
+        self,
+        request: analytics_admin.AuditUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.AuditUserLinksPager:
         r"""Lists all user links on an account or property,
         including implicit ones that come from effective
         permissions granted by groups or organization admin
@@ -1527,40 +1517,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.AuditUserLinksPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def create_user_link(self,
-            request: analytics_admin.CreateUserLinkRequest = None,
-            *,
-            parent: str = None,
-            user_link: resources.UserLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    def create_user_link(
+        self,
+        request: analytics_admin.CreateUserLinkRequest = None,
+        *,
+        parent: str = None,
+        user_link: resources.UserLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Creates a user link on an account or property.
         If the user with the specified email already has
         permissions on the account or property, then the user's
@@ -1609,8 +1590,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, user_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateUserLinkRequest.
@@ -1634,29 +1617,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def batch_create_user_links(self,
-            request: analytics_admin.BatchCreateUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchCreateUserLinksResponse:
+    def batch_create_user_links(
+        self,
+        request: analytics_admin.BatchCreateUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchCreateUserLinksResponse:
         r"""Creates information about multiple users' links to an
         account or property.
         This method is transactional. If any UserLink cannot be
@@ -1695,30 +1672,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_user_link(self,
-            request: analytics_admin.UpdateUserLinkRequest = None,
-            *,
-            user_link: resources.UserLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.UserLink:
+    def update_user_link(
+        self,
+        request: analytics_admin.UpdateUserLinkRequest = None,
+        *,
+        user_link: resources.UserLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.UserLink:
         r"""Updates a user link on an account or property.
 
         Args:
@@ -1749,8 +1720,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([user_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateUserLinkRequest.
@@ -1772,29 +1745,25 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('user_link.name', request.user_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("user_link.name", request.user_link.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def batch_update_user_links(self,
-            request: analytics_admin.BatchUpdateUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.BatchUpdateUserLinksResponse:
+    def batch_update_user_links(
+        self,
+        request: analytics_admin.BatchUpdateUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.BatchUpdateUserLinksResponse:
         r"""Updates information about multiple users' links to an
         account or property.
 
@@ -1831,30 +1800,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_user_link(self,
-            request: analytics_admin.DeleteUserLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_user_link(
+        self,
+        request: analytics_admin.DeleteUserLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a user link on an account or property.
 
         Args:
@@ -1879,8 +1842,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteUserLinkRequest.
@@ -1902,26 +1867,22 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def batch_delete_user_links(self,
-            request: analytics_admin.BatchDeleteUserLinksRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def batch_delete_user_links(
+        self,
+        request: analytics_admin.BatchDeleteUserLinksRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes information about multiple users' links to an
         account or property.
 
@@ -1952,27 +1913,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def get_web_data_stream(self,
-            request: analytics_admin.GetWebDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    def get_web_data_stream(
+        self,
+        request: analytics_admin.GetWebDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Lookup for a single WebDataStream
         Throws "Target not found" if no such web data stream
         found, or if the caller does not have permissions to
@@ -2008,8 +1965,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetWebDataStreamRequest.
@@ -2031,30 +1990,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_web_data_stream(self,
-            request: analytics_admin.DeleteWebDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_web_data_stream(
+        self,
+        request: analytics_admin.DeleteWebDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a web stream on a property.
 
         Args:
@@ -2081,8 +2034,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteWebDataStreamRequest.
@@ -2104,28 +2059,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def update_web_data_stream(self,
-            request: analytics_admin.UpdateWebDataStreamRequest = None,
-            *,
-            web_data_stream: resources.WebDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    def update_web_data_stream(
+        self,
+        request: analytics_admin.UpdateWebDataStreamRequest = None,
+        *,
+        web_data_stream: resources.WebDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Updates a web stream on a property.
 
         Args:
@@ -2162,8 +2113,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([web_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateWebDataStreamRequest.
@@ -2187,31 +2140,27 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('web_data_stream.name', request.web_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("web_data_stream.name", request.web_data_stream.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_web_data_stream(self,
-            request: analytics_admin.CreateWebDataStreamRequest = None,
-            *,
-            parent: str = None,
-            web_data_stream: resources.WebDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.WebDataStream:
+    def create_web_data_stream(
+        self,
+        request: analytics_admin.CreateWebDataStreamRequest = None,
+        *,
+        parent: str = None,
+        web_data_stream: resources.WebDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.WebDataStream:
         r"""Creates a web stream with the specified location and
         attributes.
 
@@ -2249,8 +2198,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, web_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateWebDataStreamRequest.
@@ -2274,30 +2225,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_web_data_streams(self,
-            request: analytics_admin.ListWebDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListWebDataStreamsPager:
+    def list_web_data_streams(
+        self,
+        request: analytics_admin.ListWebDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListWebDataStreamsPager:
         r"""Returns child web data streams under the specified
         parent property.
         Web data streams will be excluded if the caller does not
@@ -2337,8 +2282,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListWebDataStreamsRequest.
@@ -2360,39 +2307,30 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListWebDataStreamsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_ios_app_data_stream(self,
-            request: analytics_admin.GetIosAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    def get_ios_app_data_stream(
+        self,
+        request: analytics_admin.GetIosAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Lookup for a single IosAppDataStream
         Throws "Target not found" if no such iOS app data stream
         found, or if the caller does not have permissions to
@@ -2428,8 +2366,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetIosAppDataStreamRequest.
@@ -2451,30 +2391,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_ios_app_data_stream(self,
-            request: analytics_admin.DeleteIosAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_ios_app_data_stream(
+        self,
+        request: analytics_admin.DeleteIosAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes an iOS app stream on a property.
 
         Args:
@@ -2501,8 +2435,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteIosAppDataStreamRequest.
@@ -2519,33 +2455,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.delete_ios_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def update_ios_app_data_stream(self,
-            request: analytics_admin.UpdateIosAppDataStreamRequest = None,
-            *,
-            ios_app_data_stream: resources.IosAppDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    def update_ios_app_data_stream(
+        self,
+        request: analytics_admin.UpdateIosAppDataStreamRequest = None,
+        *,
+        ios_app_data_stream: resources.IosAppDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Updates an iOS app stream on a property.
 
         Args:
@@ -2583,8 +2517,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([ios_app_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateIosAppDataStreamRequest.
@@ -2603,36 +2539,34 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_ios_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('ios_app_data_stream.name', request.ios_app_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("ios_app_data_stream.name", request.ios_app_data_stream.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_ios_app_data_stream(self,
-            request: analytics_admin.CreateIosAppDataStreamRequest = None,
-            *,
-            parent: str = None,
-            ios_app_data_stream: resources.IosAppDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.IosAppDataStream:
+    def create_ios_app_data_stream(
+        self,
+        request: analytics_admin.CreateIosAppDataStreamRequest = None,
+        *,
+        parent: str = None,
+        ios_app_data_stream: resources.IosAppDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.IosAppDataStream:
         r"""Creates an iOS app data stream with the specified
         location and attributes.
 
@@ -2671,8 +2605,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, ios_app_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateIosAppDataStreamRequest.
@@ -2691,35 +2627,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.create_ios_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_ios_app_data_streams(self,
-            request: analytics_admin.ListIosAppDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListIosAppDataStreamsPager:
+    def list_ios_app_data_streams(
+        self,
+        request: analytics_admin.ListIosAppDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListIosAppDataStreamsPager:
         r"""Returns child iOS app data streams under the
         specified parent property.
         iOS app data streams will be excluded if the caller does
@@ -2759,8 +2691,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListIosAppDataStreamsRequest.
@@ -2777,44 +2711,37 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.list_ios_app_data_streams]
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_ios_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListIosAppDataStreamsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_android_app_data_stream(self,
-            request: analytics_admin.GetAndroidAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    def get_android_app_data_stream(
+        self,
+        request: analytics_admin.GetAndroidAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Lookup for a single AndroidAppDataStream
         Throws "Target not found" if no such android app data
         stream found, or if the caller does not have permissions
@@ -2850,8 +2777,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetAndroidAppDataStreamRequest.
@@ -2868,35 +2797,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.get_android_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_android_app_data_stream(self,
-            request: analytics_admin.DeleteAndroidAppDataStreamRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_android_app_data_stream(
+        self,
+        request: analytics_admin.DeleteAndroidAppDataStreamRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes an android app stream on a property.
 
         Args:
@@ -2923,8 +2848,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteAndroidAppDataStreamRequest.
@@ -2941,33 +2868,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.delete_android_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def update_android_app_data_stream(self,
-            request: analytics_admin.UpdateAndroidAppDataStreamRequest = None,
-            *,
-            android_app_data_stream: resources.AndroidAppDataStream = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    def update_android_app_data_stream(
+        self,
+        request: analytics_admin.UpdateAndroidAppDataStreamRequest = None,
+        *,
+        android_app_data_stream: resources.AndroidAppDataStream = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Updates an android app stream on a property.
 
         Args:
@@ -3005,8 +2930,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([android_app_data_stream, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateAndroidAppDataStreamRequest.
@@ -3025,36 +2952,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_android_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('android_app_data_stream.name', request.android_app_data_stream.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (
+                    (
+                        "android_app_data_stream.name",
+                        request.android_app_data_stream.name,
+                    ),
+                )
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_android_app_data_stream(self,
-            request: analytics_admin.CreateAndroidAppDataStreamRequest = None,
-            *,
-            parent: str = None,
-            android_app_data_stream: resources.AndroidAppDataStream = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.AndroidAppDataStream:
+    def create_android_app_data_stream(
+        self,
+        request: analytics_admin.CreateAndroidAppDataStreamRequest = None,
+        *,
+        parent: str = None,
+        android_app_data_stream: resources.AndroidAppDataStream = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.AndroidAppDataStream:
         r"""Creates an android app stream with the specified
         location and attributes.
 
@@ -3093,8 +3023,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, android_app_data_stream])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateAndroidAppDataStreamRequest.
@@ -3113,35 +3045,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.create_android_app_data_stream]
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_android_app_data_streams(self,
-            request: analytics_admin.ListAndroidAppDataStreamsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListAndroidAppDataStreamsPager:
+    def list_android_app_data_streams(
+        self,
+        request: analytics_admin.ListAndroidAppDataStreamsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAndroidAppDataStreamsPager:
         r"""Returns child android app streams under the specified
         parent property.
         Android app streams will be excluded if the caller does
@@ -3181,8 +3109,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListAndroidAppDataStreamsRequest.
@@ -3199,44 +3129,37 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.list_android_app_data_streams]
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_android_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListAndroidAppDataStreamsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_enhanced_measurement_settings(self,
-            request: analytics_admin.GetEnhancedMeasurementSettingsRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.EnhancedMeasurementSettings:
+    def get_enhanced_measurement_settings(
+        self,
+        request: analytics_admin.GetEnhancedMeasurementSettingsRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.EnhancedMeasurementSettings:
         r"""Returns the singleton enhanced measurement settings
         for this web stream. Note that the stream must enable
         enhanced measurement for these settings to take effect.
@@ -3274,14 +3197,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetEnhancedMeasurementSettingsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, analytics_admin.GetEnhancedMeasurementSettingsRequest):
+        if not isinstance(
+            request, analytics_admin.GetEnhancedMeasurementSettingsRequest
+        ):
             request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -3292,36 +3219,32 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.get_enhanced_measurement_settings]
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_enhanced_measurement_settings(self,
-            request: analytics_admin.UpdateEnhancedMeasurementSettingsRequest = None,
-            *,
-            enhanced_measurement_settings: resources.EnhancedMeasurementSettings = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.EnhancedMeasurementSettings:
+    def update_enhanced_measurement_settings(
+        self,
+        request: analytics_admin.UpdateEnhancedMeasurementSettingsRequest = None,
+        *,
+        enhanced_measurement_settings: resources.EnhancedMeasurementSettings = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.EnhancedMeasurementSettings:
         r"""Updates the singleton enhanced measurement settings
         for this web stream. Note that the stream must enable
         enhanced measurement for these settings to take effect.
@@ -3362,14 +3285,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([enhanced_measurement_settings, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateEnhancedMeasurementSettingsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, analytics_admin.UpdateEnhancedMeasurementSettingsRequest):
+        if not isinstance(
+            request, analytics_admin.UpdateEnhancedMeasurementSettingsRequest
+        ):
             request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
 
             # If we have keyword arguments corresponding to fields on the
@@ -3382,36 +3309,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_enhanced_measurement_settings]
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('enhanced_measurement_settings.name', request.enhanced_measurement_settings.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (
+                    (
+                        "enhanced_measurement_settings.name",
+                        request.enhanced_measurement_settings.name,
+                    ),
+                )
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_firebase_link(self,
-            request: analytics_admin.CreateFirebaseLinkRequest = None,
-            *,
-            parent: str = None,
-            firebase_link: resources.FirebaseLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.FirebaseLink:
+    def create_firebase_link(
+        self,
+        request: analytics_admin.CreateFirebaseLinkRequest = None,
+        *,
+        parent: str = None,
+        firebase_link: resources.FirebaseLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.FirebaseLink:
         r"""Creates a FirebaseLink.
         Properties can have at most one FirebaseLink.
 
@@ -3449,8 +3379,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, firebase_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateFirebaseLinkRequest.
@@ -3474,31 +3406,25 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_firebase_link(self,
-            request: analytics_admin.UpdateFirebaseLinkRequest = None,
-            *,
-            firebase_link: resources.FirebaseLink = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.FirebaseLink:
+    def update_firebase_link(
+        self,
+        request: analytics_admin.UpdateFirebaseLinkRequest = None,
+        *,
+        firebase_link: resources.FirebaseLink = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.FirebaseLink:
         r"""Updates a FirebaseLink on a property
 
         Args:
@@ -3535,8 +3461,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([firebase_link, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateFirebaseLinkRequest.
@@ -3560,30 +3488,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('firebase_link.name', request.firebase_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("firebase_link.name", request.firebase_link.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_firebase_link(self,
-            request: analytics_admin.DeleteFirebaseLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_firebase_link(
+        self,
+        request: analytics_admin.DeleteFirebaseLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a FirebaseLink on a property
 
         Args:
@@ -3609,8 +3533,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteFirebaseLinkRequest.
@@ -3632,27 +3558,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def list_firebase_links(self,
-            request: analytics_admin.ListFirebaseLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> analytics_admin.ListFirebaseLinksResponse:
+    def list_firebase_links(
+        self,
+        request: analytics_admin.ListFirebaseLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.ListFirebaseLinksResponse:
         r"""Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
 
@@ -3684,8 +3606,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListFirebaseLinksRequest.
@@ -3707,30 +3631,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_global_site_tag(self,
-            request: analytics_admin.GetGlobalSiteTagRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GlobalSiteTag:
+    def get_global_site_tag(
+        self,
+        request: analytics_admin.GetGlobalSiteTagRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GlobalSiteTag:
         r"""Returns the Site Tag for the specified web stream.
         Site Tags are immutable singletons.
 
@@ -3767,8 +3685,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetGlobalSiteTagRequest.
@@ -3790,31 +3710,25 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_google_ads_link(self,
-            request: analytics_admin.CreateGoogleAdsLinkRequest = None,
-            *,
-            parent: str = None,
-            google_ads_link: resources.GoogleAdsLink = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GoogleAdsLink:
+    def create_google_ads_link(
+        self,
+        request: analytics_admin.CreateGoogleAdsLinkRequest = None,
+        *,
+        parent: str = None,
+        google_ads_link: resources.GoogleAdsLink = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GoogleAdsLink:
         r"""Creates a GoogleAdsLink.
 
         Args:
@@ -3851,8 +3765,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, google_ads_link])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.CreateGoogleAdsLinkRequest.
@@ -3876,31 +3792,25 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_google_ads_link(self,
-            request: analytics_admin.UpdateGoogleAdsLinkRequest = None,
-            *,
-            google_ads_link: resources.GoogleAdsLink = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.GoogleAdsLink:
+    def update_google_ads_link(
+        self,
+        request: analytics_admin.UpdateGoogleAdsLinkRequest = None,
+        *,
+        google_ads_link: resources.GoogleAdsLink = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.GoogleAdsLink:
         r"""Updates a GoogleAdsLink on a property
 
         Args:
@@ -3936,8 +3846,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([google_ads_link, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.UpdateGoogleAdsLinkRequest.
@@ -3961,30 +3873,26 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('google_ads_link.name', request.google_ads_link.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("google_ads_link.name", request.google_ads_link.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def delete_google_ads_link(self,
-            request: analytics_admin.DeleteGoogleAdsLinkRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_google_ads_link(
+        self,
+        request: analytics_admin.DeleteGoogleAdsLinkRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a GoogleAdsLink on a property
 
         Args:
@@ -4009,8 +3917,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.DeleteGoogleAdsLinkRequest.
@@ -4032,27 +3942,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
 
-    def list_google_ads_links(self,
-            request: analytics_admin.ListGoogleAdsLinksRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListGoogleAdsLinksPager:
+    def list_google_ads_links(
+        self,
+        request: analytics_admin.ListGoogleAdsLinksRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListGoogleAdsLinksPager:
         r"""Lists GoogleAdsLinks on a property.
 
         Args:
@@ -4086,8 +3992,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.ListGoogleAdsLinksRequest.
@@ -4109,39 +4017,30 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListGoogleAdsLinksPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_data_sharing_settings(self,
-            request: analytics_admin.GetDataSharingSettingsRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.DataSharingSettings:
+    def get_data_sharing_settings(
+        self,
+        request: analytics_admin.GetDataSharingSettingsRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.DataSharingSettings:
         r"""Get data sharing settings on an account.
         Data sharing settings are singletons.
 
@@ -4177,8 +4076,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a analytics_admin.GetDataSharingSettingsRequest.
@@ -4195,43 +4096,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.get_data_sharing_settings]
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_data_sharing_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-analytics-admin',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-analytics-admin",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'AnalyticsAdminServiceClient',
-)
+__all__ = ("AnalyticsAdminServiceClient",)
