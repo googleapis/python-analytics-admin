@@ -23,24 +23,24 @@ from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.analytics.admin.v1alpha",
+    package='google.analytics.admin.v1alpha',
     manifest={
-        "MaximumUserAccess",
-        "IndustryCategory",
-        "Account",
-        "Property",
-        "AndroidAppDataStream",
-        "IosAppDataStream",
-        "WebDataStream",
-        "UserLink",
-        "AuditUserLink",
-        "EnhancedMeasurementSettings",
-        "FirebaseLink",
-        "GlobalSiteTag",
-        "GoogleAdsLink",
-        "DataSharingSettings",
-        "AccountSummary",
-        "PropertySummary",
+        'MaximumUserAccess',
+        'IndustryCategory',
+        'Account',
+        'Property',
+        'AndroidAppDataStream',
+        'IosAppDataStream',
+        'WebDataStream',
+        'UserLink',
+        'AuditUserLink',
+        'EnhancedMeasurementSettings',
+        'FirebaseLink',
+        'GlobalSiteTag',
+        'GoogleAdsLink',
+        'DataSharingSettings',
+        'AccountSummary',
+        'PropertySummary',
     },
 )
 
@@ -121,9 +121,13 @@ class Account(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    create_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=2,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
     display_name = proto.Field(proto.STRING, number=4)
 
@@ -185,15 +189,21 @@ class Property(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
 
     parent = proto.Field(proto.STRING, number=2)
 
     display_name = proto.Field(proto.STRING, number=5)
 
-    industry_category = proto.Field(proto.ENUM, number=6, enum="IndustryCategory",)
+    industry_category = proto.Field(proto.ENUM, number=6,
+        enum='IndustryCategory',
+    )
 
     time_zone = proto.Field(proto.STRING, number=7)
 
@@ -235,9 +245,13 @@ class AndroidAppDataStream(proto.Message):
 
     firebase_app_id = proto.Field(proto.STRING, number=2)
 
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
 
     package_name = proto.Field(proto.STRING, number=5)
 
@@ -278,9 +292,13 @@ class IosAppDataStream(proto.Message):
 
     firebase_app_id = proto.Field(proto.STRING, number=2)
 
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
 
     bundle_id = proto.Field(proto.STRING, number=5)
 
@@ -328,9 +346,13 @@ class WebDataStream(proto.Message):
 
     firebase_app_id = proto.Field(proto.STRING, number=3)
 
-    create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
 
     default_uri = proto.Field(proto.STRING, number=6)
 
@@ -550,9 +572,13 @@ class FirebaseLink(proto.Message):
 
     project = proto.Field(proto.STRING, number=2)
 
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
-    maximum_user_access = proto.Field(proto.ENUM, number=4, enum="MaximumUserAccess",)
+    maximum_user_access = proto.Field(proto.ENUM, number=4,
+        enum='MaximumUserAccess',
+    )
 
 
 class GlobalSiteTag(proto.Message):
@@ -618,15 +644,19 @@ class GoogleAdsLink(proto.Message):
 
     can_manage_clients = proto.Field(proto.BOOL, number=4)
 
-    ads_personalization_enabled = proto.Field(
-        proto.MESSAGE, number=5, message=wrappers.BoolValue,
+    ads_personalization_enabled = proto.Field(proto.MESSAGE, number=5,
+        message=wrappers.BoolValue,
     )
 
     email_address = proto.Field(proto.STRING, number=6)
 
-    create_time = proto.Field(proto.MESSAGE, number=7, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=7,
+        message=timestamp.Timestamp,
+    )
 
-    update_time = proto.Field(proto.MESSAGE, number=8, message=timestamp.Timestamp,)
+    update_time = proto.Field(proto.MESSAGE, number=8,
+        message=timestamp.Timestamp,
+    )
 
 
 class DataSharingSettings(proto.Message):
@@ -698,8 +728,8 @@ class AccountSummary(proto.Message):
 
     display_name = proto.Field(proto.STRING, number=3)
 
-    property_summaries = proto.RepeatedField(
-        proto.MESSAGE, number=4, message="PropertySummary",
+    property_summaries = proto.RepeatedField(proto.MESSAGE, number=4,
+        message='PropertySummary',
     )
 
 

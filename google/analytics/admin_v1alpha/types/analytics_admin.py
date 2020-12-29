@@ -23,70 +23,70 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.analytics.admin.v1alpha",
+    package='google.analytics.admin.v1alpha',
     manifest={
-        "GetAccountRequest",
-        "ListAccountsRequest",
-        "ListAccountsResponse",
-        "DeleteAccountRequest",
-        "UpdateAccountRequest",
-        "ProvisionAccountTicketRequest",
-        "ProvisionAccountTicketResponse",
-        "GetPropertyRequest",
-        "ListPropertiesRequest",
-        "ListPropertiesResponse",
-        "UpdatePropertyRequest",
-        "CreatePropertyRequest",
-        "DeletePropertyRequest",
-        "GetUserLinkRequest",
-        "BatchGetUserLinksRequest",
-        "BatchGetUserLinksResponse",
-        "ListUserLinksRequest",
-        "ListUserLinksResponse",
-        "AuditUserLinksRequest",
-        "AuditUserLinksResponse",
-        "CreateUserLinkRequest",
-        "BatchCreateUserLinksRequest",
-        "BatchCreateUserLinksResponse",
-        "UpdateUserLinkRequest",
-        "BatchUpdateUserLinksRequest",
-        "BatchUpdateUserLinksResponse",
-        "DeleteUserLinkRequest",
-        "BatchDeleteUserLinksRequest",
-        "GetWebDataStreamRequest",
-        "DeleteWebDataStreamRequest",
-        "UpdateWebDataStreamRequest",
-        "CreateWebDataStreamRequest",
-        "ListWebDataStreamsRequest",
-        "ListWebDataStreamsResponse",
-        "GetIosAppDataStreamRequest",
-        "DeleteIosAppDataStreamRequest",
-        "UpdateIosAppDataStreamRequest",
-        "CreateIosAppDataStreamRequest",
-        "ListIosAppDataStreamsRequest",
-        "ListIosAppDataStreamsResponse",
-        "GetAndroidAppDataStreamRequest",
-        "DeleteAndroidAppDataStreamRequest",
-        "UpdateAndroidAppDataStreamRequest",
-        "CreateAndroidAppDataStreamRequest",
-        "ListAndroidAppDataStreamsRequest",
-        "ListAndroidAppDataStreamsResponse",
-        "GetEnhancedMeasurementSettingsRequest",
-        "UpdateEnhancedMeasurementSettingsRequest",
-        "CreateFirebaseLinkRequest",
-        "UpdateFirebaseLinkRequest",
-        "DeleteFirebaseLinkRequest",
-        "ListFirebaseLinksRequest",
-        "ListFirebaseLinksResponse",
-        "GetGlobalSiteTagRequest",
-        "CreateGoogleAdsLinkRequest",
-        "UpdateGoogleAdsLinkRequest",
-        "DeleteGoogleAdsLinkRequest",
-        "ListGoogleAdsLinksRequest",
-        "ListGoogleAdsLinksResponse",
-        "GetDataSharingSettingsRequest",
-        "ListAccountSummariesRequest",
-        "ListAccountSummariesResponse",
+        'GetAccountRequest',
+        'ListAccountsRequest',
+        'ListAccountsResponse',
+        'DeleteAccountRequest',
+        'UpdateAccountRequest',
+        'ProvisionAccountTicketRequest',
+        'ProvisionAccountTicketResponse',
+        'GetPropertyRequest',
+        'ListPropertiesRequest',
+        'ListPropertiesResponse',
+        'UpdatePropertyRequest',
+        'CreatePropertyRequest',
+        'DeletePropertyRequest',
+        'GetUserLinkRequest',
+        'BatchGetUserLinksRequest',
+        'BatchGetUserLinksResponse',
+        'ListUserLinksRequest',
+        'ListUserLinksResponse',
+        'AuditUserLinksRequest',
+        'AuditUserLinksResponse',
+        'CreateUserLinkRequest',
+        'BatchCreateUserLinksRequest',
+        'BatchCreateUserLinksResponse',
+        'UpdateUserLinkRequest',
+        'BatchUpdateUserLinksRequest',
+        'BatchUpdateUserLinksResponse',
+        'DeleteUserLinkRequest',
+        'BatchDeleteUserLinksRequest',
+        'GetWebDataStreamRequest',
+        'DeleteWebDataStreamRequest',
+        'UpdateWebDataStreamRequest',
+        'CreateWebDataStreamRequest',
+        'ListWebDataStreamsRequest',
+        'ListWebDataStreamsResponse',
+        'GetIosAppDataStreamRequest',
+        'DeleteIosAppDataStreamRequest',
+        'UpdateIosAppDataStreamRequest',
+        'CreateIosAppDataStreamRequest',
+        'ListIosAppDataStreamsRequest',
+        'ListIosAppDataStreamsResponse',
+        'GetAndroidAppDataStreamRequest',
+        'DeleteAndroidAppDataStreamRequest',
+        'UpdateAndroidAppDataStreamRequest',
+        'CreateAndroidAppDataStreamRequest',
+        'ListAndroidAppDataStreamsRequest',
+        'ListAndroidAppDataStreamsResponse',
+        'GetEnhancedMeasurementSettingsRequest',
+        'UpdateEnhancedMeasurementSettingsRequest',
+        'CreateFirebaseLinkRequest',
+        'UpdateFirebaseLinkRequest',
+        'DeleteFirebaseLinkRequest',
+        'ListFirebaseLinksRequest',
+        'ListFirebaseLinksResponse',
+        'GetGlobalSiteTagRequest',
+        'CreateGoogleAdsLinkRequest',
+        'UpdateGoogleAdsLinkRequest',
+        'DeleteGoogleAdsLinkRequest',
+        'ListGoogleAdsLinksRequest',
+        'ListGoogleAdsLinksResponse',
+        'GetDataSharingSettingsRequest',
+        'ListAccountSummariesRequest',
+        'ListAccountSummariesResponse',
     },
 )
 
@@ -151,7 +151,9 @@ class ListAccountsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    accounts = proto.RepeatedField(proto.MESSAGE, number=1, message=resources.Account,)
+    accounts = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.Account,
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -181,9 +183,13 @@ class UpdateAccountRequest(proto.Message):
             fields will not be updated.
     """
 
-    account = proto.Field(proto.MESSAGE, number=1, message=resources.Account,)
+    account = proto.Field(proto.MESSAGE, number=1,
+        message=resources.Account,
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class ProvisionAccountTicketRequest(proto.Message):
@@ -199,7 +205,9 @@ class ProvisionAccountTicketRequest(proto.Message):
             URI
     """
 
-    account = proto.Field(proto.MESSAGE, number=1, message=resources.Account,)
+    account = proto.Field(proto.MESSAGE, number=1,
+        message=resources.Account,
+    )
 
     redirect_uri = proto.Field(proto.STRING, number=2)
 
@@ -290,8 +298,8 @@ class ListPropertiesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    properties = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.Property,
+    properties = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.Property,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -309,9 +317,13 @@ class UpdatePropertyRequest(proto.Message):
             fields will not be updated.
     """
 
-    property = proto.Field(proto.MESSAGE, number=1, message=resources.Property,)
+    property = proto.Field(proto.MESSAGE, number=1,
+        message=resources.Property,
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class CreatePropertyRequest(proto.Message):
@@ -324,7 +336,9 @@ class CreatePropertyRequest(proto.Message):
             parent.
     """
 
-    property = proto.Field(proto.MESSAGE, number=1, message=resources.Property,)
+    property = proto.Field(proto.MESSAGE, number=1,
+        message=resources.Property,
+    )
 
 
 class DeletePropertyRequest(proto.Message):
@@ -381,8 +395,8 @@ class BatchGetUserLinksResponse(proto.Message):
             The requested user links.
     """
 
-    user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+    user_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.UserLink,
     )
 
 
@@ -430,8 +444,8 @@ class ListUserLinksResponse(proto.Message):
     def raw_page(self):
         return self
 
-    user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+    user_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.UserLink,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -481,8 +495,8 @@ class AuditUserLinksResponse(proto.Message):
     def raw_page(self):
         return self
 
-    user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AuditUserLink,
+    user_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.AuditUserLink,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -513,7 +527,9 @@ class CreateUserLinkRequest(proto.Message):
 
     notify_new_user = proto.Field(proto.BOOL, number=2)
 
-    user_link = proto.Field(proto.MESSAGE, number=3, message=resources.UserLink,)
+    user_link = proto.Field(proto.MESSAGE, number=3,
+        message=resources.UserLink,
+    )
 
 
 class BatchCreateUserLinksRequest(proto.Message):
@@ -542,8 +558,8 @@ class BatchCreateUserLinksRequest(proto.Message):
 
     notify_new_users = proto.Field(proto.BOOL, number=2)
 
-    requests = proto.RepeatedField(
-        proto.MESSAGE, number=3, message="CreateUserLinkRequest",
+    requests = proto.RepeatedField(proto.MESSAGE, number=3,
+        message='CreateUserLinkRequest',
     )
 
 
@@ -555,8 +571,8 @@ class BatchCreateUserLinksResponse(proto.Message):
             The user links created.
     """
 
-    user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+    user_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.UserLink,
     )
 
 
@@ -568,7 +584,9 @@ class UpdateUserLinkRequest(proto.Message):
             Required. The user link to update.
     """
 
-    user_link = proto.Field(proto.MESSAGE, number=1, message=resources.UserLink,)
+    user_link = proto.Field(proto.MESSAGE, number=1,
+        message=resources.UserLink,
+    )
 
 
 class BatchUpdateUserLinksRequest(proto.Message):
@@ -589,8 +607,8 @@ class BatchUpdateUserLinksRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    requests = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="UpdateUserLinkRequest",
+    requests = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='UpdateUserLinkRequest',
     )
 
 
@@ -602,8 +620,8 @@ class BatchUpdateUserLinksResponse(proto.Message):
             The user links updated.
     """
 
-    user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+    user_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.UserLink,
     )
 
 
@@ -637,8 +655,8 @@ class BatchDeleteUserLinksRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    requests = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="DeleteUserLinkRequest",
+    requests = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='DeleteUserLinkRequest',
     )
 
 
@@ -680,11 +698,13 @@ class UpdateWebDataStreamRequest(proto.Message):
             fields will not be updated.
     """
 
-    web_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
+    web_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.WebDataStream,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class CreateWebDataStreamRequest(proto.Message):
@@ -699,8 +719,8 @@ class CreateWebDataStreamRequest(proto.Message):
             properties/123
     """
 
-    web_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
+    web_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.WebDataStream,
     )
 
     parent = proto.Field(proto.STRING, number=2)
@@ -751,8 +771,8 @@ class ListWebDataStreamsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    web_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
+    web_data_streams = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.WebDataStream,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -798,11 +818,13 @@ class UpdateIosAppDataStreamRequest(proto.Message):
             fields will not be updated.
     """
 
-    ios_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
+    ios_app_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.IosAppDataStream,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class CreateIosAppDataStreamRequest(proto.Message):
@@ -817,8 +839,8 @@ class CreateIosAppDataStreamRequest(proto.Message):
             properties/123
     """
 
-    ios_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
+    ios_app_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.IosAppDataStream,
     )
 
     parent = proto.Field(proto.STRING, number=2)
@@ -869,8 +891,8 @@ class ListIosAppDataStreamsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    ios_app_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
+    ios_app_data_streams = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.IosAppDataStream,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -917,11 +939,13 @@ class UpdateAndroidAppDataStreamRequest(proto.Message):
             fields will not be updated.
     """
 
-    android_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
+    android_app_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.AndroidAppDataStream,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class CreateAndroidAppDataStreamRequest(proto.Message):
@@ -936,8 +960,8 @@ class CreateAndroidAppDataStreamRequest(proto.Message):
             properties/123
     """
 
-    android_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
+    android_app_data_stream = proto.Field(proto.MESSAGE, number=1,
+        message=resources.AndroidAppDataStream,
     )
 
     parent = proto.Field(proto.STRING, number=2)
@@ -987,8 +1011,8 @@ class ListAndroidAppDataStreamsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    android_app_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
+    android_app_data_streams = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.AndroidAppDataStream,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -1021,11 +1045,13 @@ class UpdateEnhancedMeasurementSettingsRequest(proto.Message):
             fields will not be updated.
     """
 
-    enhanced_measurement_settings = proto.Field(
-        proto.MESSAGE, number=1, message=resources.EnhancedMeasurementSettings,
+    enhanced_measurement_settings = proto.Field(proto.MESSAGE, number=1,
+        message=resources.EnhancedMeasurementSettings,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class CreateFirebaseLinkRequest(proto.Message):
@@ -1041,8 +1067,8 @@ class CreateFirebaseLinkRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    firebase_link = proto.Field(
-        proto.MESSAGE, number=2, message=resources.FirebaseLink,
+    firebase_link = proto.Field(proto.MESSAGE, number=2,
+        message=resources.FirebaseLink,
     )
 
 
@@ -1057,11 +1083,13 @@ class UpdateFirebaseLinkRequest(proto.Message):
             fields will not be updated.
     """
 
-    firebase_link = proto.Field(
-        proto.MESSAGE, number=1, message=resources.FirebaseLink,
+    firebase_link = proto.Field(proto.MESSAGE, number=1,
+        message=resources.FirebaseLink,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class DeleteFirebaseLinkRequest(proto.Message):
@@ -1098,8 +1126,8 @@ class ListFirebaseLinksResponse(proto.Message):
             one value.
     """
 
-    firebase_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.FirebaseLink,
+    firebase_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.FirebaseLink,
     )
 
 
@@ -1129,8 +1157,8 @@ class CreateGoogleAdsLinkRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    google_ads_link = proto.Field(
-        proto.MESSAGE, number=2, message=resources.GoogleAdsLink,
+    google_ads_link = proto.Field(proto.MESSAGE, number=2,
+        message=resources.GoogleAdsLink,
     )
 
 
@@ -1145,11 +1173,13 @@ class UpdateGoogleAdsLinkRequest(proto.Message):
             fields will not be updated.
     """
 
-    google_ads_link = proto.Field(
-        proto.MESSAGE, number=1, message=resources.GoogleAdsLink,
+    google_ads_link = proto.Field(proto.MESSAGE, number=1,
+        message=resources.GoogleAdsLink,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class DeleteGoogleAdsLinkRequest(proto.Message):
@@ -1208,8 +1238,8 @@ class ListGoogleAdsLinksResponse(proto.Message):
     def raw_page(self):
         return self
 
-    google_ads_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.GoogleAdsLink,
+    google_ads_links = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.GoogleAdsLink,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -1270,8 +1300,8 @@ class ListAccountSummariesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    account_summaries = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AccountSummary,
+    account_summaries = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.AccountSummary,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
