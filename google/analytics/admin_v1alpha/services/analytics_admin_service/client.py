@@ -117,6 +117,22 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     )
 
     @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            AnalyticsAdminServiceClient: The constructed client.
+        """
+        credentials = service_account.Credentials.from_service_account_info(info)
+        kwargs["credentials"] = credentials
+        return cls(*args, **kwargs)
+
+    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -128,7 +144,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            {@api.name}: The constructed client.
+            AnalyticsAdminServiceClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -387,10 +403,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ~.AnalyticsAdminServiceTransport]): The
+            transport (Union[str, AnalyticsAdminServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (client_options_lib.ClientOptions): Custom options for the
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -502,12 +518,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         if caller does not have permissions to access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.GetAccountRequest):
                 The request object. Request message for GetAccount RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the account to
                 lookup. Format: accounts/{account}
-                Example: "accounts/100".
+                Example: "accounts/100"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -519,7 +536,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Account:
+            google.analytics.admin_v1alpha.types.Account:
                 A resource message representing a
                 Google Analytics account.
 
@@ -578,7 +595,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         relevant accounts are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListAccountsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListAccountsRequest):
                 The request object. Request message for ListAccounts
                 RPC.
 
@@ -589,7 +606,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListAccountsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAccountsPager:
                 Request message for ListAccounts RPC.
                 Iterating over this object will yield
                 results and resolve additional pages
@@ -643,13 +660,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Returns an error if the target is not found.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteAccountRequest):
                 The request object. Request message for DeleteAccount
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the Account to
                 soft-delete. Format: accounts/{account}
-                Example: "accounts/100".
+                Example: "accounts/100"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -711,18 +729,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an account.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateAccountRequest):
                 The request object. Request message for UpdateAccount
                 RPC.
-            account (:class:`~.resources.Account`):
+            account (google.analytics.admin_v1alpha.types.Account):
                 Required. The account to update. The account's ``name``
                 field is used to identify the account.
+
                 This corresponds to the ``account`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -734,7 +754,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Account:
+            google.analytics.admin_v1alpha.types.Account:
                 A resource message representing a
                 Google Analytics account.
 
@@ -793,7 +813,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Requests a ticket for creating an account.
 
         Args:
-            request (:class:`~.analytics_admin.ProvisionAccountTicketRequest`):
+            request (google.analytics.admin_v1alpha.types.ProvisionAccountTicketRequest):
                 The request object. Request message for
                 ProvisionAccountTicket RPC.
 
@@ -804,7 +824,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.ProvisionAccountTicketResponse:
+            google.analytics.admin_v1alpha.types.ProvisionAccountTicketResponse:
                 Response message for
                 ProvisionAccountTicket RPC.
 
@@ -840,7 +860,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         caller.
 
         Args:
-            request (:class:`~.analytics_admin.ListAccountSummariesRequest`):
+            request (google.analytics.admin_v1alpha.types.ListAccountSummariesRequest):
                 The request object. Request message for
                 ListAccountSummaries RPC.
 
@@ -851,7 +871,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListAccountSummariesPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAccountSummariesPager:
                 Response message for
                 ListAccountSummaries RPC.
                 Iterating over this object will yield
@@ -899,11 +919,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         have permissions to access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetPropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.GetPropertyRequest):
                 The request object. Request message for GetProperty RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the property to lookup. Format:
-                properties/{property_id} Example: "properties/1000".
+                properties/{property_id} Example: "properties/1000"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -915,7 +936,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
                 Google Analytics GA4 property.
 
@@ -976,7 +997,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         relevant properties are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListPropertiesRequest`):
+            request (google.analytics.admin_v1alpha.types.ListPropertiesRequest):
                 The request object. Request message for ListProperties
                 RPC.
 
@@ -987,7 +1008,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListPropertiesPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListPropertiesPager:
                 Response message for ListProperties
                 RPC.
                 Iterating over this object will yield
@@ -1033,13 +1054,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         and attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreatePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.CreatePropertyRequest):
                 The request object. Request message for CreateProperty
                 RPC.
-            property (:class:`~.resources.Property`):
+            property (google.analytics.admin_v1alpha.types.Property):
                 Required. The property to create.
                 Note: the supplied property must specify
                 its parent.
+
                 This corresponds to the ``property`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1051,7 +1073,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
                 Google Analytics GA4 property.
 
@@ -1112,13 +1134,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         an GA4 Property.
 
         Args:
-            request (:class:`~.analytics_admin.DeletePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.DeletePropertyRequest):
                 The request object. Request message for DeleteProperty
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the Property to soft-delete.
                 Format: properties/{property_id} Example:
-                "properties/1000".
+                "properties/1000"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1180,19 +1203,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdatePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdatePropertyRequest):
                 The request object. Request message for UpdateProperty
                 RPC.
-            property (:class:`~.resources.Property`):
+            property (google.analytics.admin_v1alpha.types.Property):
                 Required. The property to update. The property's
                 ``name`` field is used to identify the property to be
                 updated.
+
                 This corresponds to the ``property`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1204,7 +1229,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
                 Google Analytics GA4 property.
 
@@ -1265,11 +1290,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         property.
 
         Args:
-            request (:class:`~.analytics_admin.GetUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.GetUserLinkRequest):
                 The request object. Request message for GetUserLink RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 accounts/1234/userLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1281,7 +1307,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1338,7 +1364,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchGetUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchGetUserLinksRequest):
                 The request object. Request message for
                 BatchGetUserLinks RPC.
 
@@ -1349,7 +1375,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchGetUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchGetUserLinksResponse:
                 Response message for
                 BatchGetUserLinks RPC.
 
@@ -1391,12 +1417,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Lists all user links on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.ListUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListUserLinksRequest):
                 The request object. Request message for ListUserLinks
                 RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 accounts/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1408,7 +1435,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListUserLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListUserLinksPager:
                 Response message for ListUserLinks
                 RPC.
                 Iterating over this object will yield
@@ -1482,7 +1509,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         in the GA or GMP UIs.
 
         Args:
-            request (:class:`~.analytics_admin.AuditUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.AuditUserLinksRequest):
                 The request object. Request message for AuditUserLinks
                 RPC.
 
@@ -1493,7 +1520,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.AuditUserLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.AuditUserLinksPager:
                 Response message for AuditUserLinks
                 RPC.
                 Iterating over this object will yield
@@ -1549,7 +1576,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         permissions specified in the new UserLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateUserLinkRequest):
                 The request object. Request message for CreateUserLink
                 RPC.
                 Users can have multiple email addresses associated with
@@ -1560,13 +1587,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 always contain the "primary" email address. As a result,
                 the input and output email address for this request may
                 differ.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 accounts/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            user_link (:class:`~.resources.UserLink`):
+            user_link (google.analytics.admin_v1alpha.types.UserLink):
                 Required. The user link to create.
                 This corresponds to the ``user_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1579,7 +1607,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1640,7 +1668,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         created, none of the UserLinks will be created.
 
         Args:
-            request (:class:`~.analytics_admin.BatchCreateUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchCreateUserLinksRequest):
                 The request object. Request message for
                 BatchCreateUserLinks RPC.
 
@@ -1651,7 +1679,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchCreateUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchCreateUserLinksResponse:
                 Response message for
                 BatchCreateUserLinks RPC.
 
@@ -1693,10 +1721,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a user link on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateUserLinkRequest):
                 The request object. Request message for UpdateUserLink
                 RPC.
-            user_link (:class:`~.resources.UserLink`):
+            user_link (google.analytics.admin_v1alpha.types.UserLink):
                 Required. The user link to update.
                 This corresponds to the ``user_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1709,7 +1737,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1768,7 +1796,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchUpdateUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchUpdateUserLinksRequest):
                 The request object. Request message for
                 BatchUpdateUserLinks RPC.
 
@@ -1779,7 +1807,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchUpdateUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchUpdateUserLinksResponse:
                 Response message for
                 BatchUpdateUserLinks RPC.
 
@@ -1821,12 +1849,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a user link on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteUserLinkRequest):
                 The request object. Request message for DeleteUserLink
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 accounts/1234/userLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1887,7 +1916,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchDeleteUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchDeleteUserLinksRequest):
                 The request object. Request message for
                 BatchDeleteUserLinks RPC.
 
@@ -1936,14 +1965,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetWebDataStreamRequest):
                 The request object. Request message for GetWebDataStream
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the web data stream to lookup.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}
-                Example: "properties/123/webDataStreams/456".
+                Example: "properties/123/webDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1955,7 +1985,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -2011,14 +2041,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a web stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteWebDataStreamRequest):
                 The request object. Request message for
                 DeleteWebDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the web data stream to delete.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}
-                Example: "properties/123/webDataStreams/456".
+                Example: "properties/123/webDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2080,18 +2111,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a web stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateWebDataStreamRequest):
                 The request object. Request message for
                 UpdateWebDataStream RPC.
-            web_data_stream (:class:`~.resources.WebDataStream`):
+            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
                 Required. The web stream to update. The ``name`` field
                 is used to identify the web stream to be updated.
+
                 This corresponds to the ``web_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2103,7 +2136,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -2165,17 +2198,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreateWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateWebDataStreamRequest):
                 The request object. Request message for
                 CreateWebDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this web data stream will be created.
                 Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            web_data_stream (:class:`~.resources.WebDataStream`):
+            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
                 Required. The web stream to create.
                 This corresponds to the ``web_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2188,7 +2222,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -2250,14 +2284,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         data streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListWebDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListWebDataStreamsRequest):
                 The request object. Request message for
                 ListWebDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to list results
                 of web streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2269,7 +2304,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListWebDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListWebDataStreamsPager:
                 Request message for
                 ListWebDataStreams RPC.
                 Iterating over this object will yield
@@ -2337,14 +2372,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetIosAppDataStreamRequest):
                 The request object. Request message for
                 GetIosAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the iOS app data stream to lookup.
                 Format:
                 properties/{property_id}/iosAppDataStreams/{stream_id}
-                Example: "properties/123/iosAppDataStreams/456".
+                Example: "properties/123/iosAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2356,7 +2392,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2412,14 +2448,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes an iOS app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteIosAppDataStreamRequest):
                 The request object. Request message for
                 DeleteIosAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the iOS app data stream to delete.
                 Format:
                 properties/{property_id}/iosAppDataStreams/{stream_id}
-                Example: "properties/123/iosAppDataStreams/456".
+                Example: "properties/123/iosAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2483,19 +2520,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an iOS app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateIosAppDataStreamRequest):
                 The request object. Request message for
                 UpdateIosAppDataStream RPC.
-            ios_app_data_stream (:class:`~.resources.IosAppDataStream`):
+            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
                 Required. The iOS app stream to update. The ``name``
                 field is used to identify the iOS app stream to be
                 updated.
+
                 This corresponds to the ``ios_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2507,7 +2546,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2571,19 +2610,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         location and attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreateIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateIosAppDataStreamRequest):
                 The request object. Request message for
                 CreateIosAppDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this ios app data stream will be
                 created. Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            ios_app_data_stream (:class:`~.resources.IosAppDataStream`):
+            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
                 Required. The iOS app data stream to
                 create.
+
                 This corresponds to the ``ios_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2595,7 +2636,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2659,14 +2700,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         iOS app data streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListIosAppDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListIosAppDataStreamsRequest):
                 The request object. Request message for
                 ListIosAppDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to list results
                 of app streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2678,7 +2720,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListIosAppDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListIosAppDataStreamsPager:
                 Request message for
                 ListIosAppDataStreams RPC.
                 Iterating over this object will yield
@@ -2748,14 +2790,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         to access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetAndroidAppDataStreamRequest):
                 The request object. Request message for
                 GetAndroidAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the android app data stream to
                 lookup. Format:
                 properties/{property_id}/androidAppDataStreams/{stream_id}
-                Example: "properties/123/androidAppDataStreams/456".
+                Example: "properties/123/androidAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2767,7 +2810,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -2825,14 +2868,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes an android app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteAndroidAppDataStreamRequest):
                 The request object. Request message for
                 DeleteAndroidAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the android app data stream to
                 delete. Format:
                 properties/{property_id}/androidAppDataStreams/{stream_id}
-                Example: "properties/123/androidAppDataStreams/456".
+                Example: "properties/123/androidAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2896,19 +2940,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an android app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateAndroidAppDataStreamRequest):
                 The request object. Request message for
                 UpdateAndroidAppDataStream RPC.
-            android_app_data_stream (:class:`~.resources.AndroidAppDataStream`):
+            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
                 Required. The android app stream to update. The ``name``
                 field is used to identify the android app stream to be
                 updated.
+
                 This corresponds to the ``android_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2920,7 +2966,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -2989,19 +3035,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         location and attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreateAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateAndroidAppDataStreamRequest):
                 The request object. Request message for
                 CreateAndroidAppDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this android app data stream will be
                 created. Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            android_app_data_stream (:class:`~.resources.AndroidAppDataStream`):
+            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
                 Required. The android app stream to
                 create.
+
                 This corresponds to the ``android_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3013,7 +3061,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -3077,14 +3125,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         android app streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListAndroidAppDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListAndroidAppDataStreamsRequest):
                 The request object. Request message for
                 ListAndroidAppDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to limit results
                 to app streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3096,7 +3145,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListAndroidAppDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAndroidAppDataStreamsPager:
                 Request message for
                 ListAndroidDataStreams RPC.
                 Iterating over this object will yield
@@ -3165,15 +3214,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         enhanced measurement for these settings to take effect.
 
         Args:
-            request (:class:`~.analytics_admin.GetEnhancedMeasurementSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.GetEnhancedMeasurementSettingsRequest):
                 The request object. Request message for
                 GetEnhancedMeasurementSettings RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the settings to lookup. Format:
 
                 properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
                 Example:
-                "properties/1000/webDataStreams/2000/enhancedMeasurementSettings".
+                "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3185,7 +3235,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.EnhancedMeasurementSettings:
+            google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings:
                 Singleton resource under a
                 WebDataStream, configuring measurement
                 of additional site interactions and
@@ -3250,18 +3300,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         enhanced measurement for these settings to take effect.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateEnhancedMeasurementSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateEnhancedMeasurementSettingsRequest):
                 The request object. Request message for
                 UpdateEnhancedMeasurementSettings RPC.
-            enhanced_measurement_settings (:class:`~.resources.EnhancedMeasurementSettings`):
+            enhanced_measurement_settings (google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings):
                 Required. The settings to update. The ``name`` field is
                 used to identify the settings to be updated.
+
                 This corresponds to the ``enhanced_measurement_settings`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3273,7 +3325,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.EnhancedMeasurementSettings:
+            google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings:
                 Singleton resource under a
                 WebDataStream, configuring measurement
                 of additional site interactions and
@@ -3346,18 +3398,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Properties can have at most one FirebaseLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateFirebaseLinkRequest):
                 The request object. Request message for
                 CreateFirebaseLink RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Format: properties/{property_id} Example:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            firebase_link (:class:`~.resources.FirebaseLink`):
+            firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
                 Required. The Firebase link to
                 create.
+
                 This corresponds to the ``firebase_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3369,7 +3423,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.FirebaseLink:
+            google.analytics.admin_v1alpha.types.FirebaseLink:
                 A link between an GA4 property and a
                 Firebase project.
 
@@ -3428,18 +3482,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a FirebaseLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.UpdateFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateFirebaseLinkRequest):
                 The request object. Request message for
                 UpdateFirebaseLink RPC
-            firebase_link (:class:`~.resources.FirebaseLink`):
+            firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
                 Required. The Firebase link to
                 update.
+
                 This corresponds to the ``firebase_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3451,7 +3507,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.FirebaseLink:
+            google.analytics.admin_v1alpha.types.FirebaseLink:
                 A link between an GA4 property and a
                 Firebase project.
 
@@ -3511,13 +3567,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a FirebaseLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.DeleteFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteFirebaseLinkRequest):
                 The request object. Request message for
                 DeleteFirebaseLink RPC
-            name (:class:`str`):
+            name (str):
                 Required. Format:
                 properties/{property_id}/firebaseLinks/{firebase_link_id}
                 Example: properties/1234/firebaseLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3579,12 +3636,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Properties can have at most one FirebaseLink.
 
         Args:
-            request (:class:`~.analytics_admin.ListFirebaseLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListFirebaseLinksRequest):
                 The request object. Request message for
                 ListFirebaseLinks RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Format: properties/{property_id} Example:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3596,7 +3654,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.ListFirebaseLinksResponse:
+            google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse:
                 Response message for
                 ListFirebaseLinks RPC
 
@@ -3653,16 +3711,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Site Tags are immutable singletons.
 
         Args:
-            request (:class:`~.analytics_admin.GetGlobalSiteTagRequest`):
+            request (google.analytics.admin_v1alpha.types.GetGlobalSiteTagRequest):
                 The request object. Request message for GetGlobalSiteTag
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the site tag to lookup. Note that
                 site tags are singletons and do not have unique IDs.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag
                 Example:
-                "properties/123/webDataStreams/456/globalSiteTag".
+                "properties/123/webDataStreams/456/globalSiteTag"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3674,7 +3733,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GlobalSiteTag:
+            google.analytics.admin_v1alpha.types.GlobalSiteTag:
                 Read-only resource with the tag for
                 sending data from a website to a
                 WebDataStream.
@@ -3732,18 +3791,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Creates a GoogleAdsLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateGoogleAdsLinkRequest):
                 The request object. Request message for
                 CreateGoogleAdsLink RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            google_ads_link (:class:`~.resources.GoogleAdsLink`):
+            google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
                 Required. The GoogleAdsLink to
                 create.
+
                 This corresponds to the ``google_ads_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3755,7 +3816,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GoogleAdsLink:
+            google.analytics.admin_v1alpha.types.GoogleAdsLink:
                 A link between an GA4 property and a
                 Google Ads account.
 
@@ -3814,17 +3875,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a GoogleAdsLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.UpdateGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateGoogleAdsLinkRequest):
                 The request object. Request message for
                 UpdateGoogleAdsLink RPC
-            google_ads_link (:class:`~.resources.GoogleAdsLink`):
+            google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
                 The GoogleAdsLink to update
                 This corresponds to the ``google_ads_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
                 The list of fields to be updated.
                 Omitted fields will not be updated.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3836,7 +3898,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GoogleAdsLink:
+            google.analytics.admin_v1alpha.types.GoogleAdsLink:
                 A link between an GA4 property and a
                 Google Ads account.
 
@@ -3896,12 +3958,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a GoogleAdsLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.DeleteGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteGoogleAdsLinkRequest):
                 The request object. Request message for
                 DeleteGoogleAdsLink RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 properties/1234/googleAdsLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3962,12 +4025,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Lists GoogleAdsLinks on a property.
 
         Args:
-            request (:class:`~.analytics_admin.ListGoogleAdsLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListGoogleAdsLinksRequest):
                 The request object. Request message for
                 ListGoogleAdsLinks RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3979,7 +4043,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListGoogleAdsLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListGoogleAdsLinksPager:
                 Response message for
                 ListGoogleAdsLinks RPC.
                 Iterating over this object will yield
@@ -4045,15 +4109,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Data sharing settings are singletons.
 
         Args:
-            request (:class:`~.analytics_admin.GetDataSharingSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.GetDataSharingSettingsRequest):
                 The request object. Request message for
                 GetDataSharingSettings RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the settings to
                 lookup. Format:
                 accounts/{account}/dataSharingSettings
                 Example:
-                "accounts/1000/dataSharingSettings".
+                "accounts/1000/dataSharingSettings"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -4065,7 +4130,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.DataSharingSettings:
+            google.analytics.admin_v1alpha.types.DataSharingSettings:
                 A resource message representing data
                 sharing settings of a Google Analytics
                 account.

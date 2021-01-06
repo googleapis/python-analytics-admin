@@ -97,10 +97,10 @@ class Account(proto.Message):
             Output only. Resource name of this account.
             Format: accounts/{account}
             Example: "accounts/100".
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this account was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when account payload fields
             were last updated.
         display_name (str):
@@ -140,10 +140,10 @@ class Property(proto.Message):
         name (str):
             Output only. Resource name of this property. Format:
             properties/{property_id} Example: "properties/1000".
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when the entity was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when entity payload fields
             were last updated.
         parent (str):
@@ -157,7 +157,7 @@ class Property(proto.Message):
             this property.
             The max allowed display name length is 100
             UTF-16 code units.
-        industry_category (~.resources.IndustryCategory):
+        industry_category (google.analytics.admin_v1alpha.types.IndustryCategory):
             Industry associated with this property Example: AUTOMOTIVE,
             FOOD_AND_DRINK
         time_zone (str):
@@ -215,10 +215,10 @@ class AndroidAppDataStream(proto.Message):
             Output only. ID of the corresponding Android
             app in Firebase, if any. This ID can change if
             the Android app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         package_name (str):
@@ -257,10 +257,10 @@ class IosAppDataStream(proto.Message):
             Output only. ID of the corresponding iOS app
             in Firebase, if any. This ID can change if the
             iOS app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         bundle_id (str):
@@ -304,10 +304,10 @@ class WebDataStream(proto.Message):
             Output only. ID of the corresponding web app
             in Firebase, if any. This ID can change if the
             web app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         default_uri (str):
@@ -537,10 +537,10 @@ class FirebaseLink(proto.Message):
             project_name that contains a project number.
 
             Format: 'projects/{project number}' Example: 'projects/1234'
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this FirebaseLink was
             originally created.
-        maximum_user_access (~.resources.MaximumUserAccess):
+        maximum_user_access (google.analytics.admin_v1alpha.types.MaximumUserAccess):
             Maximum user access to the GA4 property
             allowed to admins of the linked Firebase
             project.
@@ -589,7 +589,7 @@ class GoogleAdsLink(proto.Message):
         can_manage_clients (bool):
             Output only. If true, this link is for a
             Google Ads manager account.
-        ads_personalization_enabled (~.wrappers.BoolValue):
+        ads_personalization_enabled (google.protobuf.wrappers_pb2.BoolValue):
             Enable personalized advertising features with
             this integration. Automatically publish my
             Google Analytics audience lists and Google
@@ -602,10 +602,10 @@ class GoogleAdsLink(proto.Message):
             created the link. An empty string will be
             returned if the email address can't be
             retrieved.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this link was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this link was last
             updated.
     """
@@ -687,7 +687,7 @@ class AccountSummary(proto.Message):
         display_name (str):
             Display name for the account referred to in
             this account summary.
-        property_summaries (Sequence[~.resources.PropertySummary]):
+        property_summaries (Sequence[google.analytics.admin_v1alpha.types.PropertySummary]):
             List of summaries for child accounts of this
             account.
     """
