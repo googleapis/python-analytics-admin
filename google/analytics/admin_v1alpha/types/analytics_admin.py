@@ -177,8 +177,9 @@ class UpdateAccountRequest(proto.Message):
             Required. The account to update. The account's ``name``
             field is used to identify the account.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     account = proto.Field(proto.MESSAGE, number=1, message=resources.Account,)
@@ -306,8 +307,9 @@ class UpdatePropertyRequest(proto.Message):
             Required. The property to update. The property's ``name``
             field is used to identify the property to be updated.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     property = proto.Field(proto.MESSAGE, number=1, message=resources.Property,)
@@ -677,8 +679,9 @@ class UpdateWebDataStreamRequest(proto.Message):
             Required. The web stream to update. The ``name`` field is
             used to identify the web stream to be updated.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     web_data_stream = proto.Field(
@@ -795,8 +798,9 @@ class UpdateIosAppDataStreamRequest(proto.Message):
             Required. The iOS app stream to update. The ``name`` field
             is used to identify the iOS app stream to be updated.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     ios_app_data_stream = proto.Field(
@@ -914,8 +918,9 @@ class UpdateAndroidAppDataStreamRequest(proto.Message):
             field is used to identify the android app stream to be
             updated.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     android_app_data_stream = proto.Field(
@@ -1001,7 +1006,6 @@ class GetEnhancedMeasurementSettingsRequest(proto.Message):
     Attributes:
         name (str):
             Required. The name of the settings to lookup. Format:
-
             properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
             Example:
             "properties/1000/webDataStreams/2000/enhancedMeasurementSettings".
@@ -1018,8 +1022,9 @@ class UpdateEnhancedMeasurementSettingsRequest(proto.Message):
             Required. The settings to update. The ``name`` field is used
             to identify the settings to be updated.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     enhanced_measurement_settings = proto.Field(
@@ -1054,8 +1059,9 @@ class UpdateFirebaseLinkRequest(proto.Message):
         firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
             Required. The Firebase link to update.
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     firebase_link = proto.Field(
@@ -1085,9 +1091,26 @@ class ListFirebaseLinksRequest(proto.Message):
         parent (str):
             Required. Format: properties/{property_id} Example:
             properties/1234
+        page_size (int):
+            The maximum number of resources to return.
+            The service may return fewer than this value,
+            even if there are additional pages. If
+            unspecified, at most 50 resources will be
+            returned. The maximum value is 200; (higher
+            values will be coerced to the maximum)
+        page_token (str):
+            A page token, received from a previous ``ListFirebaseLinks``
+            call. Provide this to retrieve the subsequent page. When
+            paginating, all other parameters provided to
+            ``ListProperties`` must match the call that provided the
+            page token.
     """
 
     parent = proto.Field(proto.STRING, number=1)
+
+    page_size = proto.Field(proto.INT32, number=2)
+
+    page_token = proto.Field(proto.STRING, number=3)
 
 
 class ListFirebaseLinksResponse(proto.Message):
@@ -1097,11 +1120,22 @@ class ListFirebaseLinksResponse(proto.Message):
         firebase_links (Sequence[google.analytics.admin_v1alpha.types.FirebaseLink]):
             List of FirebaseLinks. This will have at most
             one value.
+        next_page_token (str):
+            A token, which can be sent as ``page_token`` to retrieve the
+            next page. If this field is omitted, there are no subsequent
+            pages. Currently, Google Analytics supports only one
+            FirebaseLink per property, so this will never be populated.
     """
+
+    @property
+    def raw_page(self):
+        return self
 
     firebase_links = proto.RepeatedField(
         proto.MESSAGE, number=1, message=resources.FirebaseLink,
     )
+
+    next_page_token = proto.Field(proto.STRING, number=2)
 
 
 class GetGlobalSiteTagRequest(proto.Message):
@@ -1142,8 +1176,9 @@ class UpdateGoogleAdsLinkRequest(proto.Message):
         google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
             The GoogleAdsLink to update
         update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            The list of fields to be updated. Omitted
-            fields will not be updated.
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
     """
 
     google_ads_link = proto.Field(

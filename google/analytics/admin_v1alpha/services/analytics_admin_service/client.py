@@ -514,8 +514,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Account:
         r"""Lookup for a single Account.
-        Throws "Target not found" if no such account found, or
-        if caller does not have permissions to access it.
 
         Args:
             request (google.analytics.admin_v1alpha.types.GetAccountRequest):
@@ -740,8 +738,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -914,9 +914,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Property:
         r"""Lookup for a single "GA4" Property.
-        Throws "Target not found" if no such property found, if
-        property is not of the type "GA4", or if caller does not
-        have permissions to access it.
 
         Args:
             request (google.analytics.admin_v1alpha.types.GetPropertyRequest):
@@ -1215,8 +1212,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1960,9 +1959,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.WebDataStream:
         r"""Lookup for a single WebDataStream
-        Throws "Target not found" if no such web data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Args:
             request (google.analytics.admin_v1alpha.types.GetWebDataStreamRequest):
@@ -2122,8 +2118,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2367,9 +2365,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.IosAppDataStream:
         r"""Lookup for a single IosAppDataStream
-        Throws "Target not found" if no such iOS app data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Args:
             request (google.analytics.admin_v1alpha.types.GetIosAppDataStreamRequest):
@@ -2532,8 +2527,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2785,9 +2782,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.AndroidAppDataStream:
         r"""Lookup for a single AndroidAppDataStream
-        Throws "Target not found" if no such android app data
-        stream found, or if the caller does not have permissions
-        to access it.
 
         Args:
             request (google.analytics.admin_v1alpha.types.GetAndroidAppDataStreamRequest):
@@ -2952,8 +2946,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -3219,7 +3215,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 GetEnhancedMeasurementSettings RPC.
             name (str):
                 Required. The name of the settings to lookup. Format:
-
                 properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
                 Example:
                 "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
@@ -3311,8 +3306,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -3493,8 +3490,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -3631,7 +3630,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> analytics_admin.ListFirebaseLinksResponse:
+    ) -> pagers.ListFirebaseLinksPager:
         r"""Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
 
@@ -3654,9 +3653,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListFirebaseLinksPager:
                 Response message for
                 ListFirebaseLinks RPC
+                Iterating over this object will yield
+                results and resolve additional pages
+                automatically.
 
         """
         # Create or coerce a protobuf request object.
@@ -3694,6 +3696,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__iter__` convenience method.
+        response = pagers.ListFirebaseLinksPager(
+            method=rpc, request=request, response=response, metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -3884,8 +3892,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             update_mask (google.protobuf.field_mask_pb2.FieldMask):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+                Required. The list of fields to be updated. Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
 
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this

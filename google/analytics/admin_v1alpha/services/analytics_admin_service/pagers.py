@@ -1053,6 +1053,134 @@ class ListAndroidAppDataStreamsAsyncPager:
         return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
+class ListFirebaseLinksPager:
+    """A pager for iterating through ``list_firebase_links`` requests.
+
+    This class thinly wraps an initial
+    :class:`google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse` object, and
+    provides an ``__iter__`` method to iterate through its
+    ``firebase_links`` field.
+
+    If there are more pages, the ``__iter__`` method will make additional
+    ``ListFirebaseLinks`` requests and continue to iterate
+    through the ``firebase_links`` field on the
+    corresponding responses.
+
+    All the usual :class:`google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse`
+    attributes are available on the pager. If multiple requests are made, only
+    the most recent response is retained, and thus used for attribute lookup.
+    """
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.ListFirebaseLinksResponse],
+        request: analytics_admin.ListFirebaseLinksRequest,
+        response: analytics_admin.ListFirebaseLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
+        """Instantiate the pager.
+
+        Args:
+            method (Callable): The method that was originally called, and
+                which instantiated this pager.
+            request (google.analytics.admin_v1alpha.types.ListFirebaseLinksRequest):
+                The initial request object.
+            response (google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse):
+                The initial response object.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+        """
+        self._method = method
+        self._request = analytics_admin.ListFirebaseLinksRequest(request)
+        self._response = response
+        self._metadata = metadata
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._response, name)
+
+    @property
+    def pages(self) -> Iterable[analytics_admin.ListFirebaseLinksResponse]:
+        yield self._response
+        while self._response.next_page_token:
+            self._request.page_token = self._response.next_page_token
+            self._response = self._method(self._request, metadata=self._metadata)
+            yield self._response
+
+    def __iter__(self) -> Iterable[resources.FirebaseLink]:
+        for page in self.pages:
+            yield from page.firebase_links
+
+    def __repr__(self) -> str:
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+
+
+class ListFirebaseLinksAsyncPager:
+    """A pager for iterating through ``list_firebase_links`` requests.
+
+    This class thinly wraps an initial
+    :class:`google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse` object, and
+    provides an ``__aiter__`` method to iterate through its
+    ``firebase_links`` field.
+
+    If there are more pages, the ``__aiter__`` method will make additional
+    ``ListFirebaseLinks`` requests and continue to iterate
+    through the ``firebase_links`` field on the
+    corresponding responses.
+
+    All the usual :class:`google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse`
+    attributes are available on the pager. If multiple requests are made, only
+    the most recent response is retained, and thus used for attribute lookup.
+    """
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[analytics_admin.ListFirebaseLinksResponse]],
+        request: analytics_admin.ListFirebaseLinksRequest,
+        response: analytics_admin.ListFirebaseLinksResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
+        """Instantiate the pager.
+
+        Args:
+            method (Callable): The method that was originally called, and
+                which instantiated this pager.
+            request (google.analytics.admin_v1alpha.types.ListFirebaseLinksRequest):
+                The initial request object.
+            response (google.analytics.admin_v1alpha.types.ListFirebaseLinksResponse):
+                The initial response object.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+        """
+        self._method = method
+        self._request = analytics_admin.ListFirebaseLinksRequest(request)
+        self._response = response
+        self._metadata = metadata
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._response, name)
+
+    @property
+    async def pages(self) -> AsyncIterable[analytics_admin.ListFirebaseLinksResponse]:
+        yield self._response
+        while self._response.next_page_token:
+            self._request.page_token = self._response.next_page_token
+            self._response = await self._method(self._request, metadata=self._metadata)
+            yield self._response
+
+    def __aiter__(self) -> AsyncIterable[resources.FirebaseLink]:
+        async def async_generator():
+            async for page in self.pages:
+                for response in page.firebase_links:
+                    yield response
+
+        return async_generator()
+
+    def __repr__(self) -> str:
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+
+
 class ListGoogleAdsLinksPager:
     """A pager for iterating through ``list_google_ads_links`` requests.
 
