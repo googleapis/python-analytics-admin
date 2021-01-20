@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.1.0...v1.0.0) (2021-01-20)
+## [0.2.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.1.0...v0.2.0) (2021-01-20)
 
 
 ### ⚠ BREAKING CHANGES
