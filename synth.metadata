@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "69697504d9eba1d064820c3085b4750767be6d08",
-        "internalRef": "348952930"
+        "sha": "520682435235d9c503983a360a2090025aa47cd1",
+        "internalRef": "350246057"
       }
     },
     {
@@ -42,6 +42,7 @@
     }
   ],
   "generatedFiles": [
+    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -93,6 +94,7 @@
     "MANIFEST.in",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
+    "docs/admin_v1alpha/analytics_admin_service.rst",
     "docs/admin_v1alpha/services.rst",
     "docs/admin_v1alpha/types.rst",
     "docs/conf.py",
