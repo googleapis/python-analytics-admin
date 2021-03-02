@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "20712b8fe95001b312f62c6c5f33e3e3ec92cfaf",
-        "internalRef": "354996675"
+        "sha": "254325ed3c9caa6bf6d9c8b11ce2674544ba6e7c",
+        "internalRef": "355906816"
       }
     },
     {
@@ -100,7 +100,6 @@
     "docs/admin_v1alpha/types.rst",
     "docs/conf.py",
     "docs/multiprocessing.rst",
-    "google-analytics-admin-v1alpha-py.tar.gz",
     "google/analytics/admin/__init__.py",
     "google/analytics/admin/py.typed",
     "google/analytics/admin_v1alpha/__init__.py",
