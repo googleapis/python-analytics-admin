@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-analytics-admin.git",
-        "sha": "5e09cc8326f3628328bb8bdea576c422d982ed46"
+        "sha": "3661317e036b7c24a061aa6290b715e5b6e83369"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "23e7356f4cf449d6e9977698c5d9383b566be7af",
-        "internalRef": "351651504"
+        "sha": "20712b8fe95001b312f62c6c5f33e3e3ec92cfaf",
+        "internalRef": "354996675"
       }
     },
     {
