@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,23 +13,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import warnings
-from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
+from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple, Union
 
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import grpc_helpers_async  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
+import packaging.version
 
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.analytics.admin_v1alpha.types import analytics_admin
 from google.analytics.admin_v1alpha.types import resources
-from google.protobuf import empty_pb2 as empty  # type: ignore
-
+from google.protobuf import empty_pb2  # type: ignore
 from .base import AnalyticsAdminServiceTransport, DEFAULT_CLIENT_INFO
 from .grpc import AnalyticsAdminServiceGrpcTransport
 
@@ -55,7 +52,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     def create_channel(
         cls,
         host: str = "analyticsadmin.googleapis.com",
-        credentials: credentials.Credentials = None,
+        credentials: ga_credentials.Credentials = None,
         credentials_file: Optional[str] = None,
         scopes: Optional[Sequence[str]] = None,
         quota_project_id: Optional[str] = None,
@@ -82,13 +79,15 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
         Returns:
             aio.Channel: A gRPC AsyncIO channel object.
         """
-        scopes = scopes or cls.AUTH_SCOPES
+
+        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
+
         return grpc_helpers_async.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes,
             quota_project_id=quota_project_id,
+            **self_signed_jwt_kwargs,
             **kwargs,
         )
 
@@ -96,7 +95,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
         self,
         *,
         host: str = "analyticsadmin.googleapis.com",
-        credentials: credentials.Credentials = None,
+        credentials: ga_credentials.Credentials = None,
         credentials_file: Optional[str] = None,
         scopes: Optional[Sequence[str]] = None,
         channel: aio.Channel = None,
@@ -110,7 +109,8 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]): The hostname to connect to.
+            host (Optional[str]):
+                 The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -168,7 +168,6 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
             self._ssl_channel_credentials = None
-
         else:
             if api_mtls_endpoint:
                 host = api_mtls_endpoint
@@ -289,7 +288,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_account(
         self,
-    ) -> Callable[[analytics_admin.DeleteAccountRequest], Awaitable[empty.Empty]]:
+    ) -> Callable[[analytics_admin.DeleteAccountRequest], Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the delete account method over gRPC.
 
         Marks target Account as soft-deleted (ie: "trashed")
@@ -318,7 +317,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_account"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount",
                 request_serializer=analytics_admin.DeleteAccountRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_account"]
 
@@ -814,7 +813,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_user_link(
         self,
-    ) -> Callable[[analytics_admin.DeleteUserLinkRequest], Awaitable[empty.Empty]]:
+    ) -> Callable[[analytics_admin.DeleteUserLinkRequest], Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the delete user link method over gRPC.
 
         Deletes a user link on an account or property.
@@ -833,7 +832,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_user_link"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteUserLink",
                 request_serializer=analytics_admin.DeleteUserLinkRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_user_link"]
 
@@ -841,7 +840,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     def batch_delete_user_links(
         self,
     ) -> Callable[
-        [analytics_admin.BatchDeleteUserLinksRequest], Awaitable[empty.Empty]
+        [analytics_admin.BatchDeleteUserLinksRequest], Awaitable[empty_pb2.Empty]
     ]:
         r"""Return a callable for the batch delete user links method over gRPC.
 
@@ -862,7 +861,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["batch_delete_user_links"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteUserLinks",
                 request_serializer=analytics_admin.BatchDeleteUserLinksRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["batch_delete_user_links"]
 
@@ -897,7 +896,9 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_web_data_stream(
         self,
-    ) -> Callable[[analytics_admin.DeleteWebDataStreamRequest], Awaitable[empty.Empty]]:
+    ) -> Callable[
+        [analytics_admin.DeleteWebDataStreamRequest], Awaitable[empty_pb2.Empty]
+    ]:
         r"""Return a callable for the delete web data stream method over gRPC.
 
         Deletes a web stream on a property.
@@ -916,7 +917,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_web_data_stream"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream",
                 request_serializer=analytics_admin.DeleteWebDataStreamRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_web_data_stream"]
 
@@ -1043,7 +1044,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     def delete_ios_app_data_stream(
         self,
     ) -> Callable[
-        [analytics_admin.DeleteIosAppDataStreamRequest], Awaitable[empty.Empty]
+        [analytics_admin.DeleteIosAppDataStreamRequest], Awaitable[empty_pb2.Empty]
     ]:
         r"""Return a callable for the delete ios app data stream method over gRPC.
 
@@ -1063,7 +1064,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_ios_app_data_stream"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream",
                 request_serializer=analytics_admin.DeleteIosAppDataStreamRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_ios_app_data_stream"]
 
@@ -1162,7 +1163,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     def delete_android_app_data_stream(
         self,
     ) -> Callable[
-        [analytics_admin.DeleteAndroidAppDataStreamRequest], Awaitable[empty.Empty]
+        [analytics_admin.DeleteAndroidAppDataStreamRequest], Awaitable[empty_pb2.Empty]
     ]:
         r"""Return a callable for the delete android app data stream method over gRPC.
 
@@ -1184,7 +1185,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             ] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream",
                 request_serializer=analytics_admin.DeleteAndroidAppDataStreamRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_android_app_data_stream"]
 
@@ -1382,7 +1383,9 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_firebase_link(
         self,
-    ) -> Callable[[analytics_admin.DeleteFirebaseLinkRequest], Awaitable[empty.Empty]]:
+    ) -> Callable[
+        [analytics_admin.DeleteFirebaseLinkRequest], Awaitable[empty_pb2.Empty]
+    ]:
         r"""Return a callable for the delete firebase link method over gRPC.
 
         Deletes a FirebaseLink on a property
@@ -1401,7 +1404,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_firebase_link"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink",
                 request_serializer=analytics_admin.DeleteFirebaseLinkRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_firebase_link"]
 
@@ -1523,7 +1526,9 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_google_ads_link(
         self,
-    ) -> Callable[[analytics_admin.DeleteGoogleAdsLinkRequest], Awaitable[empty.Empty]]:
+    ) -> Callable[
+        [analytics_admin.DeleteGoogleAdsLinkRequest], Awaitable[empty_pb2.Empty]
+    ]:
         r"""Return a callable for the delete google ads link method over gRPC.
 
         Deletes a GoogleAdsLink on a property
@@ -1542,7 +1547,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_google_ads_link"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink",
                 request_serializer=analytics_admin.DeleteGoogleAdsLinkRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs["delete_google_ads_link"]
 
