@@ -238,7 +238,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetAccountRequest`):
-                The request object. Request message for GetAccount RPC.
+                The request object.
+                Request message for GetAccount RPC.
             name (:class:`str`):
                 Required. The name of the account to
                 lookup. Format: accounts/{account}
@@ -312,7 +313,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListAccountsRequest`):
-                The request object. Request message for ListAccounts
+                The request object.
+                Request message for ListAccounts
                 RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -374,7 +376,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteAccountRequest`):
-                The request object. Request message for DeleteAccount
+                The request object.
+                Request message for DeleteAccount
                 RPC.
             name (:class:`str`):
                 Required. The name of the Account to
@@ -440,7 +443,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateAccountRequest`):
-                The request object. Request message for UpdateAccount
+                The request object.
+                Request message for UpdateAccount
                 RPC.
             account (:class:`google.analytics.admin_v1alpha.types.Account`):
                 Required. The account to update. The account's ``name``
@@ -524,7 +528,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ProvisionAccountTicketRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ProvisionAccountTicket RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -568,7 +573,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListAccountSummariesRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListAccountSummaries RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -621,7 +627,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetPropertyRequest`):
-                The request object. Request message for GetProperty RPC.
+                The request object.
+                Request message for GetProperty RPC.
             name (:class:`str`):
                 Required. The name of the property to lookup. Format:
                 properties/{property_id} Example: "properties/1000"
@@ -696,7 +703,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListPropertiesRequest`):
-                The request object. Request message for ListProperties
+                The request object.
+                Request message for ListProperties
                 RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -750,7 +758,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.CreatePropertyRequest`):
-                The request object. Request message for CreateProperty
+                The request object.
+                Request message for CreateProperty
                 RPC.
             property (:class:`google.analytics.admin_v1alpha.types.Property`):
                 Required. The property to create.
@@ -827,7 +836,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeletePropertyRequest`):
-                The request object. Request message for DeleteProperty
+                The request object.
+                Request message for DeleteProperty
                 RPC.
             name (:class:`str`):
                 Required. The name of the Property to soft-delete.
@@ -900,7 +910,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdatePropertyRequest`):
-                The request object. Request message for UpdateProperty
+                The request object.
+                Request message for UpdateProperty
                 RPC.
             property (:class:`google.analytics.admin_v1alpha.types.Property`):
                 Required. The property to update. The property's
@@ -987,7 +998,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetUserLinkRequest`):
-                The request object. Request message for GetUserLink RPC.
+                The request object.
+                Request message for GetUserLink RPC.
             name (:class:`str`):
                 Required. Example format:
                 accounts/1234/userLinks/5678
@@ -1058,7 +1070,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.BatchGetUserLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 BatchGetUserLinks RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1108,7 +1121,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListUserLinksRequest`):
-                The request object. Request message for ListUserLinks
+                The request object.
+                Request message for ListUserLinks
                 RPC.
             parent (:class:`str`):
                 Required. Example format:
@@ -1197,7 +1211,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.AuditUserLinksRequest`):
-                The request object. Request message for AuditUserLinks
+                The request object.
+                Request message for AuditUserLinks
                 RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1261,7 +1276,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.CreateUserLinkRequest`):
-                The request object. Request message for CreateUserLink
+                The request object.
+                Request message for CreateUserLink
                 RPC.
                 Users can have multiple email addresses associated with
                 their Google account, and one of these email addresses
@@ -1350,7 +1366,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.BatchCreateUserLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 BatchCreateUserLinks RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1400,7 +1417,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateUserLinkRequest`):
-                The request object. Request message for UpdateUserLink
+                The request object.
+                Request message for UpdateUserLink
                 RPC.
             user_link (:class:`google.analytics.admin_v1alpha.types.UserLink`):
                 Required. The user link to update.
@@ -1472,7 +1490,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.BatchUpdateUserLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 BatchUpdateUserLinks RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1522,7 +1541,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteUserLinkRequest`):
-                The request object. Request message for DeleteUserLink
+                The request object.
+                Request message for DeleteUserLink
                 RPC.
             name (:class:`str`):
                 Required. Example format:
@@ -1586,7 +1606,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.BatchDeleteUserLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 BatchDeleteUserLinks RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1629,7 +1650,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetWebDataStreamRequest`):
-                The request object. Request message for GetWebDataStream
+                The request object.
+                Request message for GetWebDataStream
                 RPC.
             name (:class:`str`):
                 Required. The name of the web data stream to lookup.
@@ -1702,7 +1724,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteWebDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 DeleteWebDataStream RPC.
             name (:class:`str`):
                 Required. The name of the web data stream to delete.
@@ -1769,7 +1792,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateWebDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateWebDataStream RPC.
             web_data_stream (:class:`google.analytics.admin_v1alpha.types.WebDataStream`):
                 Required. The web stream to update. The ``name`` field
@@ -1856,7 +1880,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.CreateWebDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 CreateWebDataStream RPC.
             parent (:class:`str`):
                 Required. The parent resource where
@@ -1939,7 +1964,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListWebDataStreamsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListWebDataStreams RPC.
             parent (:class:`str`):
                 Required. The name of the parent
@@ -2021,7 +2047,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetIosAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 GetIosAppDataStream RPC.
             name (:class:`str`):
                 Required. The name of the iOS app data stream to lookup.
@@ -2094,7 +2121,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteIosAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 DeleteIosAppDataStream RPC.
             name (:class:`str`):
                 Required. The name of the iOS app data stream to delete.
@@ -2161,7 +2189,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateIosAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateIosAppDataStream RPC.
             ios_app_data_stream (:class:`google.analytics.admin_v1alpha.types.IosAppDataStream`):
                 Required. The iOS app stream to update. The ``name``
@@ -2251,7 +2280,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListIosAppDataStreamsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListIosAppDataStreams RPC.
             parent (:class:`str`):
                 Required. The name of the parent
@@ -2333,7 +2363,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetAndroidAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 GetAndroidAppDataStream RPC.
             name (:class:`str`):
                 Required. The name of the android app data stream to
@@ -2406,7 +2437,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteAndroidAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 DeleteAndroidAppDataStream RPC.
             name (:class:`str`):
                 Required. The name of the android app data stream to
@@ -2473,7 +2505,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateAndroidAppDataStreamRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateAndroidAppDataStream RPC.
             android_app_data_stream (:class:`google.analytics.admin_v1alpha.types.AndroidAppDataStream`):
                 Required. The android app stream to update. The ``name``
@@ -2568,7 +2601,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListAndroidAppDataStreamsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListAndroidAppDataStreams RPC.
             parent (:class:`str`):
                 Required. The name of the parent
@@ -2652,7 +2686,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetEnhancedMeasurementSettingsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 GetEnhancedMeasurementSettings RPC.
             name (:class:`str`):
                 Required. The name of the settings to lookup. Format:
@@ -2730,7 +2765,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateEnhancedMeasurementSettingsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateEnhancedMeasurementSettings RPC.
             enhanced_measurement_settings (:class:`google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings`):
                 Required. The settings to update. The ``name`` field is
@@ -2824,7 +2860,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.CreateFirebaseLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 CreateFirebaseLink RPC
             parent (:class:`str`):
                 Required. Format: properties/{property_id} Example:
@@ -2905,7 +2942,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateFirebaseLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateFirebaseLink RPC
             firebase_link (:class:`google.analytics.admin_v1alpha.types.FirebaseLink`):
                 Required. The Firebase link to
@@ -2990,7 +3028,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteFirebaseLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 DeleteFirebaseLink RPC
             name (:class:`str`):
                 Required. Format:
@@ -3056,7 +3095,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListFirebaseLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListFirebaseLinks RPC
             parent (:class:`str`):
                 Required. Format: properties/{property_id} Example:
@@ -3137,7 +3177,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetGlobalSiteTagRequest`):
-                The request object. Request message for GetGlobalSiteTag
+                The request object.
+                Request message for GetGlobalSiteTag
                 RPC.
             name (:class:`str`):
                 Required. The name of the site tag to lookup. Note that
@@ -3214,7 +3255,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.CreateGoogleAdsLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 CreateGoogleAdsLink RPC
             parent (:class:`str`):
                 Required. Example format:
@@ -3295,7 +3337,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.UpdateGoogleAdsLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 UpdateGoogleAdsLink RPC
             google_ads_link (:class:`google.analytics.admin_v1alpha.types.GoogleAdsLink`):
                 The GoogleAdsLink to update
@@ -3378,7 +3421,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.DeleteGoogleAdsLinkRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 DeleteGoogleAdsLink RPC.
             name (:class:`str`):
                 Required. Example format:
@@ -3442,7 +3486,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.ListGoogleAdsLinksRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 ListGoogleAdsLinks RPC.
             parent (:class:`str`):
                 Required. Example format:
@@ -3523,7 +3568,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.GetDataSharingSettingsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 GetDataSharingSettings RPC.
             name (:class:`str`):
                 Required. The name of the settings to
@@ -3598,7 +3644,8 @@ class AnalyticsAdminServiceAsyncClient:
 
         Args:
             request (:class:`google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsRequest`):
-                The request object. Request message for
+                The request object.
+                Request message for
                 SearchChangeHistoryEvents RPC.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.

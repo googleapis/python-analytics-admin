@@ -12471,7 +12471,7 @@ def test_analytics_admin_service_transport_create_channel(
         transport_class(quota_project_id="octopus", scopes=["1", "2"])
 
         create_channel.assert_called_with(
-            "analyticsadmin.googleapis.com:443",
+            "analyticsadmin.googleapis.com",
             credentials=creds,
             credentials_file=None,
             quota_project_id="octopus",
