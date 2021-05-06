@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import abc
-from typing import Awaitable, Callable, Dict, Optional, Sequence, Union
-import packaging.version
+import typing
 import pkg_resources
 
 from google import auth  # type: ignore
-import google.api_core  # type: ignore
 from google.api_core import exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
@@ -29,23 +29,13 @@ from google.analytics.admin_v1alpha.types import analytics_admin
 from google.analytics.admin_v1alpha.types import resources
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
+
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-analytics-admin",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
-
-try:
-    # google.auth.__version__ was added in 1.26.0
-    _GOOGLE_AUTH_VERSION = auth.__version__
-except AttributeError:
-    try:  # try pkg_resources if it is available
-        _GOOGLE_AUTH_VERSION = pkg_resources.get_distribution("google-auth").version
-    except pkg_resources.DistributionNotFound:  # pragma: NO COVER
-        _GOOGLE_AUTH_VERSION = None
-
-_API_CORE_VERSION = google.api_core.__version__
 
 
 class AnalyticsAdminServiceTransport(abc.ABC):
@@ -58,24 +48,21 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         "https://www.googleapis.com/auth/analytics.readonly",
     )
 
-    DEFAULT_HOST: str = "analyticsadmin.googleapis.com"
-
     def __init__(
         self,
         *,
-        host: str = DEFAULT_HOST,
+        host: str = "analyticsadmin.googleapis.com",
         credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
         **kwargs,
     ) -> None:
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]):
-                 The hostname to connect to.
+            host (Optional[str]): The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -84,7 +71,7 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             credentials_file (Optional[str]): A file with credentials that can
                 be loaded with :func:`google.auth.load_credentials_from_file`.
                 This argument is mutually exclusive with credentials.
-            scopes (Optional[Sequence[str]]): A list of scopes.
+            scope (Optional[Sequence[str]]): A list of scopes.
             quota_project_id (Optional[str]): An optional project to use for billing
                 and quota.
             client_info (google.api_core.gapic_v1.client_info.ClientInfo):
@@ -98,8 +85,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             host += ":443"
         self._host = host
 
-        scopes_kwargs = self._get_scopes_kwargs(self._host, scopes)
-
         # Save the scopes.
         self._scopes = scopes or self.AUTH_SCOPES
 
@@ -112,61 +97,16 @@ class AnalyticsAdminServiceTransport(abc.ABC):
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, **scopes_kwargs, quota_project_id=quota_project_id
+                credentials_file, scopes=self._scopes, quota_project_id=quota_project_id
             )
 
         elif credentials is None:
             credentials, _ = auth.default(
-                **scopes_kwargs, quota_project_id=quota_project_id
+                scopes=self._scopes, quota_project_id=quota_project_id
             )
 
         # Save the credentials.
         self._credentials = credentials
-
-    # TODO(busunkim): These two class methods are in the base transport
-    # to avoid duplicating code across the transport classes. These functions
-    # should be deleted once the minimum required versions of google-api-core
-    # and google-auth are increased.
-
-    # TODO: Remove this function once google-auth >= 1.25.0 is required
-    @classmethod
-    def _get_scopes_kwargs(
-        cls, host: str, scopes: Optional[Sequence[str]]
-    ) -> Dict[str, Optional[Sequence[str]]]:
-        """Returns scopes kwargs to pass to google-auth methods depending on the google-auth version"""
-
-        scopes_kwargs = {}
-
-        if _GOOGLE_AUTH_VERSION and (
-            packaging.version.parse(_GOOGLE_AUTH_VERSION)
-            >= packaging.version.parse("1.25.0")
-        ):
-            scopes_kwargs = {"scopes": scopes, "default_scopes": cls.AUTH_SCOPES}
-        else:
-            scopes_kwargs = {"scopes": scopes or cls.AUTH_SCOPES}
-
-        return scopes_kwargs
-
-    # TODO: Remove this function once google-api-core >= 1.26.0 is required
-    @classmethod
-    def _get_self_signed_jwt_kwargs(
-        cls, host: str, scopes: Optional[Sequence[str]]
-    ) -> Dict[str, Union[Optional[Sequence[str]], str]]:
-        """Returns kwargs to pass to grpc_helpers.create_channel depending on the google-api-core version"""
-
-        self_signed_jwt_kwargs: Dict[str, Union[Optional[Sequence[str]], str]] = {}
-
-        if _API_CORE_VERSION and (
-            packaging.version.parse(_API_CORE_VERSION)
-            >= packaging.version.parse("1.26.0")
-        ):
-            self_signed_jwt_kwargs["default_scopes"] = cls.AUTH_SCOPES
-            self_signed_jwt_kwargs["scopes"] = scopes
-            self_signed_jwt_kwargs["default_host"] = cls.DEFAULT_HOST
-        else:
-            self_signed_jwt_kwargs["scopes"] = scopes or cls.AUTH_SCOPES
-
-        return self_signed_jwt_kwargs
 
     def _prep_wrapped_messages(self, client_info):
         # Precompute the wrapped methods.
@@ -375,20 +315,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_account(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetAccountRequest],
-        Union[resources.Account, Awaitable[resources.Account]],
+        typing.Union[resources.Account, typing.Awaitable[resources.Account]],
     ]:
         raise NotImplementedError()
 
     @property
     def list_accounts(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListAccountsRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListAccountsResponse,
-            Awaitable[analytics_admin.ListAccountsResponse],
+            typing.Awaitable[analytics_admin.ListAccountsResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -396,29 +336,29 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def delete_account(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteAccountRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_account(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateAccountRequest],
-        Union[resources.Account, Awaitable[resources.Account]],
+        typing.Union[resources.Account, typing.Awaitable[resources.Account]],
     ]:
         raise NotImplementedError()
 
     @property
     def provision_account_ticket(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ProvisionAccountTicketRequest],
-        Union[
+        typing.Union[
             analytics_admin.ProvisionAccountTicketResponse,
-            Awaitable[analytics_admin.ProvisionAccountTicketResponse],
+            typing.Awaitable[analytics_admin.ProvisionAccountTicketResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -426,11 +366,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def list_account_summaries(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListAccountSummariesRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListAccountSummariesResponse,
-            Awaitable[analytics_admin.ListAccountSummariesResponse],
+            typing.Awaitable[analytics_admin.ListAccountSummariesResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -438,20 +378,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_property(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetPropertyRequest],
-        Union[resources.Property, Awaitable[resources.Property]],
+        typing.Union[resources.Property, typing.Awaitable[resources.Property]],
     ]:
         raise NotImplementedError()
 
     @property
     def list_properties(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListPropertiesRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListPropertiesResponse,
-            Awaitable[analytics_admin.ListPropertiesResponse],
+            typing.Awaitable[analytics_admin.ListPropertiesResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -459,47 +399,47 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def create_property(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.CreatePropertyRequest],
-        Union[resources.Property, Awaitable[resources.Property]],
+        typing.Union[resources.Property, typing.Awaitable[resources.Property]],
     ]:
         raise NotImplementedError()
 
     @property
     def delete_property(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeletePropertyRequest],
-        Union[resources.Property, Awaitable[resources.Property]],
+        typing.Union[resources.Property, typing.Awaitable[resources.Property]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_property(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdatePropertyRequest],
-        Union[resources.Property, Awaitable[resources.Property]],
+        typing.Union[resources.Property, typing.Awaitable[resources.Property]],
     ]:
         raise NotImplementedError()
 
     @property
     def get_user_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetUserLinkRequest],
-        Union[resources.UserLink, Awaitable[resources.UserLink]],
+        typing.Union[resources.UserLink, typing.Awaitable[resources.UserLink]],
     ]:
         raise NotImplementedError()
 
     @property
     def batch_get_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.BatchGetUserLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.BatchGetUserLinksResponse,
-            Awaitable[analytics_admin.BatchGetUserLinksResponse],
+            typing.Awaitable[analytics_admin.BatchGetUserLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -507,11 +447,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def list_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListUserLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListUserLinksResponse,
-            Awaitable[analytics_admin.ListUserLinksResponse],
+            typing.Awaitable[analytics_admin.ListUserLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -519,11 +459,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def audit_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.AuditUserLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.AuditUserLinksResponse,
-            Awaitable[analytics_admin.AuditUserLinksResponse],
+            typing.Awaitable[analytics_admin.AuditUserLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -531,20 +471,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def create_user_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.CreateUserLinkRequest],
-        Union[resources.UserLink, Awaitable[resources.UserLink]],
+        typing.Union[resources.UserLink, typing.Awaitable[resources.UserLink]],
     ]:
         raise NotImplementedError()
 
     @property
     def batch_create_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.BatchCreateUserLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.BatchCreateUserLinksResponse,
-            Awaitable[analytics_admin.BatchCreateUserLinksResponse],
+            typing.Awaitable[analytics_admin.BatchCreateUserLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -552,20 +492,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def update_user_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateUserLinkRequest],
-        Union[resources.UserLink, Awaitable[resources.UserLink]],
+        typing.Union[resources.UserLink, typing.Awaitable[resources.UserLink]],
     ]:
         raise NotImplementedError()
 
     @property
     def batch_update_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.BatchUpdateUserLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.BatchUpdateUserLinksResponse,
-            Awaitable[analytics_admin.BatchUpdateUserLinksResponse],
+            typing.Awaitable[analytics_admin.BatchUpdateUserLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -573,65 +513,71 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def delete_user_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteUserLinkRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def batch_delete_user_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.BatchDeleteUserLinksRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def get_web_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetWebDataStreamRequest],
-        Union[resources.WebDataStream, Awaitable[resources.WebDataStream]],
+        typing.Union[
+            resources.WebDataStream, typing.Awaitable[resources.WebDataStream]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def delete_web_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteWebDataStreamRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_web_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateWebDataStreamRequest],
-        Union[resources.WebDataStream, Awaitable[resources.WebDataStream]],
+        typing.Union[
+            resources.WebDataStream, typing.Awaitable[resources.WebDataStream]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def create_web_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.CreateWebDataStreamRequest],
-        Union[resources.WebDataStream, Awaitable[resources.WebDataStream]],
+        typing.Union[
+            resources.WebDataStream, typing.Awaitable[resources.WebDataStream]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def list_web_data_streams(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListWebDataStreamsRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListWebDataStreamsResponse,
-            Awaitable[analytics_admin.ListWebDataStreamsResponse],
+            typing.Awaitable[analytics_admin.ListWebDataStreamsResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -639,38 +585,42 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_ios_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetIosAppDataStreamRequest],
-        Union[resources.IosAppDataStream, Awaitable[resources.IosAppDataStream]],
+        typing.Union[
+            resources.IosAppDataStream, typing.Awaitable[resources.IosAppDataStream]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def delete_ios_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteIosAppDataStreamRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_ios_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateIosAppDataStreamRequest],
-        Union[resources.IosAppDataStream, Awaitable[resources.IosAppDataStream]],
+        typing.Union[
+            resources.IosAppDataStream, typing.Awaitable[resources.IosAppDataStream]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def list_ios_app_data_streams(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListIosAppDataStreamsRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListIosAppDataStreamsResponse,
-            Awaitable[analytics_admin.ListIosAppDataStreamsResponse],
+            typing.Awaitable[analytics_admin.ListIosAppDataStreamsResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -678,10 +628,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_android_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetAndroidAppDataStreamRequest],
-        Union[
-            resources.AndroidAppDataStream, Awaitable[resources.AndroidAppDataStream]
+        typing.Union[
+            resources.AndroidAppDataStream,
+            typing.Awaitable[resources.AndroidAppDataStream],
         ],
     ]:
         raise NotImplementedError()
@@ -689,19 +640,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def delete_android_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteAndroidAppDataStreamRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_android_app_data_stream(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateAndroidAppDataStreamRequest],
-        Union[
-            resources.AndroidAppDataStream, Awaitable[resources.AndroidAppDataStream]
+        typing.Union[
+            resources.AndroidAppDataStream,
+            typing.Awaitable[resources.AndroidAppDataStream],
         ],
     ]:
         raise NotImplementedError()
@@ -709,11 +661,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def list_android_app_data_streams(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListAndroidAppDataStreamsRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListAndroidAppDataStreamsResponse,
-            Awaitable[analytics_admin.ListAndroidAppDataStreamsResponse],
+            typing.Awaitable[analytics_admin.ListAndroidAppDataStreamsResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -721,11 +673,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_enhanced_measurement_settings(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetEnhancedMeasurementSettingsRequest],
-        Union[
+        typing.Union[
             resources.EnhancedMeasurementSettings,
-            Awaitable[resources.EnhancedMeasurementSettings],
+            typing.Awaitable[resources.EnhancedMeasurementSettings],
         ],
     ]:
         raise NotImplementedError()
@@ -733,11 +685,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def update_enhanced_measurement_settings(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateEnhancedMeasurementSettingsRequest],
-        Union[
+        typing.Union[
             resources.EnhancedMeasurementSettings,
-            Awaitable[resources.EnhancedMeasurementSettings],
+            typing.Awaitable[resources.EnhancedMeasurementSettings],
         ],
     ]:
         raise NotImplementedError()
@@ -745,38 +697,38 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def create_firebase_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.CreateFirebaseLinkRequest],
-        Union[resources.FirebaseLink, Awaitable[resources.FirebaseLink]],
+        typing.Union[resources.FirebaseLink, typing.Awaitable[resources.FirebaseLink]],
     ]:
         raise NotImplementedError()
 
     @property
     def update_firebase_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateFirebaseLinkRequest],
-        Union[resources.FirebaseLink, Awaitable[resources.FirebaseLink]],
+        typing.Union[resources.FirebaseLink, typing.Awaitable[resources.FirebaseLink]],
     ]:
         raise NotImplementedError()
 
     @property
     def delete_firebase_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteFirebaseLinkRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def list_firebase_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListFirebaseLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListFirebaseLinksResponse,
-            Awaitable[analytics_admin.ListFirebaseLinksResponse],
+            typing.Awaitable[analytics_admin.ListFirebaseLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -784,47 +736,53 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_global_site_tag(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetGlobalSiteTagRequest],
-        Union[resources.GlobalSiteTag, Awaitable[resources.GlobalSiteTag]],
+        typing.Union[
+            resources.GlobalSiteTag, typing.Awaitable[resources.GlobalSiteTag]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def create_google_ads_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.CreateGoogleAdsLinkRequest],
-        Union[resources.GoogleAdsLink, Awaitable[resources.GoogleAdsLink]],
+        typing.Union[
+            resources.GoogleAdsLink, typing.Awaitable[resources.GoogleAdsLink]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def update_google_ads_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.UpdateGoogleAdsLinkRequest],
-        Union[resources.GoogleAdsLink, Awaitable[resources.GoogleAdsLink]],
+        typing.Union[
+            resources.GoogleAdsLink, typing.Awaitable[resources.GoogleAdsLink]
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def delete_google_ads_link(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.DeleteGoogleAdsLinkRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
     ]:
         raise NotImplementedError()
 
     @property
     def list_google_ads_links(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.ListGoogleAdsLinksRequest],
-        Union[
+        typing.Union[
             analytics_admin.ListGoogleAdsLinksResponse,
-            Awaitable[analytics_admin.ListGoogleAdsLinksResponse],
+            typing.Awaitable[analytics_admin.ListGoogleAdsLinksResponse],
         ],
     ]:
         raise NotImplementedError()
@@ -832,20 +790,23 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     @property
     def get_data_sharing_settings(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.GetDataSharingSettingsRequest],
-        Union[resources.DataSharingSettings, Awaitable[resources.DataSharingSettings]],
+        typing.Union[
+            resources.DataSharingSettings,
+            typing.Awaitable[resources.DataSharingSettings],
+        ],
     ]:
         raise NotImplementedError()
 
     @property
     def search_change_history_events(
         self,
-    ) -> Callable[
+    ) -> typing.Callable[
         [analytics_admin.SearchChangeHistoryEventsRequest],
-        Union[
+        typing.Union[
             analytics_admin.SearchChangeHistoryEventsResponse,
-            Awaitable[analytics_admin.SearchChangeHistoryEventsResponse],
+            typing.Awaitable[analytics_admin.SearchChangeHistoryEventsResponse],
         ],
     ]:
         raise NotImplementedError()

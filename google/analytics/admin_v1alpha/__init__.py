@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +16,6 @@
 #
 
 from .services.analytics_admin_service import AnalyticsAdminServiceClient
-
 from .types.analytics_admin import AuditUserLinksRequest
 from .types.analytics_admin import AuditUserLinksResponse
 from .types.analytics_admin import BatchCreateUserLinksRequest
@@ -99,6 +99,7 @@ from .types.resources import Property
 from .types.resources import PropertySummary
 from .types.resources import UserLink
 from .types.resources import WebDataStream
+
 
 __all__ = (
     "Account",
