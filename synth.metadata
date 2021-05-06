@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "413135de5942ce78c990a3ab7af95253efea0a71",
-        "internalRef": "369324550"
+        "sha": "60e129d0672a1be2c70b41bf76aadc7ad1b1ca0f",
+        "internalRef": "370525906"
       }
     }
   ],
@@ -91,10 +91,10 @@
     "docs/admin_v1alpha/types.rst",
     "docs/conf.py",
     "docs/multiprocessing.rst",
-    "google-analytics-admin-v1alpha-py.tar.gz",
     "google/analytics/admin/__init__.py",
     "google/analytics/admin/py.typed",
     "google/analytics/admin_v1alpha/__init__.py",
+    "google/analytics/admin_v1alpha/gapic_metadata.json",
     "google/analytics/admin_v1alpha/py.typed",
     "google/analytics/admin_v1alpha/services/__init__.py",
     "google/analytics/admin_v1alpha/services/analytics_admin_service/__init__.py",
@@ -121,6 +121,9 @@
     "scripts/readme-gen/templates/install_portaudio.tmpl.rst",
     "setup.cfg",
     "testing/.gitignore",
+    "tests/__init__.py",
+    "tests/unit/__init__.py",
+    "tests/unit/gapic/__init__.py",
     "tests/unit/gapic/admin_v1alpha/__init__.py",
     "tests/unit/gapic/admin_v1alpha/test_analytics_admin_service.py"
   ]

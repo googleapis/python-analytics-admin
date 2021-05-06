@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
-
 
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
@@ -91,7 +88,6 @@ class IndustryCategory(proto.Enum):
 
 class Account(proto.Message):
     r"""A resource message representing a Google Analytics account.
-
     Attributes:
         name (str):
             Output only. Resource name of this account.
@@ -116,17 +112,12 @@ class Account(proto.Message):
             requested.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     create_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
-    display_name = proto.Field(proto.STRING, number=4)
-
-    region_code = proto.Field(proto.STRING, number=5)
-
-    deleted = proto.Field(proto.BOOL, number=6)
+    display_name = proto.Field(proto.STRING, number=4,)
+    region_code = proto.Field(proto.STRING, number=5,)
+    deleted = proto.Field(proto.BOOL, number=6,)
 
 
 class Property(proto.Message):
@@ -180,23 +171,15 @@ class Property(proto.Message):
             requested.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
-    parent = proto.Field(proto.STRING, number=2)
-
-    display_name = proto.Field(proto.STRING, number=5)
-
+    parent = proto.Field(proto.STRING, number=2,)
+    display_name = proto.Field(proto.STRING, number=5,)
     industry_category = proto.Field(proto.ENUM, number=6, enum="IndustryCategory",)
-
-    time_zone = proto.Field(proto.STRING, number=7)
-
-    currency_code = proto.Field(proto.STRING, number=8)
-
-    deleted = proto.Field(proto.BOOL, number=9)
+    time_zone = proto.Field(proto.STRING, number=7,)
+    currency_code = proto.Field(proto.STRING, number=8,)
+    deleted = proto.Field(proto.BOOL, number=9,)
 
 
 class AndroidAppDataStream(proto.Message):
@@ -228,17 +211,12 @@ class AndroidAppDataStream(proto.Message):
             UTF-16 code units.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    firebase_app_id = proto.Field(proto.STRING, number=2)
-
+    name = proto.Field(proto.STRING, number=1,)
+    firebase_app_id = proto.Field(proto.STRING, number=2,)
     create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
-    package_name = proto.Field(proto.STRING, number=5)
-
-    display_name = proto.Field(proto.STRING, number=6)
+    package_name = proto.Field(proto.STRING, number=5,)
+    display_name = proto.Field(proto.STRING, number=6,)
 
 
 class IosAppDataStream(proto.Message):
@@ -271,17 +249,12 @@ class IosAppDataStream(proto.Message):
             UTF-16 code units.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    firebase_app_id = proto.Field(proto.STRING, number=2)
-
+    name = proto.Field(proto.STRING, number=1,)
+    firebase_app_id = proto.Field(proto.STRING, number=2,)
     create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
-    bundle_id = proto.Field(proto.STRING, number=5)
-
-    display_name = proto.Field(proto.STRING, number=6)
+    bundle_id = proto.Field(proto.STRING, number=5,)
+    display_name = proto.Field(proto.STRING, number=6,)
 
 
 class WebDataStream(proto.Message):
@@ -319,19 +292,13 @@ class WebDataStream(proto.Message):
             UTF-16 code units.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    measurement_id = proto.Field(proto.STRING, number=2)
-
-    firebase_app_id = proto.Field(proto.STRING, number=3)
-
+    name = proto.Field(proto.STRING, number=1,)
+    measurement_id = proto.Field(proto.STRING, number=2,)
+    firebase_app_id = proto.Field(proto.STRING, number=3,)
     create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
-    default_uri = proto.Field(proto.STRING, number=6)
-
-    display_name = proto.Field(proto.STRING, number=7)
+    default_uri = proto.Field(proto.STRING, number=6,)
+    display_name = proto.Field(proto.STRING, number=7,)
 
 
 class UserLink(proto.Message):
@@ -359,11 +326,9 @@ class UserLink(proto.Message):
             direct_roles will be deleted.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    email_address = proto.Field(proto.STRING, number=2)
-
-    direct_roles = proto.RepeatedField(proto.STRING, number=3)
+    name = proto.Field(proto.STRING, number=1,)
+    email_address = proto.Field(proto.STRING, number=2,)
+    direct_roles = proto.RepeatedField(proto.STRING, number=3,)
 
 
 class AuditUserLink(proto.Message):
@@ -391,13 +356,10 @@ class AuditUserLink(proto.Message):
             Format: predefinedRoles/read
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    email_address = proto.Field(proto.STRING, number=2)
-
-    direct_roles = proto.RepeatedField(proto.STRING, number=3)
-
-    effective_roles = proto.RepeatedField(proto.STRING, number=4)
+    name = proto.Field(proto.STRING, number=1,)
+    email_address = proto.Field(proto.STRING, number=2,)
+    direct_roles = proto.RepeatedField(proto.STRING, number=3,)
+    effective_roles = proto.RepeatedField(proto.STRING, number=4,)
 
 
 class EnhancedMeasurementSettings(proto.Message):
@@ -457,34 +419,22 @@ class EnhancedMeasurementSettings(proto.Message):
             Max length is 1024 characters.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    stream_enabled = proto.Field(proto.BOOL, number=2)
-
-    page_views_enabled = proto.Field(proto.BOOL, number=3)
-
-    scrolls_enabled = proto.Field(proto.BOOL, number=4)
-
-    outbound_clicks_enabled = proto.Field(proto.BOOL, number=5)
-
-    site_search_enabled = proto.Field(proto.BOOL, number=7)
-
-    video_engagement_enabled = proto.Field(proto.BOOL, number=9)
-
-    file_downloads_enabled = proto.Field(proto.BOOL, number=10)
-
-    page_loads_enabled = proto.Field(proto.BOOL, number=12)
-
-    page_changes_enabled = proto.Field(proto.BOOL, number=13)
-
-    search_query_parameter = proto.Field(proto.STRING, number=16)
-
-    uri_query_parameter = proto.Field(proto.STRING, number=17)
+    name = proto.Field(proto.STRING, number=1,)
+    stream_enabled = proto.Field(proto.BOOL, number=2,)
+    page_views_enabled = proto.Field(proto.BOOL, number=3,)
+    scrolls_enabled = proto.Field(proto.BOOL, number=4,)
+    outbound_clicks_enabled = proto.Field(proto.BOOL, number=5,)
+    site_search_enabled = proto.Field(proto.BOOL, number=7,)
+    video_engagement_enabled = proto.Field(proto.BOOL, number=9,)
+    file_downloads_enabled = proto.Field(proto.BOOL, number=10,)
+    page_loads_enabled = proto.Field(proto.BOOL, number=12,)
+    page_changes_enabled = proto.Field(proto.BOOL, number=13,)
+    search_query_parameter = proto.Field(proto.STRING, number=16,)
+    uri_query_parameter = proto.Field(proto.STRING, number=17,)
 
 
 class FirebaseLink(proto.Message):
     r"""A link between an GA4 property and a Firebase project.
-
     Attributes:
         name (str):
             Output only. Example format:
@@ -506,12 +456,9 @@ class FirebaseLink(proto.Message):
             project.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    project = proto.Field(proto.STRING, number=2)
-
+    name = proto.Field(proto.STRING, number=1,)
+    project = proto.Field(proto.STRING, number=2,)
     create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
     maximum_user_access = proto.Field(proto.ENUM, number=4, enum="MaximumUserAccess",)
 
 
@@ -530,14 +477,12 @@ class GlobalSiteTag(proto.Message):
             every webpage to measure.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    snippet = proto.Field(proto.STRING, number=2)
+    name = proto.Field(proto.STRING, number=1,)
+    snippet = proto.Field(proto.STRING, number=2,)
 
 
 class GoogleAdsLink(proto.Message):
     r"""A link between an GA4 property and a Google Ads account.
-
     Attributes:
         name (str):
             Output only. Format:
@@ -570,20 +515,14 @@ class GoogleAdsLink(proto.Message):
             updated.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    customer_id = proto.Field(proto.STRING, number=3)
-
-    can_manage_clients = proto.Field(proto.BOOL, number=4)
-
+    name = proto.Field(proto.STRING, number=1,)
+    customer_id = proto.Field(proto.STRING, number=3,)
+    can_manage_clients = proto.Field(proto.BOOL, number=4,)
     ads_personalization_enabled = proto.Field(
         proto.MESSAGE, number=5, message=wrappers.BoolValue,
     )
-
-    email_address = proto.Field(proto.STRING, number=6)
-
+    email_address = proto.Field(proto.STRING, number=6,)
     create_time = proto.Field(proto.MESSAGE, number=7, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=8, message=timestamp.Timestamp,)
 
 
@@ -617,17 +556,12 @@ class DataSharingSettings(proto.Message):
             in aggregate form with others.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    sharing_with_google_support_enabled = proto.Field(proto.BOOL, number=2)
-
-    sharing_with_google_assigned_sales_enabled = proto.Field(proto.BOOL, number=3)
-
-    sharing_with_google_any_sales_enabled = proto.Field(proto.BOOL, number=4)
-
-    sharing_with_google_products_enabled = proto.Field(proto.BOOL, number=5)
-
-    sharing_with_others_enabled = proto.Field(proto.BOOL, number=6)
+    name = proto.Field(proto.STRING, number=1,)
+    sharing_with_google_support_enabled = proto.Field(proto.BOOL, number=2,)
+    sharing_with_google_assigned_sales_enabled = proto.Field(proto.BOOL, number=3,)
+    sharing_with_google_any_sales_enabled = proto.Field(proto.BOOL, number=4,)
+    sharing_with_google_products_enabled = proto.Field(proto.BOOL, number=5,)
+    sharing_with_others_enabled = proto.Field(proto.BOOL, number=6,)
 
 
 class AccountSummary(proto.Message):
@@ -650,12 +584,9 @@ class AccountSummary(proto.Message):
             account.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    account = proto.Field(proto.STRING, number=2)
-
-    display_name = proto.Field(proto.STRING, number=3)
-
+    name = proto.Field(proto.STRING, number=1,)
+    account = proto.Field(proto.STRING, number=2,)
+    display_name = proto.Field(proto.STRING, number=3,)
     property_summaries = proto.RepeatedField(
         proto.MESSAGE, number=4, message="PropertySummary",
     )
@@ -663,7 +594,6 @@ class AccountSummary(proto.Message):
 
 class PropertySummary(proto.Message):
     r"""A virtual resource representing metadata for an GA4 property.
-
     Attributes:
         property (str):
             Resource name of property referred to by this property
@@ -674,9 +604,8 @@ class PropertySummary(proto.Message):
             this account summary.
     """
 
-    property = proto.Field(proto.STRING, number=1)
-
-    display_name = proto.Field(proto.STRING, number=2)
+    property = proto.Field(proto.STRING, number=1,)
+    display_name = proto.Field(proto.STRING, number=2,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
