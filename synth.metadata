@@ -91,6 +91,7 @@
     "docs/admin_v1alpha/types.rst",
     "docs/conf.py",
     "docs/multiprocessing.rst",
+    "google-analytics-admin-v1alpha-py.tar.gz",
     "google/analytics/admin/__init__.py",
     "google/analytics/admin/py.typed",
     "google/analytics/admin_v1alpha/__init__.py",
