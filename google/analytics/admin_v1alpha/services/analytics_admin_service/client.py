@@ -1096,7 +1096,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    ) -> resources.Property:
         r"""Marks target Property as soft-deleted (ie: "trashed")
         and returns it.
         This API does not have a method to restore soft-deleted
@@ -1128,6 +1128,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
+
+        Returns:
+            google.analytics.admin_v1alpha.types.Property:
+                A resource message representing a
+                Google Analytics GA4 property.
+
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
@@ -1161,9 +1167,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         )
 
         # Send the request.
-        rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Done; return the response.
+        return response
 
     def update_property(
         self,
@@ -2541,100 +2548,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Done; return the response.
         return response
 
-    def create_ios_app_data_stream(
-        self,
-        request: analytics_admin.CreateIosAppDataStreamRequest = None,
-        *,
-        parent: str = None,
-        ios_app_data_stream: resources.IosAppDataStream = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> resources.IosAppDataStream:
-        r"""Creates an iOS app stream with the specified location
-        and attributes.
-        Note that an iOS app stream must be linked to a Firebase
-        app to receive traffic.
-
-        To create a working app stream, make sure your property
-        is linked to a Firebase project. Then, use the Firebase
-        API to create a Firebase app, which will also create an
-        appropriate data stream in Analytics (may take up to 24
-        hours).
-
-        Args:
-            request (google.analytics.admin_v1alpha.types.CreateIosAppDataStreamRequest):
-                The request object.
-                Request message for
-                CreateIosAppDataStream RPC.
-            parent (str):
-                Required. The parent resource where
-                this ios app data stream will be
-                created. Format: properties/123
-
-                This corresponds to the ``parent`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
-                Required. The iOS app data stream to
-                create.
-
-                This corresponds to the ``ios_app_data_stream`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, str]]): Strings which should be
-                sent along with the request as metadata.
-
-        Returns:
-            google.analytics.admin_v1alpha.types.IosAppDataStream:
-                A resource message representing a
-                Google Analytics IOS app stream.
-
-        """
-        # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
-        # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([parent, ios_app_data_stream])
-        if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
-
-        # Minor optimization to avoid making a copy if the user passes
-        # in a analytics_admin.CreateIosAppDataStreamRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, analytics_admin.CreateIosAppDataStreamRequest):
-            request = analytics_admin.CreateIosAppDataStreamRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if parent is not None:
-                request.parent = parent
-            if ios_app_data_stream is not None:
-                request.ios_app_data_stream = ios_app_data_stream
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.create_ios_app_data_stream
-        ]
-
-        # Certain fields should be provided within the metadata header;
-        # add these here.
-        metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
-        )
-
-        # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
-
-        # Done; return the response.
-        return response
-
     def list_ios_app_data_streams(
         self,
         request: analytics_admin.ListIosAppDataStreamsRequest = None,
@@ -2956,100 +2869,6 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                     ),
                 )
             ),
-        )
-
-        # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
-
-        # Done; return the response.
-        return response
-
-    def create_android_app_data_stream(
-        self,
-        request: analytics_admin.CreateAndroidAppDataStreamRequest = None,
-        *,
-        parent: str = None,
-        android_app_data_stream: resources.AndroidAppDataStream = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> resources.AndroidAppDataStream:
-        r"""Creates an Android app stream with the specified
-        location and attributes.
-        Note that an Android app stream must be linked to a
-        Firebase app to receive traffic.
-
-        To create a working app stream, make sure your property
-        is linked to a Firebase project. Then, use the Firebase
-        API to create a Firebase app, which will also create an
-        appropriate data stream in Analytics (may take up to 24
-        hours).
-
-        Args:
-            request (google.analytics.admin_v1alpha.types.CreateAndroidAppDataStreamRequest):
-                The request object.
-                Request message for
-                CreateAndroidAppDataStream RPC.
-            parent (str):
-                Required. The parent resource where
-                this android app data stream will be
-                created. Format: properties/123
-
-                This corresponds to the ``parent`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
-                Required. The android app stream to
-                create.
-
-                This corresponds to the ``android_app_data_stream`` field
-                on the ``request`` instance; if ``request`` is provided, this
-                should not be set.
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, str]]): Strings which should be
-                sent along with the request as metadata.
-
-        Returns:
-            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
-                A resource message representing a
-                Google Analytics Android app stream.
-
-        """
-        # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
-        # gotten any keyword arguments that map to the request.
-        has_flattened_params = any([parent, android_app_data_stream])
-        if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
-
-        # Minor optimization to avoid making a copy if the user passes
-        # in a analytics_admin.CreateAndroidAppDataStreamRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, analytics_admin.CreateAndroidAppDataStreamRequest):
-            request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if parent is not None:
-                request.parent = parent
-            if android_app_data_stream is not None:
-                request.android_app_data_stream = android_app_data_stream
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.create_android_app_data_stream
-        ]
-
-        # Certain fields should be provided within the metadata header;
-        # add these here.
-        metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
@@ -4113,6 +3932,69 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Done; return the response.
+        return response
+
+    def search_change_history_events(
+        self,
+        request: analytics_admin.SearchChangeHistoryEventsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.SearchChangeHistoryEventsPager:
+        r"""Searches through all changes to an account or its
+        children given the specified set of filters.
+
+        Args:
+            request (google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsRequest):
+                The request object.
+                Request message for
+                SearchChangeHistoryEvents RPC.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.SearchChangeHistoryEventsPager:
+                Response message for SearchAccounts
+                RPC.
+                Iterating over this object will yield
+                results and resolve additional pages
+                automatically.
+
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.SearchChangeHistoryEventsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.SearchChangeHistoryEventsRequest):
+            request = analytics_admin.SearchChangeHistoryEventsRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[
+            self._transport.search_change_history_events
+        ]
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("account", request.account),)),
+        )
+
+        # Send the request.
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__iter__` convenience method.
+        response = pagers.SearchChangeHistoryEventsPager(
+            method=rpc, request=request, response=response, metadata=metadata,
+        )
 
         # Done; return the response.
         return response

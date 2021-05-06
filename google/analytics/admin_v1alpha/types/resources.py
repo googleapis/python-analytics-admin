@@ -24,6 +24,9 @@ __protobuf__ = proto.module(
     manifest={
         "MaximumUserAccess",
         "IndustryCategory",
+        "ActorType",
+        "ActionType",
+        "ChangeHistoryResourceType",
         "Account",
         "Property",
         "AndroidAppDataStream",
@@ -38,6 +41,8 @@ __protobuf__ = proto.module(
         "DataSharingSettings",
         "AccountSummary",
         "PropertySummary",
+        "ChangeHistoryEvent",
+        "ChangeHistoryChange",
     },
 )
 
@@ -84,6 +89,38 @@ class IndustryCategory(proto.Enum):
     SPORTS = 24
     JOBS_AND_EDUCATION = 25
     SHOPPING = 26
+
+
+class ActorType(proto.Enum):
+    r"""Different kinds of actors that can make changes to Google
+    Analytics resources.
+    """
+    ACTOR_TYPE_UNSPECIFIED = 0
+    USER = 1
+    SYSTEM = 2
+    SUPPORT = 3
+
+
+class ActionType(proto.Enum):
+    r"""Types of actions that may change a resource."""
+    ACTION_TYPE_UNSPECIFIED = 0
+    CREATED = 1
+    UPDATED = 2
+    DELETED = 3
+
+
+class ChangeHistoryResourceType(proto.Enum):
+    r"""Types of resources whose changes may be returned from change
+    history.
+    """
+    CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED = 0
+    ACCOUNT = 1
+    PROPERTY = 2
+    WEB_DATA_STREAM = 3
+    ANDROID_APP_DATA_STREAM = 4
+    IOS_APP_DATA_STREAM = 5
+    FIREBASE_LINK = 6
+    GOOGLE_ADS_LINK = 7
 
 
 class Account(proto.Message):
@@ -149,10 +186,10 @@ class Property(proto.Message):
             Industry associated with this property Example: AUTOMOTIVE,
             FOOD_AND_DRINK
         time_zone (str):
-            Reporting Time Zone, used as the day boundary for reports,
-            regardless of where the data originates. If the time zone
-            honors DST, Analytics will automatically adjust for the
-            changes.
+            Required. Reporting Time Zone, used as the day boundary for
+            reports, regardless of where the data originates. If the
+            time zone honors DST, Analytics will automatically adjust
+            for the changes.
 
             NOTE: Changing the time zone only affects data going
             forward, and is not applied retroactively.
@@ -164,11 +201,15 @@ class Property(proto.Message):
 
             Format: https://en.wikipedia.org/wiki/ISO_4217 Examples:
             "USD", "EUR", "JPY".
-        deleted (bool):
-            Output only. Indicates whether this Property
-            is soft-deleted or not. Deleted properties are
-            excluded from List results unless specifically
-            requested.
+        delete_time (google.protobuf.timestamp_pb2.Timestamp):
+            Output only. If set, the time at which this
+            property was trashed. If not set, then this
+            property is not currently in the trash can.
+        expire_time (google.protobuf.timestamp_pb2.Timestamp):
+            Output only. If set, the time at which this
+            trashed property will be permanently deleted. If
+            not set, then this property is not currently in
+            the trash can and is not slated to be deleted.
     """
 
     name = proto.Field(proto.STRING, number=1,)
@@ -179,7 +220,8 @@ class Property(proto.Message):
     industry_category = proto.Field(proto.ENUM, number=6, enum="IndustryCategory",)
     time_zone = proto.Field(proto.STRING, number=7,)
     currency_code = proto.Field(proto.STRING, number=8,)
-    deleted = proto.Field(proto.BOOL, number=9,)
+    delete_time = proto.Field(proto.MESSAGE, number=11, message=timestamp.Timestamp,)
+    expire_time = proto.Field(proto.MESSAGE, number=12, message=timestamp.Timestamp,)
 
 
 class AndroidAppDataStream(proto.Message):
@@ -606,6 +648,128 @@ class PropertySummary(proto.Message):
 
     property = proto.Field(proto.STRING, number=1,)
     display_name = proto.Field(proto.STRING, number=2,)
+
+
+class ChangeHistoryEvent(proto.Message):
+    r"""A set of changes within a Google Analytics account or its
+    child properties that resulted from the same cause. Common
+    causes would be updates made in the Google Analytics UI, changes
+    from customer support, or automatic Google Analytics system
+    changes.
+
+    Attributes:
+        id (str):
+            ID of this change history event. This ID is
+            unique across Google Analytics.
+        change_time (google.protobuf.timestamp_pb2.Timestamp):
+            Time when change was made.
+        actor_type (google.analytics.admin_v1alpha.types.ActorType):
+            The type of actor that made this change.
+        user_actor_email (str):
+            Email address of the Google account that made
+            the change. This will be a valid email address
+            if the actor field is set to USER, and empty
+            otherwise. Google accounts that have been
+            deleted will cause an error.
+        changes_filtered (bool):
+            If true, then the list of changes returned
+            was filtered, and does not represent all changes
+            that occurred in this event.
+        changes (Sequence[google.analytics.admin_v1alpha.types.ChangeHistoryChange]):
+            A list of changes made in this change history
+            event that fit the filters specified in
+            SearchChangeHistoryEventsRequest.
+    """
+
+    id = proto.Field(proto.STRING, number=1,)
+    change_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
+    actor_type = proto.Field(proto.ENUM, number=3, enum="ActorType",)
+    user_actor_email = proto.Field(proto.STRING, number=4,)
+    changes_filtered = proto.Field(proto.BOOL, number=5,)
+    changes = proto.RepeatedField(
+        proto.MESSAGE, number=6, message="ChangeHistoryChange",
+    )
+
+
+class ChangeHistoryChange(proto.Message):
+    r"""A description of a change to a single Google Analytics
+    resource.
+
+    Attributes:
+        resource (str):
+            Resource name of the resource whose changes
+            are described by this entry.
+        action (google.analytics.admin_v1alpha.types.ActionType):
+            The type of action that changed this
+            resource.
+        resource_before_change (google.analytics.admin_v1alpha.types.ChangeHistoryChange.ChangeHistoryResource):
+            Resource contents from before the change was
+            made. If this resource was created in this
+            change, this field will be missing.
+        resource_after_change (google.analytics.admin_v1alpha.types.ChangeHistoryChange.ChangeHistoryResource):
+            Resource contents from after the change was
+            made. If this resource was deleted in this
+            change, this field will be missing.
+    """
+
+    class ChangeHistoryResource(proto.Message):
+        r"""A snapshot of a resource as before or after the result of a
+        change in change history.
+
+        Attributes:
+            account (google.analytics.admin_v1alpha.types.Account):
+                A snapshot of an Account resource in change
+                history.
+            property (google.analytics.admin_v1alpha.types.Property):
+                A snapshot of a Property resource in change
+                history.
+            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
+                A snapshot of a WebDataStream resource in
+                change history.
+            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
+                A snapshot of an AndroidAppDataStream
+                resource in change history.
+            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
+                A snapshot of an IosAppDataStream resource in
+                change history.
+            firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
+                A snapshot of a FirebaseLink resource in
+                change history.
+            google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
+                A snapshot of a GoogleAdsLink resource in
+                change history.
+        """
+
+        account = proto.Field(
+            proto.MESSAGE, number=1, oneof="resource", message="Account",
+        )
+        property = proto.Field(
+            proto.MESSAGE, number=2, oneof="resource", message="Property",
+        )
+        web_data_stream = proto.Field(
+            proto.MESSAGE, number=3, oneof="resource", message="WebDataStream",
+        )
+        android_app_data_stream = proto.Field(
+            proto.MESSAGE, number=4, oneof="resource", message="AndroidAppDataStream",
+        )
+        ios_app_data_stream = proto.Field(
+            proto.MESSAGE, number=5, oneof="resource", message="IosAppDataStream",
+        )
+        firebase_link = proto.Field(
+            proto.MESSAGE, number=6, oneof="resource", message="FirebaseLink",
+        )
+        google_ads_link = proto.Field(
+            proto.MESSAGE, number=7, oneof="resource", message="GoogleAdsLink",
+        )
+
+    resource = proto.Field(proto.STRING, number=1,)
+    action = proto.Field(proto.ENUM, number=2, enum="ActionType",)
+    resource_before_change = proto.Field(
+        proto.MESSAGE, number=3, message=ChangeHistoryResource,
+    )
+    resource_after_change = proto.Field(
+        proto.MESSAGE, number=4, message=ChangeHistoryResource,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -284,11 +284,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 default_timeout=60.0,
                 client_info=client_info,
             ),
-            self.create_ios_app_data_stream: gapic_v1.method.wrap_method(
-                self.create_ios_app_data_stream,
-                default_timeout=60.0,
-                client_info=client_info,
-            ),
             self.list_ios_app_data_streams: gapic_v1.method.wrap_method(
                 self.list_ios_app_data_streams,
                 default_timeout=60.0,
@@ -306,11 +301,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             ),
             self.update_android_app_data_stream: gapic_v1.method.wrap_method(
                 self.update_android_app_data_stream,
-                default_timeout=60.0,
-                client_info=client_info,
-            ),
-            self.create_android_app_data_stream: gapic_v1.method.wrap_method(
-                self.create_android_app_data_stream,
                 default_timeout=60.0,
                 client_info=client_info,
             ),
@@ -372,6 +362,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             ),
             self.get_data_sharing_settings: gapic_v1.method.wrap_method(
                 self.get_data_sharing_settings,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.search_change_history_events: gapic_v1.method.wrap_method(
+                self.search_change_history_events,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -475,7 +470,7 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         self,
     ) -> Callable[
         [analytics_admin.DeletePropertyRequest],
-        Union[empty.Empty, Awaitable[empty.Empty]],
+        Union[resources.Property, Awaitable[resources.Property]],
     ]:
         raise NotImplementedError()
 
@@ -669,15 +664,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def create_ios_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.CreateIosAppDataStreamRequest],
-        Union[resources.IosAppDataStream, Awaitable[resources.IosAppDataStream]],
-    ]:
-        raise NotImplementedError()
-
-    @property
     def list_ios_app_data_streams(
         self,
     ) -> Callable[
@@ -714,17 +700,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         self,
     ) -> Callable[
         [analytics_admin.UpdateAndroidAppDataStreamRequest],
-        Union[
-            resources.AndroidAppDataStream, Awaitable[resources.AndroidAppDataStream]
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def create_android_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.CreateAndroidAppDataStreamRequest],
         Union[
             resources.AndroidAppDataStream, Awaitable[resources.AndroidAppDataStream]
         ],
@@ -860,6 +835,18 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     ) -> Callable[
         [analytics_admin.GetDataSharingSettingsRequest],
         Union[resources.DataSharingSettings, Awaitable[resources.DataSharingSettings]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def search_change_history_events(
+        self,
+    ) -> Callable[
+        [analytics_admin.SearchChangeHistoryEventsRequest],
+        Union[
+            analytics_admin.SearchChangeHistoryEventsResponse,
+            Awaitable[analytics_admin.SearchChangeHistoryEventsResponse],
+        ],
     ]:
         raise NotImplementedError()
 

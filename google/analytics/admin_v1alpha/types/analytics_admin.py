@@ -17,6 +17,7 @@ import proto  # type: ignore
 
 from google.analytics.admin_v1alpha.types import resources
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
+from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -59,13 +60,11 @@ __protobuf__ = proto.module(
         "GetIosAppDataStreamRequest",
         "DeleteIosAppDataStreamRequest",
         "UpdateIosAppDataStreamRequest",
-        "CreateIosAppDataStreamRequest",
         "ListIosAppDataStreamsRequest",
         "ListIosAppDataStreamsResponse",
         "GetAndroidAppDataStreamRequest",
         "DeleteAndroidAppDataStreamRequest",
         "UpdateAndroidAppDataStreamRequest",
-        "CreateAndroidAppDataStreamRequest",
         "ListAndroidAppDataStreamsRequest",
         "ListAndroidAppDataStreamsResponse",
         "GetEnhancedMeasurementSettingsRequest",
@@ -84,6 +83,8 @@ __protobuf__ = proto.module(
         "GetDataSharingSettingsRequest",
         "ListAccountSummariesRequest",
         "ListAccountSummariesResponse",
+        "SearchChangeHistoryEventsRequest",
+        "SearchChangeHistoryEventsResponse",
     },
 )
 
@@ -746,23 +747,6 @@ class UpdateIosAppDataStreamRequest(proto.Message):
     update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
 
 
-class CreateIosAppDataStreamRequest(proto.Message):
-    r"""Request message for CreateIosAppDataStream RPC.
-    Attributes:
-        ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
-            Required. The iOS app data stream to create.
-        parent (str):
-            Required. The parent resource where this ios
-            app data stream will be created. Format:
-            properties/123
-    """
-
-    ios_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
-    )
-    parent = proto.Field(proto.STRING, number=2,)
-
-
 class ListIosAppDataStreamsRequest(proto.Message):
     r"""Request message for ListIosAppDataStreams RPC.
     Attributes:
@@ -854,23 +838,6 @@ class UpdateAndroidAppDataStreamRequest(proto.Message):
         proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
     )
     update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
-
-
-class CreateAndroidAppDataStreamRequest(proto.Message):
-    r"""Request message for CreateAndroidAppDataStream RPC.
-    Attributes:
-        android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
-            Required. The android app stream to create.
-        parent (str):
-            Required. The parent resource where this
-            android app data stream will be created. Format:
-            properties/123
-    """
-
-    android_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
-    )
-    parent = proto.Field(proto.STRING, number=2,)
 
 
 class ListAndroidAppDataStreamsRequest(proto.Message):
@@ -1202,6 +1169,85 @@ class ListAccountSummariesResponse(proto.Message):
 
     account_summaries = proto.RepeatedField(
         proto.MESSAGE, number=1, message=resources.AccountSummary,
+    )
+    next_page_token = proto.Field(proto.STRING, number=2,)
+
+
+class SearchChangeHistoryEventsRequest(proto.Message):
+    r"""Request message for SearchChangeHistoryEvents RPC.
+    Attributes:
+        account (str):
+            Required. The account resource for which to
+            return change history resources.
+        property (str):
+            Optional. Resource name for a child property.
+            If set, only return changes made to this
+            property or its child resources.
+        resource_type (Sequence[google.analytics.admin_v1alpha.types.ChangeHistoryResourceType]):
+            Optional. If set, only return changes if they
+            are for a resource that matches at least one of
+            these types.
+        action (Sequence[google.analytics.admin_v1alpha.types.ActionType]):
+            Optional. If set, only return changes that
+            match one or more of these types of actions.
+        actor_email (Sequence[str]):
+            Optional. If set, only return changes if they
+            are made by a user in this list.
+        earliest_change_time (google.protobuf.timestamp_pb2.Timestamp):
+            Optional. If set, only return changes made
+            after this time (inclusive).
+        latest_change_time (google.protobuf.timestamp_pb2.Timestamp):
+            Optional. If set, only return changes made
+            before this time (inclusive).
+        page_size (int):
+            Optional. The maximum number of
+            ChangeHistoryEvent items to return. The service
+            may return fewer than this value, even if there
+            are additional pages. If unspecified, at most 50
+            items will be returned. The maximum value is 200
+            (higher values will be coerced to the maximum).
+        page_token (str):
+            Optional. A page token, received from a previous
+            ``SearchChangeHistoryEvents`` call. Provide this to retrieve
+            the subsequent page. When paginating, all other parameters
+            provided to ``SearchChangeHistoryEvents`` must match the
+            call that provided the page token.
+    """
+
+    account = proto.Field(proto.STRING, number=1,)
+    property = proto.Field(proto.STRING, number=2,)
+    resource_type = proto.RepeatedField(
+        proto.ENUM, number=3, enum=resources.ChangeHistoryResourceType,
+    )
+    action = proto.RepeatedField(proto.ENUM, number=4, enum=resources.ActionType,)
+    actor_email = proto.RepeatedField(proto.STRING, number=5,)
+    earliest_change_time = proto.Field(
+        proto.MESSAGE, number=6, message=timestamp.Timestamp,
+    )
+    latest_change_time = proto.Field(
+        proto.MESSAGE, number=7, message=timestamp.Timestamp,
+    )
+    page_size = proto.Field(proto.INT32, number=8,)
+    page_token = proto.Field(proto.STRING, number=9,)
+
+
+class SearchChangeHistoryEventsResponse(proto.Message):
+    r"""Response message for SearchAccounts RPC.
+    Attributes:
+        change_history_events (Sequence[google.analytics.admin_v1alpha.types.ChangeHistoryEvent]):
+            Results that were accessible to the caller.
+        next_page_token (str):
+            A token, which can be sent as ``page_token`` to retrieve the
+            next page. If this field is omitted, there are no subsequent
+            pages.
+    """
+
+    @property
+    def raw_page(self):
+        return self
+
+    change_history_events = proto.RepeatedField(
+        proto.MESSAGE, number=1, message=resources.ChangeHistoryEvent,
     )
     next_page_token = proto.Field(proto.STRING, number=2,)
 

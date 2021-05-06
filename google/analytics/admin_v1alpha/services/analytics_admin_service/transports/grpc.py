@@ -510,7 +510,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
     @property
     def delete_property(
         self,
-    ) -> Callable[[analytics_admin.DeletePropertyRequest], empty.Empty]:
+    ) -> Callable[[analytics_admin.DeletePropertyRequest], resources.Property]:
         r"""Return a callable for the
         delete property
           method over gRPC.
@@ -530,7 +530,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
 
         Returns:
             Callable[[~.DeletePropertyRequest],
-                    ~.Empty]:
+                    ~.Property]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -542,7 +542,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
             self._stubs["delete_property"] = self.grpc_channel.unary_unary(
                 "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty",
                 request_serializer=analytics_admin.DeletePropertyRequest.serialize,
-                response_deserializer=empty.Empty.FromString,
+                response_deserializer=resources.Property.deserialize,
             )
         return self._stubs["delete_property"]
 
@@ -1129,45 +1129,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         return self._stubs["update_ios_app_data_stream"]
 
     @property
-    def create_ios_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.CreateIosAppDataStreamRequest], resources.IosAppDataStream
-    ]:
-        r"""Return a callable for the
-        create ios app data stream
-          method over gRPC.
-
-        Creates an iOS app stream with the specified location
-        and attributes.
-        Note that an iOS app stream must be linked to a Firebase
-        app to receive traffic.
-
-        To create a working app stream, make sure your property
-        is linked to a Firebase project. Then, use the Firebase
-        API to create a Firebase app, which will also create an
-        appropriate data stream in Analytics (may take up to 24
-        hours).
-
-        Returns:
-            Callable[[~.CreateIosAppDataStreamRequest],
-                    ~.IosAppDataStream]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "create_ios_app_data_stream" not in self._stubs:
-            self._stubs["create_ios_app_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream",
-                request_serializer=analytics_admin.CreateIosAppDataStreamRequest.serialize,
-                response_deserializer=resources.IosAppDataStream.deserialize,
-            )
-        return self._stubs["create_ios_app_data_stream"]
-
-    @property
     def list_ios_app_data_streams(
         self,
     ) -> Callable[
@@ -1294,48 +1255,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
                 response_deserializer=resources.AndroidAppDataStream.deserialize,
             )
         return self._stubs["update_android_app_data_stream"]
-
-    @property
-    def create_android_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.CreateAndroidAppDataStreamRequest],
-        resources.AndroidAppDataStream,
-    ]:
-        r"""Return a callable for the
-        create android app data stream
-          method over gRPC.
-
-        Creates an Android app stream with the specified
-        location and attributes.
-        Note that an Android app stream must be linked to a
-        Firebase app to receive traffic.
-
-        To create a working app stream, make sure your property
-        is linked to a Firebase project. Then, use the Firebase
-        API to create a Firebase app, which will also create an
-        appropriate data stream in Analytics (may take up to 24
-        hours).
-
-        Returns:
-            Callable[[~.CreateAndroidAppDataStreamRequest],
-                    ~.AndroidAppDataStream]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "create_android_app_data_stream" not in self._stubs:
-            self._stubs[
-                "create_android_app_data_stream"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream",
-                request_serializer=analytics_admin.CreateAndroidAppDataStreamRequest.serialize,
-                response_deserializer=resources.AndroidAppDataStream.deserialize,
-            )
-        return self._stubs["create_android_app_data_stream"]
 
     @property
     def list_android_app_data_streams(
@@ -1741,6 +1660,38 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
                 response_deserializer=resources.DataSharingSettings.deserialize,
             )
         return self._stubs["get_data_sharing_settings"]
+
+    @property
+    def search_change_history_events(
+        self,
+    ) -> Callable[
+        [analytics_admin.SearchChangeHistoryEventsRequest],
+        analytics_admin.SearchChangeHistoryEventsResponse,
+    ]:
+        r"""Return a callable for the
+        search change history events
+          method over gRPC.
+
+        Searches through all changes to an account or its
+        children given the specified set of filters.
+
+        Returns:
+            Callable[[~.SearchChangeHistoryEventsRequest],
+                    ~.SearchChangeHistoryEventsResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "search_change_history_events" not in self._stubs:
+            self._stubs["search_change_history_events"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/SearchChangeHistoryEvents",
+                request_serializer=analytics_admin.SearchChangeHistoryEventsRequest.serialize,
+                response_deserializer=analytics_admin.SearchChangeHistoryEventsResponse.deserialize,
+            )
+        return self._stubs["search_change_history_events"]
 
 
 __all__ = ("AnalyticsAdminServiceGrpcTransport",)

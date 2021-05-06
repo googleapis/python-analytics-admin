@@ -35,11 +35,6 @@
                 "batch_update_user_links"
               ]
             },
-            "CreateAndroidAppDataStream": {
-              "methods": [
-                "create_android_app_data_stream"
-              ]
-            },
             "CreateFirebaseLink": {
               "methods": [
                 "create_firebase_link"
@@ -48,11 +43,6 @@
             "CreateGoogleAdsLink": {
               "methods": [
                 "create_google_ads_link"
-              ]
-            },
-            "CreateIosAppDataStream": {
-              "methods": [
-                "create_ios_app_data_stream"
               ]
             },
             "CreateProperty": {
@@ -203,6 +193,11 @@
             "ProvisionAccountTicket": {
               "methods": [
                 "provision_account_ticket"
+              ]
+            },
+            "SearchChangeHistoryEvents": {
+              "methods": [
+                "search_change_history_events"
               ]
             },
             "UpdateAccount": {
@@ -280,11 +275,6 @@
                 "batch_update_user_links"
               ]
             },
-            "CreateAndroidAppDataStream": {
-              "methods": [
-                "create_android_app_data_stream"
-              ]
-            },
             "CreateFirebaseLink": {
               "methods": [
                 "create_firebase_link"
@@ -293,11 +283,6 @@
             "CreateGoogleAdsLink": {
               "methods": [
                 "create_google_ads_link"
-              ]
-            },
-            "CreateIosAppDataStream": {
-              "methods": [
-                "create_ios_app_data_stream"
               ]
             },
             "CreateProperty": {
@@ -448,6 +433,11 @@
             "ProvisionAccountTicket": {
               "methods": [
                 "provision_account_ticket"
+              ]
+            },
+            "SearchChangeHistoryEvents": {
+              "methods": [
+                "search_change_history_events"
               ]
             },
             "UpdateAccount": {

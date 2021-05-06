@@ -1314,3 +1314,135 @@ class ListGoogleAdsLinksAsyncPager:
 
     def __repr__(self) -> str:
         return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+
+
+class SearchChangeHistoryEventsPager:
+    """A pager for iterating through ``search_change_history_events`` requests.
+
+    This class thinly wraps an initial
+    :class:`google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse` object, and
+    provides an ``__iter__`` method to iterate through its
+    ``change_history_events`` field.
+
+    If there are more pages, the ``__iter__`` method will make additional
+    ``SearchChangeHistoryEvents`` requests and continue to iterate
+    through the ``change_history_events`` field on the
+    corresponding responses.
+
+    All the usual :class:`google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse`
+    attributes are available on the pager. If multiple requests are made, only
+    the most recent response is retained, and thus used for attribute lookup.
+    """
+
+    def __init__(
+        self,
+        method: Callable[..., analytics_admin.SearchChangeHistoryEventsResponse],
+        request: analytics_admin.SearchChangeHistoryEventsRequest,
+        response: analytics_admin.SearchChangeHistoryEventsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
+        """Instantiate the pager.
+
+        Args:
+            method (Callable): The method that was originally called, and
+                which instantiated this pager.
+            request (google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsRequest):
+                The initial request object.
+            response (google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse):
+                The initial response object.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+        """
+        self._method = method
+        self._request = analytics_admin.SearchChangeHistoryEventsRequest(request)
+        self._response = response
+        self._metadata = metadata
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._response, name)
+
+    @property
+    def pages(self) -> Iterable[analytics_admin.SearchChangeHistoryEventsResponse]:
+        yield self._response
+        while self._response.next_page_token:
+            self._request.page_token = self._response.next_page_token
+            self._response = self._method(self._request, metadata=self._metadata)
+            yield self._response
+
+    def __iter__(self) -> Iterable[resources.ChangeHistoryEvent]:
+        for page in self.pages:
+            yield from page.change_history_events
+
+    def __repr__(self) -> str:
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+
+
+class SearchChangeHistoryEventsAsyncPager:
+    """A pager for iterating through ``search_change_history_events`` requests.
+
+    This class thinly wraps an initial
+    :class:`google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse` object, and
+    provides an ``__aiter__`` method to iterate through its
+    ``change_history_events`` field.
+
+    If there are more pages, the ``__aiter__`` method will make additional
+    ``SearchChangeHistoryEvents`` requests and continue to iterate
+    through the ``change_history_events`` field on the
+    corresponding responses.
+
+    All the usual :class:`google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse`
+    attributes are available on the pager. If multiple requests are made, only
+    the most recent response is retained, and thus used for attribute lookup.
+    """
+
+    def __init__(
+        self,
+        method: Callable[
+            ..., Awaitable[analytics_admin.SearchChangeHistoryEventsResponse]
+        ],
+        request: analytics_admin.SearchChangeHistoryEventsRequest,
+        response: analytics_admin.SearchChangeHistoryEventsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
+        """Instantiate the pager.
+
+        Args:
+            method (Callable): The method that was originally called, and
+                which instantiated this pager.
+            request (google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsRequest):
+                The initial request object.
+            response (google.analytics.admin_v1alpha.types.SearchChangeHistoryEventsResponse):
+                The initial response object.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+        """
+        self._method = method
+        self._request = analytics_admin.SearchChangeHistoryEventsRequest(request)
+        self._response = response
+        self._metadata = metadata
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._response, name)
+
+    @property
+    async def pages(
+        self,
+    ) -> AsyncIterable[analytics_admin.SearchChangeHistoryEventsResponse]:
+        yield self._response
+        while self._response.next_page_token:
+            self._request.page_token = self._response.next_page_token
+            self._response = await self._method(self._request, metadata=self._metadata)
+            yield self._response
+
+    def __aiter__(self) -> AsyncIterable[resources.ChangeHistoryEvent]:
+        async def async_generator():
+            async for page in self.pages:
+                for response in page.change_history_events:
+                    yield response
+
+        return async_generator()
+
+    def __repr__(self) -> str:
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)

@@ -25,10 +25,8 @@ from .types.analytics_admin import BatchGetUserLinksRequest
 from .types.analytics_admin import BatchGetUserLinksResponse
 from .types.analytics_admin import BatchUpdateUserLinksRequest
 from .types.analytics_admin import BatchUpdateUserLinksResponse
-from .types.analytics_admin import CreateAndroidAppDataStreamRequest
 from .types.analytics_admin import CreateFirebaseLinkRequest
 from .types.analytics_admin import CreateGoogleAdsLinkRequest
-from .types.analytics_admin import CreateIosAppDataStreamRequest
 from .types.analytics_admin import CreatePropertyRequest
 from .types.analytics_admin import CreateUserLinkRequest
 from .types.analytics_admin import CreateWebDataStreamRequest
@@ -69,6 +67,8 @@ from .types.analytics_admin import ListWebDataStreamsRequest
 from .types.analytics_admin import ListWebDataStreamsResponse
 from .types.analytics_admin import ProvisionAccountTicketRequest
 from .types.analytics_admin import ProvisionAccountTicketResponse
+from .types.analytics_admin import SearchChangeHistoryEventsRequest
+from .types.analytics_admin import SearchChangeHistoryEventsResponse
 from .types.analytics_admin import UpdateAccountRequest
 from .types.analytics_admin import UpdateAndroidAppDataStreamRequest
 from .types.analytics_admin import UpdateEnhancedMeasurementSettingsRequest
@@ -80,8 +80,13 @@ from .types.analytics_admin import UpdateUserLinkRequest
 from .types.analytics_admin import UpdateWebDataStreamRequest
 from .types.resources import Account
 from .types.resources import AccountSummary
+from .types.resources import ActionType
+from .types.resources import ActorType
 from .types.resources import AndroidAppDataStream
 from .types.resources import AuditUserLink
+from .types.resources import ChangeHistoryChange
+from .types.resources import ChangeHistoryEvent
+from .types.resources import ChangeHistoryResourceType
 from .types.resources import DataSharingSettings
 from .types.resources import EnhancedMeasurementSettings
 from .types.resources import FirebaseLink
@@ -98,6 +103,8 @@ from .types.resources import WebDataStream
 __all__ = (
     "Account",
     "AccountSummary",
+    "ActionType",
+    "ActorType",
     "AndroidAppDataStream",
     "AuditUserLink",
     "AuditUserLinksRequest",
@@ -109,10 +116,11 @@ __all__ = (
     "BatchGetUserLinksResponse",
     "BatchUpdateUserLinksRequest",
     "BatchUpdateUserLinksResponse",
-    "CreateAndroidAppDataStreamRequest",
+    "ChangeHistoryChange",
+    "ChangeHistoryEvent",
+    "ChangeHistoryResourceType",
     "CreateFirebaseLinkRequest",
     "CreateGoogleAdsLinkRequest",
-    "CreateIosAppDataStreamRequest",
     "CreatePropertyRequest",
     "CreateUserLinkRequest",
     "CreateWebDataStreamRequest",
@@ -163,6 +171,8 @@ __all__ = (
     "PropertySummary",
     "ProvisionAccountTicketRequest",
     "ProvisionAccountTicketResponse",
+    "SearchChangeHistoryEventsRequest",
+    "SearchChangeHistoryEventsResponse",
     "UpdateAccountRequest",
     "UpdateAndroidAppDataStreamRequest",
     "UpdateEnhancedMeasurementSettingsRequest",
