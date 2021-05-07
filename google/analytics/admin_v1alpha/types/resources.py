@@ -25,8 +25,8 @@ from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 __protobuf__ = proto.module(
     package="google.analytics.admin.v1alpha",
     manifest={
-        "IndustryCategory",
         "MaximumUserAccess",
+        "IndustryCategory",
         "Account",
         "Property",
         "AndroidAppDataStream",
@@ -39,8 +39,21 @@ __protobuf__ = proto.module(
         "GlobalSiteTag",
         "GoogleAdsLink",
         "DataSharingSettings",
+        "AccountSummary",
+        "PropertySummary",
     },
 )
+
+
+class MaximumUserAccess(proto.Enum):
+    r"""Maximum access settings that Firebase user receive on the
+    linked Analytics property.
+    """
+    MAXIMUM_USER_ACCESS_UNSPECIFIED = 0
+    NO_ACCESS = 1
+    READ_AND_ANALYZE = 2
+    EDITOR_WITHOUT_LINK_MANAGEMENT = 3
+    EDITOR_INCLUDING_LINK_MANAGEMENT = 4
 
 
 class IndustryCategory(proto.Enum):
@@ -76,17 +89,6 @@ class IndustryCategory(proto.Enum):
     SHOPPING = 26
 
 
-class MaximumUserAccess(proto.Enum):
-    r"""Maximum access settings that Firebase user receive on the
-    linked Analytics property.
-    """
-    MAXIMUM_USER_ACCESS_UNSPECIFIED = 0
-    NO_ACCESS = 1
-    READ_AND_ANALYZE = 2
-    EDITOR_WITHOUT_LINK_MANAGEMENT = 3
-    EDITOR_INCLUDING_LINK_MANAGEMENT = 4
-
-
 class Account(proto.Message):
     r"""A resource message representing a Google Analytics account.
 
@@ -95,19 +97,18 @@ class Account(proto.Message):
             Output only. Resource name of this account.
             Format: accounts/{account}
             Example: "accounts/100".
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this account was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when account payload fields
             were last updated.
         display_name (str):
             Required. Human-readable display name for
             this account.
-        country_code (str):
-            Country of business. Must be a non-deprecated code for a UN
-            M.49 region.
-            https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html
+        region_code (str):
+            Country of business. Must be a Unicode CLDR
+            region code.
         deleted (bool):
             Output only. Indicates whether this Account
             is soft-deleted or not. Deleted accounts are
@@ -123,23 +124,23 @@ class Account(proto.Message):
 
     display_name = proto.Field(proto.STRING, number=4)
 
-    country_code = proto.Field(proto.STRING, number=5)
+    region_code = proto.Field(proto.STRING, number=5)
 
     deleted = proto.Field(proto.BOOL, number=6)
 
 
 class Property(proto.Message):
-    r"""A resource message representing a Google Analytics App+Web
+    r"""A resource message representing a Google Analytics GA4
     property.
 
     Attributes:
         name (str):
             Output only. Resource name of this property. Format:
             properties/{property_id} Example: "properties/1000".
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when the entity was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when entity payload fields
             were last updated.
         parent (str):
@@ -153,7 +154,7 @@ class Property(proto.Message):
             this property.
             The max allowed display name length is 100
             UTF-16 code units.
-        industry_category (~.resources.IndustryCategory):
+        industry_category (google.analytics.admin_v1alpha.types.IndustryCategory):
             Industry associated with this property Example: AUTOMOTIVE,
             FOOD_AND_DRINK
         time_zone (str):
@@ -211,10 +212,10 @@ class AndroidAppDataStream(proto.Message):
             Output only. ID of the corresponding Android
             app in Firebase, if any. This ID can change if
             the Android app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         package_name (str):
@@ -253,10 +254,10 @@ class IosAppDataStream(proto.Message):
             Output only. ID of the corresponding iOS app
             in Firebase, if any. This ID can change if the
             iOS app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         bundle_id (str):
@@ -300,10 +301,10 @@ class WebDataStream(proto.Message):
             Output only. ID of the corresponding web app
             in Firebase, if any. This ID can change if the
             web app is deleted and recreated.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
         default_uri (str):
@@ -427,19 +428,10 @@ class EnhancedMeasurementSettings(proto.Message):
             If enabled, capture an outbound click event
             each time a visitor clicks a link that leads
             them away from your domain.
-        content_views_enabled (bool):
-            Capture events when your visitors view
-            content on your site that has structured data
-            (eg, articles, blog posts, product details
-            screens, etc.).
         site_search_enabled (bool):
             If enabled, capture a view search results
             event each time a visitor performs a search on
             your site (based on a query parameter).
-        form_interactions_enabled (bool):
-            If enabled, capture a view search results
-            event each time a visitor interacts with a form
-            on your site.
         video_engagement_enabled (bool):
             If enabled, capture video play, progress, and
             complete events as visitors view embedded videos
@@ -449,35 +441,20 @@ class EnhancedMeasurementSettings(proto.Message):
             each time a link is clicked with a common
             document, compressed file, application, video,
             or audio extension.
-        data_tagged_element_clicks_enabled (bool):
-            If enabled, capture a click event each time a
-            visitor clicks a link or element that has data
-            attributes beginning with "data-ga".
         page_loads_enabled (bool):
-            If enabled, capture a page view event each
-            time a page loads.
+            Output only. If enabled, capture a page view
+            event each time a page loads.
         page_changes_enabled (bool):
             If enabled, capture a page view event each
             time the website changes the browser history
             state.
-        articles_and_blogs_enabled (bool):
-            Capture events when your visitors view
-            content on your site that has articles or blog
-            posts.
-        products_and_ecommerce_enabled (bool):
-            Capture events when your visitors view
-            content on your site that has product details
-            screens, etc.
         search_query_parameter (str):
             Required. URL query parameters to interpret
             as site search parameters. Max length is 1024
             characters. Must not be empty.
-        url_query_parameter (str):
+        uri_query_parameter (str):
             Additional URL query parameters.
             Max length is 1024 characters.
-        excluded_domains (str):
-            Domains to exclude from measurement. Max
-            length is 1024 characters.
     """
 
     name = proto.Field(proto.STRING, number=1)
@@ -490,35 +467,23 @@ class EnhancedMeasurementSettings(proto.Message):
 
     outbound_clicks_enabled = proto.Field(proto.BOOL, number=5)
 
-    content_views_enabled = proto.Field(proto.BOOL, number=6)
-
     site_search_enabled = proto.Field(proto.BOOL, number=7)
-
-    form_interactions_enabled = proto.Field(proto.BOOL, number=8)
 
     video_engagement_enabled = proto.Field(proto.BOOL, number=9)
 
     file_downloads_enabled = proto.Field(proto.BOOL, number=10)
 
-    data_tagged_element_clicks_enabled = proto.Field(proto.BOOL, number=11)
-
     page_loads_enabled = proto.Field(proto.BOOL, number=12)
 
     page_changes_enabled = proto.Field(proto.BOOL, number=13)
 
-    articles_and_blogs_enabled = proto.Field(proto.BOOL, number=14)
-
-    products_and_ecommerce_enabled = proto.Field(proto.BOOL, number=15)
-
     search_query_parameter = proto.Field(proto.STRING, number=16)
 
-    url_query_parameter = proto.Field(proto.STRING, number=17)
-
-    excluded_domains = proto.Field(proto.STRING, number=18)
+    uri_query_parameter = proto.Field(proto.STRING, number=17)
 
 
 class FirebaseLink(proto.Message):
-    r"""A link between an App+Web property and a Firebase project.
+    r"""A link between an GA4 property and a Firebase project.
 
     Attributes:
         name (str):
@@ -532,11 +497,11 @@ class FirebaseLink(proto.Message):
             project_name that contains a project number.
 
             Format: 'projects/{project number}' Example: 'projects/1234'
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this FirebaseLink was
             originally created.
-        maximum_user_access (~.resources.MaximumUserAccess):
-            Maximum user access to the App + Web property
+        maximum_user_access (google.analytics.admin_v1alpha.types.MaximumUserAccess):
+            Maximum user access to the GA4 property
             allowed to admins of the linked Firebase
             project.
     """
@@ -555,17 +520,23 @@ class GlobalSiteTag(proto.Message):
     website to a WebDataStream.
 
     Attributes:
+        name (str):
+            Output only. Resource name for this
+            GlobalSiteTag resource. Format:
+            properties/{propertyId}/globalSiteTag
         snippet (str):
             Immutable. JavaScript code snippet to be
             pasted as the first item into the head tag of
             every webpage to measure.
     """
 
-    snippet = proto.Field(proto.STRING, number=1)
+    name = proto.Field(proto.STRING, number=1)
+
+    snippet = proto.Field(proto.STRING, number=2)
 
 
 class GoogleAdsLink(proto.Message):
-    r"""A link between an App+Web property and a Google Ads account.
+    r"""A link between an GA4 property and a Google Ads account.
 
     Attributes:
         name (str):
@@ -573,14 +544,12 @@ class GoogleAdsLink(proto.Message):
             properties/{propertyId}/googleAdsLinks/{googleAdsLinkId}
             Note: googleAdsLinkId is not the Google Ads
             customer ID.
-        parent (str):
-            Immutable. Format: properties/{propertyId}
         customer_id (str):
             Immutable. Google Ads customer ID.
         can_manage_clients (bool):
             Output only. If true, this link is for a
             Google Ads manager account.
-        ads_personalization_enabled (~.wrappers.BoolValue):
+        ads_personalization_enabled (google.protobuf.wrappers_pb2.BoolValue):
             Enable personalized advertising features with
             this integration. Automatically publish my
             Google Analytics audience lists and Google
@@ -593,17 +562,15 @@ class GoogleAdsLink(proto.Message):
             created the link. An empty string will be
             returned if the email address can't be
             retrieved.
-        create_time (~.timestamp.Timestamp):
+        create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this link was
             originally created.
-        update_time (~.timestamp.Timestamp):
+        update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this link was last
             updated.
     """
 
     name = proto.Field(proto.STRING, number=1)
-
-    parent = proto.Field(proto.STRING, number=2)
 
     customer_id = proto.Field(proto.STRING, number=3)
 
@@ -661,6 +628,55 @@ class DataSharingSettings(proto.Message):
     sharing_with_google_products_enabled = proto.Field(proto.BOOL, number=5)
 
     sharing_with_others_enabled = proto.Field(proto.BOOL, number=6)
+
+
+class AccountSummary(proto.Message):
+    r"""A virtual resource representing an overview of an account and
+    all its child GA4 properties.
+
+    Attributes:
+        name (str):
+            Resource name for this account summary. Format:
+            accountSummaries/{account_id} Example:
+            "accountSummaries/1000".
+        account (str):
+            Resource name of account referred to by this account summary
+            Format: accounts/{account_id} Example: "accounts/1000".
+        display_name (str):
+            Display name for the account referred to in
+            this account summary.
+        property_summaries (Sequence[google.analytics.admin_v1alpha.types.PropertySummary]):
+            List of summaries for child accounts of this
+            account.
+    """
+
+    name = proto.Field(proto.STRING, number=1)
+
+    account = proto.Field(proto.STRING, number=2)
+
+    display_name = proto.Field(proto.STRING, number=3)
+
+    property_summaries = proto.RepeatedField(
+        proto.MESSAGE, number=4, message="PropertySummary",
+    )
+
+
+class PropertySummary(proto.Message):
+    r"""A virtual resource representing metadata for an GA4 property.
+
+    Attributes:
+        property (str):
+            Resource name of property referred to by this property
+            summary Format: properties/{property_id} Example:
+            "properties/1000".
+        display_name (str):
+            Display name for the property referred to in
+            this account summary.
+    """
+
+    property = proto.Field(proto.STRING, number=1)
+
+    display_name = proto.Field(proto.STRING, number=2)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

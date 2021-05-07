@@ -1,4 +1,17 @@
 # -*- coding: utf-8 -*-
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 # google-analytics-admin documentation build configuration file
 #
@@ -20,12 +33,16 @@ import shlex
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath(".."))
 
+# For plugins that can not read conf.py.
+# See also: https://github.com/docascode/sphinx-docfx-yaml/issues/85
+sys.path.insert(0, os.path.abspath("."))
+
 __version__ = ""
 
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-needs_sphinx = "1.6.3"
+needs_sphinx = "1.5.5"
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -35,6 +52,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.coverage",
+    "sphinx.ext.doctest",
     "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
@@ -90,7 +108,12 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ["_build"]
+exclude_patterns = [
+    "_build",
+    "samples/AUTHORING_GUIDE.md",
+    "samples/CONTRIBUTING.md",
+    "samples/snippets/README.rst",
+]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -335,10 +358,11 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("http://python.readthedocs.org/en/latest/", None),
-    "google-auth": ("https://google-auth.readthedocs.io/en/stable", None),
+    "python": ("https://python.readthedocs.org/en/latest/", None),
+    "google-auth": ("https://googleapis.dev/python/google-auth/latest/", None),
     "google.api_core": ("https://googleapis.dev/python/google-api-core/latest/", None,),
-    "grpc": ("https://grpc.io/grpc/python/", None),
+    "grpc": ("https://grpc.github.io/grpc/python/", None),
+    "proto-plus": ("https://proto-plus-python.readthedocs.io/en/latest/", None),
 }
 
 

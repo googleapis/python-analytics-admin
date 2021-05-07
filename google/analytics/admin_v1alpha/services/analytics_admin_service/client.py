@@ -16,17 +16,19 @@
 #
 
 from collections import OrderedDict
+from distutils import util
 import os
 import re
-from typing import Callable, Dict, Sequence, Tuple, Type, Union
+from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import client_options as client_options_lib  # type: ignore
 from google.api_core import exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.auth.transport import mtls  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
@@ -37,7 +39,7 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
-from .transports.base import AnalyticsAdminServiceTransport
+from .transports.base import AnalyticsAdminServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import AnalyticsAdminServiceGrpcTransport
 from .transports.grpc_asyncio import AnalyticsAdminServiceGrpcAsyncIOTransport
 
@@ -78,7 +80,7 @@ class AnalyticsAdminServiceClientMeta(type):
 
 
 class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
-    """Service Interface for the Analytics Admin API (App+Web)."""
+    """Service Interface for the Analytics Admin API (GA4)."""
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
@@ -115,6 +117,22 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     )
 
     @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            AnalyticsAdminServiceClient: The constructed client.
+        """
+        credentials = service_account.Credentials.from_service_account_info(info)
+        kwargs["credentials"] = credentials
+        return cls(*args, **kwargs)
+
+    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -126,13 +144,22 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            {@api.name}: The constructed client.
+            AnalyticsAdminServiceClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> AnalyticsAdminServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            AnalyticsAdminServiceTransport: The transport used by the client instance.
+        """
+        return self._transport
 
     @staticmethod
     def account_path(account: str,) -> str:
@@ -143,6 +170,19 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     def parse_account_path(path: str) -> Dict[str, str]:
         """Parse a account path into its component segments."""
         m = re.match(r"^accounts/(?P<account>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def account_summary_path(account_summary: str,) -> str:
+        """Return a fully-qualified account_summary string."""
+        return "accountSummaries/{account_summary}".format(
+            account_summary=account_summary,
+        )
+
+    @staticmethod
+    def parse_account_summary_path(path: str) -> Dict[str, str]:
+        """Parse a account_summary path into its component segments."""
+        m = re.match(r"^accountSummaries/(?P<account_summary>.+?)$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
@@ -161,6 +201,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             r"^properties/(?P<property>.+?)/androidAppDataStreams/(?P<android_app_data_stream>.+?)$",
             path,
         )
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def data_sharing_settings_path(account: str,) -> str:
+        """Return a fully-qualified data_sharing_settings string."""
+        return "accounts/{account}/dataSharingSettings".format(account=account,)
+
+    @staticmethod
+    def parse_data_sharing_settings_path(path: str) -> Dict[str, str]:
+        """Parse a data_sharing_settings path into its component segments."""
+        m = re.match(r"^accounts/(?P<account>.+?)/dataSharingSettings$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
@@ -192,6 +243,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         m = re.match(
             r"^properties/(?P<property>.+?)/firebaseLinks/(?P<firebase_link>.+?)$", path
         )
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def global_site_tag_path(property: str,) -> str:
+        """Return a fully-qualified global_site_tag string."""
+        return "properties/{property}/globalSiteTag".format(property=property,)
+
+    @staticmethod
+    def parse_global_site_tag_path(path: str) -> Dict[str, str]:
+        """Parse a global_site_tag path into its component segments."""
+        m = re.match(r"^properties/(?P<property>.+?)/globalSiteTag$", path)
         return m.groupdict() if m else {}
 
     @staticmethod
@@ -266,12 +328,72 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         )
         return m.groupdict() if m else {}
 
+    @staticmethod
+    def common_billing_account_path(billing_account: str,) -> str:
+        """Return a fully-qualified billing_account string."""
+        return "billingAccounts/{billing_account}".format(
+            billing_account=billing_account,
+        )
+
+    @staticmethod
+    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+        """Parse a billing_account path into its component segments."""
+        m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_folder_path(folder: str,) -> str:
+        """Return a fully-qualified folder string."""
+        return "folders/{folder}".format(folder=folder,)
+
+    @staticmethod
+    def parse_common_folder_path(path: str) -> Dict[str, str]:
+        """Parse a folder path into its component segments."""
+        m = re.match(r"^folders/(?P<folder>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_organization_path(organization: str,) -> str:
+        """Return a fully-qualified organization string."""
+        return "organizations/{organization}".format(organization=organization,)
+
+    @staticmethod
+    def parse_common_organization_path(path: str) -> Dict[str, str]:
+        """Parse a organization path into its component segments."""
+        m = re.match(r"^organizations/(?P<organization>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_project_path(project: str,) -> str:
+        """Return a fully-qualified project string."""
+        return "projects/{project}".format(project=project,)
+
+    @staticmethod
+    def parse_common_project_path(path: str) -> Dict[str, str]:
+        """Parse a project path into its component segments."""
+        m = re.match(r"^projects/(?P<project>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_location_path(project: str, location: str,) -> str:
+        """Return a fully-qualified location string."""
+        return "projects/{project}/locations/{location}".format(
+            project=project, location=location,
+        )
+
+    @staticmethod
+    def parse_common_location_path(path: str) -> Dict[str, str]:
+        """Parse a location path into its component segments."""
+        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
+        return m.groupdict() if m else {}
+
     def __init__(
         self,
         *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, AnalyticsAdminServiceTransport] = None,
-        client_options: ClientOptions = None,
+        credentials: Optional[credentials.Credentials] = None,
+        transport: Union[str, AnalyticsAdminServiceTransport, None] = None,
+        client_options: Optional[client_options_lib.ClientOptions] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the analytics admin service client.
 
@@ -281,51 +403,73 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, ~.AnalyticsAdminServiceTransport]): The
+            transport (Union[str, AnalyticsAdminServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (ClientOptions): Custom options for the client. It
-                won't take effect if a ``transport`` instance is provided.
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
-                default endpoint provided by the client. GOOGLE_API_USE_MTLS
+                default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
                 environment variable can also be used to override the endpoint:
                 "always" (always use the default mTLS endpoint), "never" (always
-                use the default regular endpoint, this is the default value for
-                the environment variable) and "auto" (auto switch to the default
-                mTLS endpoint if client SSL credentials is present). However,
-                the ``api_endpoint`` property takes precedence if provided.
-                (2) The ``client_cert_source`` property is used to provide client
-                SSL credentials for mutual TLS transport. If not provided, the
-                default SSL credentials will be used if present.
+                use the default regular endpoint) and "auto" (auto switch to the
+                default mTLS endpoint if client certificate is present, this is
+                the default value). However, the ``api_endpoint`` property takes
+                precedence if provided.
+                (2) If GOOGLE_API_USE_CLIENT_CERTIFICATE environment variable
+                is "true", then the ``client_cert_source`` property can be used
+                to provide client certificate for mutual TLS transport. If
+                not provided, the default SSL client certificate will be used if
+                present. If GOOGLE_API_USE_CLIENT_CERTIFICATE is "false" or not
+                set, no client certificate will be used.
+            client_info (google.api_core.gapic_v1.client_info.ClientInfo):
+                The client info used to send a user-agent string along with
+                API requests. If ``None``, then default info will be used.
+                Generally, you only need to set this if you're developing
+                your own client library.
 
         Raises:
             google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
         if isinstance(client_options, dict):
-            client_options = ClientOptions.from_dict(client_options)
+            client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
-            client_options = ClientOptions.ClientOptions()
+            client_options = client_options_lib.ClientOptions()
 
-        if client_options.api_endpoint is None:
-            use_mtls_env = os.getenv("GOOGLE_API_USE_MTLS", "never")
-            if use_mtls_env == "never":
-                client_options.api_endpoint = self.DEFAULT_ENDPOINT
-            elif use_mtls_env == "always":
-                client_options.api_endpoint = self.DEFAULT_MTLS_ENDPOINT
-            elif use_mtls_env == "auto":
-                has_client_cert_source = (
-                    client_options.client_cert_source is not None
-                    or mtls.has_default_client_cert_source()
+        # Create SSL credentials for mutual TLS if needed.
+        use_client_cert = bool(
+            util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"))
+        )
+
+        client_cert_source_func = None
+        is_mtls = False
+        if use_client_cert:
+            if client_options.client_cert_source:
+                is_mtls = True
+                client_cert_source_func = client_options.client_cert_source
+            else:
+                is_mtls = mtls.has_default_client_cert_source()
+                client_cert_source_func = (
+                    mtls.default_client_cert_source() if is_mtls else None
                 )
-                client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT
-                    if has_client_cert_source
-                    else self.DEFAULT_ENDPOINT
+
+        # Figure out which api endpoint to use.
+        if client_options.api_endpoint is not None:
+            api_endpoint = client_options.api_endpoint
+        else:
+            use_mtls_env = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
+            if use_mtls_env == "never":
+                api_endpoint = self.DEFAULT_ENDPOINT
+            elif use_mtls_env == "always":
+                api_endpoint = self.DEFAULT_MTLS_ENDPOINT
+            elif use_mtls_env == "auto":
+                api_endpoint = (
+                    self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
-                    "Unsupported GOOGLE_API_USE_MTLS value. Accepted values: never, auto, always"
+                    "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
                 )
 
         # Save or instantiate the transport.
@@ -349,11 +493,11 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             self._transport = Transport(
                 credentials=credentials,
                 credentials_file=client_options.credentials_file,
-                host=client_options.api_endpoint,
+                host=api_endpoint,
                 scopes=client_options.scopes,
-                api_mtls_endpoint=client_options.api_endpoint,
-                client_cert_source=client_options.client_cert_source,
+                client_cert_source_for_mtls=client_cert_source_func,
                 quota_project_id=client_options.quota_project_id,
+                client_info=client_info,
             )
 
     def get_account(
@@ -366,16 +510,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Account:
         r"""Lookup for a single Account.
-        Throws "Target not found" if no such account found, or
-        if caller does not have permissions to access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.GetAccountRequest):
                 The request object. Request message for GetAccount RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the account to
                 lookup. Format: accounts/{account}
-                Example: "accounts/100".
+                Example: "accounts/100"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -387,7 +530,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Account:
+            google.analytics.admin_v1alpha.types.Account:
                 A resource message representing a
                 Google Analytics account.
 
@@ -395,25 +538,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetAccountRequest):
+            request = analytics_admin.GetAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_account, default_timeout=60.0, client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -436,13 +583,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListAccountsPager:
         r"""Returns all accounts accessible by the caller.
-        Note that these accounts might not currently have
-        App+Web properties. Soft-deleted (ie: "trashed")
-        accounts are excluded by default. Returns an empty list
-        if no relevant accounts are found.
+        Note that these accounts might not currently have GA4
+        properties. Soft-deleted (ie: "trashed") accounts are
+        excluded by default. Returns an empty list if no
+        relevant accounts are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListAccountsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListAccountsRequest):
                 The request object. Request message for ListAccounts
                 RPC.
 
@@ -453,7 +600,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListAccountsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAccountsPager:
                 Request message for ListAccounts RPC.
                 Iterating over this object will yield
                 results and resolve additional pages
@@ -462,15 +609,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ListAccountsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListAccountsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListAccountsRequest):
+            request = analytics_admin.ListAccountsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_accounts,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_accounts]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -506,13 +654,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Returns an error if the target is not found.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteAccountRequest):
                 The request object. Request message for DeleteAccount
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the Account to
                 soft-delete. Format: accounts/{account}
-                Example: "accounts/100".
+                Example: "accounts/100"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -526,27 +675,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteAccountRequest):
+            request = analytics_admin.DeleteAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_account,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -572,18 +723,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an account.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateAccountRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateAccountRequest):
                 The request object. Request message for UpdateAccount
                 RPC.
-            account (:class:`~.resources.Account`):
+            account (google.analytics.admin_v1alpha.types.Account):
                 Required. The account to update. The account's ``name``
                 field is used to identify the account.
+
                 This corresponds to the ``account`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -595,7 +751,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Account:
+            google.analytics.admin_v1alpha.types.Account:
                 A resource message representing a
                 Google Analytics account.
 
@@ -603,29 +759,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([account, update_mask]):
+        has_flattened_params = any([account, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateAccountRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateAccountRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateAccountRequest):
+            request = analytics_admin.UpdateAccountRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if account is not None:
-            request.account = account
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if account is not None:
+                request.account = account
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_account,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_account]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -652,7 +810,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Requests a ticket for creating an account.
 
         Args:
-            request (:class:`~.analytics_admin.ProvisionAccountTicketRequest`):
+            request (google.analytics.admin_v1alpha.types.ProvisionAccountTicketRequest):
                 The request object. Request message for
                 ProvisionAccountTicket RPC.
 
@@ -663,25 +821,82 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.ProvisionAccountTicketResponse:
+            google.analytics.admin_v1alpha.types.ProvisionAccountTicketResponse:
                 Response message for
                 ProvisionAccountTicket RPC.
 
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ProvisionAccountTicketRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ProvisionAccountTicketRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ProvisionAccountTicketRequest):
+            request = analytics_admin.ProvisionAccountTicketRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.provision_account_ticket,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.provision_account_ticket]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # Done; return the response.
+        return response
+
+    def list_account_summaries(
+        self,
+        request: analytics_admin.ListAccountSummariesRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListAccountSummariesPager:
+        r"""Returns summaries of all accounts accessible by the
+        caller.
+
+        Args:
+            request (google.analytics.admin_v1alpha.types.ListAccountSummariesRequest):
+                The request object. Request message for
+                ListAccountSummaries RPC.
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAccountSummariesPager:
+                Response message for
+                ListAccountSummaries RPC.
+                Iterating over this object will yield
+                results and resolve additional pages
+                automatically.
+
+        """
+        # Create or coerce a protobuf request object.
+
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListAccountSummariesRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListAccountSummariesRequest):
+            request = analytics_admin.ListAccountSummariesRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.list_account_summaries]
+
+        # Send the request.
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__iter__` convenience method.
+        response = pagers.ListAccountSummariesPager(
+            method=rpc, request=request, response=response, metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -695,17 +910,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Property:
-        r"""Lookup for a single "App+Web" Property.
-        Throws "Target not found" if no such property found, if
-        property is not of the type "App+Web", or if caller does
-        not have permissions to access it.
+        r"""Lookup for a single "GA4" Property.
 
         Args:
-            request (:class:`~.analytics_admin.GetPropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.GetPropertyRequest):
                 The request object. Request message for GetProperty RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the property to lookup. Format:
-                properties/{property_id} Example: "properties/1000".
+                properties/{property_id} Example: "properties/1000"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -717,35 +930,37 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
-                Google Analytics App+Web property.
+                Google Analytics GA4 property.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetPropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetPropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetPropertyRequest):
+            request = analytics_admin.GetPropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -769,14 +984,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
     ) -> pagers.ListPropertiesPager:
         r"""Returns child Properties under the specified parent
         Account.
-        Only "App+Web" properties will be returned.
+        Only "GA4" properties will be returned.
         Properties will be excluded if the caller does not have
         access. Soft-deleted (ie: "trashed") properties are
         excluded by default. Returns an empty list if no
         relevant properties are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListPropertiesRequest`):
+            request (google.analytics.admin_v1alpha.types.ListPropertiesRequest):
                 The request object. Request message for ListProperties
                 RPC.
 
@@ -787,7 +1002,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListPropertiesPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListPropertiesPager:
                 Response message for ListProperties
                 RPC.
                 Iterating over this object will yield
@@ -797,15 +1012,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.ListPropertiesRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListPropertiesRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListPropertiesRequest):
+            request = analytics_admin.ListPropertiesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_properties,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_properties]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -828,17 +1044,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Property:
-        r"""Creates an "App+Web" property with the specified
-        location and attributes.
+        r"""Creates an "GA4" property with the specified location
+        and attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreatePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.CreatePropertyRequest):
                 The request object. Request message for CreateProperty
                 RPC.
-            property (:class:`~.resources.Property`):
+            property (google.analytics.admin_v1alpha.types.Property):
                 Required. The property to create.
                 Note: the supplied property must specify
                 its parent.
+
                 This corresponds to the ``property`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -850,35 +1067,37 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
-                Google Analytics App+Web property.
+                Google Analytics GA4 property.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([property]):
+        has_flattened_params = any([property])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreatePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreatePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreatePropertyRequest):
+            request = analytics_admin.CreatePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if property is not None:
-            request.property = property
+            if property is not None:
+                request.property = property
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_property]
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
@@ -906,16 +1125,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         purged.
         https://support.google.com/analytics/answer/6154772
         Returns an error if the target is not found, or is not
-        an App+Web Property.
+        an GA4 Property.
 
         Args:
-            request (:class:`~.analytics_admin.DeletePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.DeletePropertyRequest):
                 The request object. Request message for DeleteProperty
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the Property to soft-delete.
                 Format: properties/{property_id} Example:
-                "properties/1000".
+                "properties/1000"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -929,27 +1149,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeletePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeletePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeletePropertyRequest):
+            request = analytics_admin.DeletePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -975,19 +1197,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdatePropertyRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdatePropertyRequest):
                 The request object. Request message for UpdateProperty
                 RPC.
-            property (:class:`~.resources.Property`):
+            property (google.analytics.admin_v1alpha.types.Property):
                 Required. The property to update. The property's
                 ``name`` field is used to identify the property to be
                 updated.
+
                 This corresponds to the ``property`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -999,37 +1226,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Property:
+            google.analytics.admin_v1alpha.types.Property:
                 A resource message representing a
-                Google Analytics App+Web property.
+                Google Analytics GA4 property.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([property, update_mask]):
+        has_flattened_params = any([property, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdatePropertyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdatePropertyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdatePropertyRequest):
+            request = analytics_admin.UpdatePropertyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if property is not None:
-            request.property = property
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if property is not None:
+                request.property = property
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_property,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_property]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1058,11 +1287,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         property.
 
         Args:
-            request (:class:`~.analytics_admin.GetUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.GetUserLinkRequest):
                 The request object. Request message for GetUserLink RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 accounts/1234/userLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1074,7 +1304,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1083,27 +1313,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetUserLinkRequest):
+            request = analytics_admin.GetUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1129,7 +1361,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchGetUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchGetUserLinksRequest):
                 The request object. Request message for
                 BatchGetUserLinks RPC.
 
@@ -1140,22 +1372,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchGetUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchGetUserLinksResponse:
                 Response message for
                 BatchGetUserLinks RPC.
 
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchGetUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchGetUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchGetUserLinksRequest):
+            request = analytics_admin.BatchGetUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_get_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_get_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1181,12 +1414,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Lists all user links on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.ListUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListUserLinksRequest):
                 The request object. Request message for ListUserLinks
                 RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 accounts/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1198,7 +1432,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListUserLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListUserLinksPager:
                 Response message for ListUserLinks
                 RPC.
                 Iterating over this object will yield
@@ -1209,27 +1443,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListUserLinksRequest):
+            request = analytics_admin.ListUserLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1270,7 +1506,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         in the GA or GMP UIs.
 
         Args:
-            request (:class:`~.analytics_admin.AuditUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.AuditUserLinksRequest):
                 The request object. Request message for AuditUserLinks
                 RPC.
 
@@ -1281,7 +1517,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.AuditUserLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.AuditUserLinksPager:
                 Response message for AuditUserLinks
                 RPC.
                 Iterating over this object will yield
@@ -1291,15 +1527,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.AuditUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.AuditUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.AuditUserLinksRequest):
+            request = analytics_admin.AuditUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.audit_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.audit_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1336,7 +1573,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         permissions specified in the new UserLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateUserLinkRequest):
                 The request object. Request message for CreateUserLink
                 RPC.
                 Users can have multiple email addresses associated with
@@ -1347,13 +1584,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 always contain the "primary" email address. As a result,
                 the input and output email address for this request may
                 differ.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 accounts/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            user_link (:class:`~.resources.UserLink`):
+            user_link (google.analytics.admin_v1alpha.types.UserLink):
                 Required. The user link to create.
                 This corresponds to the ``user_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1366,7 +1604,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1375,29 +1613,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, user_link]):
+        has_flattened_params = any([parent, user_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateUserLinkRequest):
+            request = analytics_admin.CreateUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if user_link is not None:
-            request.user_link = user_link
+            if parent is not None:
+                request.parent = parent
+            if user_link is not None:
+                request.user_link = user_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1425,7 +1665,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         created, none of the UserLinks will be created.
 
         Args:
-            request (:class:`~.analytics_admin.BatchCreateUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchCreateUserLinksRequest):
                 The request object. Request message for
                 BatchCreateUserLinks RPC.
 
@@ -1436,22 +1676,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchCreateUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchCreateUserLinksResponse:
                 Response message for
                 BatchCreateUserLinks RPC.
 
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchCreateUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchCreateUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchCreateUserLinksRequest):
+            request = analytics_admin.BatchCreateUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_create_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_create_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1477,10 +1718,10 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a user link on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateUserLinkRequest):
                 The request object. Request message for UpdateUserLink
                 RPC.
-            user_link (:class:`~.resources.UserLink`):
+            user_link (google.analytics.admin_v1alpha.types.UserLink):
                 Required. The user link to update.
                 This corresponds to the ``user_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1493,7 +1734,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.UserLink:
+            google.analytics.admin_v1alpha.types.UserLink:
                 A resource message representing a
                 user's permissions on an Account or
                 Property resource.
@@ -1502,27 +1743,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([user_link]):
+        has_flattened_params = any([user_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateUserLinkRequest):
+            request = analytics_admin.UpdateUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if user_link is not None:
-            request.user_link = user_link
+            if user_link is not None:
+                request.user_link = user_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1550,7 +1793,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchUpdateUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchUpdateUserLinksRequest):
                 The request object. Request message for
                 BatchUpdateUserLinks RPC.
 
@@ -1561,22 +1804,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.BatchUpdateUserLinksResponse:
+            google.analytics.admin_v1alpha.types.BatchUpdateUserLinksResponse:
                 Response message for
                 BatchUpdateUserLinks RPC.
 
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchUpdateUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchUpdateUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchUpdateUserLinksRequest):
+            request = analytics_admin.BatchUpdateUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_update_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_update_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1602,12 +1846,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a user link on an account or property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteUserLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteUserLinkRequest):
                 The request object. Request message for DeleteUserLink
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 accounts/1234/userLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1621,27 +1866,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteUserLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteUserLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteUserLinkRequest):
+            request = analytics_admin.DeleteUserLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_user_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_user_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1666,7 +1913,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         account or property.
 
         Args:
-            request (:class:`~.analytics_admin.BatchDeleteUserLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.BatchDeleteUserLinksRequest):
                 The request object. Request message for
                 BatchDeleteUserLinks RPC.
 
@@ -1678,15 +1925,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = analytics_admin.BatchDeleteUserLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.BatchDeleteUserLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.BatchDeleteUserLinksRequest):
+            request = analytics_admin.BatchDeleteUserLinksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.batch_delete_user_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.batch_delete_user_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1709,19 +1957,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.WebDataStream:
         r"""Lookup for a single WebDataStream
-        Throws "Target not found" if no such web data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetWebDataStreamRequest):
                 The request object. Request message for GetWebDataStream
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the web data stream to lookup.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}
-                Example: "properties/123/webDataStreams/456".
+                Example: "properties/123/webDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1733,7 +1979,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -1741,27 +1987,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetWebDataStreamRequest):
+            request = analytics_admin.GetWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1787,14 +2035,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a web stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteWebDataStreamRequest):
                 The request object. Request message for
                 DeleteWebDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the web data stream to delete.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}
-                Example: "properties/123/webDataStreams/456".
+                Example: "properties/123/webDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1808,27 +2057,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteWebDataStreamRequest):
+            request = analytics_admin.DeleteWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_web_data_stream,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1854,18 +2105,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a web stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateWebDataStreamRequest):
                 The request object. Request message for
                 UpdateWebDataStream RPC.
-            web_data_stream (:class:`~.resources.WebDataStream`):
+            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
                 Required. The web stream to update. The ``name`` field
                 is used to identify the web stream to be updated.
+
                 This corresponds to the ``web_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1877,7 +2133,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -1885,29 +2141,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([web_data_stream, update_mask]):
+        has_flattened_params = any([web_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateWebDataStreamRequest):
+            request = analytics_admin.UpdateWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if web_data_stream is not None:
-            request.web_data_stream = web_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if web_data_stream is not None:
+                request.web_data_stream = web_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1937,17 +2195,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         attributes.
 
         Args:
-            request (:class:`~.analytics_admin.CreateWebDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateWebDataStreamRequest):
                 The request object. Request message for
                 CreateWebDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this web data stream will be created.
                 Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            web_data_stream (:class:`~.resources.WebDataStream`):
+            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
                 Required. The web stream to create.
                 This corresponds to the ``web_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -1960,7 +2219,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.WebDataStream:
+            google.analytics.admin_v1alpha.types.WebDataStream:
                 A resource message representing a
                 Google Analytics web stream.
 
@@ -1968,29 +2227,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, web_data_stream]):
+        has_flattened_params = any([parent, web_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateWebDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateWebDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateWebDataStreamRequest):
+            request = analytics_admin.CreateWebDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if web_data_stream is not None:
-            request.web_data_stream = web_data_stream
+            if parent is not None:
+                request.parent = parent
+            if web_data_stream is not None:
+                request.web_data_stream = web_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_web_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_web_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2020,14 +2281,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         data streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListWebDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListWebDataStreamsRequest):
                 The request object. Request message for
                 ListWebDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to list results
                 of web streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2039,7 +2301,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListWebDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListWebDataStreamsPager:
                 Request message for
                 ListWebDataStreams RPC.
                 Iterating over this object will yield
@@ -2050,27 +2312,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListWebDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListWebDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListWebDataStreamsRequest):
+            request = analytics_admin.ListWebDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_web_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_web_data_streams]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2100,19 +2364,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.IosAppDataStream:
         r"""Lookup for a single IosAppDataStream
-        Throws "Target not found" if no such iOS app data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetIosAppDataStreamRequest):
                 The request object. Request message for
                 GetIosAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the iOS app data stream to lookup.
                 Format:
                 properties/{property_id}/iosAppDataStreams/{stream_id}
-                Example: "properties/123/iosAppDataStreams/456".
+                Example: "properties/123/iosAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2124,7 +2386,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2132,27 +2394,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetIosAppDataStreamRequest):
+            request = analytics_admin.GetIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_ios_app_data_stream]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2178,14 +2442,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes an iOS app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteIosAppDataStreamRequest):
                 The request object. Request message for
                 DeleteIosAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the iOS app data stream to delete.
                 Format:
                 properties/{property_id}/iosAppDataStreams/{stream_id}
-                Example: "properties/123/iosAppDataStreams/456".
+                Example: "properties/123/iosAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2199,27 +2464,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteIosAppDataStreamRequest):
+            request = analytics_admin.DeleteIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2245,19 +2514,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an iOS app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateIosAppDataStreamRequest):
                 The request object. Request message for
                 UpdateIosAppDataStream RPC.
-            ios_app_data_stream (:class:`~.resources.IosAppDataStream`):
+            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
                 Required. The iOS app stream to update. The ``name``
                 field is used to identify the iOS app stream to be
                 updated.
+
                 This corresponds to the ``ios_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2269,7 +2543,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2277,29 +2551,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([ios_app_data_stream, update_mask]):
+        has_flattened_params = any([ios_app_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateIosAppDataStreamRequest):
+            request = analytics_admin.UpdateIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if ios_app_data_stream is not None:
-            request.ios_app_data_stream = ios_app_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if ios_app_data_stream is not None:
+                request.ios_app_data_stream = ios_app_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2325,23 +2603,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.IosAppDataStream:
-        r"""Creates an iOS app data stream with the specified
-        location and attributes.
+        r"""Creates an iOS app stream with the specified location
+        and attributes.
+        Note that an iOS app stream must be linked to a Firebase
+        app to receive traffic.
+
+        To create a working app stream, make sure your property
+        is linked to a Firebase project. Then, use the Firebase
+        API to create a Firebase app, which will also create an
+        appropriate data stream in Analytics (may take up to 24
+        hours).
 
         Args:
-            request (:class:`~.analytics_admin.CreateIosAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateIosAppDataStreamRequest):
                 The request object. Request message for
                 CreateIosAppDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this ios app data stream will be
                 created. Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            ios_app_data_stream (:class:`~.resources.IosAppDataStream`):
+            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
                 Required. The iOS app data stream to
                 create.
+
                 This corresponds to the ``ios_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2353,7 +2641,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.IosAppDataStream:
+            google.analytics.admin_v1alpha.types.IosAppDataStream:
                 A resource message representing a
                 Google Analytics IOS app stream.
 
@@ -2361,29 +2649,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, ios_app_data_stream]):
+        has_flattened_params = any([parent, ios_app_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateIosAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateIosAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateIosAppDataStreamRequest):
+            request = analytics_admin.CreateIosAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if ios_app_data_stream is not None:
-            request.ios_app_data_stream = ios_app_data_stream
+            if parent is not None:
+                request.parent = parent
+            if ios_app_data_stream is not None:
+                request.ios_app_data_stream = ios_app_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_ios_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_ios_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2413,14 +2705,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         iOS app data streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListIosAppDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListIosAppDataStreamsRequest):
                 The request object. Request message for
                 ListIosAppDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to list results
                 of app streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2432,7 +2725,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListIosAppDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListIosAppDataStreamsPager:
                 Request message for
                 ListIosAppDataStreams RPC.
                 Iterating over this object will yield
@@ -2443,27 +2736,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListIosAppDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListIosAppDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListIosAppDataStreamsRequest):
+            request = analytics_admin.ListIosAppDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_ios_app_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_ios_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2493,19 +2790,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.AndroidAppDataStream:
         r"""Lookup for a single AndroidAppDataStream
-        Throws "Target not found" if no such android app data
-        stream found, or if the caller does not have permissions
-        to access it.
 
         Args:
-            request (:class:`~.analytics_admin.GetAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.GetAndroidAppDataStreamRequest):
                 The request object. Request message for
                 GetAndroidAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the android app data stream to
                 lookup. Format:
                 properties/{property_id}/androidAppDataStreams/{stream_id}
-                Example: "properties/123/androidAppDataStreams/456".
+                Example: "properties/123/androidAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2517,7 +2812,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -2525,27 +2820,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetAndroidAppDataStreamRequest):
+            request = analytics_admin.GetAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2571,14 +2870,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes an android app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.DeleteAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteAndroidAppDataStreamRequest):
                 The request object. Request message for
                 DeleteAndroidAppDataStream RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the android app data stream to
                 delete. Format:
                 properties/{property_id}/androidAppDataStreams/{stream_id}
-                Example: "properties/123/androidAppDataStreams/456".
+                Example: "properties/123/androidAppDataStreams/456"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2592,27 +2892,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteAndroidAppDataStreamRequest):
+            request = analytics_admin.DeleteAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.delete_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2638,19 +2942,24 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates an android app stream on a property.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateAndroidAppDataStreamRequest):
                 The request object. Request message for
                 UpdateAndroidAppDataStream RPC.
-            android_app_data_stream (:class:`~.resources.AndroidAppDataStream`):
+            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
                 Required. The android app stream to update. The ``name``
                 field is used to identify the android app stream to be
                 updated.
+
                 This corresponds to the ``android_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2662,7 +2971,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -2670,29 +2979,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([android_app_data_stream, update_mask]):
+        has_flattened_params = any([android_app_data_stream, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateAndroidAppDataStreamRequest):
+            request = analytics_admin.UpdateAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if android_app_data_stream is not None:
-            request.android_app_data_stream = android_app_data_stream
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if android_app_data_stream is not None:
+                request.android_app_data_stream = android_app_data_stream
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2723,23 +3036,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.AndroidAppDataStream:
-        r"""Creates an android app stream with the specified
+        r"""Creates an Android app stream with the specified
         location and attributes.
+        Note that an Android app stream must be linked to a
+        Firebase app to receive traffic.
+
+        To create a working app stream, make sure your property
+        is linked to a Firebase project. Then, use the Firebase
+        API to create a Firebase app, which will also create an
+        appropriate data stream in Analytics (may take up to 24
+        hours).
 
         Args:
-            request (:class:`~.analytics_admin.CreateAndroidAppDataStreamRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateAndroidAppDataStreamRequest):
                 The request object. Request message for
                 CreateAndroidAppDataStream RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The parent resource where
                 this android app data stream will be
                 created. Format: properties/123
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            android_app_data_stream (:class:`~.resources.AndroidAppDataStream`):
+            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
                 Required. The android app stream to
                 create.
+
                 This corresponds to the ``android_app_data_stream`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2751,7 +3074,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.AndroidAppDataStream:
+            google.analytics.admin_v1alpha.types.AndroidAppDataStream:
                 A resource message representing a
                 Google Analytics Android app stream.
 
@@ -2759,29 +3082,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, android_app_data_stream]):
+        has_flattened_params = any([parent, android_app_data_stream])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateAndroidAppDataStreamRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateAndroidAppDataStreamRequest):
+            request = analytics_admin.CreateAndroidAppDataStreamRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if android_app_data_stream is not None:
-            request.android_app_data_stream = android_app_data_stream
+            if parent is not None:
+                request.parent = parent
+            if android_app_data_stream is not None:
+                request.android_app_data_stream = android_app_data_stream
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_android_app_data_stream,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_android_app_data_stream
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2811,14 +3138,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         android app streams are found.
 
         Args:
-            request (:class:`~.analytics_admin.ListAndroidAppDataStreamsRequest`):
+            request (google.analytics.admin_v1alpha.types.ListAndroidAppDataStreamsRequest):
                 The request object. Request message for
                 ListAndroidAppDataStreams RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. The name of the parent
                 property. For example, to limit results
                 to app streams under the property with
-                Id 123: "properties/123".
+                Id 123: "properties/123"
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2830,7 +3158,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListAndroidAppDataStreamsPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListAndroidAppDataStreamsPager:
                 Request message for
                 ListAndroidDataStreams RPC.
                 Iterating over this object will yield
@@ -2841,27 +3169,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListAndroidAppDataStreamsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListAndroidAppDataStreamsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListAndroidAppDataStreamsRequest):
+            request = analytics_admin.ListAndroidAppDataStreamsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_android_app_data_streams,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.list_android_app_data_streams
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2895,14 +3227,15 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         enhanced measurement for these settings to take effect.
 
         Args:
-            request (:class:`~.analytics_admin.GetEnhancedMeasurementSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.GetEnhancedMeasurementSettingsRequest):
                 The request object. Request message for
                 GetEnhancedMeasurementSettings RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the settings to lookup. Format:
                 properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
                 Example:
-                "properties/1000/webDataStreams/2000/enhancedMeasurementSettings".
+                "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2914,7 +3247,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.EnhancedMeasurementSettings:
+            google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings:
                 Singleton resource under a
                 WebDataStream, configuring measurement
                 of additional site interactions and
@@ -2924,27 +3257,33 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetEnhancedMeasurementSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(
+            request, analytics_admin.GetEnhancedMeasurementSettingsRequest
+        ):
+            request = analytics_admin.GetEnhancedMeasurementSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_enhanced_measurement_settings,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2973,18 +3312,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         enhanced measurement for these settings to take effect.
 
         Args:
-            request (:class:`~.analytics_admin.UpdateEnhancedMeasurementSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateEnhancedMeasurementSettingsRequest):
                 The request object. Request message for
                 UpdateEnhancedMeasurementSettings RPC.
-            enhanced_measurement_settings (:class:`~.resources.EnhancedMeasurementSettings`):
+            enhanced_measurement_settings (google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings):
                 Required. The settings to update. The ``name`` field is
                 used to identify the settings to be updated.
+
                 This corresponds to the ``enhanced_measurement_settings`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2996,7 +3340,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.EnhancedMeasurementSettings:
+            google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings:
                 Singleton resource under a
                 WebDataStream, configuring measurement
                 of additional site interactions and
@@ -3006,29 +3350,35 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([enhanced_measurement_settings, update_mask]):
+        has_flattened_params = any([enhanced_measurement_settings, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateEnhancedMeasurementSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(
+            request, analytics_admin.UpdateEnhancedMeasurementSettingsRequest
+        ):
+            request = analytics_admin.UpdateEnhancedMeasurementSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if enhanced_measurement_settings is not None:
-            request.enhanced_measurement_settings = enhanced_measurement_settings
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if enhanced_measurement_settings is not None:
+                request.enhanced_measurement_settings = enhanced_measurement_settings
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_enhanced_measurement_settings,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_enhanced_measurement_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3063,18 +3413,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Properties can have at most one FirebaseLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateFirebaseLinkRequest):
                 The request object. Request message for
                 CreateFirebaseLink RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Format: properties/{property_id} Example:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            firebase_link (:class:`~.resources.FirebaseLink`):
+            firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
                 Required. The Firebase link to
                 create.
+
                 This corresponds to the ``firebase_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3086,37 +3438,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.FirebaseLink:
-                A link between an App+Web property
-                and a Firebase project.
+            google.analytics.admin_v1alpha.types.FirebaseLink:
+                A link between an GA4 property and a
+                Firebase project.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, firebase_link]):
+        has_flattened_params = any([parent, firebase_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateFirebaseLinkRequest):
+            request = analytics_admin.CreateFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if firebase_link is not None:
-            request.firebase_link = firebase_link
+            if parent is not None:
+                request.parent = parent
+            if firebase_link is not None:
+                request.firebase_link = firebase_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3143,18 +3497,23 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a FirebaseLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.UpdateFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateFirebaseLinkRequest):
                 The request object. Request message for
                 UpdateFirebaseLink RPC
-            firebase_link (:class:`~.resources.FirebaseLink`):
+            firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
                 Required. The Firebase link to
                 update.
+
                 This corresponds to the ``firebase_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3166,37 +3525,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.FirebaseLink:
-                A link between an App+Web property
-                and a Firebase project.
+            google.analytics.admin_v1alpha.types.FirebaseLink:
+                A link between an GA4 property and a
+                Firebase project.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([firebase_link, update_mask]):
+        has_flattened_params = any([firebase_link, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateFirebaseLinkRequest):
+            request = analytics_admin.UpdateFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if firebase_link is not None:
-            request.firebase_link = firebase_link
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if firebase_link is not None:
+                request.firebase_link = firebase_link
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3224,13 +3585,14 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a FirebaseLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.DeleteFirebaseLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteFirebaseLinkRequest):
                 The request object. Request message for
                 DeleteFirebaseLink RPC
-            name (:class:`str`):
+            name (str):
                 Required. Format:
                 properties/{property_id}/firebaseLinks/{firebase_link_id}
                 Example: properties/1234/firebaseLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3244,27 +3606,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteFirebaseLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteFirebaseLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteFirebaseLinkRequest):
+            request = analytics_admin.DeleteFirebaseLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_firebase_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_firebase_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3285,17 +3649,18 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> analytics_admin.ListFirebaseLinksResponse:
+    ) -> pagers.ListFirebaseLinksPager:
         r"""Lists FirebaseLinks on a property.
         Properties can have at most one FirebaseLink.
 
         Args:
-            request (:class:`~.analytics_admin.ListFirebaseLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListFirebaseLinksRequest):
                 The request object. Request message for
                 ListFirebaseLinks RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Format: properties/{property_id} Example:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3307,35 +3672,40 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.analytics_admin.ListFirebaseLinksResponse:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListFirebaseLinksPager:
                 Response message for
                 ListFirebaseLinks RPC
+                Iterating over this object will yield
+                results and resolve additional pages
+                automatically.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListFirebaseLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListFirebaseLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListFirebaseLinksRequest):
+            request = analytics_admin.ListFirebaseLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_firebase_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_firebase_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3345,6 +3715,12 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
         # Send the request.
         response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+
+        # This method is paged; wrap the response in a pager, which provides
+        # an `__iter__` convenience method.
+        response = pagers.ListFirebaseLinksPager(
+            method=rpc, request=request, response=response, metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -3362,16 +3738,17 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Site Tags are immutable singletons.
 
         Args:
-            request (:class:`~.analytics_admin.GetGlobalSiteTagRequest`):
+            request (google.analytics.admin_v1alpha.types.GetGlobalSiteTagRequest):
                 The request object. Request message for GetGlobalSiteTag
                 RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the site tag to lookup. Note that
                 site tags are singletons and do not have unique IDs.
                 Format:
                 properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag
                 Example:
-                "properties/123/webDataStreams/456/globalSiteTag".
+                "properties/123/webDataStreams/456/globalSiteTag"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3383,7 +3760,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GlobalSiteTag:
+            google.analytics.admin_v1alpha.types.GlobalSiteTag:
                 Read-only resource with the tag for
                 sending data from a website to a
                 WebDataStream.
@@ -3392,27 +3769,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetGlobalSiteTagRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetGlobalSiteTagRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetGlobalSiteTagRequest):
+            request = analytics_admin.GetGlobalSiteTagRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_global_site_tag,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_global_site_tag]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3439,18 +3818,20 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Creates a GoogleAdsLink.
 
         Args:
-            request (:class:`~.analytics_admin.CreateGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.CreateGoogleAdsLinkRequest):
                 The request object. Request message for
                 CreateGoogleAdsLink RPC
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            google_ads_link (:class:`~.resources.GoogleAdsLink`):
+            google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
                 Required. The GoogleAdsLink to
                 create.
+
                 This corresponds to the ``google_ads_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3462,37 +3843,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GoogleAdsLink:
-                A link between an App+Web property
-                and a Google Ads account.
+            google.analytics.admin_v1alpha.types.GoogleAdsLink:
+                A link between an GA4 property and a
+                Google Ads account.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, google_ads_link]):
+        has_flattened_params = any([parent, google_ads_link])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.CreateGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.CreateGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.CreateGoogleAdsLinkRequest):
+            request = analytics_admin.CreateGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if google_ads_link is not None:
-            request.google_ads_link = google_ads_link
+            if parent is not None:
+                request.parent = parent
+            if google_ads_link is not None:
+                request.google_ads_link = google_ads_link
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3519,17 +3902,21 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Updates a GoogleAdsLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.UpdateGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.UpdateGoogleAdsLinkRequest):
                 The request object. Request message for
                 UpdateGoogleAdsLink RPC
-            google_ads_link (:class:`~.resources.GoogleAdsLink`):
+            google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
                 The GoogleAdsLink to update
                 This corresponds to the ``google_ads_link`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
-                The list of fields to be updated.
-                Omitted fields will not be updated.
+            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+                Required. The list of fields to be updated. Field names
+                must be in snake case (e.g., "field_to_update"). Omitted
+                fields will not be updated. To replace the entire
+                entity, use one path with the string "*" to match all
+                fields.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3541,37 +3928,39 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.GoogleAdsLink:
-                A link between an App+Web property
-                and a Google Ads account.
+            google.analytics.admin_v1alpha.types.GoogleAdsLink:
+                A link between an GA4 property and a
+                Google Ads account.
 
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([google_ads_link, update_mask]):
+        has_flattened_params = any([google_ads_link, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.UpdateGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.UpdateGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.UpdateGoogleAdsLinkRequest):
+            request = analytics_admin.UpdateGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if google_ads_link is not None:
-            request.google_ads_link = google_ads_link
-        if update_mask is not None:
-            request.update_mask = update_mask
+            if google_ads_link is not None:
+                request.google_ads_link = google_ads_link
+            if update_mask is not None:
+                request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3599,12 +3988,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Deletes a GoogleAdsLink on a property
 
         Args:
-            request (:class:`~.analytics_admin.DeleteGoogleAdsLinkRequest`):
+            request (google.analytics.admin_v1alpha.types.DeleteGoogleAdsLinkRequest):
                 The request object. Request message for
                 DeleteGoogleAdsLink RPC.
-            name (:class:`str`):
+            name (str):
                 Required. Example format:
                 properties/1234/googleAdsLinks/5678
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3618,27 +4008,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.DeleteGoogleAdsLinkRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.DeleteGoogleAdsLinkRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.DeleteGoogleAdsLinkRequest):
+            request = analytics_admin.DeleteGoogleAdsLinkRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_google_ads_link,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_google_ads_link]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3663,12 +4055,13 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         r"""Lists GoogleAdsLinks on a property.
 
         Args:
-            request (:class:`~.analytics_admin.ListGoogleAdsLinksRequest`):
+            request (google.analytics.admin_v1alpha.types.ListGoogleAdsLinksRequest):
                 The request object. Request message for
                 ListGoogleAdsLinks RPC.
-            parent (:class:`str`):
+            parent (str):
                 Required. Example format:
                 properties/1234
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3680,7 +4073,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListGoogleAdsLinksPager:
+            google.analytics.admin_v1alpha.services.analytics_admin_service.pagers.ListGoogleAdsLinksPager:
                 Response message for
                 ListGoogleAdsLinks RPC.
                 Iterating over this object will yield
@@ -3691,27 +4084,29 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.ListGoogleAdsLinksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.ListGoogleAdsLinksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.ListGoogleAdsLinksRequest):
+            request = analytics_admin.ListGoogleAdsLinksRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_google_ads_links,
-            default_timeout=60.0,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_google_ads_links]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3744,15 +4139,16 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         Data sharing settings are singletons.
 
         Args:
-            request (:class:`~.analytics_admin.GetDataSharingSettingsRequest`):
+            request (google.analytics.admin_v1alpha.types.GetDataSharingSettingsRequest):
                 The request object. Request message for
                 GetDataSharingSettings RPC.
-            name (:class:`str`):
+            name (str):
                 Required. The name of the settings to
                 lookup. Format:
                 accounts/{account}/dataSharingSettings
                 Example:
-                "accounts/1000/dataSharingSettings".
+                "accounts/1000/dataSharingSettings"
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3764,7 +4160,7 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.DataSharingSettings:
+            google.analytics.admin_v1alpha.types.DataSharingSettings:
                 A resource message representing data
                 sharing settings of a Google Analytics
                 account.
@@ -3773,27 +4169,31 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = analytics_admin.GetDataSharingSettingsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.GetDataSharingSettingsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.GetDataSharingSettingsRequest):
+            request = analytics_admin.GetDataSharingSettingsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if name is not None:
-            request.name = name
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_data_sharing_settings,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.get_data_sharing_settings
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3809,11 +4209,11 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-analytics-admin",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("AnalyticsAdminServiceClient",)

@@ -15,13 +15,14 @@
 # limitations under the License.
 #
 
+import warnings
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
 from google.api_core import grpc_helpers  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google import auth  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
-
 
 import grpc  # type: ignore
 
@@ -29,13 +30,13 @@ from google.analytics.admin_v1alpha.types import analytics_admin
 from google.analytics.admin_v1alpha.types import resources
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
-from .base import AnalyticsAdminServiceTransport
+from .base import AnalyticsAdminServiceTransport, DEFAULT_CLIENT_INFO
 
 
 class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
     """gRPC backend transport for AnalyticsAdminService.
 
-    Service Interface for the Analytics Admin API (App+Web).
+    Service Interface for the Analytics Admin API (GA4).
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -57,7 +58,10 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         channel: grpc.Channel = None,
         api_mtls_endpoint: str = None,
         client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id: Optional[str] = None
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the transport.
 
@@ -76,16 +80,27 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
                 ignored if ``channel`` is provided.
             channel (Optional[grpc.Channel]): A ``Channel`` instance through
                 which to make calls.
-            api_mtls_endpoint (Optional[str]): The mutual TLS endpoint. If
-                provided, it overrides the ``host`` argument and tries to create
+            api_mtls_endpoint (Optional[str]): Deprecated. The mutual TLS endpoint.
+                If provided, it overrides the ``host`` argument and tries to create
                 a mutual TLS channel with client SSL credentials from
                 ``client_cert_source`` or applicatin default SSL credentials.
-            client_cert_source (Optional[Callable[[], Tuple[bytes, bytes]]]): A
-                callback to provide client SSL certificate bytes and private key
-                bytes, both in PEM format. It is ignored if ``api_mtls_endpoint``
-                is None.
+            client_cert_source (Optional[Callable[[], Tuple[bytes, bytes]]]):
+                Deprecated. A callback to provide client SSL certificate bytes and
+                private key bytes, both in PEM format. It is ignored if
+                ``api_mtls_endpoint`` is None.
+            ssl_channel_credentials (grpc.ChannelCredentials): SSL credentials
+                for grpc channel. It is ignored if ``channel`` is provided.
+            client_cert_source_for_mtls (Optional[Callable[[], Tuple[bytes, bytes]]]):
+                A callback to provide client certificate bytes and private key bytes,
+                both in PEM format. It is used to configure mutual TLS channel. It is
+                ignored if ``channel`` or ``ssl_channel_credentials`` is provided.
             quota_project_id (Optional[str]): An optional project to use for billing
                 and quota.
+            client_info (google.api_core.gapic_v1.client_info.ClientInfo):
+                The client info used to send a user-agent string along with
+                API requests. If ``None``, then default info will be used.
+                Generally, you only need to set this if you're developing
+                your own client library.
 
         Raises:
           google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
@@ -93,55 +108,69 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
           google.api_core.exceptions.DuplicateCredentialArgs: If both ``credentials``
               and ``credentials_file`` are passed.
         """
-        if channel:
-            # Sanity check: Ensure that channel and credentials are not both
-            # provided.
-            credentials = False
+        self._grpc_channel = None
+        self._ssl_channel_credentials = ssl_channel_credentials
+        self._stubs: Dict[str, Callable] = {}
 
+        if api_mtls_endpoint:
+            warnings.warn("api_mtls_endpoint is deprecated", DeprecationWarning)
+        if client_cert_source:
+            warnings.warn("client_cert_source is deprecated", DeprecationWarning)
+
+        if channel:
+            # Ignore credentials if a channel was passed.
+            credentials = False
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
-        elif api_mtls_endpoint:
-            host = (
-                api_mtls_endpoint
-                if ":" in api_mtls_endpoint
-                else api_mtls_endpoint + ":443"
-            )
+            self._ssl_channel_credentials = None
 
-            if credentials is None:
-                credentials, _ = auth.default(
-                    scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id
-                )
+        else:
+            if api_mtls_endpoint:
+                host = api_mtls_endpoint
 
-            # Create SSL credentials with client_cert_source or application
-            # default SSL credentials.
-            if client_cert_source:
-                cert, key = client_cert_source()
-                ssl_credentials = grpc.ssl_channel_credentials(
-                    certificate_chain=cert, private_key=key
-                )
+                # Create SSL credentials with client_cert_source or application
+                # default SSL credentials.
+                if client_cert_source:
+                    cert, key = client_cert_source()
+                    self._ssl_channel_credentials = grpc.ssl_channel_credentials(
+                        certificate_chain=cert, private_key=key
+                    )
+                else:
+                    self._ssl_channel_credentials = SslCredentials().ssl_credentials
+
             else:
-                ssl_credentials = SslCredentials().ssl_credentials
+                if client_cert_source_for_mtls and not ssl_channel_credentials:
+                    cert, key = client_cert_source_for_mtls()
+                    self._ssl_channel_credentials = grpc.ssl_channel_credentials(
+                        certificate_chain=cert, private_key=key
+                    )
 
-            # create a new channel. The provided one is ignored.
-            self._grpc_channel = type(self).create_channel(
-                host,
-                credentials=credentials,
-                credentials_file=credentials_file,
-                ssl_credentials=ssl_credentials,
-                scopes=scopes or self.AUTH_SCOPES,
-                quota_project_id=quota_project_id,
-            )
-
-        # Run the base constructor.
+        # The base transport sets the host, credentials and scopes
         super().__init__(
             host=host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes or self.AUTH_SCOPES,
+            scopes=scopes,
             quota_project_id=quota_project_id,
+            client_info=client_info,
         )
 
-        self._stubs = {}  # type: Dict[str, Callable]
+        if not self._grpc_channel:
+            self._grpc_channel = type(self).create_channel(
+                self._host,
+                credentials=self._credentials,
+                credentials_file=credentials_file,
+                scopes=self._scopes,
+                ssl_credentials=self._ssl_channel_credentials,
+                quota_project_id=quota_project_id,
+                options=[
+                    ("grpc.max_send_message_length", -1),
+                    ("grpc.max_receive_message_length", -1),
+                ],
+            )
+
+        # Wrap messages. This must be done after self._grpc_channel exists
+        self._prep_wrapped_messages(client_info)
 
     @classmethod
     def create_channel(
@@ -151,11 +180,11 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         credentials_file: str = None,
         scopes: Optional[Sequence[str]] = None,
         quota_project_id: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
-            address (Optionsl[str]): The host for the channel to use.
+            host (Optional[str]): The host for the channel to use.
             credentials (Optional[~.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify this application to the service. If
@@ -185,24 +214,13 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
     @property
     def grpc_channel(self) -> grpc.Channel:
-        """Create the channel designed to connect to this service.
-
-        This property caches on the instance; repeated calls return
-        the same channel.
+        """Return the channel designed to connect to this service.
         """
-        # Sanity check: Only create a new channel if we do not already
-        # have one.
-        if not hasattr(self, "_grpc_channel"):
-            self._grpc_channel = self.create_channel(
-                self._host, credentials=self._credentials,
-            )
-
-        # Return the channel from cache.
         return self._grpc_channel
 
     @property
@@ -212,8 +230,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         r"""Return a callable for the get account method over gRPC.
 
         Lookup for a single Account.
-        Throws "Target not found" if no such account found, or
-        if caller does not have permissions to access it.
 
         Returns:
             Callable[[~.GetAccountRequest],
@@ -242,10 +258,10 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         r"""Return a callable for the list accounts method over gRPC.
 
         Returns all accounts accessible by the caller.
-        Note that these accounts might not currently have
-        App+Web properties. Soft-deleted (ie: "trashed")
-        accounts are excluded by default. Returns an empty list
-        if no relevant accounts are found.
+        Note that these accounts might not currently have GA4
+        properties. Soft-deleted (ie: "trashed") accounts are
+        excluded by default. Returns an empty list if no
+        relevant accounts are found.
 
         Returns:
             Callable[[~.ListAccountsRequest],
@@ -357,15 +373,42 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         return self._stubs["provision_account_ticket"]
 
     @property
+    def list_account_summaries(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListAccountSummariesRequest],
+        analytics_admin.ListAccountSummariesResponse,
+    ]:
+        r"""Return a callable for the list account summaries method over gRPC.
+
+        Returns summaries of all accounts accessible by the
+        caller.
+
+        Returns:
+            Callable[[~.ListAccountSummariesRequest],
+                    ~.ListAccountSummariesResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_account_summaries" not in self._stubs:
+            self._stubs["list_account_summaries"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccountSummaries",
+                request_serializer=analytics_admin.ListAccountSummariesRequest.serialize,
+                response_deserializer=analytics_admin.ListAccountSummariesResponse.deserialize,
+            )
+        return self._stubs["list_account_summaries"]
+
+    @property
     def get_property(
         self,
     ) -> Callable[[analytics_admin.GetPropertyRequest], resources.Property]:
         r"""Return a callable for the get property method over gRPC.
 
-        Lookup for a single "App+Web" Property.
-        Throws "Target not found" if no such property found, if
-        property is not of the type "App+Web", or if caller does
-        not have permissions to access it.
+        Lookup for a single "GA4" Property.
 
         Returns:
             Callable[[~.GetPropertyRequest],
@@ -395,7 +438,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
 
         Returns child Properties under the specified parent
         Account.
-        Only "App+Web" properties will be returned.
+        Only "GA4" properties will be returned.
         Properties will be excluded if the caller does not have
         access. Soft-deleted (ie: "trashed") properties are
         excluded by default. Returns an empty list if no
@@ -425,8 +468,8 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
     ) -> Callable[[analytics_admin.CreatePropertyRequest], resources.Property]:
         r"""Return a callable for the create property method over gRPC.
 
-        Creates an "App+Web" property with the specified
-        location and attributes.
+        Creates an "GA4" property with the specified location
+        and attributes.
 
         Returns:
             Callable[[~.CreatePropertyRequest],
@@ -463,7 +506,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         purged.
         https://support.google.com/analytics/answer/6154772
         Returns an error if the target is not found, or is not
-        an App+Web Property.
+        an GA4 Property.
 
         Returns:
             Callable[[~.DeletePropertyRequest],
@@ -810,9 +853,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         r"""Return a callable for the get web data stream method over gRPC.
 
         Lookup for a single WebDataStream
-        Throws "Target not found" if no such web data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Returns:
             Callable[[~.GetWebDataStreamRequest],
@@ -957,9 +997,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         r"""Return a callable for the get ios app data stream method over gRPC.
 
         Lookup for a single IosAppDataStream
-        Throws "Target not found" if no such iOS app data stream
-        found, or if the caller does not have permissions to
-        access it.
 
         Returns:
             Callable[[~.GetIosAppDataStreamRequest],
@@ -1041,8 +1078,16 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
     ]:
         r"""Return a callable for the create ios app data stream method over gRPC.
 
-        Creates an iOS app data stream with the specified
-        location and attributes.
+        Creates an iOS app stream with the specified location
+        and attributes.
+        Note that an iOS app stream must be linked to a Firebase
+        app to receive traffic.
+
+        To create a working app stream, make sure your property
+        is linked to a Firebase project. Then, use the Firebase
+        API to create a Firebase app, which will also create an
+        appropriate data stream in Analytics (may take up to 24
+        hours).
 
         Returns:
             Callable[[~.CreateIosAppDataStreamRequest],
@@ -1104,9 +1149,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         r"""Return a callable for the get android app data stream method over gRPC.
 
         Lookup for a single AndroidAppDataStream
-        Throws "Target not found" if no such android app data
-        stream found, or if the caller does not have permissions
-        to access it.
 
         Returns:
             Callable[[~.GetAndroidAppDataStreamRequest],
@@ -1194,8 +1236,16 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
     ]:
         r"""Return a callable for the create android app data stream method over gRPC.
 
-        Creates an android app stream with the specified
+        Creates an Android app stream with the specified
         location and attributes.
+        Note that an Android app stream must be linked to a
+        Firebase app to receive traffic.
+
+        To create a working app stream, make sure your property
+        is linked to a Firebase project. Then, use the Firebase
+        API to create a Firebase app, which will also create an
+        appropriate data stream in Analytics (may take up to 24
+        hours).
 
         Returns:
             Callable[[~.CreateAndroidAppDataStreamRequest],
