@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2021 Google Inc. All Rights Reserved.
+# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,11 +26,6 @@ from google.analytics.admin import AnalyticsAdminServiceClient
 from accounts_get import print_account
 
 
-def run_sample():
-    """Runs the sample."""
-    list_accounts()
-
-
 def list_accounts():
     """Lists the Google Analytics accounts available to the current user."""
     client = AnalyticsAdminServiceClient()
@@ -45,4 +40,4 @@ def list_accounts():
 
 
 if __name__ == "__main__":
-    run_sample()
+    list_accounts()

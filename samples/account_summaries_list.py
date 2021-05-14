@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2021 Google Inc. All Rights Reserved.
+# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,11 +22,6 @@ for more information.
 """
 # [START analyticsadmin_account_summaries_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
-
-
-def run_sample():
-    """Runs the sample."""
-    list_account_summaries()
 
 
 def list_account_summaries():
@@ -52,4 +47,4 @@ def list_account_summaries():
 
 
 if __name__ == "__main__":
-    run_sample()
+    list_account_summaries()
