@@ -33,7 +33,7 @@ def run_sample():
     get_data_sharing_settings(account_id)
 
 
-def get_data_sharing_settings(account_id):
+def get_data_sharing_settings(account_id: str):
     """Gets data sharing settings on an account."""
     client = AnalyticsAdminServiceClient()
     data_sharing_settings = client.get_data_sharing_settings(

@@ -59,7 +59,7 @@ def run_sample():
     provision_account_ticket(redirect_uri)
 
 
-def provision_account_ticket(redirect_uri):
+def provision_account_ticket(redirect_uri: str):
     """Provisions the Google Analytics account creation ticket."""
     client = AnalyticsAdminServiceClient()
     response = client.provision_account_ticket(

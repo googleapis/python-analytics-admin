@@ -32,7 +32,7 @@ def run_sample():
     get_account(account_id)
 
 
-def get_account(account_id):
+def get_account(account_id: str):
     """Retrieves the Google Analytics account data."""
     client = AnalyticsAdminServiceClient()
     account = client.get_account(name=f"accounts/{account_id}")
@@ -41,7 +41,7 @@ def get_account(account_id):
     print_account(account)
 
 
-def print_account(account):
+def print_account(account: str):
     """Prints account data."""
     print(f"Resource name: {account.name}")
     print(f"Display name: {account.display_name}")

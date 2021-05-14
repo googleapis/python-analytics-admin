@@ -42,7 +42,7 @@ def run_sample():
     update_account(account_id)
 
 
-def update_account(account_id):
+def update_account(account_id: str):
     """Updates the Google Analytics account."""
     client = AnalyticsAdminServiceClient()
     # This call updates the display name and region code of the account, as

@@ -38,7 +38,7 @@ def run_sample():
     delete_account(account_id)
 
 
-def delete_account(account_id):
+def delete_account(account_id: str):
     """Deletes the Google Analytics account."""
     client = AnalyticsAdminServiceClient()
     client.delete_account(name=f"accounts/{account_id}")
