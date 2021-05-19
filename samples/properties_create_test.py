@@ -13,17 +13,14 @@
 
 import pytest
 
-import accounts_user_links_delete
+import properties_create
 
 
 FAKE_ACCOUNT_ID = "1"
-FAKE_ACCOUNT_USER_LINK_ID = "1"
 
 
-def test_accounts_user_links_delete():
+def test_properties_create():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        accounts_user_links_delete.delete_account_user_link(
-            FAKE_ACCOUNT_ID, FAKE_ACCOUNT_USER_LINK_ID
-        )
+        properties_create.create_property(FAKE_ACCOUNT_ID)

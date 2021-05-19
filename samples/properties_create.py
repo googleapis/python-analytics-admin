@@ -14,38 +14,51 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which prints user links
-under the specified parent account.
+"""Google Analytics Admin API sample application which creates a Google
+Analytics 4 property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts.userLinks/list
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties/create
 for more information.
 """
-# [START analyticsadmin_accounts_user_links_list]
+# [START analyticsadmin_properties_create]
 from google.analytics.admin import AnalyticsAdminServiceClient
+from google.analytics.admin_v1alpha.types import Property
 
-from accounts_user_links_get import print_user_link
+from properties_get import print_property
 
 
 def run_sample():
     """Runs the sample."""
+
+    # !!! ATTENTION !!!
+    #  Running this sample may change/delete your Google Analytics account
+    #  configuration. Make sure to not use the Google Analytics account ID from
+    #  your production environment below.
+
     # TODO(developer): Replace this variable with your Google Analytics
     #  account ID (e.g. "123456") before running the sample.
     account_id = "YOUR-GA-ACCOUNT-ID"
-    list_account_user_links(account_id)
+    create_property(account_id)
 
 
-def list_account_user_links(account_id):
-    """Lists user links under the specified parent account."""
+def create_property(account_id):
+    """Creates a Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    results = client.list_user_links(parent=f"accounts/{account_id}")
+    property_ = client.create_property(
+        property=Property(
+            parent=f"accounts/{account_id}",
+            currency_code="USD",
+            display_name="Test property",
+            industry_category="OTHER",
+            time_zone="America/Los_Angeles",
+        )
+    )
 
     print("Result:")
-    for user_link in results:
-        print_user_link(user_link)
-        print()
+    print_property(property_)
 
 
-# [END analyticsadmin_accounts_user_links_list]
+# [END analyticsadmin_properties_create]
 
 
 if __name__ == "__main__":

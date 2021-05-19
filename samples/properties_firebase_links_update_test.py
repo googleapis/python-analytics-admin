@@ -11,15 +11,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
+import pytest
 
-import accounts_user_links_get
-
-TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
-TEST_USER_LINK_ID = os.getenv("GA_TEST_USER_LINK_ID")
+import properties_firebase_links_update
 
 
-def test_accounts_user_links_get(capsys):
-    accounts_user_links_get.get_account_user_link(TEST_ACCOUNT_ID, TEST_USER_LINK_ID)
-    out, _ = capsys.readouterr()
-    assert "Result" in out
+FAKE_PROPERTY_ID = "1"
+FAKE_FIREBASE_LINK_ID = "1"
+
+
+def test_properties_firebase_links_update():
+    # This test ensures that the call is valid and reaches the server, even
+    # though the operation does not succeed due to permission error.
+    with pytest.raises(Exception, match="403 The caller does not have permission"):
+        properties_firebase_links_update.update_firebase_link(
+            FAKE_PROPERTY_ID, FAKE_FIREBASE_LINK_ID
+        )

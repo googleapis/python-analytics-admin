@@ -14,15 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which prints all user links on
-an account.
+"""Google Analytics Admin API sample application which prints Google Analytics 4
+properties under the specified parent account that are available to the
+current user.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts.userLinks/audit
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties/list
 for more information.
 """
-# [START analyticsadmin_accounts_user_links_audit]
+# [START analyticsadmin_properties_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import AuditUserLinksRequest
+from google.analytics.admin_v1alpha.types import ListPropertiesRequest
+
+from properties_get import print_property
 
 
 def run_sample():
@@ -30,29 +33,24 @@ def run_sample():
     # TODO(developer): Replace this variable with your Google Analytics
     #  account ID (e.g. "123456") before running the sample.
     account_id = "YOUR-GA-ACCOUNT-ID"
-    audit_account_user_links(account_id)
+    list_properties(account_id)
 
 
-def audit_account_user_links(account_id):
-    """Lists all user links on an account, including implicit ones that come
-    from effective permissions granted by groups or organization admin roles."""
+def list_properties(account_id):
+    """Lists Google Analytics 4 properties under the specified parent account
+    that are available to the current user."""
     client = AnalyticsAdminServiceClient()
+    results = client.list_properties(
+        ListPropertiesRequest(filter=f"parent:accounts/{account_id}", show_deleted=True)
+    )
 
     print("Result:")
-    for user_link in client.audit_user_links(
-        AuditUserLinksRequest(parent=f"accounts/{account_id}")
-    ):
-        print(f"Resource name: {user_link.name}")
-        print(f"Email address: {user_link.email_address}")
-        for direct_role in user_link.direct_roles:
-            print(f"Direct role: {direct_role}")
-
-        for effective_role in user_link.effective_roles:
-            print(f"Effective role: {effective_role}")
+    for property_ in results:
+        print_property(property_)
         print()
 
 
-# [END analyticsadmin_accounts_user_links_audit]
+# [END analyticsadmin_properties_list]
 
 
 if __name__ == "__main__":

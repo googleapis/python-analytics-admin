@@ -1,4 +1,3 @@
-# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,17 +11,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
+import os
 
-import accounts_delete
+import properties_firebase_links_list
+
+TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
 
 
-FAKE_ACCOUNT_ID = "1"
-
-
-def test_accounts_delete():
-    # This test ensures that the call is valid and reaches the server. No
-    # account is being deleted during the test as it is not trivial to
-    # provision a new account for testing.
-    with pytest.raises(Exception, match="403 The caller does not have permission"):
-        accounts_delete.delete_account(FAKE_ACCOUNT_ID)
+def test_properties_firebase_links_list(capsys):
+    properties_firebase_links_list.list_firebase_links(TEST_PROPERTY_ID)
+    out, _ = capsys.readouterr()
+    assert "Result" in out

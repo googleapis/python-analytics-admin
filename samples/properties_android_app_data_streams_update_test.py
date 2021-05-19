@@ -1,4 +1,3 @@
-# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,14 +13,17 @@
 
 import pytest
 
-import accounts_update
+import properties_android_app_data_streams_update
 
 
-FAKE_ACCOUNT_ID = "1"
+FAKE_PROPERTY_ID = "1"
+FAKE_STREAM_ID = "1"
 
 
-def test_accounts_update():
+def test_properties_android_app_data_streams_update():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        accounts_update.update_account(FAKE_ACCOUNT_ID)
+        properties_android_app_data_streams_update.update_android_app_data_stream(
+            FAKE_PROPERTY_ID, FAKE_STREAM_ID
+        )

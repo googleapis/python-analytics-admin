@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which deletes a Google
-Analytics account.
+"""Google Analytics Admin API sample application which deletes the Google
+Analytics 4 property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/delete
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties/delete
 for more information.
 """
-# [START analyticsadmin_accounts_delete]
+# [START analyticsadmin_properties_delete]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -29,23 +29,23 @@ def run_sample():
 
     # !!! ATTENTION !!!
     #  Running this sample may change/delete your Google Analytics account
-    #  configuration. Make sure to not use the Google Analytics account ID from
-    # your production environment below.
+    #  configuration. Make sure to not use the Google Analytics property ID from
+    #  your production environment below.
 
-    # TODO(developer): Replace this variable with your Google Analytics
-    #  account ID (e.g. "123456") before running the sample.
-    account_id = "YOUR-GA-ACCOUNT-ID"
-    delete_account(account_id)
+    # TODO(developer): Replace this variable with your Google Analytics 4
+    #  property ID (e.g. "123456") before running the sample.
+    property_id = "YOUR-GA4-PROPERTY-ID"
+    delete_property(property_id)
 
 
-def delete_account(account_id: str):
-    """Deletes the Google Analytics account."""
+def delete_property(property_id):
+    """Deletes the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    client.delete_account(name=f"accounts/{account_id}")
-    print("Account deleted")
+    client.delete_property(name=f"properties/{property_id}")
+    print("Property deleted")
 
 
-# [END analyticsadmin_accounts_delete]
+# [END analyticsadmin_properties_delete]
 
 
 if __name__ == "__main__":

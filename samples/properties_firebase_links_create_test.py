@@ -1,4 +1,3 @@
-# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +13,17 @@
 
 import pytest
 
-import accounts_user_links_batch_delete
+import properties_firebase_links_create
 
 
-FAKE_ACCOUNT_ID = "1"
-FAKE_ACCOUNT_USER_LINK_ID = "1"
+FAKE_PROPERTY_ID = "1"
+FAKE_FIREBASE_PROJECT_ID = "1"
 
 
-def test_accounts_user_links_batch_delete():
+def test_properties_firebase_links_create():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        accounts_user_links_batch_delete.batch_delete_account_user_link(
-            FAKE_ACCOUNT_ID, FAKE_ACCOUNT_USER_LINK_ID
+        properties_firebase_links_create.create_firebase_link(
+            FAKE_PROPERTY_ID, FAKE_FIREBASE_PROJECT_ID
         )

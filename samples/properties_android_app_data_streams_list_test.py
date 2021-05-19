@@ -1,4 +1,3 @@
-# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +13,14 @@
 
 import os
 
-import accounts_get_data_sharing_settings
+import properties_android_app_data_streams_list
 
-TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
+TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
 
 
-def test_accounts_get_data_sharing_settings(capsys):
-    accounts_get_data_sharing_settings.get_data_sharing_settings(TEST_ACCOUNT_ID)
+def test_properties_android_app_data_streams_list(capsys):
+    properties_android_app_data_streams_list.list_android_app_data_streams(
+        TEST_PROPERTY_ID
+    )
     out, _ = capsys.readouterr()
     assert "Result" in out

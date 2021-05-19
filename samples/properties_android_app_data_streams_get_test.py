@@ -1,4 +1,3 @@
-# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +13,16 @@
 
 import os
 
-import accounts_get
-
-TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
+import properties_android_app_data_streams_get
 
 
-def test_accounts_get(capsys):
-    accounts_get.get_account(TEST_ACCOUNT_ID)
+TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
+TEST_ANDROID_APP_DATA_STREAM_ID = os.getenv("GA_TEST_ANDROID_APP_DATA_STREAM_ID")
+
+
+def test_properties_android_app_data_streams_get(capsys):
+    properties_android_app_data_streams_get.get_android_app_data_stream(
+        TEST_PROPERTY_ID, TEST_ANDROID_APP_DATA_STREAM_ID
+    )
     out, _ = capsys.readouterr()
     assert "Result" in out

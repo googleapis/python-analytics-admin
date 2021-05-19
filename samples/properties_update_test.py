@@ -11,14 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
+import pytest
 
-import accounts_user_links_list
-
-TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
+import properties_update
 
 
-def test_accounts_user_links_list(capsys):
-    accounts_user_links_list.list_account_user_links(TEST_ACCOUNT_ID)
-    out, _ = capsys.readouterr()
-    assert "Result" in out
+FAKE_PROPERTY_ID = "1"
+
+
+def test_properties_update():
+    # This test ensures that the call is valid and reaches the server, even
+    # though the operation does not succeed due to permission error.
+    with pytest.raises(Exception, match="403 The caller does not have permission"):
+        properties_update.update_property(FAKE_PROPERTY_ID)
