@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/googleapis/python-analytics-admin/compare/v1.0.0...v1.0.1) (2021-05-22)
+
+
+### Documentation
+
+* add Admin API samples for account management methods ([#58](https://www.github.com/googleapis/python-analytics-admin/issues/58)) ([2ecc350](https://www.github.com/googleapis/python-analytics-admin/commit/2ecc350759cfa50f02c0f29f75b647e260cacec0))
+
 ## [0.2.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.1.0...v0.2.0) (2021-01-20)
 
 
