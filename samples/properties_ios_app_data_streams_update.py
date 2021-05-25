@@ -25,8 +25,6 @@ from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha.types import IosAppDataStream
 from google.protobuf.field_mask_pb2 import FieldMask
 
-from properties_ios_app_data_streams_get import print_ios_app_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -63,7 +61,7 @@ def update_ios_app_data_stream(property_id, stream_id):
     )
 
     print("Result:")
-    print_ios_app_data_stream(ios_app_data_stream)
+    print(ios_app_data_stream)
 
 
 # [END analyticsadmin_properties_ios_app_data_streams_update]

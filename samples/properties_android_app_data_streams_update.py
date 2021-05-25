@@ -25,8 +25,6 @@ from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha.types import AndroidAppDataStream
 from google.protobuf.field_mask_pb2 import FieldMask
 
-from properties_android_app_data_streams_get import print_android_app_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -63,7 +61,7 @@ def update_android_app_data_stream(property_id, stream_id):
     )
 
     print("Result:")
-    print_android_app_data_stream(android_app_data_stream)
+    print(android_app_data_stream)
 
 
 # [END analyticsadmin_properties_android_app_data_streams_update]

@@ -25,9 +25,6 @@ from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha.types import EnhancedMeasurementSettings
 from google.protobuf.field_mask_pb2 import FieldMask
 
-from properties_web_data_streams_get_enhanced_measurement_settings import (
-    print_enhanced_measurement_settings,
-)
 
 
 def run_sample():
@@ -66,7 +63,7 @@ def update_enhanced_measurement_settings(property_id, stream_id):
     )
 
     print("Result:")
-    print_enhanced_measurement_settings(enhanced_measurement_settings)
+    print(enhanced_measurement_settings)
 
 
 # [END analyticsadmin_properties_web_data_streams_update_enhanced_measurement_settings]

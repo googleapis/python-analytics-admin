@@ -23,8 +23,6 @@ for more information.
 # [START analyticsadmin_properties_android_app_data_streams_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
-from properties_android_app_data_streams_get import print_android_app_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -42,7 +40,7 @@ def list_android_app_data_streams(property_id):
 
     print("Result:")
     for android_app_data_stream in results:
-        print_android_app_data_stream(android_app_data_stream)
+        print(android_app_data_stream)
         print()
 
 

@@ -23,8 +23,6 @@ for more information.
 # [START analyticsadmin_properties_ios_app_data_streams_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
-from properties_ios_app_data_streams_get import print_ios_app_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -42,7 +40,7 @@ def list_ios_app_data_streams(property_id):
 
     print("Result:")
     for ios_app_data_stream in results:
-        print_ios_app_data_stream(ios_app_data_stream)
+        print(ios_app_data_stream)
         print()
 
 

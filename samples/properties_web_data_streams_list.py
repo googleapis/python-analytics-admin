@@ -23,8 +23,6 @@ for more information.
 # [START analyticsadmin_properties_web_data_streams_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
-from properties_web_data_streams_get import print_web_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -42,7 +40,7 @@ def list_web_data_streams(property_id):
 
     print("Result:")
     for web_data_stream in results:
-        print_web_data_stream(web_data_stream)
+        print(web_data_stream)
         print()
 
 

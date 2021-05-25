@@ -24,8 +24,6 @@ for more information.
 from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha.types import WebDataStream
 
-from properties_web_data_streams_get import print_web_data_stream
-
 
 def run_sample():
     """Runs the sample."""
@@ -52,7 +50,7 @@ def create_web_data_stream(property_id):
     )
 
     print("Result:")
-    print_web_data_stream(web_data_stream)
+    print(web_data_stream)
 
 
 # [END analyticsadmin_properties_web_data_streams_create]
