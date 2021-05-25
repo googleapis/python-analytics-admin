@@ -23,8 +23,6 @@ for more information.
 # [START analyticsadmin_properties_user_links_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
-from properties_user_links_get import print_user_link
-
 
 def run_sample():
     """Runs the sample."""
@@ -42,7 +40,7 @@ def list_property_user_links(property_id):
 
     print("Result:")
     for user_link in results:
-        print_user_link(user_link)
+        print(user_link)
         print()
 
 
