@@ -24,8 +24,6 @@ for more information.
 from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha.types import UserLink
 
-from accounts_user_links_get import print_user_link
-
 
 def run_sample():
     """Runs the sample."""
@@ -60,7 +58,7 @@ def update_account_user_link(account_id, account_user_link_id):
     )
 
     print("Result:")
-    print_user_link(user_link)
+    print(user_link)
 
 
 # [END analyticsadmin_accounts_user_links_update]
