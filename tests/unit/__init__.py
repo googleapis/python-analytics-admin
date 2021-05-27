@@ -13,10 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .client import AnalyticsAdminServiceClient
-from .async_client import AnalyticsAdminServiceAsyncClient
-
-__all__ = (
-    'AnalyticsAdminServiceClient',
-    'AnalyticsAdminServiceAsyncClient',
-)
