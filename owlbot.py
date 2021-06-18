@@ -33,7 +33,10 @@ s.remove_staging_dirs()
 # ----------------------------------------------------------------------------
 templated_files = common.py_library(cov_level=98, microgenerator=True)
 s.move(
-    templated_files, excludes=[".coveragerc"]
+    templated_files, excludes=[
+        ".coveragerc",
+        ".kokoro/docs/*"
+    ]
 )  # the microgenerator has a good coveragerc file
 
 # fix coverage statement
