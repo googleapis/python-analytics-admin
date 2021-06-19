@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.3](https://www.github.com/googleapis/python-analytics-admin/compare/v0.3.2...v0.3.3) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-analytics-admin/issues/1127)) ([#84](https://www.github.com/googleapis/python-analytics-admin/issues/84)) ([6ce863e](https://www.github.com/googleapis/python-analytics-admin/commit/6ce863e147dae3c1da40c27034a0ac42180c6303)), closes [#1126](https://www.github.com/googleapis/python-analytics-admin/issues/1126)
+
 ### [0.3.2](https://www.github.com/googleapis/python-analytics-admin/compare/v0.3.1...v0.3.2) (2021-06-16)
 
 
