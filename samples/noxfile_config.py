@@ -14,7 +14,7 @@ TEST_CONFIG_OVERRIDE = {
     # secrets here. These values will override predefined values.
     "envs": {
         "GA_TEST_PROPERTY_ID": "276206997",
-        "GA_TEST_ACCOUNT_ID": "123",
+        "GA_TEST_ACCOUNT_ID": "199820965",
         "GA_TEST_USER_LINK_ID": "123",
         "GA_TEST_ANDROID_APP_DATA_STREAM_ID": "123",
         "GA_TEST_IOS_APP_DATA_STREAM_ID": "123",
