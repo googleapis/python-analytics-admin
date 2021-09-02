@@ -49,6 +49,7 @@ To install the latest published package dependency, execute the following:
   pip install google-analytics-admin
 """
 
+
 # [START ga_admin_list_accounts]
 def list_accounts():
     """Lists the available Google Analytics accounts."""
