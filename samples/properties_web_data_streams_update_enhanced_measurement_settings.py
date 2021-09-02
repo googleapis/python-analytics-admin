@@ -26,7 +26,6 @@ from google.analytics.admin_v1alpha.types import EnhancedMeasurementSettings
 from google.protobuf.field_mask_pb2 import FieldMask
 
 
-
 def run_sample():
     """Runs the sample."""
 
