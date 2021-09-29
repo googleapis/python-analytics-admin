@@ -1,5 +1,138 @@
 # Changelog
 
+### [0.5.1](https://www.github.com/googleapis/python-analytics-admin/compare/v0.5.0...v0.5.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* add 'dict' annotation type to 'request' ([256c880](https://www.github.com/googleapis/python-analytics-admin/commit/256c880c486761e32c00ece8ee40ee3a23d87bdb))
+
+## [0.5.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.4.3...v0.5.0) (2021-08-25)
+
+
+### Features
+
+* add `CancelDisplayVideo360AdvertiserLinkProposal` method to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `CreateDisplayVideo360AdvertiserLink`, `DeleteDisplayVideo360AdvertiserLink` methods to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `custom` output only field to `ConversionEvent` type ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `data_retention_settings` fields to `ChangeHistoryChange.resource` oneof field. ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `DeleteDisplayVideo360AdvertiserLinkProposal` method to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `display_video_360_advertiser_link_proposal` fields to `ChangeHistoryChange.resource` oneof field. ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `display_video_360_advertiser_link` fields to `ChangeHistoryChange.resource` oneof field. ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `DisplayVideo360AdvertiserLink`, `LinkProposalState` types to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `GetDataRetentionSettings`, `UpdateDataRetentionSettings` methods to the API ([#119](https://www.github.com/googleapis/python-analytics-admin/issues/119)) ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `GetDisplayVideo360AdvertiserLink`, `ListDisplayVideo360AdvertiserLinks` methods to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `GetDisplayVideo360AdvertiserLinkProposal`, `ListDisplayVideo360AdvertiserLinkProposals` methods to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `LinkProposalInitiatingProduct`, `ServiceLevel`, `DataRetentionSettings` types to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `LinkProposalStatusDetails`, `DisplayVideo360AdvertiserLinkProposal` types to the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* add `service_level` field to `Property` type ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* change `measurement_unit` field to mutable in `CustomMetric` type ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+
+
+### Bug Fixes
+
+* remove `maximum_user_access` field from `FirebaseLink` type ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* remove `MaximumUserAccess` enum from the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* remove `UpdateFirebaseLink` method from the API ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* rename `email_address` field of `GoogleAdsLink` type to `creator_email_address` ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+* rename `is_deletable` field of `ConversionEvent` type to `deletable` ([2a1c5a0](https://www.github.com/googleapis/python-analytics-admin/commit/2a1c5a098503d075633222a7b926efe2d7026559))
+
+### [0.4.3](https://www.github.com/googleapis/python-analytics-admin/compare/v0.4.2...v0.4.3) (2021-07-27)
+
+
+### Bug Fixes
+
+* enable self signed jwt for grpc ([#107](https://www.github.com/googleapis/python-analytics-admin/issues/107)) ([dd2235c](https://www.github.com/googleapis/python-analytics-admin/commit/dd2235ca02ff481253dee5e90fa15f6c7bcfc4e8))
+
+
+### Documentation
+
+* add Samples section to CONTRIBUTING.rst ([#102](https://www.github.com/googleapis/python-analytics-admin/issues/102)) ([99d607c](https://www.github.com/googleapis/python-analytics-admin/commit/99d607c5dc6ea562c4d70cb56c65b01e6c4d9e25))
+
+
+### Miscellaneous Chores
+
+* release as 0.4.3 ([#108](https://www.github.com/googleapis/python-analytics-admin/issues/108)) ([4dd86a1](https://www.github.com/googleapis/python-analytics-admin/commit/4dd86a139ecfcdab9b1ed847fe7c76fb578ca6af))
+
+### [0.4.2](https://www.github.com/googleapis/python-analytics-admin/compare/v0.4.1...v0.4.2) (2021-07-20)
+
+
+### Bug Fixes
+
+* **deps:** pin 'google-{api,cloud}-core', 'google-auth' to allow 2.x versions ([#101](https://www.github.com/googleapis/python-analytics-admin/issues/101)) ([cde3379](https://www.github.com/googleapis/python-analytics-admin/commit/cde3379e9b40082f69327b46ba0acdabe520c21b))
+
+### [0.4.1](https://www.github.com/googleapis/python-analytics-admin/compare/v0.4.0...v0.4.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* disable always_use_jwt_access ([5e3df32](https://www.github.com/googleapis/python-analytics-admin/commit/5e3df324aa9d428d63d80816d10ad7d2d7ef41c1))
+* disable always_use_jwt_access ([#95](https://www.github.com/googleapis/python-analytics-admin/issues/95)) ([5e3df32](https://www.github.com/googleapis/python-analytics-admin/commit/5e3df324aa9d428d63d80816d10ad7d2d7ef41c1))
+
+## [0.4.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.3.2...v0.4.0) (2021-06-23)
+
+
+### Features
+
+* add always_use_jwt_access ([#89](https://www.github.com/googleapis/python-analytics-admin/issues/89)) ([268fdec](https://www.github.com/googleapis/python-analytics-admin/commit/268fdec4dd859a42d1025f94812053311df149ce))
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-analytics-admin/issues/1127)) ([#84](https://www.github.com/googleapis/python-analytics-admin/issues/84)) ([6ce863e](https://www.github.com/googleapis/python-analytics-admin/commit/6ce863e147dae3c1da40c27034a0ac42180c6303)), closes [#1126](https://www.github.com/googleapis/python-analytics-admin/issues/1126)
+
+### [0.3.2](https://www.github.com/googleapis/python-analytics-admin/compare/v0.3.1...v0.3.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **deps:** add packaging requirement ([#80](https://www.github.com/googleapis/python-analytics-admin/issues/80)) ([6d99bcc](https://www.github.com/googleapis/python-analytics-admin/commit/6d99bcc3e940e4f6bc857e7d4ede53e01537c7ec))
+
+### [0.3.1](https://www.github.com/googleapis/python-analytics-admin/compare/v0.3.0...v0.3.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* exclude docs and tests from package ([#78](https://www.github.com/googleapis/python-analytics-admin/issues/78)) ([680a695](https://www.github.com/googleapis/python-analytics-admin/commit/680a695e446c979e30542cd4dc563028b126aef5))
+
+## [0.3.0](https://www.github.com/googleapis/python-analytics-admin/compare/v1.0.0...v0.3.0) (2021-06-09)
+
+
+### Features
+
+* add `ConversionEvent` methods to the API ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `ConversionEvent` type ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `CustomDimension` methods to the API ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `CustomDimension` type ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `CustomMetric` methods to the API ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `CustomMetric` type ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `GetGoogleSignalsSettings`, `UpdateGoogleSignalsSettings` methods to the API ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `GoogleSignalsSettings`  type ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `GoogleSignalsState`, `GoogleSignalsConsent` types ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add `MeasurementProtocolSecret` type ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* add MeasurementProtocolSecret methods to the API ([#71](https://www.github.com/googleapis/python-analytics-admin/issues/71)) ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* extend `ChangeHistoryResourceType` enum ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+
+
+### Bug Fixes
+
+* label `email_address` field of `UserLink` type as immutable ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+* label `name` field of `UserLink` type as output only ([ab703de](https://www.github.com/googleapis/python-analytics-admin/commit/ab703deccb763ebc3b8be35a09e1cec27b8ef107))
+
+
+### Documentation
+
+* add Admin API samples for account management methods ([#58](https://www.github.com/googleapis/python-analytics-admin/issues/58)) ([2ecc350](https://www.github.com/googleapis/python-analytics-admin/commit/2ecc350759cfa50f02c0f29f75b647e260cacec0))
+* add Admin API samples for account management methods ([#65](https://www.github.com/googleapis/python-analytics-admin/issues/65)) ([a3fecc4](https://www.github.com/googleapis/python-analytics-admin/commit/a3fecc47bb329aeba3706b7d6f0b26196c3a8977))
+* add Admin API samples for property stream management methods ([#68](https://www.github.com/googleapis/python-analytics-admin/issues/68)) ([27da97e](https://www.github.com/googleapis/python-analytics-admin/commit/27da97e4574baec81ba3c13be8aece1efa689f75))
+* add Admin API samples for property user link management methods ([#67](https://www.github.com/googleapis/python-analytics-admin/issues/67)) ([aa55627](https://www.github.com/googleapis/python-analytics-admin/commit/aa5562777009bbdd21fdc39990b50ac5fb19cc53))
+* add samples for Google Analytics property management methods ([#74](https://www.github.com/googleapis/python-analytics-admin/issues/74)) ([bdb85be](https://www.github.com/googleapis/python-analytics-admin/commit/bdb85bee0125db8199d6a2a3cf18fbcbd443070b))
+
+
+### Miscellaneous Chores
+
+* release 0.3.0 ([#75](https://www.github.com/googleapis/python-analytics-admin/issues/75)) ([243b6c5](https://www.github.com/googleapis/python-analytics-admin/commit/243b6c558078bee738b01220384bc04840d59bbe))
+
 ## [0.2.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.1.0...v0.2.0) (2021-01-20)
 
 

@@ -59,6 +59,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
         quota_project_id: Optional[str] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
     ) -> None:
         """Instantiate the transport.
 
@@ -81,16 +82,16 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
             api_mtls_endpoint (Optional[str]): Deprecated. The mutual TLS endpoint.
                 If provided, it overrides the ``host`` argument and tries to create
                 a mutual TLS channel with client SSL credentials from
-                ``client_cert_source`` or applicatin default SSL credentials.
+                ``client_cert_source`` or application default SSL credentials.
             client_cert_source (Optional[Callable[[], Tuple[bytes, bytes]]]):
                 Deprecated. A callback to provide client SSL certificate bytes and
                 private key bytes, both in PEM format. It is ignored if
                 ``api_mtls_endpoint`` is None.
             ssl_channel_credentials (grpc.ChannelCredentials): SSL credentials
-                for grpc channel. It is ignored if ``channel`` is provided.
+                for the grpc channel. It is ignored if ``channel`` is provided.
             client_cert_source_for_mtls (Optional[Callable[[], Tuple[bytes, bytes]]]):
                 A callback to provide client certificate bytes and private key bytes,
-                both in PEM format. It is used to configure mutual TLS channel. It is
+                both in PEM format. It is used to configure a mutual TLS channel. It is
                 ignored if ``channel`` or ``ssl_channel_credentials`` is provided.
             quota_project_id (Optional[str]): An optional project to use for billing
                 and quota.
@@ -99,6 +100,8 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
                 API requests. If ``None``, then default info will be used.
                 Generally, you only need to set this if you're developing
                 your own client library.
+            always_use_jwt_access (Optional[bool]): Whether self signed JWT should
+                be used for service account credentials.
 
         Raises:
           google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
@@ -151,6 +154,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
             scopes=scopes,
             quota_project_id=quota_project_id,
             client_info=client_info,
+            always_use_jwt_access=always_use_jwt_access,
         )
 
         if not self._grpc_channel:
@@ -206,14 +210,14 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
               and ``credentials_file`` are passed.
         """
 
-        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
-
         return grpc_helpers.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
             quota_project_id=quota_project_id,
-            **self_signed_jwt_kwargs,
+            default_scopes=cls.AUTH_SCOPES,
+            scopes=scopes,
+            default_host=cls.DEFAULT_HOST,
             **kwargs,
         )
 
@@ -1321,32 +1325,6 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         return self._stubs["create_firebase_link"]
 
     @property
-    def update_firebase_link(
-        self,
-    ) -> Callable[[analytics_admin.UpdateFirebaseLinkRequest], resources.FirebaseLink]:
-        r"""Return a callable for the update firebase link method over gRPC.
-
-        Updates a FirebaseLink on a property
-
-        Returns:
-            Callable[[~.UpdateFirebaseLinkRequest],
-                    ~.FirebaseLink]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_firebase_link" not in self._stubs:
-            self._stubs["update_firebase_link"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink",
-                request_serializer=analytics_admin.UpdateFirebaseLinkRequest.serialize,
-                response_deserializer=resources.FirebaseLink.deserialize,
-            )
-        return self._stubs["update_firebase_link"]
-
-    @property
     def delete_firebase_link(
         self,
     ) -> Callable[[analytics_admin.DeleteFirebaseLinkRequest], empty_pb2.Empty]:
@@ -1934,6 +1912,376 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
         return self._stubs["list_conversion_events"]
 
     @property
+    def get_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDisplayVideo360AdvertiserLinkRequest],
+        resources.DisplayVideo360AdvertiserLink,
+    ]:
+        r"""Return a callable for the get display video360
+        advertiser link method over gRPC.
+
+        Look up a single DisplayVideo360AdvertiserLink
+
+        Returns:
+            Callable[[~.GetDisplayVideo360AdvertiserLinkRequest],
+                    ~.DisplayVideo360AdvertiserLink]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_display_video360_advertiser_link" not in self._stubs:
+            self._stubs[
+                "get_display_video360_advertiser_link"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLink",
+                request_serializer=analytics_admin.GetDisplayVideo360AdvertiserLinkRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLink.deserialize,
+            )
+        return self._stubs["get_display_video360_advertiser_link"]
+
+    @property
+    def list_display_video360_advertiser_links(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDisplayVideo360AdvertiserLinksRequest],
+        analytics_admin.ListDisplayVideo360AdvertiserLinksResponse,
+    ]:
+        r"""Return a callable for the list display video360
+        advertiser links method over gRPC.
+
+        Lists all DisplayVideo360AdvertiserLinks on a
+        property.
+
+        Returns:
+            Callable[[~.ListDisplayVideo360AdvertiserLinksRequest],
+                    ~.ListDisplayVideo360AdvertiserLinksResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_display_video360_advertiser_links" not in self._stubs:
+            self._stubs[
+                "list_display_video360_advertiser_links"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinks",
+                request_serializer=analytics_admin.ListDisplayVideo360AdvertiserLinksRequest.serialize,
+                response_deserializer=analytics_admin.ListDisplayVideo360AdvertiserLinksResponse.deserialize,
+            )
+        return self._stubs["list_display_video360_advertiser_links"]
+
+    @property
+    def create_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateDisplayVideo360AdvertiserLinkRequest],
+        resources.DisplayVideo360AdvertiserLink,
+    ]:
+        r"""Return a callable for the create display video360
+        advertiser link method over gRPC.
+
+        Creates a DisplayVideo360AdvertiserLink.
+        This can only be utilized by users who have proper
+        authorization both on the Google Analytics property and
+        on the Display & Video 360 advertiser. Users who do not
+        have access to the Display & Video 360 advertiser should
+        instead seek to create a DisplayVideo360LinkProposal.
+
+        Returns:
+            Callable[[~.CreateDisplayVideo360AdvertiserLinkRequest],
+                    ~.DisplayVideo360AdvertiserLink]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "create_display_video360_advertiser_link" not in self._stubs:
+            self._stubs[
+                "create_display_video360_advertiser_link"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLink",
+                request_serializer=analytics_admin.CreateDisplayVideo360AdvertiserLinkRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLink.deserialize,
+            )
+        return self._stubs["create_display_video360_advertiser_link"]
+
+    @property
+    def delete_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteDisplayVideo360AdvertiserLinkRequest], empty_pb2.Empty
+    ]:
+        r"""Return a callable for the delete display video360
+        advertiser link method over gRPC.
+
+        Deletes a DisplayVideo360AdvertiserLink on a
+        property.
+
+        Returns:
+            Callable[[~.DeleteDisplayVideo360AdvertiserLinkRequest],
+                    ~.Empty]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "delete_display_video360_advertiser_link" not in self._stubs:
+            self._stubs[
+                "delete_display_video360_advertiser_link"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLink",
+                request_serializer=analytics_admin.DeleteDisplayVideo360AdvertiserLinkRequest.serialize,
+                response_deserializer=empty_pb2.Empty.FromString,
+            )
+        return self._stubs["delete_display_video360_advertiser_link"]
+
+    @property
+    def update_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDisplayVideo360AdvertiserLinkRequest],
+        resources.DisplayVideo360AdvertiserLink,
+    ]:
+        r"""Return a callable for the update display video360
+        advertiser link method over gRPC.
+
+        Updates a DisplayVideo360AdvertiserLink on a
+        property.
+
+        Returns:
+            Callable[[~.UpdateDisplayVideo360AdvertiserLinkRequest],
+                    ~.DisplayVideo360AdvertiserLink]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "update_display_video360_advertiser_link" not in self._stubs:
+            self._stubs[
+                "update_display_video360_advertiser_link"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDisplayVideo360AdvertiserLink",
+                request_serializer=analytics_admin.UpdateDisplayVideo360AdvertiserLinkRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLink.deserialize,
+            )
+        return self._stubs["update_display_video360_advertiser_link"]
+
+    @property
+    def get_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDisplayVideo360AdvertiserLinkProposalRequest],
+        resources.DisplayVideo360AdvertiserLinkProposal,
+    ]:
+        r"""Return a callable for the get display video360
+        advertiser link proposal method over gRPC.
+
+        Lookup for a single
+        DisplayVideo360AdvertiserLinkProposal.
+
+        Returns:
+            Callable[[~.GetDisplayVideo360AdvertiserLinkProposalRequest],
+                    ~.DisplayVideo360AdvertiserLinkProposal]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_display_video360_advertiser_link_proposal" not in self._stubs:
+            self._stubs[
+                "get_display_video360_advertiser_link_proposal"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLinkProposal",
+                request_serializer=analytics_admin.GetDisplayVideo360AdvertiserLinkProposalRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLinkProposal.deserialize,
+            )
+        return self._stubs["get_display_video360_advertiser_link_proposal"]
+
+    @property
+    def list_display_video360_advertiser_link_proposals(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsRequest],
+        analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsResponse,
+    ]:
+        r"""Return a callable for the list display video360
+        advertiser link proposals method over gRPC.
+
+        Lists DisplayVideo360AdvertiserLinkProposals on a
+        property.
+
+        Returns:
+            Callable[[~.ListDisplayVideo360AdvertiserLinkProposalsRequest],
+                    ~.ListDisplayVideo360AdvertiserLinkProposalsResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_display_video360_advertiser_link_proposals" not in self._stubs:
+            self._stubs[
+                "list_display_video360_advertiser_link_proposals"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinkProposals",
+                request_serializer=analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsRequest.serialize,
+                response_deserializer=analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsResponse.deserialize,
+            )
+        return self._stubs["list_display_video360_advertiser_link_proposals"]
+
+    @property
+    def create_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateDisplayVideo360AdvertiserLinkProposalRequest],
+        resources.DisplayVideo360AdvertiserLinkProposal,
+    ]:
+        r"""Return a callable for the create display video360
+        advertiser link proposal method over gRPC.
+
+        Creates a DisplayVideo360AdvertiserLinkProposal.
+
+        Returns:
+            Callable[[~.CreateDisplayVideo360AdvertiserLinkProposalRequest],
+                    ~.DisplayVideo360AdvertiserLinkProposal]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "create_display_video360_advertiser_link_proposal" not in self._stubs:
+            self._stubs[
+                "create_display_video360_advertiser_link_proposal"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLinkProposal",
+                request_serializer=analytics_admin.CreateDisplayVideo360AdvertiserLinkProposalRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLinkProposal.deserialize,
+            )
+        return self._stubs["create_display_video360_advertiser_link_proposal"]
+
+    @property
+    def delete_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteDisplayVideo360AdvertiserLinkProposalRequest],
+        empty_pb2.Empty,
+    ]:
+        r"""Return a callable for the delete display video360
+        advertiser link proposal method over gRPC.
+
+        Deletes a DisplayVideo360AdvertiserLinkProposal on a
+        property. This can only be used on cancelled proposals.
+
+        Returns:
+            Callable[[~.DeleteDisplayVideo360AdvertiserLinkProposalRequest],
+                    ~.Empty]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "delete_display_video360_advertiser_link_proposal" not in self._stubs:
+            self._stubs[
+                "delete_display_video360_advertiser_link_proposal"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLinkProposal",
+                request_serializer=analytics_admin.DeleteDisplayVideo360AdvertiserLinkProposalRequest.serialize,
+                response_deserializer=empty_pb2.Empty.FromString,
+            )
+        return self._stubs["delete_display_video360_advertiser_link_proposal"]
+
+    @property
+    def approve_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalRequest],
+        analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalResponse,
+    ]:
+        r"""Return a callable for the approve display video360
+        advertiser link proposal method over gRPC.
+
+        Approves a DisplayVideo360AdvertiserLinkProposal.
+        The DisplayVideo360AdvertiserLinkProposal will be
+        deleted and a new DisplayVideo360AdvertiserLink will be
+        created.
+
+        Returns:
+            Callable[[~.ApproveDisplayVideo360AdvertiserLinkProposalRequest],
+                    ~.ApproveDisplayVideo360AdvertiserLinkProposalResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "approve_display_video360_advertiser_link_proposal" not in self._stubs:
+            self._stubs[
+                "approve_display_video360_advertiser_link_proposal"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ApproveDisplayVideo360AdvertiserLinkProposal",
+                request_serializer=analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalRequest.serialize,
+                response_deserializer=analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalResponse.deserialize,
+            )
+        return self._stubs["approve_display_video360_advertiser_link_proposal"]
+
+    @property
+    def cancel_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.CancelDisplayVideo360AdvertiserLinkProposalRequest],
+        resources.DisplayVideo360AdvertiserLinkProposal,
+    ]:
+        r"""Return a callable for the cancel display video360
+        advertiser link proposal method over gRPC.
+
+        Cancels a DisplayVideo360AdvertiserLinkProposal.
+        Cancelling can mean either:
+        - Declining a proposal initiated from Display & Video
+        360 - Withdrawing a proposal initiated from Google
+        Analytics After being cancelled, a proposal will
+        eventually be deleted automatically.
+
+        Returns:
+            Callable[[~.CancelDisplayVideo360AdvertiserLinkProposalRequest],
+                    ~.DisplayVideo360AdvertiserLinkProposal]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "cancel_display_video360_advertiser_link_proposal" not in self._stubs:
+            self._stubs[
+                "cancel_display_video360_advertiser_link_proposal"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CancelDisplayVideo360AdvertiserLinkProposal",
+                request_serializer=analytics_admin.CancelDisplayVideo360AdvertiserLinkProposalRequest.serialize,
+                response_deserializer=resources.DisplayVideo360AdvertiserLinkProposal.deserialize,
+            )
+        return self._stubs["cancel_display_video360_advertiser_link_proposal"]
+
+    @property
     def create_custom_dimension(
         self,
     ) -> Callable[
@@ -2204,6 +2552,68 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
                 response_deserializer=resources.CustomMetric.deserialize,
             )
         return self._stubs["get_custom_metric"]
+
+    @property
+    def get_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDataRetentionSettingsRequest],
+        resources.DataRetentionSettings,
+    ]:
+        r"""Return a callable for the get data retention settings method over gRPC.
+
+        Returns the singleton data retention settings for
+        this property.
+
+        Returns:
+            Callable[[~.GetDataRetentionSettingsRequest],
+                    ~.DataRetentionSettings]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_data_retention_settings" not in self._stubs:
+            self._stubs["get_data_retention_settings"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataRetentionSettings",
+                request_serializer=analytics_admin.GetDataRetentionSettingsRequest.serialize,
+                response_deserializer=resources.DataRetentionSettings.deserialize,
+            )
+        return self._stubs["get_data_retention_settings"]
+
+    @property
+    def update_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDataRetentionSettingsRequest],
+        resources.DataRetentionSettings,
+    ]:
+        r"""Return a callable for the update data retention settings method over gRPC.
+
+        Updates the singleton data retention settings for
+        this property.
+
+        Returns:
+            Callable[[~.UpdateDataRetentionSettingsRequest],
+                    ~.DataRetentionSettings]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "update_data_retention_settings" not in self._stubs:
+            self._stubs[
+                "update_data_retention_settings"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataRetentionSettings",
+                request_serializer=analytics_admin.UpdateDataRetentionSettingsRequest.serialize,
+                response_deserializer=resources.DataRetentionSettings.deserialize,
+            )
+        return self._stubs["update_data_retention_settings"]
 
 
 __all__ = ("AnalyticsAdminServiceGrpcTransport",)

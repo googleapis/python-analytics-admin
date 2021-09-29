@@ -76,13 +76,13 @@ source_suffix = [".rst", ".md"]
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 
-# The master toctree document.
-master_doc = "index"
+# The root toctree document.
+root_doc = "index"
 
 # General information about the project.
-project = u"google-analytics-admin"
-copyright = u"2019, Google"
-author = u"Google APIs"
+project = "google-analytics-admin"
+copyright = "2019, Google"
+author = "Google APIs"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -110,6 +110,7 @@ language = None
 # directories to ignore when looking for source files.
 exclude_patterns = [
     "_build",
+    "**/.nox/**/*",
     "samples/AUTHORING_GUIDE.md",
     "samples/CONTRIBUTING.md",
     "samples/snippets/README.rst",
@@ -279,9 +280,9 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (
-        master_doc,
+        root_doc,
         "google-analytics-admin.tex",
-        u"google-analytics-admin Documentation",
+        "google-analytics-admin Documentation",
         author,
         "manual",
     )
@@ -314,9 +315,9 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (
-        master_doc,
+        root_doc,
         "google-analytics-admin",
-        u"google-analytics-admin Documentation",
+        "google-analytics-admin Documentation",
         [author],
         1,
     )
@@ -333,9 +334,9 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (
-        master_doc,
+        root_doc,
         "google-analytics-admin",
-        u"google-analytics-admin Documentation",
+        "google-analytics-admin Documentation",
         author,
         "google-analytics-admin",
         "google-analytics-admin Library",

@@ -24,6 +24,7 @@ from google.api_core import exceptions as core_exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials as ga_credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.analytics.admin_v1alpha.types import analytics_admin
 from google.analytics.admin_v1alpha.types import resources
@@ -44,8 +45,6 @@ except AttributeError:
         _GOOGLE_AUTH_VERSION = pkg_resources.get_distribution("google-auth").version
     except pkg_resources.DistributionNotFound:  # pragma: NO COVER
         _GOOGLE_AUTH_VERSION = None
-
-_API_CORE_VERSION = google.api_core.__version__
 
 
 class AnalyticsAdminServiceTransport(abc.ABC):
@@ -69,6 +68,7 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         scopes: Optional[Sequence[str]] = None,
         quota_project_id: Optional[str] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
         **kwargs,
     ) -> None:
         """Instantiate the transport.
@@ -92,6 +92,8 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 API requests. If ``None``, then default info will be used.
                 Generally, you only need to set this if you're developing
                 your own client library.
+            always_use_jwt_access (Optional[bool]): Whether self signed JWT should
+                be used for service account credentials.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
         if ":" not in host:
@@ -101,7 +103,7 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         scopes_kwargs = self._get_scopes_kwargs(self._host, scopes)
 
         # Save the scopes.
-        self._scopes = scopes or self.AUTH_SCOPES
+        self._scopes = scopes
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
@@ -120,13 +122,20 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 **scopes_kwargs, quota_project_id=quota_project_id
             )
 
+        # If the credentials are service account credentials, then always try to use self signed JWT.
+        if (
+            always_use_jwt_access
+            and isinstance(credentials, service_account.Credentials)
+            and hasattr(service_account.Credentials, "with_always_use_jwt_access")
+        ):
+            credentials = credentials.with_always_use_jwt_access(True)
+
         # Save the credentials.
         self._credentials = credentials
 
-    # TODO(busunkim): These two class methods are in the base transport
+    # TODO(busunkim): This method is in the base transport
     # to avoid duplicating code across the transport classes. These functions
-    # should be deleted once the minimum required versions of google-api-core
-    # and google-auth are increased.
+    # should be deleted once the minimum required versions of google-auth is increased.
 
     # TODO: Remove this function once google-auth >= 1.25.0 is required
     @classmethod
@@ -146,27 +155,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             scopes_kwargs = {"scopes": scopes or cls.AUTH_SCOPES}
 
         return scopes_kwargs
-
-    # TODO: Remove this function once google-api-core >= 1.26.0 is required
-    @classmethod
-    def _get_self_signed_jwt_kwargs(
-        cls, host: str, scopes: Optional[Sequence[str]]
-    ) -> Dict[str, Union[Optional[Sequence[str]], str]]:
-        """Returns kwargs to pass to grpc_helpers.create_channel depending on the google-api-core version"""
-
-        self_signed_jwt_kwargs: Dict[str, Union[Optional[Sequence[str]], str]] = {}
-
-        if _API_CORE_VERSION and (
-            packaging.version.parse(_API_CORE_VERSION)
-            >= packaging.version.parse("1.26.0")
-        ):
-            self_signed_jwt_kwargs["default_scopes"] = cls.AUTH_SCOPES
-            self_signed_jwt_kwargs["scopes"] = scopes
-            self_signed_jwt_kwargs["default_host"] = cls.DEFAULT_HOST
-        else:
-            self_signed_jwt_kwargs["scopes"] = scopes or cls.AUTH_SCOPES
-
-        return self_signed_jwt_kwargs
 
     def _prep_wrapped_messages(self, client_info):
         # Precompute the wrapped methods.
@@ -324,11 +312,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 default_timeout=60.0,
                 client_info=client_info,
             ),
-            self.update_firebase_link: gapic_v1.method.wrap_method(
-                self.update_firebase_link,
-                default_timeout=60.0,
-                client_info=client_info,
-            ),
             self.delete_firebase_link: gapic_v1.method.wrap_method(
                 self.delete_firebase_link,
                 default_timeout=60.0,
@@ -425,6 +408,61 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_display_video360_advertiser_link: gapic_v1.method.wrap_method(
+                self.get_display_video360_advertiser_link,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.list_display_video360_advertiser_links: gapic_v1.method.wrap_method(
+                self.list_display_video360_advertiser_links,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.create_display_video360_advertiser_link: gapic_v1.method.wrap_method(
+                self.create_display_video360_advertiser_link,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.delete_display_video360_advertiser_link: gapic_v1.method.wrap_method(
+                self.delete_display_video360_advertiser_link,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.update_display_video360_advertiser_link: gapic_v1.method.wrap_method(
+                self.update_display_video360_advertiser_link,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.get_display_video360_advertiser_link_proposal: gapic_v1.method.wrap_method(
+                self.get_display_video360_advertiser_link_proposal,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.list_display_video360_advertiser_link_proposals: gapic_v1.method.wrap_method(
+                self.list_display_video360_advertiser_link_proposals,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.create_display_video360_advertiser_link_proposal: gapic_v1.method.wrap_method(
+                self.create_display_video360_advertiser_link_proposal,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.delete_display_video360_advertiser_link_proposal: gapic_v1.method.wrap_method(
+                self.delete_display_video360_advertiser_link_proposal,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.approve_display_video360_advertiser_link_proposal: gapic_v1.method.wrap_method(
+                self.approve_display_video360_advertiser_link_proposal,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.cancel_display_video360_advertiser_link_proposal: gapic_v1.method.wrap_method(
+                self.cancel_display_video360_advertiser_link_proposal,
+                default_timeout=None,
+                client_info=client_info,
+            ),
             self.create_custom_dimension: gapic_v1.method.wrap_method(
                 self.create_custom_dimension,
                 default_timeout=None,
@@ -470,6 +508,16 @@ class AnalyticsAdminServiceTransport(abc.ABC):
             ),
             self.get_custom_metric: gapic_v1.method.wrap_method(
                 self.get_custom_metric, default_timeout=None, client_info=client_info,
+            ),
+            self.get_data_retention_settings: gapic_v1.method.wrap_method(
+                self.get_data_retention_settings,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.update_data_retention_settings: gapic_v1.method.wrap_method(
+                self.update_data_retention_settings,
+                default_timeout=None,
+                client_info=client_info,
             ),
         }
 
@@ -853,15 +901,6 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def update_firebase_link(
-        self,
-    ) -> Callable[
-        [analytics_admin.UpdateFirebaseLinkRequest],
-        Union[resources.FirebaseLink, Awaitable[resources.FirebaseLink]],
-    ]:
-        raise NotImplementedError()
-
-    @property
     def delete_firebase_link(
         self,
     ) -> Callable[
@@ -1070,6 +1109,136 @@ class AnalyticsAdminServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
+    def get_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDisplayVideo360AdvertiserLinkRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLink,
+            Awaitable[resources.DisplayVideo360AdvertiserLink],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def list_display_video360_advertiser_links(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDisplayVideo360AdvertiserLinksRequest],
+        Union[
+            analytics_admin.ListDisplayVideo360AdvertiserLinksResponse,
+            Awaitable[analytics_admin.ListDisplayVideo360AdvertiserLinksResponse],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def create_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateDisplayVideo360AdvertiserLinkRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLink,
+            Awaitable[resources.DisplayVideo360AdvertiserLink],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def delete_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteDisplayVideo360AdvertiserLinkRequest],
+        Union[empty_pb2.Empty, Awaitable[empty_pb2.Empty]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def update_display_video360_advertiser_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDisplayVideo360AdvertiserLinkRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLink,
+            Awaitable[resources.DisplayVideo360AdvertiserLink],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def get_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDisplayVideo360AdvertiserLinkProposalRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLinkProposal,
+            Awaitable[resources.DisplayVideo360AdvertiserLinkProposal],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def list_display_video360_advertiser_link_proposals(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsRequest],
+        Union[
+            analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsResponse,
+            Awaitable[
+                analytics_admin.ListDisplayVideo360AdvertiserLinkProposalsResponse
+            ],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def create_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateDisplayVideo360AdvertiserLinkProposalRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLinkProposal,
+            Awaitable[resources.DisplayVideo360AdvertiserLinkProposal],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def delete_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteDisplayVideo360AdvertiserLinkProposalRequest],
+        Union[empty_pb2.Empty, Awaitable[empty_pb2.Empty]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def approve_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalRequest],
+        Union[
+            analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalResponse,
+            Awaitable[
+                analytics_admin.ApproveDisplayVideo360AdvertiserLinkProposalResponse
+            ],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def cancel_display_video360_advertiser_link_proposal(
+        self,
+    ) -> Callable[
+        [analytics_admin.CancelDisplayVideo360AdvertiserLinkProposalRequest],
+        Union[
+            resources.DisplayVideo360AdvertiserLinkProposal,
+            Awaitable[resources.DisplayVideo360AdvertiserLinkProposal],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
     def create_custom_dimension(
         self,
     ) -> Callable[
@@ -1162,6 +1331,28 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     ) -> Callable[
         [analytics_admin.GetCustomMetricRequest],
         Union[resources.CustomMetric, Awaitable[resources.CustomMetric]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def get_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDataRetentionSettingsRequest],
+        Union[
+            resources.DataRetentionSettings, Awaitable[resources.DataRetentionSettings]
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def update_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDataRetentionSettingsRequest],
+        Union[
+            resources.DataRetentionSettings, Awaitable[resources.DataRetentionSettings]
+        ],
     ]:
         raise NotImplementedError()
 

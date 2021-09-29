@@ -32,13 +32,23 @@ s.remove_staging_dirs()
 # Add templated files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library(cov_level=98, microgenerator=True)
+python.py_samples(skip_readmes=True)
 s.move(
-    templated_files, excludes=[".coveragerc"]
+    templated_files, excludes=[
+        ".coveragerc"
+    ]
 )  # the microgenerator has a good coveragerc file
 
 # fix coverage statement
 s.replace("noxfile.py",
 '''["']--cov=google/cloud["'],''',
 '''"--cov=google.analytics",''')
+
+# Block pushing non-cloud libraries to Cloud RAD
+s.replace(
+    ".kokoro/docs/common.cfg",
+    r'value: "docs-staging-v2"',
+    r'value: "docs-staging-v2-staging"'
+)
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
