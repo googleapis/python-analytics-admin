@@ -10,6 +10,6 @@
     "repo": "googleapis/python-analytics-admin",
     "distribution_name": "google-analytics-admin",
     "api_id": "analyticsadmin.googleapis.com",
-    "default_version": "",
+    "default_version": "v1alpha",
     "codeowner_team": ""
 }
