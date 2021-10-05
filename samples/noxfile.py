@@ -98,6 +98,13 @@ INSTALL_LIBRARY_FROM_SOURCE = os.environ.get("INSTALL_LIBRARY_FROM_SOURCE", Fals
     "True",
     "true",
 )
+<<<<<<<<< Temporary merge branch 1
+=========
+
+# Error if a python version is missing
+nox.options.error_on_missing_interpreters = True
+
+>>>>>>>>> Temporary merge branch 2
 #
 # Style Checks
 #
