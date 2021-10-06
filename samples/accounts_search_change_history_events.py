@@ -21,14 +21,15 @@ See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alp
 for more information.
 """
 # [START analyticsadmin_properties_conversion_events_create]
-from google.protobuf.timestamp_pb2 import Timestamp
 from datetime import datetime
 from datetime import timedelta
 
 from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin import SearchChangeHistoryEventsRequest
-from google.analytics.admin_v1alpha.types import ActorType
 from google.analytics.admin_v1alpha.types import ActionType
+from google.analytics.admin_v1alpha.types import ActorType
+
+from google.protobuf.timestamp_pb2 import Timestamp
 
 
 def run_sample():
@@ -45,7 +46,7 @@ def run_sample():
 
 def search_change_history_events(account_id: str, property_id: str):
     """Lists the change history events for the Google Analytics 4 property
-    within the specified date range."""
+  within the specified date range."""
     client = AnalyticsAdminServiceClient()
     # Create a timestamp object and subtract 7 days from the current date/time.
     earliest_change_time = Timestamp()
