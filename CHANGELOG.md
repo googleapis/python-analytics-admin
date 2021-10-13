@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.5.2...v0.6.0) (2021-10-08)
+
+
+### Features
+
+* add context manager support in client ([#146](https://www.github.com/googleapis/python-analytics-admin/issues/146)) ([f1559b6](https://www.github.com/googleapis/python-analytics-admin/commit/f1559b6074e75e453e0f3c6f32a21bfac487e562))
+
+### [0.5.2](https://www.github.com/googleapis/python-analytics-admin/compare/v0.5.1...v0.5.2) (2021-10-07)
+
+
+### Bug Fixes
+
+* improper types in pagers generation ([aa076a9](https://www.github.com/googleapis/python-analytics-admin/commit/aa076a9bde90aaa2ceeaaa580c499a42e212b39f))
+
+
+### Documentation
+
+* add samples for accounts.search_change_history_events() method ([#137](https://www.github.com/googleapis/python-analytics-admin/issues/137)) ([c299b37](https://www.github.com/googleapis/python-analytics-admin/commit/c299b370c42a8684faa86f5bb5f65b3da8a2d0a8))
+
 ### [0.5.1](https://www.github.com/googleapis/python-analytics-admin/compare/v0.5.0...v0.5.1) (2021-09-24)
 
 
