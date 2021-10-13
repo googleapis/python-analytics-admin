@@ -40,14 +40,18 @@ def run_sample():
     #  (e.g. "123456") before running the sample.
     stream_id = "YOUR-WEB-DATA-STREAM-ID"
 
-    delete_measurement_protocol_secret(property_id, stream_id)
+    # TODO(developer): Replace this variable with your measurement protocol
+    #  secret ID (e.g. "123456") before running the sample.
+    secret_id = "YOUR-MEASUREMENT-PROTOCOL-SECRET-ID"
+
+    delete_measurement_protocol_secret(property_id, stream_id, secret_id)
 
 
-def delete_measurement_protocol_secret(property_id, stream_id):
+def delete_measurement_protocol_secret(property_id, stream_id, secret_id):
     """Deletes the web data stream from the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
     client.delete_measurement_protocol_secret(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}"
+        name=f"properties/{property_id}/webDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
     )
     print("Web data stream deleted")
 

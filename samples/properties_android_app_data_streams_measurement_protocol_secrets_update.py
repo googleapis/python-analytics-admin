@@ -57,7 +57,7 @@ def update_measurement_protocol_secret(property_id, stream_id, secret_id):
     # protocol secret to update is specified in the `name` field of the
     # `MeasurementProtocolSecret` instance.
     measurement_protocol_secret = client.update_measurement_protocol_secret(
-        android_app_data_stream=MeasurementProtocolSecret(
+        measurement_protocol_secret=MeasurementProtocolSecret(
             name=f"properties/{property_id}/androidAppDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}",
             display_name="This is an updated measurement protocol secret",
         ),
