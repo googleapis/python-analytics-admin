@@ -56,7 +56,7 @@ def delete_measurement_protocol_secret(property_id, stream_id, secret_id):
     print("Web data stream deleted")
 
 
-# [END analyticsadmin_properties_web_data_streams_streams_measurement_protocol_delete]
+# [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_delete]
 
 
 if __name__ == "__main__":
