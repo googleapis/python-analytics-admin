@@ -20,7 +20,7 @@ stream from the Google Analytics 4 property.
 See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/delete
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_streams_measurement_protocol_delete]
+# [START analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_delete]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
