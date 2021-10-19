@@ -53,7 +53,7 @@ def delete_measurement_protocol_secret(property_id, stream_id, secret_id):
     client.delete_measurement_protocol_secret(
         name=f"properties/{property_id}/webDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
     )
-    print("Web data stream deleted")
+    print("Measurement protocol secret deleted")
 
 
 # [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_delete]
