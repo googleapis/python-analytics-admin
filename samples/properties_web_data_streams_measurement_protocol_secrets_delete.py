@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which deletes the web data
-stream from the Google Analytics 4 property.
+"""Google Analytics Admin API sample application which deletes a measurement
+protocol secret for the web data stream.
 
 See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/delete
 for more information.
