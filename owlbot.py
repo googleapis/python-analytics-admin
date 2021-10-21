@@ -42,7 +42,7 @@ s.move(
 # fix coverage statement
 s.replace("noxfile.py",
 '''["']--cov=google/cloud["'],''',
-'''"--cov=google.analytics",''')
+'''"--cov=google",''')
 
 # Block pushing non-cloud libraries to Cloud RAD
 s.replace(
