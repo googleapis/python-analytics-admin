@@ -23,15 +23,14 @@ Quick Start
 
 In order to use this library, you first need to go through the following steps:
 
-1. `Select or create a Cloud Platform project.`_
-2. `Enable billing for your project.`_
-3. `Enable the Analytics Admin API.`_
-4. `Setup Authentication.`_
+1. `Enable the Analytics Admin API.`_
+2. `Setup Authentication.`_
+3. `Install the library.`_
 
-.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
-.. _Enable billing for your project.: https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project
-.. _Enable the Analytics Admin API.:  https://developers.google.com/analytics/devguides/config/admin/v1/quickstart-client-libraries#step_1_enable_the_api
-.. _Setup Authentication.: https://googleapis.dev/python/google-api-core/latest/auth.html
+.. _Enable the Analytics Admin API.: https://developers.google.com/analytics/devguides/config/admin/v1/quickstart-client-libraries#step_1_enable_the_api
+.. _Setup Authentication.: https://developers.google.com/analytics/devguides/config/admin/v1/quickstart-client-libraries#step_2_configure_authentication
+.. _Install the library.: https://developers.google.com/analytics/devguides/config/admin/v1/quickstart-client-libraries#step_3_install_the_client_library
+
 
 Installation
 ~~~~~~~~~~~~
