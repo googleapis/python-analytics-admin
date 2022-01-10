@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://www.github.com/googleapis/python-analytics-admin/compare/v0.7.2...v0.8.0) (2022-01-10)
+
+
+### Features
+
+* add the `AcknowledgeUserDataCollection` operation  ([#170](https://www.github.com/googleapis/python-analytics-admin/issues/170)) ([03abb54](https://www.github.com/googleapis/python-analytics-admin/commit/03abb54e9a394bb4f69203c98099a5e628116b48))
+
 ### [0.7.2](https://www.github.com/googleapis/python-analytics-admin/compare/v0.7.1...v0.7.2) (2021-11-01)
 
 
