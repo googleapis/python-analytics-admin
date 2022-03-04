@@ -46,9 +46,7 @@ def run_sample():
 def delete_data_stream(property_id, stream_id):
     """Deletes the data stream from the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    client.delete_data_stream(
-        name=f"properties/{property_id}/dataStreams/{stream_id}"
-    )
+    client.delete_data_stream(name=f"properties/{property_id}/dataStreams/{stream_id}")
     print("Data stream deleted")
 
 
