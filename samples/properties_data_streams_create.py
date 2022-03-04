@@ -42,16 +42,16 @@ def run_sample():
 def create_data_stream(property_id):
     """Creates a data stream for the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    data_stream = client.create_data_stream(
-        parent=f"properties/{property_id}",
-        data_stream=DataStream(
-            default_uri="https://www.google.com", display_name="Test web data stream"
-        ),
+    data_stream = DataStream(
+        default_uri="https://www.google.com", display_name="Test web data stream"
     )
     data_stream.type_ = "WEB_DATA_STREAM"
+    result = client.create_data_stream(
+        parent=f"properties/{property_id}", data_stream=data_stream,
+    )
 
     print("Result:")
-    print(data_stream)
+    print(result)
 
 
 # [END analyticsadmin_properties_data_streams_create]
