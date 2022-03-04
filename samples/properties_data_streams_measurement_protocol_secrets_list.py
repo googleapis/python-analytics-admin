@@ -18,7 +18,7 @@
 protocol secrets for the data stream.
 
 """
-# [START analyticsadmin_properties_android_app_data_streams_measurement_protocol_secrets_list]
+# [START analyticsadmin_properties_data_streams_measurement_protocol_secrets_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -50,7 +50,7 @@ def list_measurement_protocol_secrets(property_id, stream_id):
         print()
 
 
-# [END analyticsadmin_properties_android_app_data_streams_measurement_protocol_secrets_list]
+# [END analyticsadmin_properties_data_streams_measurement_protocol_secrets_list]
 
 
 if __name__ == "__main__":
