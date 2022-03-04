@@ -14,16 +14,16 @@
 
 import os
 
-import properties_web_data_streams_get_global_site_tag
+import properties_data_streams_get_global_site_tag
 
 
 TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
-TEST_WEB_DATA_STREAM_ID = os.getenv("GA_TEST_WEB_DATA_STREAM_ID")
+TEST_DATA_STREAM_ID = os.getenv("GA_TEST_WEB_DATA_STREAM_ID")
 
 
-def test_properties_web_data_streams_get_global_site_tag(capsys):
-    properties_web_data_streams_get_global_site_tag.get_global_site_tag(
-        TEST_PROPERTY_ID, TEST_WEB_DATA_STREAM_ID
+def test_properties_data_streams_get_global_site_tag(capsys):
+    properties_data_streams_get_global_site_tag.get_global_site_tag(
+        TEST_PROPERTY_ID, TEST_DATA_STREAM_ID
     )
     out, _ = capsys.readouterr()
     assert "Result" in out

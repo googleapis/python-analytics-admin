@@ -15,12 +15,10 @@
 # limitations under the License.
 
 """Google Analytics Admin API sample application which updates the measurement
-protocol secret for the web data stream.
+protocol secret for the data stream.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/patch
-for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_update]
+# [START analyticsadmin_properties_data_streams_measurement_protocol_secrets_update]
 from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha import MeasurementProtocolSecret
 from google.protobuf.field_mask_pb2 import FieldMask
@@ -38,9 +36,9 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
     # TODO(developer): Replace this variable with your measurement protocol
     #  secret ID (e.g. "123456") before running the sample.
@@ -58,7 +56,7 @@ def update_measurement_protocol_secret(property_id, stream_id, secret_id):
     # `MeasurementProtocolSecret` instance.
     measurement_protocol_secret = client.update_measurement_protocol_secret(
         measurement_protocol_secret=MeasurementProtocolSecret(
-            name=f"properties/{property_id}/webDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}",
+            name=f"properties/{property_id}/dataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}",
             display_name="This is an updated measurement protocol secret",
         ),
         update_mask=FieldMask(paths=["display_name"]),
@@ -70,7 +68,7 @@ def update_measurement_protocol_secret(property_id, stream_id, secret_id):
     print(f"Display name: {measurement_protocol_secret.display_name}")
 
 
-# [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_update]
+# [END analyticsadmin_properties_data_streams_measurement_protocol_secrets_update]
 
 
 if __name__ == "__main__":

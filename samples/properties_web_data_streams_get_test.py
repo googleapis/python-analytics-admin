@@ -14,16 +14,16 @@
 
 import os
 
-import properties_web_data_streams_get
+import properties_data_streams_get
 
 
 TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
-TEST_WEB_DATA_STREAM_ID = os.getenv("GA_TEST_WEB_DATA_STREAM_ID")
+TEST_DATA_STREAM_ID = os.getenv("GA_TEST_WEB_DATA_STREAM_ID")
 
 
 def test_properties_android_app_data_streams_get(capsys):
-    properties_web_data_streams_get.get_web_data_stream(
-        TEST_PROPERTY_ID, TEST_WEB_DATA_STREAM_ID
+    properties_data_streams_get.get_data_stream(
+        TEST_PROPERTY_ID, TEST_DATA_STREAM_ID
     )
     out, _ = capsys.readouterr()
     assert "Result" in out

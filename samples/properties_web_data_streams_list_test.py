@@ -14,12 +14,12 @@
 
 import os
 
-import properties_web_data_streams_list
+import properties_data_streams_list
 
 TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
 
 
-def test_properties_web_data_streams_list(capsys):
-    properties_web_data_streams_list.list_web_data_streams(TEST_PROPERTY_ID)
+def test_properties_data_streams_list(capsys):
+    properties_data_streams_list.list_data_streams(TEST_PROPERTY_ID)
     out, _ = capsys.readouterr()
     assert "Result" in out

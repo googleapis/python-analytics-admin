@@ -14,15 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which creates a web data stream
+"""Google Analytics Admin API sample application which creates a data stream
 for the Google Analytics 4 property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams/create
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.dataStreams/create
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_create]
+# [START analyticsadmin_properties_data_streams_create]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import WebDataStream
+from google.analytics.admin_v1alpha.types import DataStream
 
 
 def run_sample():
@@ -36,24 +36,25 @@ def run_sample():
     # TODO(developer): Replace this variable with your Google Analytics 4
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
-    create_web_data_stream(property_id)
+    create_data_stream(property_id)
 
 
-def create_web_data_stream(property_id):
-    """Creates a web data stream for the Google Analytics 4 property."""
+def create_data_stream(property_id):
+    """Creates a data stream for the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    web_data_stream = client.create_web_data_stream(
+    data_stream = client.create_data_stream(
         parent=f"properties/{property_id}",
-        web_data_stream=WebDataStream(
+        data_stream=DataStream(
             default_uri="https://www.google.com", display_name="Test web data stream"
         ),
     )
+    data_stream.type_ = "WEB_DATA_STREAM"
 
     print("Result:")
-    print(web_data_stream)
+    print(data_stream)
 
 
-# [END analyticsadmin_properties_web_data_streams_create]
+# [END analyticsadmin_properties_data_streams_create]
 
 
 if __name__ == "__main__":

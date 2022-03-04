@@ -15,10 +15,8 @@
 # limitations under the License.
 
 """Google Analytics Admin API sample application which lists measurement
-protocol secrets for the web data stream.
+protocol secrets for the data stream.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/list
-for more information.
 """
 # [START analyticsadmin_properties_android_app_data_streams_measurement_protocol_secrets_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
@@ -30,17 +28,17 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
     list_measurement_protocol_secrets(property_id, stream_id)
 
 
 def list_measurement_protocol_secrets(property_id, stream_id):
-    """Lists measurement protocol secrets for the web data stream."""
+    """Lists measurement protocol secrets for the data stream."""
     client = AnalyticsAdminServiceClient()
     results = client.list_measurement_protocol_secrets(
-        parent=f"properties/{property_id}/webDataStreams/{stream_id}"
+        parent=f"properties/{property_id}/dataStreams/{stream_id}"
     )
 
     print("Result:")

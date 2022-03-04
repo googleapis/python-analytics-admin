@@ -15,12 +15,12 @@
 # limitations under the License.
 
 """Google Analytics Admin API sample application which prints the details for
-the web data stream.
+the data stream.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams/get
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.dataStreams/get
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_get]
+# [START analyticsadmin_properties_data_streams_get]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -30,36 +30,36 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
-    get_web_data_stream(property_id, stream_id)
+    get_data_stream(property_id, stream_id)
 
 
-def get_web_data_stream(property_id, stream_id):
-    """Retrieves the details for the web data stream."""
+def get_data_stream(property_id, stream_id):
+    """Retrieves the details for the data stream."""
     client = AnalyticsAdminServiceClient()
-    web_data_stream = client.get_web_data_stream(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}"
+    data_stream = client.get_data_stream(
+        name=f"properties/{property_id}/dataStreams/{stream_id}"
     )
 
     print("Result:")
-    print_web_data_stream(web_data_stream)
+    print_data_stream(data_stream)
 
 
-def print_web_data_stream(web_data_stream):
-    """Prints the web data stream details."""
-    print(f"Resource name: {web_data_stream.name}")
-    print(f"Display name: {web_data_stream.display_name}")
-    print(f"Default URI: {web_data_stream.default_uri}")
-    print(f"Measurement ID: {web_data_stream.measurement_id}")
-    print(f"Firebase App ID: {web_data_stream.firebase_app_id}")
-    print(f"Create time: {web_data_stream.create_time}")
-    print(f"Update time: {web_data_stream.update_time}")
+def print_data_stream(data_stream):
+    """Prints the data stream details."""
+    print(f"Resource name: {data_stream.name}")
+    print(f"Display name: {data_stream.display_name}")
+    print(f"Default URI: {data_stream.default_uri}")
+    print(f"Measurement ID: {data_stream.measurement_id}")
+    print(f"Firebase App ID: {data_stream.firebase_app_id}")
+    print(f"Create time: {data_stream.create_time}")
+    print(f"Update time: {data_stream.update_time}")
 
 
-# [END analyticsadmin_properties_web_data_streams_get]
+# [END analyticsadmin_properties_data_streams_get]
 
 
 if __name__ == "__main__":

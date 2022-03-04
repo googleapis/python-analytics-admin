@@ -15,12 +15,10 @@
 # limitations under the License.
 
 """Google Analytics Admin API sample application which creates a measurement
-protocol secret for the web data stream.
+protocol secret for the data stream.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/create
-for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_create]
+# [START analyticsadmin_properties_data_streams_measurement_protocol_secrets_create]
 from google.analytics.admin import AnalyticsAdminServiceClient
 from google.analytics.admin_v1alpha import MeasurementProtocolSecret
 
@@ -37,18 +35,18 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
     create_measurement_protocol_secret(property_id, stream_id)
 
 
 def create_measurement_protocol_secret(property_id, stream_id):
-    """Creates a measurement protocol secret for the web data stream."""
+    """Creates a measurement protocol secret for the data stream."""
     client = AnalyticsAdminServiceClient()
     measurement_protocol_secret = client.create_measurement_protocol_secret(
-        parent=f"properties/{property_id}/webDataStreams/{stream_id}",
+        parent=f"properties/{property_id}/dataStreams/{stream_id}",
         measurement_protocol_secret=MeasurementProtocolSecret(
             display_name="New secret"
         ),
@@ -60,7 +58,7 @@ def create_measurement_protocol_secret(property_id, stream_id):
     print(f"Display name: {measurement_protocol_secret.display_name}")
 
 
-# [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_create]
+# [END analyticsadmin_properties_data_streams_measurement_protocol_secrets_create]
 
 
 if __name__ == "__main__":

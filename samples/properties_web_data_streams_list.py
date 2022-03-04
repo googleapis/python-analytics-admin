@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which prints web data streams
+"""Google Analytics Admin API sample application which prints data streams
 for the Google Analytics 4 property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams/list
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.dataStreams/list
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_list]
+# [START analyticsadmin_properties_data_streams_list]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -30,21 +30,21 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    list_web_data_streams(property_id)
+    list_data_streams(property_id)
 
 
-def list_web_data_streams(property_id):
-    """Lists web data streams for the Google Analytics 4 property."""
+def list_data_streams(property_id):
+    """Lists data streams for the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    results = client.list_web_data_streams(parent=f"properties/{property_id}")
+    results = client.list_data_streams(parent=f"properties/{property_id}")
 
     print("Result:")
-    for web_data_stream in results:
-        print(web_data_stream)
+    for data_stream in results:
+        print(data_stream)
         print()
 
 
-# [END analyticsadmin_properties_web_data_streams_list]
+# [END analyticsadmin_properties_data_streams_list]
 
 
 if __name__ == "__main__":

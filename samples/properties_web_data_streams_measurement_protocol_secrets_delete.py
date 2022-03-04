@@ -15,12 +15,10 @@
 # limitations under the License.
 
 """Google Analytics Admin API sample application which deletes a measurement
-protocol secret for the web data stream.
+protocol secret for the data stream.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/delete
-for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_delete]
+# [START analyticsadmin_properties_data_streams_measurement_protocol_secrets_delete]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -36,9 +34,9 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
     # TODO(developer): Replace this variable with your measurement protocol
     #  secret ID (e.g. "123456") before running the sample.
@@ -48,15 +46,15 @@ def run_sample():
 
 
 def delete_measurement_protocol_secret(property_id, stream_id, secret_id):
-    """Deletes a measurement protocol secret for the web data stream."""
+    """Deletes a measurement protocol secret for the data stream."""
     client = AnalyticsAdminServiceClient()
     client.delete_measurement_protocol_secret(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
+        name=f"properties/{property_id}/dataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
     )
     print("Measurement protocol secret deleted")
 
 
-# [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_delete]
+# [END analyticsadmin_properties_data_streams_measurement_protocol_secrets_delete]
 
 
 if __name__ == "__main__":

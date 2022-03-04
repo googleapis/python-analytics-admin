@@ -16,11 +16,8 @@
 
 """Google Analytics Admin API sample application which prints the Site Tag data
 for the specified web stream.
-
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams/getGlobalSiteTag
-for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_get_global_site_tag]
+# [START analyticsadmin_properties_data_streams_get_global_site_tag]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -30,25 +27,25 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
     get_global_site_tag(property_id, stream_id)
 
 
 def get_global_site_tag(property_id, stream_id):
-    """Retrieves the Site Tag for the specified web stream."""
+    """Retrieves the Site Tag for the specified data stream."""
     client = AnalyticsAdminServiceClient()
     global_site_tag = client.get_global_site_tag(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag"
+        name=f"properties/{property_id}/dataStreams/{stream_id}/globalSiteTag"
     )
 
     print("Result:")
     print(global_site_tag.snippet)
 
 
-# [END analyticsadmin_properties_web_data_streams_get_global_site_tag]
+# [END analyticsadmin_properties_data_streams_get_global_site_tag]
 
 
 if __name__ == "__main__":

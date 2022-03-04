@@ -14,17 +14,17 @@
 
 import pytest
 
-import properties_web_data_streams_measurement_protocol_secrets_update
+import properties_data_streams_measurement_protocol_secrets_update
 
 FAKE_PROPERTY_ID = "1"
 FAKE_STREAM_ID = "1"
 FAKE_SECRET_ID = "1"
 
 
-def test_properties_web_data_streams_measurement_protocol_secrets_update():
+def test_properties_data_streams_measurement_protocol_secrets_update():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        properties_web_data_streams_measurement_protocol_secrets_update.update_measurement_protocol_secret(
+        properties_data_streams_measurement_protocol_secrets_update.update_measurement_protocol_secret(
             FAKE_PROPERTY_ID, FAKE_STREAM_ID, FAKE_SECRET_ID
         )

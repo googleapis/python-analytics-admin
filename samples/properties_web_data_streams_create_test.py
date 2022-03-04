@@ -14,13 +14,13 @@
 
 import pytest
 
-import properties_web_data_streams_create
+import properties_data_streams_create
 
 FAKE_PROPERTY_ID = "1"
 
 
-def test_properties_web_data_streams_create():
+def test_properties_data_streams_create():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        properties_web_data_streams_create.create_web_data_stream(FAKE_PROPERTY_ID)
+        properties_data_streams_create.create_data_stream(FAKE_PROPERTY_ID)

@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Analytics Admin API sample application which deletes the web data
+"""Google Analytics Admin API sample application which deletes the data
 stream from the Google Analytics 4 property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams/delete
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.dataStreams/delete
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_delete]
+# [START analyticsadmin_properties_data_streams_delete]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -36,23 +36,23 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
-    delete_web_data_stream(property_id, stream_id)
+    delete_data_stream(property_id, stream_id)
 
 
-def delete_web_data_stream(property_id, stream_id):
-    """Deletes the web data stream from the Google Analytics 4 property."""
+def delete_data_stream(property_id, stream_id):
+    """Deletes the data stream from the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
-    client.delete_web_data_stream(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}"
+    client.delete_data_stream(
+        name=f"properties/{property_id}/dataStreams/{stream_id}"
     )
-    print("Web data stream deleted")
+    print("Data stream deleted")
 
 
-# [END analyticsadmin_properties_web_data_streams_delete]
+# [END analyticsadmin_properties_data_streams_delete]
 
 
 if __name__ == "__main__":

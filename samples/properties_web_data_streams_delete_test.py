@@ -14,16 +14,16 @@
 
 import pytest
 
-import properties_web_data_streams_delete
+import properties_data_streams_delete
 
 FAKE_PROPERTY_ID = "1"
 FAKE_STREAM_ID = "1"
 
 
-def test_properties_web_data_streams_delete():
+def test_properties_data_streams_delete():
     # This test ensures that the call is valid and reaches the server, even
     # though the operation does not succeed due to permission error.
     with pytest.raises(Exception, match="403 The caller does not have permission"):
-        properties_web_data_streams_delete.delete_web_data_stream(
+        properties_data_streams_delete.delete_data_stream(
             FAKE_PROPERTY_ID, FAKE_STREAM_ID
         )

@@ -17,10 +17,10 @@
 """Google Analytics Admin API sample application which retrieves the details
 for the measurement protocol secret.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.webDataStreams.measurementProtocolSecrets/get
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.dataStreams.measurementProtocolSecrets/get
 for more information.
 """
-# [START analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_get]
+# [START analyticsadmin_properties_data_streams_measurement_protocol_secrets_get]
 from google.analytics.admin import AnalyticsAdminServiceClient
 
 
@@ -30,9 +30,9 @@ def run_sample():
     #  property ID (e.g. "123456") before running the sample.
     property_id = "YOUR-GA4-PROPERTY-ID"
 
-    # TODO(developer): Replace this variable with your web data stream ID
+    # TODO(developer): Replace this variable with your data stream ID
     #  (e.g. "123456") before running the sample.
-    stream_id = "YOUR-WEB-DATA-STREAM-ID"
+    stream_id = "YOUR-DATA-STREAM-ID"
 
     # TODO(developer): Replace this variable with your measurement protocol
     #  secret ID (e.g. "123456") before running the sample.
@@ -45,7 +45,7 @@ def get_measurement_protocol_secret(property_id, stream_id, secret_id):
     """Retrieves the details for the measurement protocol secret."""
     client = AnalyticsAdminServiceClient()
     measurement_protocol_secret = client.get_measurement_protocol_secret(
-        name=f"properties/{property_id}/webDataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
+        name=f"properties/{property_id}/dataStreams/{stream_id}/measurementProtocolSecrets/{secret_id}"
     )
 
     print("Result:")
@@ -54,7 +54,7 @@ def get_measurement_protocol_secret(property_id, stream_id, secret_id):
     print(f"Display name: {measurement_protocol_secret.display_name}")
 
 
-# [END analyticsadmin_properties_web_data_streams_measurement_protocol_secrets_get]
+# [END analyticsadmin_properties_data_streams_measurement_protocol_secrets_get]
 
 
 if __name__ == "__main__":
