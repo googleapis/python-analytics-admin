@@ -52,9 +52,10 @@ def print_data_stream(data_stream):
     """Prints the data stream details."""
     print(f"Resource name: {data_stream.name}")
     print(f"Display name: {data_stream.display_name}")
-    print(f"Default URI: {data_stream.default_uri}")
-    print(f"Measurement ID: {data_stream.measurement_id}")
-    print(f"Firebase App ID: {data_stream.firebase_app_id}")
+    print(f"Type: {data_stream.type}")
+    print(f"Default URI: {data_stream.web_stream_data.default_uri}")
+    print(f"Measurement ID: {data_stream.web_stream_data.measurement_id}")
+    print(f"Firebase App ID: {data_stream.web_stream_data.firebase_app_id}")
     print(f"Create time: {data_stream.create_time}")
     print(f"Update time: {data_stream.update_time}")
 

@@ -43,7 +43,8 @@ def create_data_stream(property_id):
     """Creates a data stream for the Google Analytics 4 property."""
     client = AnalyticsAdminServiceClient()
     data_stream = DataStream(
-        default_uri="https://www.google.com", display_name="Test web data stream"
+        display_name="Test web data stream",
+        web_stream_data=DataStream.WebStreamData(default_uri="https://www.google.com"),
     )
     data_stream.type_ = "WEB_DATA_STREAM"
     result = client.create_data_stream(
