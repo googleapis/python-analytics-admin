@@ -20583,7 +20583,6 @@ def test_analytics_admin_service_transport_auth_adc(transport_class):
     [
         transports.AnalyticsAdminServiceGrpcTransport,
         transports.AnalyticsAdminServiceGrpcAsyncIOTransport,
-        transports.AnalyticsAdminServiceRestTransport,
     ],
 )
 def test_analytics_admin_service_transport_auth_gdch_credentials(transport_class):
