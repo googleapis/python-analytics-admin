@@ -3,7 +3,7 @@ Python Client for Analytics Admin API
 
 |preview| |pypi| |versions|
 
-`Analytics Admin API`_: 
+`Analytics Admin API`_: allows you to manage Google Analytics accounts and properties.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
