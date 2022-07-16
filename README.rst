@@ -15,7 +15,7 @@ Python Client for Analytics Admin API
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-analytics-admin.svg
    :target: https://pypi.org/project/google-analytics-admin/
 .. _Analytics Admin API: https://developers.google.com/analytics/
-.. _Client Library Documentation: https://cloud.google.com/python/docs/reference/analyticsadmin/latest
+.. _Client Library Documentation: https://googleapis.dev/python/analyticsadmin/latest
 .. _Product Documentation:  https://developers.google.com/analytics/
 
 Quick Start
