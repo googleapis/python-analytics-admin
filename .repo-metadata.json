@@ -10,7 +10,7 @@
     "repo": "googleapis/python-analytics-admin",
     "distribution_name": "google-analytics-admin",
     "api_id": "analyticsadmin.googleapis.com",
-    "default_version": "v1alpha",
+    "default_version": "v1beta",
     "codeowner_team": "",
     "api_shortname": "analyticsadmin",
     "api_description": "allows you to manage Google Analytics accounts and properties."
