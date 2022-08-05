@@ -2533,6 +2533,49 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
             )
         return self._stubs["update_attribution_settings"]
 
+    @property
+    def run_access_report(
+        self,
+    ) -> Callable[
+        [analytics_admin.RunAccessReportRequest],
+        analytics_admin.RunAccessReportResponse,
+    ]:
+        r"""Return a callable for the run access report method over gRPC.
+
+        Returns a customized report of data access records. The report
+        provides records of each time a user reads Google Analytics
+        reporting data. Access records are retained for up to 2 years.
+
+        Data Access Reports can be requested for a property. The
+        property must be in Google Analytics 360. This method is only
+        available to Administrators.
+
+        These data access records include GA4 UI Reporting, GA4 UI
+        Explorations, GA4 Data API, and other products like Firebase &
+        Admob that can retrieve data from Google Analytics through a
+        linkage. These records don't include property configuration
+        changes like adding a stream or changing a property's time zone.
+        For configuration change history, see
+        `searchChangeHistoryEvents <https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents>`__.
+
+        Returns:
+            Callable[[~.RunAccessReportRequest],
+                    ~.RunAccessReportResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "run_access_report" not in self._stubs:
+            self._stubs["run_access_report"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport",
+                request_serializer=analytics_admin.RunAccessReportRequest.serialize,
+                response_deserializer=analytics_admin.RunAccessReportResponse.deserialize,
+            )
+        return self._stubs["run_access_report"]
+
     def close(self):
         self.grpc_channel.close()
 

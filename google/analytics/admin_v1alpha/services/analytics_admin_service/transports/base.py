@@ -526,6 +526,11 @@ class AnalyticsAdminServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.run_access_report: gapic_v1.method.wrap_method(
+                self.run_access_report,
+                default_timeout=None,
+                client_info=client_info,
+            ),
         }
 
     def close(self):
@@ -1341,6 +1346,18 @@ class AnalyticsAdminServiceTransport(abc.ABC):
     ) -> Callable[
         [analytics_admin.UpdateAttributionSettingsRequest],
         Union[resources.AttributionSettings, Awaitable[resources.AttributionSettings]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def run_access_report(
+        self,
+    ) -> Callable[
+        [analytics_admin.RunAccessReportRequest],
+        Union[
+            analytics_admin.RunAccessReportResponse,
+            Awaitable[analytics_admin.RunAccessReportResponse],
+        ],
     ]:
         raise NotImplementedError()
 

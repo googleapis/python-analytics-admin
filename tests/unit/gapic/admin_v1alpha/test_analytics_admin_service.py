@@ -46,7 +46,7 @@ from google.analytics.admin_v1alpha.services.analytics_admin_service import (
     pagers,
     transports,
 )
-from google.analytics.admin_v1alpha.types import analytics_admin
+from google.analytics.admin_v1alpha.types import access_report, analytics_admin
 from google.analytics.admin_v1alpha.types import audience
 from google.analytics.admin_v1alpha.types import audience as gaa_audience
 from google.analytics.admin_v1alpha.types import resources
@@ -22208,6 +22208,166 @@ async def test_update_attribution_settings_flattened_error_async():
         )
 
 
+@pytest.mark.parametrize(
+    "request_type",
+    [
+        analytics_admin.RunAccessReportRequest,
+        dict,
+    ],
+)
+def test_run_access_report(request_type, transport: str = "grpc"):
+    client = AnalyticsAdminServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.run_access_report), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = analytics_admin.RunAccessReportResponse(
+            row_count=992,
+        )
+        response = client.run_access_report(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == analytics_admin.RunAccessReportRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, analytics_admin.RunAccessReportResponse)
+    assert response.row_count == 992
+
+
+def test_run_access_report_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = AnalyticsAdminServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.run_access_report), "__call__"
+    ) as call:
+        client.run_access_report()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == analytics_admin.RunAccessReportRequest()
+
+
+@pytest.mark.asyncio
+async def test_run_access_report_async(
+    transport: str = "grpc_asyncio", request_type=analytics_admin.RunAccessReportRequest
+):
+    client = AnalyticsAdminServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.run_access_report), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            analytics_admin.RunAccessReportResponse(
+                row_count=992,
+            )
+        )
+        response = await client.run_access_report(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == analytics_admin.RunAccessReportRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, analytics_admin.RunAccessReportResponse)
+    assert response.row_count == 992
+
+
+@pytest.mark.asyncio
+async def test_run_access_report_async_from_dict():
+    await test_run_access_report_async(request_type=dict)
+
+
+def test_run_access_report_field_headers():
+    client = AnalyticsAdminServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = analytics_admin.RunAccessReportRequest()
+
+    request.entity = "entity_value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.run_access_report), "__call__"
+    ) as call:
+        call.return_value = analytics_admin.RunAccessReportResponse()
+        client.run_access_report(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        "x-goog-request-params",
+        "entity=entity_value",
+    ) in kw["metadata"]
+
+
+@pytest.mark.asyncio
+async def test_run_access_report_field_headers_async():
+    client = AnalyticsAdminServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = analytics_admin.RunAccessReportRequest()
+
+    request.entity = "entity_value"
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.run_access_report), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            analytics_admin.RunAccessReportResponse()
+        )
+        await client.run_access_report(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        "x-goog-request-params",
+        "entity=entity_value",
+    ) in kw["metadata"]
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.AnalyticsAdminServiceGrpcTransport(
@@ -22423,6 +22583,7 @@ def test_analytics_admin_service_base_transport():
         "archive_audience",
         "get_attribution_settings",
         "update_attribution_settings",
+        "run_access_report",
     )
     for method in methods:
         with pytest.raises(NotImplementedError):

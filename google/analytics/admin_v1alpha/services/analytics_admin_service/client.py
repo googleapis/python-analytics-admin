@@ -39,7 +39,7 @@ from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
 
 from google.analytics.admin_v1alpha.services.analytics_admin_service import pagers
-from google.analytics.admin_v1alpha.types import analytics_admin
+from google.analytics.admin_v1alpha.types import access_report, analytics_admin
 from google.analytics.admin_v1alpha.types import audience
 from google.analytics.admin_v1alpha.types import audience as gaa_audience
 from google.analytics.admin_v1alpha.types import resources
@@ -8526,6 +8526,93 @@ class AnalyticsAdminServiceClient(metaclass=AnalyticsAdminServiceClientMeta):
             gapic_v1.routing_header.to_grpc_metadata(
                 (("attribution_settings.name", request.attribution_settings.name),)
             ),
+        )
+
+        # Send the request.
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    def run_access_report(
+        self,
+        request: Union[analytics_admin.RunAccessReportRequest, dict] = None,
+        *,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> analytics_admin.RunAccessReportResponse:
+        r"""Returns a customized report of data access records. The report
+        provides records of each time a user reads Google Analytics
+        reporting data. Access records are retained for up to 2 years.
+
+        Data Access Reports can be requested for a property. The
+        property must be in Google Analytics 360. This method is only
+        available to Administrators.
+
+        These data access records include GA4 UI Reporting, GA4 UI
+        Explorations, GA4 Data API, and other products like Firebase &
+        Admob that can retrieve data from Google Analytics through a
+        linkage. These records don't include property configuration
+        changes like adding a stream or changing a property's time zone.
+        For configuration change history, see
+        `searchChangeHistoryEvents <https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents>`__.
+
+        .. code-block:: python
+
+            from google.analytics import admin_v1alpha
+
+            def sample_run_access_report():
+                # Create a client
+                client = admin_v1alpha.AnalyticsAdminServiceClient()
+
+                # Initialize request argument(s)
+                request = admin_v1alpha.RunAccessReportRequest(
+                )
+
+                # Make the request
+                response = client.run_access_report(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[google.analytics.admin_v1alpha.types.RunAccessReportRequest, dict]):
+                The request object. The request for a Data Access Record
+                Report.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            google.analytics.admin_v1alpha.types.RunAccessReportResponse:
+                The customized Data Access Record
+                Report response.
+
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a analytics_admin.RunAccessReportRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, analytics_admin.RunAccessReportRequest):
+            request = analytics_admin.RunAccessReportRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.run_access_report]
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("entity", request.entity),)),
         )
 
         # Send the request.

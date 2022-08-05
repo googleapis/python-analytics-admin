@@ -15,29 +15,28 @@
 #
 import proto  # type: ignore
 
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'AccessDimension',
-        'AccessMetric',
-        'AccessDateRange',
-        'AccessFilterExpression',
-        'AccessFilterExpressionList',
-        'AccessFilter',
-        'AccessStringFilter',
-        'AccessInListFilter',
-        'AccessNumericFilter',
-        'AccessBetweenFilter',
-        'NumericValue',
-        'AccessOrderBy',
-        'AccessDimensionHeader',
-        'AccessMetricHeader',
-        'AccessRow',
-        'AccessDimensionValue',
-        'AccessMetricValue',
-        'AccessQuota',
-        'AccessQuotaStatus',
+        "AccessDimension",
+        "AccessMetric",
+        "AccessDateRange",
+        "AccessFilterExpression",
+        "AccessFilterExpressionList",
+        "AccessFilter",
+        "AccessStringFilter",
+        "AccessInListFilter",
+        "AccessNumericFilter",
+        "AccessBetweenFilter",
+        "NumericValue",
+        "AccessOrderBy",
+        "AccessDimensionHeader",
+        "AccessMetricHeader",
+        "AccessRow",
+        "AccessDimensionValue",
+        "AccessMetricValue",
+        "AccessQuota",
+        "AccessQuotaStatus",
     },
 )
 
@@ -150,26 +149,26 @@ class AccessFilterExpression(proto.Message):
     and_group = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='one_expression',
-        message='AccessFilterExpressionList',
+        oneof="one_expression",
+        message="AccessFilterExpressionList",
     )
     or_group = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='one_expression',
-        message='AccessFilterExpressionList',
+        oneof="one_expression",
+        message="AccessFilterExpressionList",
     )
     not_expression = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='one_expression',
-        message='AccessFilterExpression',
+        oneof="one_expression",
+        message="AccessFilterExpression",
     )
     access_filter = proto.Field(
         proto.MESSAGE,
         number=4,
-        oneof='one_expression',
-        message='AccessFilter',
+        oneof="one_expression",
+        message="AccessFilter",
     )
 
 
@@ -184,7 +183,7 @@ class AccessFilterExpressionList(proto.Message):
     expressions = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='AccessFilterExpression',
+        message="AccessFilterExpression",
     )
 
 
@@ -222,26 +221,26 @@ class AccessFilter(proto.Message):
     string_filter = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='one_filter',
-        message='AccessStringFilter',
+        oneof="one_filter",
+        message="AccessStringFilter",
     )
     in_list_filter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='one_filter',
-        message='AccessInListFilter',
+        oneof="one_filter",
+        message="AccessInListFilter",
     )
     numeric_filter = proto.Field(
         proto.MESSAGE,
         number=4,
-        oneof='one_filter',
-        message='AccessNumericFilter',
+        oneof="one_filter",
+        message="AccessNumericFilter",
     )
     between_filter = proto.Field(
         proto.MESSAGE,
         number=5,
-        oneof='one_filter',
-        message='AccessBetweenFilter',
+        oneof="one_filter",
+        message="AccessBetweenFilter",
     )
     field_name = proto.Field(
         proto.STRING,
@@ -260,6 +259,7 @@ class AccessStringFilter(proto.Message):
         case_sensitive (bool):
             If true, the string value is case sensitive.
     """
+
     class MatchType(proto.Enum):
         r"""The match type of a string filter."""
         MATCH_TYPE_UNSPECIFIED = 0
@@ -314,6 +314,7 @@ class AccessNumericFilter(proto.Message):
         value (google.analytics.admin_v1alpha.types.NumericValue):
             A numeric value or a date value.
     """
+
     class Operation(proto.Enum):
         r"""The operation applied to a numeric filter."""
         OPERATION_UNSPECIFIED = 0
@@ -331,7 +332,7 @@ class AccessNumericFilter(proto.Message):
     value = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='NumericValue',
+        message="NumericValue",
     )
 
 
@@ -349,12 +350,12 @@ class AccessBetweenFilter(proto.Message):
     from_value = proto.Field(
         proto.MESSAGE,
         number=1,
-        message='NumericValue',
+        message="NumericValue",
     )
     to_value = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='NumericValue',
+        message="NumericValue",
     )
 
 
@@ -382,12 +383,12 @@ class NumericValue(proto.Message):
     int64_value = proto.Field(
         proto.INT64,
         number=1,
-        oneof='one_value',
+        oneof="one_value",
     )
     double_value = proto.Field(
         proto.DOUBLE,
         number=2,
-        oneof='one_value',
+        oneof="one_value",
     )
 
 
@@ -441,6 +442,7 @@ class AccessOrderBy(proto.Message):
                 Controls the rule for dimension value
                 ordering.
         """
+
         class OrderType(proto.Enum):
             r"""Rule to order the string dimension values by."""
             ORDER_TYPE_UNSPECIFIED = 0
@@ -455,19 +457,19 @@ class AccessOrderBy(proto.Message):
         order_type = proto.Field(
             proto.ENUM,
             number=2,
-            enum='AccessOrderBy.DimensionOrderBy.OrderType',
+            enum="AccessOrderBy.DimensionOrderBy.OrderType",
         )
 
     metric = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='one_order_by',
+        oneof="one_order_by",
         message=MetricOrderBy,
     )
     dimension = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='one_order_by',
+        oneof="one_order_by",
         message=DimensionOrderBy,
     )
     desc = proto.Field(
@@ -528,12 +530,12 @@ class AccessRow(proto.Message):
     dimension_values = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='AccessDimensionValue',
+        message="AccessDimensionValue",
     )
     metric_values = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
-        message='AccessMetricValue',
+        message="AccessMetricValue",
     )
 
 
@@ -592,22 +594,22 @@ class AccessQuota(proto.Message):
     tokens_per_day = proto.Field(
         proto.MESSAGE,
         number=1,
-        message='AccessQuotaStatus',
+        message="AccessQuotaStatus",
     )
     tokens_per_hour = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='AccessQuotaStatus',
+        message="AccessQuotaStatus",
     )
     concurrent_requests = proto.Field(
         proto.MESSAGE,
         number=3,
-        message='AccessQuotaStatus',
+        message="AccessQuotaStatus",
     )
     server_errors_per_project_per_hour = proto.Field(
         proto.MESSAGE,
         number=4,
-        message='AccessQuotaStatus',
+        message="AccessQuotaStatus",
     )
 
 
