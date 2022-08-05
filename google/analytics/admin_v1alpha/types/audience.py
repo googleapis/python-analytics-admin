@@ -13,24 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from google.protobuf import duration_pb2  # type: ignore
 import proto  # type: ignore
 
-from google.protobuf import duration_pb2  # type: ignore
-
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'AudienceFilterScope',
-        'AudienceDimensionOrMetricFilter',
-        'AudienceEventFilter',
-        'AudienceFilterExpression',
-        'AudienceFilterExpressionList',
-        'AudienceSimpleFilter',
-        'AudienceSequenceFilter',
-        'AudienceFilterClause',
-        'AudienceEventTrigger',
-        'Audience',
+        "AudienceFilterScope",
+        "AudienceDimensionOrMetricFilter",
+        "AudienceEventFilter",
+        "AudienceFilterExpression",
+        "AudienceFilterExpressionList",
+        "AudienceSimpleFilter",
+        "AudienceSequenceFilter",
+        "AudienceFilterClause",
+        "AudienceEventTrigger",
+        "Audience",
     },
 )
 
@@ -117,6 +115,7 @@ class AudienceDimensionOrMetricFilter(proto.Message):
                 case-sensitive. If false, the match is
                 case-insensitive.
         """
+
         class MatchType(proto.Enum):
             r"""The match type for the string filter."""
             MATCH_TYPE_UNSPECIFIED = 0
@@ -130,7 +129,7 @@ class AudienceDimensionOrMetricFilter(proto.Message):
         match_type = proto.Field(
             proto.ENUM,
             number=1,
-            enum='AudienceDimensionOrMetricFilter.StringFilter.MatchType',
+            enum="AudienceDimensionOrMetricFilter.StringFilter.MatchType",
         )
         value = proto.Field(
             proto.STRING,
@@ -188,12 +187,12 @@ class AudienceDimensionOrMetricFilter(proto.Message):
         int64_value = proto.Field(
             proto.INT64,
             number=1,
-            oneof='one_value',
+            oneof="one_value",
         )
         double_value = proto.Field(
             proto.DOUBLE,
             number=2,
-            oneof='one_value',
+            oneof="one_value",
         )
 
     class NumericFilter(proto.Message):
@@ -207,6 +206,7 @@ class AudienceDimensionOrMetricFilter(proto.Message):
                 Required. The numeric or date value to match
                 against.
         """
+
         class Operation(proto.Enum):
             r"""The operation applied to a numeric filter."""
             OPERATION_UNSPECIFIED = 0
@@ -219,12 +219,12 @@ class AudienceDimensionOrMetricFilter(proto.Message):
         operation = proto.Field(
             proto.ENUM,
             number=1,
-            enum='AudienceDimensionOrMetricFilter.NumericFilter.Operation',
+            enum="AudienceDimensionOrMetricFilter.NumericFilter.Operation",
         )
         value = proto.Field(
             proto.MESSAGE,
             number=2,
-            message='AudienceDimensionOrMetricFilter.NumericValue',
+            message="AudienceDimensionOrMetricFilter.NumericValue",
         )
 
     class BetweenFilter(proto.Message):
@@ -241,36 +241,36 @@ class AudienceDimensionOrMetricFilter(proto.Message):
         from_value = proto.Field(
             proto.MESSAGE,
             number=1,
-            message='AudienceDimensionOrMetricFilter.NumericValue',
+            message="AudienceDimensionOrMetricFilter.NumericValue",
         )
         to_value = proto.Field(
             proto.MESSAGE,
             number=2,
-            message='AudienceDimensionOrMetricFilter.NumericValue',
+            message="AudienceDimensionOrMetricFilter.NumericValue",
         )
 
     string_filter = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='one_filter',
+        oneof="one_filter",
         message=StringFilter,
     )
     in_list_filter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='one_filter',
+        oneof="one_filter",
         message=InListFilter,
     )
     numeric_filter = proto.Field(
         proto.MESSAGE,
         number=4,
-        oneof='one_filter',
+        oneof="one_filter",
         message=NumericFilter,
     )
     between_filter = proto.Field(
         proto.MESSAGE,
         number=5,
-        oneof='one_filter',
+        oneof="one_filter",
         message=BetweenFilter,
     )
     field_name = proto.Field(
@@ -316,7 +316,7 @@ class AudienceEventFilter(proto.Message):
     event_parameter_filter_expression = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='AudienceFilterExpression',
+        message="AudienceFilterExpression",
     )
 
 
@@ -367,32 +367,32 @@ class AudienceFilterExpression(proto.Message):
     and_group = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='expr',
-        message='AudienceFilterExpressionList',
+        oneof="expr",
+        message="AudienceFilterExpressionList",
     )
     or_group = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='expr',
-        message='AudienceFilterExpressionList',
+        oneof="expr",
+        message="AudienceFilterExpressionList",
     )
     not_expression = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='expr',
-        message='AudienceFilterExpression',
+        oneof="expr",
+        message="AudienceFilterExpression",
     )
     dimension_or_metric_filter = proto.Field(
         proto.MESSAGE,
         number=4,
-        oneof='expr',
-        message='AudienceDimensionOrMetricFilter',
+        oneof="expr",
+        message="AudienceDimensionOrMetricFilter",
     )
     event_filter = proto.Field(
         proto.MESSAGE,
         number=5,
-        oneof='expr',
-        message='AudienceEventFilter',
+        oneof="expr",
+        message="AudienceEventFilter",
     )
 
 
@@ -407,7 +407,7 @@ class AudienceFilterExpressionList(proto.Message):
     filter_expressions = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='AudienceFilterExpression',
+        message="AudienceFilterExpression",
     )
 
 
@@ -427,12 +427,12 @@ class AudienceSimpleFilter(proto.Message):
     scope = proto.Field(
         proto.ENUM,
         number=1,
-        enum='AudienceFilterScope',
+        enum="AudienceFilterScope",
     )
     filter_expression = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='AudienceFilterExpression',
+        message="AudienceFilterExpression",
     )
 
 
@@ -484,7 +484,7 @@ class AudienceSequenceFilter(proto.Message):
         scope = proto.Field(
             proto.ENUM,
             number=1,
-            enum='AudienceFilterScope',
+            enum="AudienceFilterScope",
         )
         immediately_follows = proto.Field(
             proto.BOOL,
@@ -498,13 +498,13 @@ class AudienceSequenceFilter(proto.Message):
         filter_expression = proto.Field(
             proto.MESSAGE,
             number=4,
-            message='AudienceFilterExpression',
+            message="AudienceFilterExpression",
         )
 
     scope = proto.Field(
         proto.ENUM,
         number=1,
-        enum='AudienceFilterScope',
+        enum="AudienceFilterScope",
     )
     sequence_maximum_duration = proto.Field(
         proto.MESSAGE,
@@ -546,6 +546,7 @@ class AudienceFilterClause(proto.Message):
             Required. Specifies whether this is an
             include or exclude filter clause.
     """
+
     class AudienceClauseType(proto.Enum):
         r"""Specifies whether this is an include or exclude filter
         clause.
@@ -557,14 +558,14 @@ class AudienceFilterClause(proto.Message):
     simple_filter = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='filter',
-        message='AudienceSimpleFilter',
+        oneof="filter",
+        message="AudienceSimpleFilter",
     )
     sequence_filter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='filter',
-        message='AudienceSequenceFilter',
+        oneof="filter",
+        message="AudienceSequenceFilter",
     )
     clause_type = proto.Field(
         proto.ENUM,
@@ -582,6 +583,7 @@ class AudienceEventTrigger(proto.Message):
         log_condition (google.analytics.admin_v1alpha.types.AudienceEventTrigger.LogCondition):
             Required. When to log the event.
     """
+
     class LogCondition(proto.Enum):
         r"""Determines when to log the event."""
         LOG_CONDITION_UNSPECIFIED = 0
@@ -634,6 +636,7 @@ class Audience(proto.Message):
             define the Audience. All clauses will be AND’ed
             together.
     """
+
     class AudienceExclusionDurationMode(proto.Enum):
         r"""Specifies how long an exclusion lasts for users that meet the
         exclusion filter.
@@ -665,7 +668,7 @@ class Audience(proto.Message):
     event_trigger = proto.Field(
         proto.MESSAGE,
         number=6,
-        message='AudienceEventTrigger',
+        message="AudienceEventTrigger",
     )
     exclusion_duration_mode = proto.Field(
         proto.ENUM,
@@ -675,7 +678,7 @@ class Audience(proto.Message):
     filter_clauses = proto.RepeatedField(
         proto.MESSAGE,
         number=8,
-        message='AudienceFilterClause',
+        message="AudienceFilterClause",
     )
 
 

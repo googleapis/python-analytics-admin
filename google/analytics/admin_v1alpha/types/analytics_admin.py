@@ -17,6 +17,7 @@ from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
+from google.analytics.admin_v1alpha.types import audience as gaa_audience
 from google.analytics.admin_v1alpha.types import resources
 
 __protobuf__ = proto.module(
@@ -114,6 +115,14 @@ __protobuf__ = proto.module(
         "ListDataStreamsRequest",
         "ListDataStreamsResponse",
         "GetDataStreamRequest",
+        "GetAudienceRequest",
+        "ListAudiencesRequest",
+        "ListAudiencesResponse",
+        "CreateAudienceRequest",
+        "UpdateAudienceRequest",
+        "ArchiveAudienceRequest",
+        "GetAttributionSettingsRequest",
+        "UpdateAttributionSettingsRequest",
     },
 )
 
@@ -2346,6 +2355,186 @@ class GetDataStreamRequest(proto.Message):
     name = proto.Field(
         proto.STRING,
         number=1,
+    )
+
+
+class GetAudienceRequest(proto.Message):
+    r"""Request message for GetAudience RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the Audience to get.
+            Example format: properties/1234/audiences/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class ListAudiencesRequest(proto.Message):
+    r"""Request message for ListAudiences RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        page_size (int):
+            The maximum number of resources to return.
+            If unspecified, at most 50 resources will be
+            returned. The maximum value is 200 (higher
+            values will be coerced to the maximum).
+        page_token (str):
+            A page token, received from a previous ``ListAudiences``
+            call. Provide this to retrieve the subsequent page.
+
+            When paginating, all other parameters provided to
+            ``ListAudiences`` must match the call that provided the page
+            token.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+
+
+class ListAudiencesResponse(proto.Message):
+    r"""Response message for ListAudiences RPC.
+
+    Attributes:
+        audiences (Sequence[google.analytics.admin_v1alpha.types.Audience]):
+            List of Audiences.
+        next_page_token (str):
+            A token, which can be sent as ``page_token`` to retrieve the
+            next page. If this field is omitted, there are no subsequent
+            pages.
+    """
+
+    @property
+    def raw_page(self):
+        return self
+
+    audiences = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=gaa_audience.Audience,
+    )
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class CreateAudienceRequest(proto.Message):
+    r"""Request message for CreateAudience RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        audience (google.analytics.admin_v1alpha.types.Audience):
+            Required. The audience to create.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    audience = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gaa_audience.Audience,
+    )
+
+
+class UpdateAudienceRequest(proto.Message):
+    r"""Request message for UpdateAudience RPC.
+
+    Attributes:
+        audience (google.analytics.admin_v1alpha.types.Audience):
+            Required. The audience to update. The audience's ``name``
+            field is used to identify the audience to be updated.
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. The list of fields to be updated. Field names must
+            be in snake case (e.g., "field_to_update"). Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
+    """
+
+    audience = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=gaa_audience.Audience,
+    )
+    update_mask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
+    )
+
+
+class ArchiveAudienceRequest(proto.Message):
+    r"""Request message for ArchiveAudience RPC.
+
+    Attributes:
+        name (str):
+            Required. Example format:
+            properties/1234/audiences/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class GetAttributionSettingsRequest(proto.Message):
+    r"""Request message for GetAttributionSettings RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the attribution
+            settings to retrieve. Format:
+            properties/{property}/attributionSettings
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class UpdateAttributionSettingsRequest(proto.Message):
+    r"""Request message for UpdateAttributionSettings RPC
+
+    Attributes:
+        attribution_settings (google.analytics.admin_v1alpha.types.AttributionSettings):
+            Required. The attribution settings to update. The ``name``
+            field is used to identify the settings to be updated.
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. The list of fields to be updated. Field names must
+            be in snake case (e.g., "field_to_update"). Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
+    """
+
+    attribution_settings = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.AttributionSettings,
+    )
+    update_mask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
