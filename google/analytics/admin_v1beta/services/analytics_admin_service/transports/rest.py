@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -39,12 +36,12 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.analytics.admin_v1beta.types import analytics_admin
-from google.analytics.admin_v1beta.types import resources
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import AnalyticsAdminServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.analytics.admin_v1beta.types import analytics_admin, resources
 
+from .base import AnalyticsAdminServiceTransport
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -378,7 +375,14 @@ class AnalyticsAdminServiceRestInterceptor:
 
 
     """
-    def pre_acknowledge_user_data_collection(self, request: analytics_admin.AcknowledgeUserDataCollectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.AcknowledgeUserDataCollectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_acknowledge_user_data_collection(
+        self,
+        request: analytics_admin.AcknowledgeUserDataCollectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.AcknowledgeUserDataCollectionRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for acknowledge_user_data_collection
 
         Override in a subclass to manipulate the request or metadata
@@ -386,7 +390,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_acknowledge_user_data_collection(self, response: analytics_admin.AcknowledgeUserDataCollectionResponse) -> analytics_admin.AcknowledgeUserDataCollectionResponse:
+    def post_acknowledge_user_data_collection(
+        self, response: analytics_admin.AcknowledgeUserDataCollectionResponse
+    ) -> analytics_admin.AcknowledgeUserDataCollectionResponse:
         """Post-rpc interceptor for acknowledge_user_data_collection
 
         Override in a subclass to manipulate the response
@@ -394,7 +400,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_archive_custom_dimension(self, request: analytics_admin.ArchiveCustomDimensionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ArchiveCustomDimensionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_archive_custom_dimension(
+        self,
+        request: analytics_admin.ArchiveCustomDimensionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.ArchiveCustomDimensionRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for archive_custom_dimension
 
         Override in a subclass to manipulate the request or metadata
@@ -402,7 +415,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_archive_custom_metric(self, request: analytics_admin.ArchiveCustomMetricRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ArchiveCustomMetricRequest, Sequence[Tuple[str, str]]]:
+    def pre_archive_custom_metric(
+        self,
+        request: analytics_admin.ArchiveCustomMetricRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ArchiveCustomMetricRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for archive_custom_metric
 
         Override in a subclass to manipulate the request or metadata
@@ -410,7 +427,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_create_conversion_event(self, request: analytics_admin.CreateConversionEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateConversionEventRequest, Sequence[Tuple[str, str]]]:
+    def pre_create_conversion_event(
+        self,
+        request: analytics_admin.CreateConversionEventRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateConversionEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_conversion_event
 
         Override in a subclass to manipulate the request or metadata
@@ -418,7 +439,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_conversion_event(self, response: resources.ConversionEvent) -> resources.ConversionEvent:
+    def post_create_conversion_event(
+        self, response: resources.ConversionEvent
+    ) -> resources.ConversionEvent:
         """Post-rpc interceptor for create_conversion_event
 
         Override in a subclass to manipulate the response
@@ -426,7 +449,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_custom_dimension(self, request: analytics_admin.CreateCustomDimensionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateCustomDimensionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_custom_dimension(
+        self,
+        request: analytics_admin.CreateCustomDimensionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateCustomDimensionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_custom_dimension
 
         Override in a subclass to manipulate the request or metadata
@@ -434,7 +462,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_custom_dimension(self, response: resources.CustomDimension) -> resources.CustomDimension:
+    def post_create_custom_dimension(
+        self, response: resources.CustomDimension
+    ) -> resources.CustomDimension:
         """Post-rpc interceptor for create_custom_dimension
 
         Override in a subclass to manipulate the response
@@ -442,7 +472,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_custom_metric(self, request: analytics_admin.CreateCustomMetricRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateCustomMetricRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_custom_metric(
+        self,
+        request: analytics_admin.CreateCustomMetricRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateCustomMetricRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_custom_metric
 
         Override in a subclass to manipulate the request or metadata
@@ -450,7 +485,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_custom_metric(self, response: resources.CustomMetric) -> resources.CustomMetric:
+    def post_create_custom_metric(
+        self, response: resources.CustomMetric
+    ) -> resources.CustomMetric:
         """Post-rpc interceptor for create_custom_metric
 
         Override in a subclass to manipulate the response
@@ -458,7 +495,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_data_stream(self, request: analytics_admin.CreateDataStreamRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateDataStreamRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_data_stream(
+        self,
+        request: analytics_admin.CreateDataStreamRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateDataStreamRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_data_stream
 
         Override in a subclass to manipulate the request or metadata
@@ -466,7 +508,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_data_stream(self, response: resources.DataStream) -> resources.DataStream:
+    def post_create_data_stream(
+        self, response: resources.DataStream
+    ) -> resources.DataStream:
         """Post-rpc interceptor for create_data_stream
 
         Override in a subclass to manipulate the response
@@ -474,7 +518,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_firebase_link(self, request: analytics_admin.CreateFirebaseLinkRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateFirebaseLinkRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_firebase_link(
+        self,
+        request: analytics_admin.CreateFirebaseLinkRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateFirebaseLinkRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_firebase_link
 
         Override in a subclass to manipulate the request or metadata
@@ -482,7 +531,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_firebase_link(self, response: resources.FirebaseLink) -> resources.FirebaseLink:
+    def post_create_firebase_link(
+        self, response: resources.FirebaseLink
+    ) -> resources.FirebaseLink:
         """Post-rpc interceptor for create_firebase_link
 
         Override in a subclass to manipulate the response
@@ -490,7 +541,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_google_ads_link(self, request: analytics_admin.CreateGoogleAdsLinkRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_google_ads_link(
+        self,
+        request: analytics_admin.CreateGoogleAdsLinkRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreateGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_google_ads_link
 
         Override in a subclass to manipulate the request or metadata
@@ -498,7 +554,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_google_ads_link(self, response: resources.GoogleAdsLink) -> resources.GoogleAdsLink:
+    def post_create_google_ads_link(
+        self, response: resources.GoogleAdsLink
+    ) -> resources.GoogleAdsLink:
         """Post-rpc interceptor for create_google_ads_link
 
         Override in a subclass to manipulate the response
@@ -506,7 +564,15 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_measurement_protocol_secret(self, request: analytics_admin.CreateMeasurementProtocolSecretRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreateMeasurementProtocolSecretRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_measurement_protocol_secret(
+        self,
+        request: analytics_admin.CreateMeasurementProtocolSecretRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.CreateMeasurementProtocolSecretRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for create_measurement_protocol_secret
 
         Override in a subclass to manipulate the request or metadata
@@ -514,7 +580,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_measurement_protocol_secret(self, response: resources.MeasurementProtocolSecret) -> resources.MeasurementProtocolSecret:
+    def post_create_measurement_protocol_secret(
+        self, response: resources.MeasurementProtocolSecret
+    ) -> resources.MeasurementProtocolSecret:
         """Post-rpc interceptor for create_measurement_protocol_secret
 
         Override in a subclass to manipulate the response
@@ -522,7 +590,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_property(self, request: analytics_admin.CreatePropertyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.CreatePropertyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_property(
+        self,
+        request: analytics_admin.CreatePropertyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.CreatePropertyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_property
 
         Override in a subclass to manipulate the request or metadata
@@ -538,7 +611,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_account(self, request: analytics_admin.DeleteAccountRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteAccountRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_account(
+        self,
+        request: analytics_admin.DeleteAccountRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeleteAccountRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_account
 
         Override in a subclass to manipulate the request or metadata
@@ -546,7 +624,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_conversion_event(self, request: analytics_admin.DeleteConversionEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteConversionEventRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_conversion_event(
+        self,
+        request: analytics_admin.DeleteConversionEventRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeleteConversionEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_conversion_event
 
         Override in a subclass to manipulate the request or metadata
@@ -554,7 +636,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_data_stream(self, request: analytics_admin.DeleteDataStreamRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteDataStreamRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_data_stream(
+        self,
+        request: analytics_admin.DeleteDataStreamRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeleteDataStreamRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_data_stream
 
         Override in a subclass to manipulate the request or metadata
@@ -562,7 +648,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_firebase_link(self, request: analytics_admin.DeleteFirebaseLinkRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteFirebaseLinkRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_firebase_link(
+        self,
+        request: analytics_admin.DeleteFirebaseLinkRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeleteFirebaseLinkRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_firebase_link
 
         Override in a subclass to manipulate the request or metadata
@@ -570,7 +660,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_google_ads_link(self, request: analytics_admin.DeleteGoogleAdsLinkRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_google_ads_link(
+        self,
+        request: analytics_admin.DeleteGoogleAdsLinkRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeleteGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_google_ads_link
 
         Override in a subclass to manipulate the request or metadata
@@ -578,7 +672,14 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_measurement_protocol_secret(self, request: analytics_admin.DeleteMeasurementProtocolSecretRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeleteMeasurementProtocolSecretRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_measurement_protocol_secret(
+        self,
+        request: analytics_admin.DeleteMeasurementProtocolSecretRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.DeleteMeasurementProtocolSecretRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for delete_measurement_protocol_secret
 
         Override in a subclass to manipulate the request or metadata
@@ -586,7 +687,11 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_property(self, request: analytics_admin.DeletePropertyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.DeletePropertyRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_property(
+        self,
+        request: analytics_admin.DeletePropertyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.DeletePropertyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_property
 
         Override in a subclass to manipulate the request or metadata
@@ -602,7 +707,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_account(self, request: analytics_admin.GetAccountRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetAccountRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_account(
+        self,
+        request: analytics_admin.GetAccountRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetAccountRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_account
 
         Override in a subclass to manipulate the request or metadata
@@ -618,7 +728,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_conversion_event(self, request: analytics_admin.GetConversionEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetConversionEventRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_conversion_event(
+        self,
+        request: analytics_admin.GetConversionEventRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetConversionEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_conversion_event
 
         Override in a subclass to manipulate the request or metadata
@@ -626,7 +741,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_conversion_event(self, response: resources.ConversionEvent) -> resources.ConversionEvent:
+    def post_get_conversion_event(
+        self, response: resources.ConversionEvent
+    ) -> resources.ConversionEvent:
         """Post-rpc interceptor for get_conversion_event
 
         Override in a subclass to manipulate the response
@@ -634,7 +751,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_custom_dimension(self, request: analytics_admin.GetCustomDimensionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetCustomDimensionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_custom_dimension(
+        self,
+        request: analytics_admin.GetCustomDimensionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetCustomDimensionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_custom_dimension
 
         Override in a subclass to manipulate the request or metadata
@@ -642,7 +764,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_custom_dimension(self, response: resources.CustomDimension) -> resources.CustomDimension:
+    def post_get_custom_dimension(
+        self, response: resources.CustomDimension
+    ) -> resources.CustomDimension:
         """Post-rpc interceptor for get_custom_dimension
 
         Override in a subclass to manipulate the response
@@ -650,7 +774,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_custom_metric(self, request: analytics_admin.GetCustomMetricRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetCustomMetricRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_custom_metric(
+        self,
+        request: analytics_admin.GetCustomMetricRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetCustomMetricRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_custom_metric
 
         Override in a subclass to manipulate the request or metadata
@@ -658,7 +787,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_custom_metric(self, response: resources.CustomMetric) -> resources.CustomMetric:
+    def post_get_custom_metric(
+        self, response: resources.CustomMetric
+    ) -> resources.CustomMetric:
         """Post-rpc interceptor for get_custom_metric
 
         Override in a subclass to manipulate the response
@@ -666,7 +797,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_data_retention_settings(self, request: analytics_admin.GetDataRetentionSettingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetDataRetentionSettingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_data_retention_settings(
+        self,
+        request: analytics_admin.GetDataRetentionSettingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.GetDataRetentionSettingsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_data_retention_settings
 
         Override in a subclass to manipulate the request or metadata
@@ -674,7 +812,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_data_retention_settings(self, response: resources.DataRetentionSettings) -> resources.DataRetentionSettings:
+    def post_get_data_retention_settings(
+        self, response: resources.DataRetentionSettings
+    ) -> resources.DataRetentionSettings:
         """Post-rpc interceptor for get_data_retention_settings
 
         Override in a subclass to manipulate the response
@@ -682,7 +822,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_data_sharing_settings(self, request: analytics_admin.GetDataSharingSettingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetDataSharingSettingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_data_sharing_settings(
+        self,
+        request: analytics_admin.GetDataSharingSettingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.GetDataSharingSettingsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_data_sharing_settings
 
         Override in a subclass to manipulate the request or metadata
@@ -690,7 +837,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_data_sharing_settings(self, response: resources.DataSharingSettings) -> resources.DataSharingSettings:
+    def post_get_data_sharing_settings(
+        self, response: resources.DataSharingSettings
+    ) -> resources.DataSharingSettings:
         """Post-rpc interceptor for get_data_sharing_settings
 
         Override in a subclass to manipulate the response
@@ -698,7 +847,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_data_stream(self, request: analytics_admin.GetDataStreamRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetDataStreamRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_data_stream(
+        self,
+        request: analytics_admin.GetDataStreamRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetDataStreamRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_data_stream
 
         Override in a subclass to manipulate the request or metadata
@@ -706,7 +860,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_data_stream(self, response: resources.DataStream) -> resources.DataStream:
+    def post_get_data_stream(
+        self, response: resources.DataStream
+    ) -> resources.DataStream:
         """Post-rpc interceptor for get_data_stream
 
         Override in a subclass to manipulate the response
@@ -714,7 +870,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_measurement_protocol_secret(self, request: analytics_admin.GetMeasurementProtocolSecretRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetMeasurementProtocolSecretRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_measurement_protocol_secret(
+        self,
+        request: analytics_admin.GetMeasurementProtocolSecretRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.GetMeasurementProtocolSecretRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_measurement_protocol_secret
 
         Override in a subclass to manipulate the request or metadata
@@ -722,7 +885,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_measurement_protocol_secret(self, response: resources.MeasurementProtocolSecret) -> resources.MeasurementProtocolSecret:
+    def post_get_measurement_protocol_secret(
+        self, response: resources.MeasurementProtocolSecret
+    ) -> resources.MeasurementProtocolSecret:
         """Post-rpc interceptor for get_measurement_protocol_secret
 
         Override in a subclass to manipulate the response
@@ -730,7 +895,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_property(self, request: analytics_admin.GetPropertyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.GetPropertyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_property(
+        self,
+        request: analytics_admin.GetPropertyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.GetPropertyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_property
 
         Override in a subclass to manipulate the request or metadata
@@ -746,7 +916,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_accounts(self, request: analytics_admin.ListAccountsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListAccountsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_accounts(
+        self,
+        request: analytics_admin.ListAccountsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListAccountsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_accounts
 
         Override in a subclass to manipulate the request or metadata
@@ -754,7 +929,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_accounts(self, response: analytics_admin.ListAccountsResponse) -> analytics_admin.ListAccountsResponse:
+    def post_list_accounts(
+        self, response: analytics_admin.ListAccountsResponse
+    ) -> analytics_admin.ListAccountsResponse:
         """Post-rpc interceptor for list_accounts
 
         Override in a subclass to manipulate the response
@@ -762,7 +939,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_account_summaries(self, request: analytics_admin.ListAccountSummariesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListAccountSummariesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_account_summaries(
+        self,
+        request: analytics_admin.ListAccountSummariesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListAccountSummariesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_account_summaries
 
         Override in a subclass to manipulate the request or metadata
@@ -770,7 +952,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_account_summaries(self, response: analytics_admin.ListAccountSummariesResponse) -> analytics_admin.ListAccountSummariesResponse:
+    def post_list_account_summaries(
+        self, response: analytics_admin.ListAccountSummariesResponse
+    ) -> analytics_admin.ListAccountSummariesResponse:
         """Post-rpc interceptor for list_account_summaries
 
         Override in a subclass to manipulate the response
@@ -778,7 +962,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_conversion_events(self, request: analytics_admin.ListConversionEventsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListConversionEventsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_conversion_events(
+        self,
+        request: analytics_admin.ListConversionEventsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListConversionEventsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_conversion_events
 
         Override in a subclass to manipulate the request or metadata
@@ -786,7 +975,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_conversion_events(self, response: analytics_admin.ListConversionEventsResponse) -> analytics_admin.ListConversionEventsResponse:
+    def post_list_conversion_events(
+        self, response: analytics_admin.ListConversionEventsResponse
+    ) -> analytics_admin.ListConversionEventsResponse:
         """Post-rpc interceptor for list_conversion_events
 
         Override in a subclass to manipulate the response
@@ -794,7 +985,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_custom_dimensions(self, request: analytics_admin.ListCustomDimensionsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListCustomDimensionsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_custom_dimensions(
+        self,
+        request: analytics_admin.ListCustomDimensionsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListCustomDimensionsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_custom_dimensions
 
         Override in a subclass to manipulate the request or metadata
@@ -802,7 +998,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_custom_dimensions(self, response: analytics_admin.ListCustomDimensionsResponse) -> analytics_admin.ListCustomDimensionsResponse:
+    def post_list_custom_dimensions(
+        self, response: analytics_admin.ListCustomDimensionsResponse
+    ) -> analytics_admin.ListCustomDimensionsResponse:
         """Post-rpc interceptor for list_custom_dimensions
 
         Override in a subclass to manipulate the response
@@ -810,7 +1008,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_custom_metrics(self, request: analytics_admin.ListCustomMetricsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListCustomMetricsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_custom_metrics(
+        self,
+        request: analytics_admin.ListCustomMetricsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListCustomMetricsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_custom_metrics
 
         Override in a subclass to manipulate the request or metadata
@@ -818,7 +1021,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_custom_metrics(self, response: analytics_admin.ListCustomMetricsResponse) -> analytics_admin.ListCustomMetricsResponse:
+    def post_list_custom_metrics(
+        self, response: analytics_admin.ListCustomMetricsResponse
+    ) -> analytics_admin.ListCustomMetricsResponse:
         """Post-rpc interceptor for list_custom_metrics
 
         Override in a subclass to manipulate the response
@@ -826,7 +1031,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_data_streams(self, request: analytics_admin.ListDataStreamsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListDataStreamsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_data_streams(
+        self,
+        request: analytics_admin.ListDataStreamsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListDataStreamsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_data_streams
 
         Override in a subclass to manipulate the request or metadata
@@ -834,7 +1044,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_data_streams(self, response: analytics_admin.ListDataStreamsResponse) -> analytics_admin.ListDataStreamsResponse:
+    def post_list_data_streams(
+        self, response: analytics_admin.ListDataStreamsResponse
+    ) -> analytics_admin.ListDataStreamsResponse:
         """Post-rpc interceptor for list_data_streams
 
         Override in a subclass to manipulate the response
@@ -842,7 +1054,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_firebase_links(self, request: analytics_admin.ListFirebaseLinksRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListFirebaseLinksRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_firebase_links(
+        self,
+        request: analytics_admin.ListFirebaseLinksRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListFirebaseLinksRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_firebase_links
 
         Override in a subclass to manipulate the request or metadata
@@ -850,7 +1067,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_firebase_links(self, response: analytics_admin.ListFirebaseLinksResponse) -> analytics_admin.ListFirebaseLinksResponse:
+    def post_list_firebase_links(
+        self, response: analytics_admin.ListFirebaseLinksResponse
+    ) -> analytics_admin.ListFirebaseLinksResponse:
         """Post-rpc interceptor for list_firebase_links
 
         Override in a subclass to manipulate the response
@@ -858,7 +1077,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_google_ads_links(self, request: analytics_admin.ListGoogleAdsLinksRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListGoogleAdsLinksRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_google_ads_links(
+        self,
+        request: analytics_admin.ListGoogleAdsLinksRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListGoogleAdsLinksRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_google_ads_links
 
         Override in a subclass to manipulate the request or metadata
@@ -866,7 +1090,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_google_ads_links(self, response: analytics_admin.ListGoogleAdsLinksResponse) -> analytics_admin.ListGoogleAdsLinksResponse:
+    def post_list_google_ads_links(
+        self, response: analytics_admin.ListGoogleAdsLinksResponse
+    ) -> analytics_admin.ListGoogleAdsLinksResponse:
         """Post-rpc interceptor for list_google_ads_links
 
         Override in a subclass to manipulate the response
@@ -874,7 +1100,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_measurement_protocol_secrets(self, request: analytics_admin.ListMeasurementProtocolSecretsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListMeasurementProtocolSecretsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_measurement_protocol_secrets(
+        self,
+        request: analytics_admin.ListMeasurementProtocolSecretsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.ListMeasurementProtocolSecretsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_measurement_protocol_secrets
 
         Override in a subclass to manipulate the request or metadata
@@ -882,7 +1115,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_measurement_protocol_secrets(self, response: analytics_admin.ListMeasurementProtocolSecretsResponse) -> analytics_admin.ListMeasurementProtocolSecretsResponse:
+    def post_list_measurement_protocol_secrets(
+        self, response: analytics_admin.ListMeasurementProtocolSecretsResponse
+    ) -> analytics_admin.ListMeasurementProtocolSecretsResponse:
         """Post-rpc interceptor for list_measurement_protocol_secrets
 
         Override in a subclass to manipulate the response
@@ -890,7 +1125,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_properties(self, request: analytics_admin.ListPropertiesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ListPropertiesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_properties(
+        self,
+        request: analytics_admin.ListPropertiesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.ListPropertiesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_properties
 
         Override in a subclass to manipulate the request or metadata
@@ -898,7 +1138,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_properties(self, response: analytics_admin.ListPropertiesResponse) -> analytics_admin.ListPropertiesResponse:
+    def post_list_properties(
+        self, response: analytics_admin.ListPropertiesResponse
+    ) -> analytics_admin.ListPropertiesResponse:
         """Post-rpc interceptor for list_properties
 
         Override in a subclass to manipulate the response
@@ -906,7 +1148,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_provision_account_ticket(self, request: analytics_admin.ProvisionAccountTicketRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.ProvisionAccountTicketRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_provision_account_ticket(
+        self,
+        request: analytics_admin.ProvisionAccountTicketRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.ProvisionAccountTicketRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for provision_account_ticket
 
         Override in a subclass to manipulate the request or metadata
@@ -914,7 +1163,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_provision_account_ticket(self, response: analytics_admin.ProvisionAccountTicketResponse) -> analytics_admin.ProvisionAccountTicketResponse:
+    def post_provision_account_ticket(
+        self, response: analytics_admin.ProvisionAccountTicketResponse
+    ) -> analytics_admin.ProvisionAccountTicketResponse:
         """Post-rpc interceptor for provision_account_ticket
 
         Override in a subclass to manipulate the response
@@ -922,7 +1173,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_search_change_history_events(self, request: analytics_admin.SearchChangeHistoryEventsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.SearchChangeHistoryEventsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_search_change_history_events(
+        self,
+        request: analytics_admin.SearchChangeHistoryEventsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.SearchChangeHistoryEventsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for search_change_history_events
 
         Override in a subclass to manipulate the request or metadata
@@ -930,7 +1188,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_search_change_history_events(self, response: analytics_admin.SearchChangeHistoryEventsResponse) -> analytics_admin.SearchChangeHistoryEventsResponse:
+    def post_search_change_history_events(
+        self, response: analytics_admin.SearchChangeHistoryEventsResponse
+    ) -> analytics_admin.SearchChangeHistoryEventsResponse:
         """Post-rpc interceptor for search_change_history_events
 
         Override in a subclass to manipulate the response
@@ -938,7 +1198,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_account(self, request: analytics_admin.UpdateAccountRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateAccountRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_account(
+        self,
+        request: analytics_admin.UpdateAccountRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdateAccountRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_account
 
         Override in a subclass to manipulate the request or metadata
@@ -954,7 +1219,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_custom_dimension(self, request: analytics_admin.UpdateCustomDimensionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateCustomDimensionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_custom_dimension(
+        self,
+        request: analytics_admin.UpdateCustomDimensionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdateCustomDimensionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_custom_dimension
 
         Override in a subclass to manipulate the request or metadata
@@ -962,7 +1232,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_custom_dimension(self, response: resources.CustomDimension) -> resources.CustomDimension:
+    def post_update_custom_dimension(
+        self, response: resources.CustomDimension
+    ) -> resources.CustomDimension:
         """Post-rpc interceptor for update_custom_dimension
 
         Override in a subclass to manipulate the response
@@ -970,7 +1242,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_custom_metric(self, request: analytics_admin.UpdateCustomMetricRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateCustomMetricRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_custom_metric(
+        self,
+        request: analytics_admin.UpdateCustomMetricRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdateCustomMetricRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_custom_metric
 
         Override in a subclass to manipulate the request or metadata
@@ -978,7 +1255,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_custom_metric(self, response: resources.CustomMetric) -> resources.CustomMetric:
+    def post_update_custom_metric(
+        self, response: resources.CustomMetric
+    ) -> resources.CustomMetric:
         """Post-rpc interceptor for update_custom_metric
 
         Override in a subclass to manipulate the response
@@ -986,7 +1265,14 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_data_retention_settings(self, request: analytics_admin.UpdateDataRetentionSettingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateDataRetentionSettingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_data_retention_settings(
+        self,
+        request: analytics_admin.UpdateDataRetentionSettingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.UpdateDataRetentionSettingsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_data_retention_settings
 
         Override in a subclass to manipulate the request or metadata
@@ -994,7 +1280,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_data_retention_settings(self, response: resources.DataRetentionSettings) -> resources.DataRetentionSettings:
+    def post_update_data_retention_settings(
+        self, response: resources.DataRetentionSettings
+    ) -> resources.DataRetentionSettings:
         """Post-rpc interceptor for update_data_retention_settings
 
         Override in a subclass to manipulate the response
@@ -1002,7 +1290,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_data_stream(self, request: analytics_admin.UpdateDataStreamRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateDataStreamRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_data_stream(
+        self,
+        request: analytics_admin.UpdateDataStreamRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdateDataStreamRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_data_stream
 
         Override in a subclass to manipulate the request or metadata
@@ -1010,7 +1303,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_data_stream(self, response: resources.DataStream) -> resources.DataStream:
+    def post_update_data_stream(
+        self, response: resources.DataStream
+    ) -> resources.DataStream:
         """Post-rpc interceptor for update_data_stream
 
         Override in a subclass to manipulate the response
@@ -1018,7 +1313,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_google_ads_link(self, request: analytics_admin.UpdateGoogleAdsLinkRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_google_ads_link(
+        self,
+        request: analytics_admin.UpdateGoogleAdsLinkRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdateGoogleAdsLinkRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_google_ads_link
 
         Override in a subclass to manipulate the request or metadata
@@ -1026,7 +1326,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_google_ads_link(self, response: resources.GoogleAdsLink) -> resources.GoogleAdsLink:
+    def post_update_google_ads_link(
+        self, response: resources.GoogleAdsLink
+    ) -> resources.GoogleAdsLink:
         """Post-rpc interceptor for update_google_ads_link
 
         Override in a subclass to manipulate the response
@@ -1034,7 +1336,15 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_measurement_protocol_secret(self, request: analytics_admin.UpdateMeasurementProtocolSecretRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdateMeasurementProtocolSecretRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_measurement_protocol_secret(
+        self,
+        request: analytics_admin.UpdateMeasurementProtocolSecretRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        analytics_admin.UpdateMeasurementProtocolSecretRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for update_measurement_protocol_secret
 
         Override in a subclass to manipulate the request or metadata
@@ -1042,7 +1352,9 @@ class AnalyticsAdminServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_measurement_protocol_secret(self, response: resources.MeasurementProtocolSecret) -> resources.MeasurementProtocolSecret:
+    def post_update_measurement_protocol_secret(
+        self, response: resources.MeasurementProtocolSecret
+    ) -> resources.MeasurementProtocolSecret:
         """Post-rpc interceptor for update_measurement_protocol_secret
 
         Override in a subclass to manipulate the response
@@ -1050,7 +1362,12 @@ class AnalyticsAdminServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_property(self, request: analytics_admin.UpdatePropertyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[analytics_admin.UpdatePropertyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_property(
+        self,
+        request: analytics_admin.UpdatePropertyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[analytics_admin.UpdatePropertyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_property
 
         Override in a subclass to manipulate the request or metadata
@@ -1091,55 +1408,56 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
     library's source repository. Thank you!
     """
 
-    def __init__(self, *,
-            host: str = 'analyticsadmin.googleapis.com',
-            credentials: ga_credentials.Credentials=None,
-            credentials_file: str=None,
-            scopes: Sequence[str]=None,
-            client_cert_source_for_mtls: Callable[[
-                ], Tuple[bytes, bytes]]=None,
-            quota_project_id: Optional[str]=None,
-            client_info: gapic_v1.client_info.ClientInfo=DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool]=False,
-            url_scheme: str='https',
-            interceptor: Optional[AnalyticsAdminServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "analyticsadmin.googleapis.com",
+        credentials: ga_credentials.Credentials = None,
+        credentials_file: str = None,
+        scopes: Sequence[str] = None,
+        client_cert_source_for_mtls: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[AnalyticsAdminServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
-       NOTE: This REST transport functionality is currently in a beta
-       state (preview). We welcome your feedback via a GitHub issue in
-       this library's repository. Thank you!
+        NOTE: This REST transport functionality is currently in a beta
+        state (preview). We welcome your feedback via a GitHub issue in
+        this library's repository. Thank you!
 
-        Args:
-            host (Optional[str]):
-                 The hostname to connect to.
-            credentials (Optional[google.auth.credentials.Credentials]): The
-                authorization credentials to attach to requests. These
-                credentials identify the application to the service; if none
-                are specified, the client will attempt to ascertain the
-                credentials from the environment.
+         Args:
+             host (Optional[str]):
+                  The hostname to connect to.
+             credentials (Optional[google.auth.credentials.Credentials]): The
+                 authorization credentials to attach to requests. These
+                 credentials identify the application to the service; if none
+                 are specified, the client will attempt to ascertain the
+                 credentials from the environment.
 
-            credentials_file (Optional[str]): A file with credentials that can
-                be loaded with :func:`google.auth.load_credentials_from_file`.
-                This argument is ignored if ``channel`` is provided.
-            scopes (Optional(Sequence[str])): A list of scopes. This argument is
-                ignored if ``channel`` is provided.
-            client_cert_source_for_mtls (Callable[[], Tuple[bytes, bytes]]): Client
-                certificate to configure mutual TLS HTTP channel. It is ignored
-                if ``channel`` is provided.
-            quota_project_id (Optional[str]): An optional project to use for billing
-                and quota.
-            client_info (google.api_core.gapic_v1.client_info.ClientInfo):
-                The client info used to send a user-agent string along with
-                API requests. If ``None``, then default info will be used.
-                Generally, you only need to set this if you are developing
-                your own client library.
-            always_use_jwt_access (Optional[bool]): Whether self signed JWT should
-                be used for service account credentials.
-            url_scheme: the protocol scheme for the API endpoint.  Normally
-                "https", but for testing or local servers,
-                "http" can be specified.
+             credentials_file (Optional[str]): A file with credentials that can
+                 be loaded with :func:`google.auth.load_credentials_from_file`.
+                 This argument is ignored if ``channel`` is provided.
+             scopes (Optional(Sequence[str])): A list of scopes. This argument is
+                 ignored if ``channel`` is provided.
+             client_cert_source_for_mtls (Callable[[], Tuple[bytes, bytes]]): Client
+                 certificate to configure mutual TLS HTTP channel. It is ignored
+                 if ``channel`` is provided.
+             quota_project_id (Optional[str]): An optional project to use for billing
+                 and quota.
+             client_info (google.api_core.gapic_v1.client_info.ClientInfo):
+                 The client info used to send a user-agent string along with
+                 API requests. If ``None``, then default info will be used.
+                 Generally, you only need to set this if you are developing
+                 your own client library.
+             always_use_jwt_access (Optional[bool]): Whether self signed JWT should
+                 be used for service account credentials.
+             url_scheme: the protocol scheme for the API endpoint.  Normally
+                 "https", but for testing or local servers,
+                 "http" can be specified.
         """
         # Run the base constructor
         # TODO(yon-mg): resolve other ctor params i.e. scopes, quota, etc.
@@ -1147,7 +1465,9 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -1158,10 +1478,11 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or AnalyticsAdminServiceRestInterceptor()
@@ -1171,78 +1492,90 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("AcknowledgeUserDataCollection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.AcknowledgeUserDataCollectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.AcknowledgeUserDataCollectionResponse:
+        def __call__(
+            self,
+            request: analytics_admin.AcknowledgeUserDataCollectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.AcknowledgeUserDataCollectionResponse:
             r"""Call the acknowledge user data
-        collection method over HTTP.
+            collection method over HTTP.
 
-            Args:
-                request (~.analytics_admin.AcknowledgeUserDataCollectionRequest):
-                    The request object. Request message for
-                AcknowledgeUserDataCollection RPC.
+                Args:
+                    request (~.analytics_admin.AcknowledgeUserDataCollectionRequest):
+                        The request object. Request message for
+                    AcknowledgeUserDataCollection RPC.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.analytics_admin.AcknowledgeUserDataCollectionResponse:
-                    Response message for
-                AcknowledgeUserDataCollection RPC.
+                Returns:
+                    ~.analytics_admin.AcknowledgeUserDataCollectionResponse:
+                        Response message for
+                    AcknowledgeUserDataCollection RPC.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{property=properties/*}:acknowledgeUserDataCollection',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{property=properties/*}:acknowledgeUserDataCollection",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_acknowledge_user_data_collection(request, metadata)
-            pb_request = analytics_admin.AcknowledgeUserDataCollectionRequest.pb(request)
+            request, metadata = self._interceptor.pre_acknowledge_user_data_collection(
+                request, metadata
+            )
+            pb_request = analytics_admin.AcknowledgeUserDataCollectionRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1261,19 +1594,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ArchiveCustomDimension")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ArchiveCustomDimensionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.ArchiveCustomDimensionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the archive custom dimension method over HTTP.
 
             Args:
@@ -1288,44 +1626,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{name=properties/*/customDimensions/*}:archive',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{name=properties/*/customDimensions/*}:archive",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_archive_custom_dimension(request, metadata)
+            request, metadata = self._interceptor.pre_archive_custom_dimension(
+                request, metadata
+            )
             pb_request = analytics_admin.ArchiveCustomDimensionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1336,19 +1679,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ArchiveCustomMetric")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ArchiveCustomMetricRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.ArchiveCustomMetricRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the archive custom metric method over HTTP.
 
             Args:
@@ -1363,44 +1711,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{name=properties/*/customMetrics/*}:archive',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{name=properties/*/customMetrics/*}:archive",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_archive_custom_metric(request, metadata)
+            request, metadata = self._interceptor.pre_archive_custom_metric(
+                request, metadata
+            )
             pb_request = analytics_admin.ArchiveCustomMetricRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1411,19 +1764,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateConversionEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateConversionEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.ConversionEvent:
+        def __call__(
+            self,
+            request: analytics_admin.CreateConversionEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.ConversionEvent:
             r"""Call the create conversion event method over HTTP.
 
             Args:
@@ -1444,44 +1802,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/conversionEvents',
-                'body': 'conversion_event',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/conversionEvents",
+                    "body": "conversion_event",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_conversion_event(request, metadata)
+            request, metadata = self._interceptor.pre_create_conversion_event(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateConversionEventRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1500,19 +1863,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateCustomDimension")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateCustomDimensionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomDimension:
+        def __call__(
+            self,
+            request: analytics_admin.CreateCustomDimensionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomDimension:
             r"""Call the create custom dimension method over HTTP.
 
             Args:
@@ -1531,44 +1899,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a CustomDimension.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/customDimensions',
-                'body': 'custom_dimension',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/customDimensions",
+                    "body": "custom_dimension",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_custom_dimension(request, metadata)
+            request, metadata = self._interceptor.pre_create_custom_dimension(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateCustomDimensionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1587,19 +1960,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateCustomMetric")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateCustomMetricRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomMetric:
+        def __call__(
+            self,
+            request: analytics_admin.CreateCustomMetricRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomMetric:
             r"""Call the create custom metric method over HTTP.
 
             Args:
@@ -1618,44 +1996,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a custom metric.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/customMetrics',
-                'body': 'custom_metric',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/customMetrics",
+                    "body": "custom_metric",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_custom_metric(request, metadata)
+            request, metadata = self._interceptor.pre_create_custom_metric(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateCustomMetricRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1674,19 +2057,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateDataStream")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateDataStreamRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataStream:
+        def __call__(
+            self,
+            request: analytics_admin.CreateDataStreamRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataStream:
             r"""Call the create data stream method over HTTP.
 
             Args:
@@ -1707,44 +2095,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/dataStreams',
-                'body': 'data_stream',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/dataStreams",
+                    "body": "data_stream",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_data_stream(request, metadata)
+            request, metadata = self._interceptor.pre_create_data_stream(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateDataStreamRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1763,19 +2156,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateFirebaseLink")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateFirebaseLinkRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.FirebaseLink:
+        def __call__(
+            self,
+            request: analytics_admin.CreateFirebaseLinkRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.FirebaseLink:
             r"""Call the create firebase link method over HTTP.
 
             Args:
@@ -1796,44 +2194,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/firebaseLinks',
-                'body': 'firebase_link',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/firebaseLinks",
+                    "body": "firebase_link",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_firebase_link(request, metadata)
+            request, metadata = self._interceptor.pre_create_firebase_link(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateFirebaseLinkRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1852,19 +2255,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateGoogleAdsLink")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateGoogleAdsLinkRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.GoogleAdsLink:
+        def __call__(
+            self,
+            request: analytics_admin.CreateGoogleAdsLinkRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.GoogleAdsLink:
             r"""Call the create google ads link method over HTTP.
 
             Args:
@@ -1885,44 +2293,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*}/googleAdsLinks',
-                'body': 'google_ads_link',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*}/googleAdsLinks",
+                    "body": "google_ads_link",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_google_ads_link(request, metadata)
+            request, metadata = self._interceptor.pre_create_google_ads_link(
+                request, metadata
+            )
             pb_request = analytics_admin.CreateGoogleAdsLinkRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1941,78 +2354,93 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateMeasurementProtocolSecret")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreateMeasurementProtocolSecretRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.MeasurementProtocolSecret:
+        def __call__(
+            self,
+            request: analytics_admin.CreateMeasurementProtocolSecretRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.MeasurementProtocolSecret:
             r"""Call the create measurement
-        protocol secret method over HTTP.
+            protocol secret method over HTTP.
 
-            Args:
-                request (~.analytics_admin.CreateMeasurementProtocolSecretRequest):
-                    The request object. Request message for
-                CreateMeasurementProtocolSecret RPC
+                Args:
+                    request (~.analytics_admin.CreateMeasurementProtocolSecretRequest):
+                        The request object. Request message for
+                    CreateMeasurementProtocolSecret RPC
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.MeasurementProtocolSecret:
-                    A secret value used for sending hits
-                to Measurement Protocol.
+                Returns:
+                    ~.resources.MeasurementProtocolSecret:
+                        A secret value used for sending hits
+                    to Measurement Protocol.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
-                'body': 'measurement_protocol_secret',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets",
+                    "body": "measurement_protocol_secret",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_measurement_protocol_secret(request, metadata)
-            pb_request = analytics_admin.CreateMeasurementProtocolSecretRequest.pb(request)
+            (
+                request,
+                metadata,
+            ) = self._interceptor.pre_create_measurement_protocol_secret(
+                request, metadata
+            )
+            pb_request = analytics_admin.CreateMeasurementProtocolSecretRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2031,19 +2459,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("CreateProperty")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.CreatePropertyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Property:
+        def __call__(
+            self,
+            request: analytics_admin.CreatePropertyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Property:
             r"""Call the create property method over HTTP.
 
             Args:
@@ -2064,11 +2497,12 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/properties',
-                'body': 'property',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/properties",
+                    "body": "property",
+                },
             ]
             request, metadata = self._interceptor.pre_create_property(request, metadata)
             pb_request = analytics_admin.CreatePropertyRequest.pb(request)
@@ -2077,31 +2511,33 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2120,19 +2556,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteAccount")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteAccountRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteAccountRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete account method over HTTP.
 
             Args:
@@ -2147,35 +2588,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=accounts/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=accounts/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_account(request, metadata)
             pb_request = analytics_admin.DeleteAccountRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2186,19 +2630,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteConversionEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteConversionEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteConversionEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete conversion event method over HTTP.
 
             Args:
@@ -2213,35 +2662,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*/conversionEvents/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*/conversionEvents/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_conversion_event(request, metadata)
+            request, metadata = self._interceptor.pre_delete_conversion_event(
+                request, metadata
+            )
             pb_request = analytics_admin.DeleteConversionEventRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2252,19 +2706,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteDataStream")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteDataStreamRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteDataStreamRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete data stream method over HTTP.
 
             Args:
@@ -2279,35 +2738,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*/dataStreams/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*/dataStreams/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_data_stream(request, metadata)
+            request, metadata = self._interceptor.pre_delete_data_stream(
+                request, metadata
+            )
             pb_request = analytics_admin.DeleteDataStreamRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2318,19 +2782,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteFirebaseLink")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteFirebaseLinkRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteFirebaseLinkRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete firebase link method over HTTP.
 
             Args:
@@ -2345,35 +2814,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*/firebaseLinks/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*/firebaseLinks/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_firebase_link(request, metadata)
+            request, metadata = self._interceptor.pre_delete_firebase_link(
+                request, metadata
+            )
             pb_request = analytics_admin.DeleteFirebaseLinkRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2384,19 +2858,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteGoogleAdsLink")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteGoogleAdsLinkRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteGoogleAdsLinkRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete google ads link method over HTTP.
 
             Args:
@@ -2411,35 +2890,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*/googleAdsLinks/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*/googleAdsLinks/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_google_ads_link(request, metadata)
+            request, metadata = self._interceptor.pre_delete_google_ads_link(
+                request, metadata
+            )
             pb_request = analytics_admin.DeleteGoogleAdsLinkRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2450,63 +2934,78 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteMeasurementProtocolSecret")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeleteMeasurementProtocolSecretRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: analytics_admin.DeleteMeasurementProtocolSecretRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete measurement
-        protocol secret method over HTTP.
+            protocol secret method over HTTP.
 
-            Args:
-                request (~.analytics_admin.DeleteMeasurementProtocolSecretRequest):
-                    The request object. Request message for
-                DeleteMeasurementProtocolSecret RPC
+                Args:
+                    request (~.analytics_admin.DeleteMeasurementProtocolSecretRequest):
+                        The request object. Request message for
+                    DeleteMeasurementProtocolSecret RPC
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_measurement_protocol_secret(request, metadata)
-            pb_request = analytics_admin.DeleteMeasurementProtocolSecretRequest.pb(request)
+            (
+                request,
+                metadata,
+            ) = self._interceptor.pre_delete_measurement_protocol_secret(
+                request, metadata
+            )
+            pb_request = analytics_admin.DeleteMeasurementProtocolSecretRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2517,19 +3016,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("DeleteProperty")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.DeletePropertyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Property:
+        def __call__(
+            self,
+            request: analytics_admin.DeletePropertyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Property:
             r"""Call the delete property method over HTTP.
 
             Args:
@@ -2550,35 +3054,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1beta/{name=properties/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1beta/{name=properties/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_property(request, metadata)
             pb_request = analytics_admin.DeletePropertyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2597,19 +3104,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetAccount")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetAccountRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Account:
+        def __call__(
+            self,
+            request: analytics_admin.GetAccountRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Account:
             r"""Call the get account method over HTTP.
 
             Args:
@@ -2628,35 +3140,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=accounts/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=accounts/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_account(request, metadata)
             pb_request = analytics_admin.GetAccountRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2675,19 +3190,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetConversionEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetConversionEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.ConversionEvent:
+        def __call__(
+            self,
+            request: analytics_admin.GetConversionEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.ConversionEvent:
             r"""Call the get conversion event method over HTTP.
 
             Args:
@@ -2708,35 +3228,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/conversionEvents/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/conversionEvents/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_conversion_event(request, metadata)
+            request, metadata = self._interceptor.pre_get_conversion_event(
+                request, metadata
+            )
             pb_request = analytics_admin.GetConversionEventRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2755,19 +3280,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetCustomDimension")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetCustomDimensionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomDimension:
+        def __call__(
+            self,
+            request: analytics_admin.GetCustomDimensionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomDimension:
             r"""Call the get custom dimension method over HTTP.
 
             Args:
@@ -2786,35 +3316,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a CustomDimension.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/customDimensions/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/customDimensions/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_custom_dimension(request, metadata)
+            request, metadata = self._interceptor.pre_get_custom_dimension(
+                request, metadata
+            )
             pb_request = analytics_admin.GetCustomDimensionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2833,19 +3368,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetCustomMetric")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetCustomMetricRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomMetric:
+        def __call__(
+            self,
+            request: analytics_admin.GetCustomMetricRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomMetric:
             r"""Call the get custom metric method over HTTP.
 
             Args:
@@ -2864,35 +3404,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a custom metric.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/customMetrics/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/customMetrics/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_custom_metric(request, metadata)
+            request, metadata = self._interceptor.pre_get_custom_metric(
+                request, metadata
+            )
             pb_request = analytics_admin.GetCustomMetricRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2911,69 +3456,79 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetDataRetentionSettings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetDataRetentionSettingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataRetentionSettings:
+        def __call__(
+            self,
+            request: analytics_admin.GetDataRetentionSettingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataRetentionSettings:
             r"""Call the get data retention
-        settings method over HTTP.
+            settings method over HTTP.
 
-            Args:
-                request (~.analytics_admin.GetDataRetentionSettingsRequest):
-                    The request object. Request message for
-                GetDataRetentionSettings RPC.
+                Args:
+                    request (~.analytics_admin.GetDataRetentionSettingsRequest):
+                        The request object. Request message for
+                    GetDataRetentionSettings RPC.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.DataRetentionSettings:
-                    Settings values for data retention.
-                This is a singleton resource.
+                Returns:
+                    ~.resources.DataRetentionSettings:
+                        Settings values for data retention.
+                    This is a singleton resource.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/dataRetentionSettings}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/dataRetentionSettings}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_data_retention_settings(request, metadata)
+            request, metadata = self._interceptor.pre_get_data_retention_settings(
+                request, metadata
+            )
             pb_request = analytics_admin.GetDataRetentionSettingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2992,19 +3547,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetDataSharingSettings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetDataSharingSettingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataSharingSettings:
+        def __call__(
+            self,
+            request: analytics_admin.GetDataSharingSettingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataSharingSettings:
             r"""Call the get data sharing settings method over HTTP.
 
             Args:
@@ -3026,35 +3586,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=accounts/*/dataSharingSettings}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=accounts/*/dataSharingSettings}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_data_sharing_settings(request, metadata)
+            request, metadata = self._interceptor.pre_get_data_sharing_settings(
+                request, metadata
+            )
             pb_request = analytics_admin.GetDataSharingSettingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3073,19 +3638,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetDataStream")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetDataStreamRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataStream:
+        def __call__(
+            self,
+            request: analytics_admin.GetDataStreamRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataStream:
             r"""Call the get data stream method over HTTP.
 
             Args:
@@ -3106,35 +3676,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/dataStreams/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/dataStreams/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_data_stream(request, metadata)
             pb_request = analytics_admin.GetDataStreamRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3153,69 +3726,79 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetMeasurementProtocolSecret")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetMeasurementProtocolSecretRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.MeasurementProtocolSecret:
+        def __call__(
+            self,
+            request: analytics_admin.GetMeasurementProtocolSecretRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.MeasurementProtocolSecret:
             r"""Call the get measurement protocol
-        secret method over HTTP.
+            secret method over HTTP.
 
-            Args:
-                request (~.analytics_admin.GetMeasurementProtocolSecretRequest):
-                    The request object. Request message for
-                GetMeasurementProtocolSecret RPC.
+                Args:
+                    request (~.analytics_admin.GetMeasurementProtocolSecretRequest):
+                        The request object. Request message for
+                    GetMeasurementProtocolSecret RPC.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.MeasurementProtocolSecret:
-                    A secret value used for sending hits
-                to Measurement Protocol.
+                Returns:
+                    ~.resources.MeasurementProtocolSecret:
+                        A secret value used for sending hits
+                    to Measurement Protocol.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_measurement_protocol_secret(request, metadata)
+            request, metadata = self._interceptor.pre_get_measurement_protocol_secret(
+                request, metadata
+            )
             pb_request = analytics_admin.GetMeasurementProtocolSecretRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3234,19 +3817,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("GetProperty")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.GetPropertyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Property:
+        def __call__(
+            self,
+            request: analytics_admin.GetPropertyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Property:
             r"""Call the get property method over HTTP.
 
             Args:
@@ -3265,35 +3853,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{name=properties/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{name=properties/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_property(request, metadata)
             pb_request = analytics_admin.GetPropertyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3312,12 +3903,14 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListAccounts")
 
-        def __call__(self,
-                request: analytics_admin.ListAccountsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListAccountsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListAccountsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListAccountsResponse:
             r"""Call the list accounts method over HTTP.
 
             Args:
@@ -3334,34 +3927,37 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     Request message for ListAccounts RPC.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/accounts',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/accounts",
+                },
             ]
             request, metadata = self._interceptor.pre_list_accounts(request, metadata)
             pb_request = analytics_admin.ListAccountsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3380,12 +3976,14 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListAccountSummaries")
 
-        def __call__(self,
-                request: analytics_admin.ListAccountSummariesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListAccountSummariesResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListAccountSummariesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListAccountSummariesResponse:
             r"""Call the list account summaries method over HTTP.
 
             Args:
@@ -3406,34 +4004,39 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/accountSummaries',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/accountSummaries",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_account_summaries(request, metadata)
+            request, metadata = self._interceptor.pre_list_account_summaries(
+                request, metadata
+            )
             pb_request = analytics_admin.ListAccountSummariesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3452,19 +4055,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListConversionEvents")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListConversionEventsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListConversionEventsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListConversionEventsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListConversionEventsResponse:
             r"""Call the list conversion events method over HTTP.
 
             Args:
@@ -3485,35 +4093,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/conversionEvents',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/conversionEvents",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_conversion_events(request, metadata)
+            request, metadata = self._interceptor.pre_list_conversion_events(
+                request, metadata
+            )
             pb_request = analytics_admin.ListConversionEventsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3532,19 +4145,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListCustomDimensions")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListCustomDimensionsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListCustomDimensionsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListCustomDimensionsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListCustomDimensionsResponse:
             r"""Call the list custom dimensions method over HTTP.
 
             Args:
@@ -3565,35 +4183,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/customDimensions',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/customDimensions",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_custom_dimensions(request, metadata)
+            request, metadata = self._interceptor.pre_list_custom_dimensions(
+                request, metadata
+            )
             pb_request = analytics_admin.ListCustomDimensionsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3612,19 +4235,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListCustomMetrics")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListCustomMetricsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListCustomMetricsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListCustomMetricsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListCustomMetricsResponse:
             r"""Call the list custom metrics method over HTTP.
 
             Args:
@@ -3645,35 +4273,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/customMetrics',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/customMetrics",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_custom_metrics(request, metadata)
+            request, metadata = self._interceptor.pre_list_custom_metrics(
+                request, metadata
+            )
             pb_request = analytics_admin.ListCustomMetricsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3692,19 +4325,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListDataStreams")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListDataStreamsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListDataStreamsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListDataStreamsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListDataStreamsResponse:
             r"""Call the list data streams method over HTTP.
 
             Args:
@@ -3725,35 +4363,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/dataStreams',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/dataStreams",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_data_streams(request, metadata)
+            request, metadata = self._interceptor.pre_list_data_streams(
+                request, metadata
+            )
             pb_request = analytics_admin.ListDataStreamsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3772,19 +4415,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListFirebaseLinks")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListFirebaseLinksRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListFirebaseLinksResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListFirebaseLinksRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListFirebaseLinksResponse:
             r"""Call the list firebase links method over HTTP.
 
             Args:
@@ -3805,35 +4453,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/firebaseLinks',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/firebaseLinks",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_firebase_links(request, metadata)
+            request, metadata = self._interceptor.pre_list_firebase_links(
+                request, metadata
+            )
             pb_request = analytics_admin.ListFirebaseLinksRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3852,19 +4505,24 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListGoogleAdsLinks")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListGoogleAdsLinksRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListGoogleAdsLinksResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListGoogleAdsLinksRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListGoogleAdsLinksResponse:
             r"""Call the list google ads links method over HTTP.
 
             Args:
@@ -3885,35 +4543,40 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*}/googleAdsLinks',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*}/googleAdsLinks",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_google_ads_links(request, metadata)
+            request, metadata = self._interceptor.pre_list_google_ads_links(
+                request, metadata
+            )
             pb_request = analytics_admin.ListGoogleAdsLinksRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3932,69 +4595,81 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListMeasurementProtocolSecrets")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListMeasurementProtocolSecretsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListMeasurementProtocolSecretsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListMeasurementProtocolSecretsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListMeasurementProtocolSecretsResponse:
             r"""Call the list measurement protocol
-        secrets method over HTTP.
+            secrets method over HTTP.
 
-            Args:
-                request (~.analytics_admin.ListMeasurementProtocolSecretsRequest):
-                    The request object. Request message for
-                ListMeasurementProtocolSecret RPC
+                Args:
+                    request (~.analytics_admin.ListMeasurementProtocolSecretsRequest):
+                        The request object. Request message for
+                    ListMeasurementProtocolSecret RPC
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.analytics_admin.ListMeasurementProtocolSecretsResponse:
-                    Response message for
-                ListMeasurementProtocolSecret RPC
+                Returns:
+                    ~.analytics_admin.ListMeasurementProtocolSecretsResponse:
+                        Response message for
+                    ListMeasurementProtocolSecret RPC
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_measurement_protocol_secrets(request, metadata)
-            pb_request = analytics_admin.ListMeasurementProtocolSecretsRequest.pb(request)
+            request, metadata = self._interceptor.pre_list_measurement_protocol_secrets(
+                request, metadata
+            )
+            pb_request = analytics_admin.ListMeasurementProtocolSecretsRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4013,19 +4688,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ListProperties")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "filter" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "filter": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.ListPropertiesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ListPropertiesResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ListPropertiesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ListPropertiesResponse:
             r"""Call the list properties method over HTTP.
 
             Args:
@@ -4046,35 +4728,38 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta/properties',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta/properties",
+                },
             ]
             request, metadata = self._interceptor.pre_list_properties(request, metadata)
             pb_request = analytics_admin.ListPropertiesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4093,12 +4778,14 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("ProvisionAccountTicket")
 
-        def __call__(self,
-                request: analytics_admin.ProvisionAccountTicketRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.ProvisionAccountTicketResponse:
+        def __call__(
+            self,
+            request: analytics_admin.ProvisionAccountTicketRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.ProvisionAccountTicketResponse:
             r"""Call the provision account ticket method over HTTP.
 
             Args:
@@ -4119,43 +4806,48 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/accounts:provisionAccountTicket',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/accounts:provisionAccountTicket",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_provision_account_ticket(request, metadata)
+            request, metadata = self._interceptor.pre_provision_account_ticket(
+                request, metadata
+            )
             pb_request = analytics_admin.ProvisionAccountTicketRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4174,78 +4866,88 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("SearchChangeHistoryEvents")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.SearchChangeHistoryEventsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> analytics_admin.SearchChangeHistoryEventsResponse:
+        def __call__(
+            self,
+            request: analytics_admin.SearchChangeHistoryEventsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> analytics_admin.SearchChangeHistoryEventsResponse:
             r"""Call the search change history
-        events method over HTTP.
+            events method over HTTP.
 
-            Args:
-                request (~.analytics_admin.SearchChangeHistoryEventsRequest):
-                    The request object. Request message for
-                SearchChangeHistoryEvents RPC.
+                Args:
+                    request (~.analytics_admin.SearchChangeHistoryEventsRequest):
+                        The request object. Request message for
+                    SearchChangeHistoryEvents RPC.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.analytics_admin.SearchChangeHistoryEventsResponse:
-                    Response message for SearchAccounts
-                RPC.
+                Returns:
+                    ~.analytics_admin.SearchChangeHistoryEventsResponse:
+                        Response message for SearchAccounts
+                    RPC.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta/{account=accounts/*}:searchChangeHistoryEvents',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1beta/{account=accounts/*}:searchChangeHistoryEvents",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_search_change_history_events(request, metadata)
+            request, metadata = self._interceptor.pre_search_change_history_events(
+                request, metadata
+            )
             pb_request = analytics_admin.SearchChangeHistoryEventsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4264,19 +4966,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateAccount")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateAccountRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Account:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateAccountRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Account:
             r"""Call the update account method over HTTP.
 
             Args:
@@ -4297,11 +5006,12 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{account.name=accounts/*}',
-                'body': 'account',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{account.name=accounts/*}",
+                    "body": "account",
+                },
             ]
             request, metadata = self._interceptor.pre_update_account(request, metadata)
             pb_request = analytics_admin.UpdateAccountRequest.pb(request)
@@ -4310,31 +5020,33 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4353,19 +5065,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateCustomDimension")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateCustomDimensionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomDimension:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateCustomDimensionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomDimension:
             r"""Call the update custom dimension method over HTTP.
 
             Args:
@@ -4384,44 +5103,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a CustomDimension.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{custom_dimension.name=properties/*/customDimensions/*}',
-                'body': 'custom_dimension',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{custom_dimension.name=properties/*/customDimensions/*}",
+                    "body": "custom_dimension",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_custom_dimension(request, metadata)
+            request, metadata = self._interceptor.pre_update_custom_dimension(
+                request, metadata
+            )
             pb_request = analytics_admin.UpdateCustomDimensionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4440,19 +5164,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateCustomMetric")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateCustomMetricRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CustomMetric:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateCustomMetricRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CustomMetric:
             r"""Call the update custom metric method over HTTP.
 
             Args:
@@ -4471,44 +5202,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
                     A definition for a custom metric.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{custom_metric.name=properties/*/customMetrics/*}',
-                'body': 'custom_metric',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{custom_metric.name=properties/*/customMetrics/*}",
+                    "body": "custom_metric",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_custom_metric(request, metadata)
+            request, metadata = self._interceptor.pre_update_custom_metric(
+                request, metadata
+            )
             pb_request = analytics_admin.UpdateCustomMetricRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4527,78 +5263,90 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateDataRetentionSettings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateDataRetentionSettingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataRetentionSettings:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateDataRetentionSettingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataRetentionSettings:
             r"""Call the update data retention
-        settings method over HTTP.
+            settings method over HTTP.
 
-            Args:
-                request (~.analytics_admin.UpdateDataRetentionSettingsRequest):
-                    The request object. Request message for
-                UpdateDataRetentionSettings RPC.
+                Args:
+                    request (~.analytics_admin.UpdateDataRetentionSettingsRequest):
+                        The request object. Request message for
+                    UpdateDataRetentionSettings RPC.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.DataRetentionSettings:
-                    Settings values for data retention.
-                This is a singleton resource.
+                Returns:
+                    ~.resources.DataRetentionSettings:
+                        Settings values for data retention.
+                    This is a singleton resource.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{data_retention_settings.name=properties/*/dataRetentionSettings}',
-                'body': 'data_retention_settings',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{data_retention_settings.name=properties/*/dataRetentionSettings}",
+                    "body": "data_retention_settings",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_data_retention_settings(request, metadata)
+            request, metadata = self._interceptor.pre_update_data_retention_settings(
+                request, metadata
+            )
             pb_request = analytics_admin.UpdateDataRetentionSettingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4617,19 +5365,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateDataStream")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateDataStreamRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.DataStream:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateDataStreamRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.DataStream:
             r"""Call the update data stream method over HTTP.
 
             Args:
@@ -4650,44 +5405,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{data_stream.name=properties/*/dataStreams/*}',
-                'body': 'data_stream',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{data_stream.name=properties/*/dataStreams/*}",
+                    "body": "data_stream",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_data_stream(request, metadata)
+            request, metadata = self._interceptor.pre_update_data_stream(
+                request, metadata
+            )
             pb_request = analytics_admin.UpdateDataStreamRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4706,19 +5466,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateGoogleAdsLink")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateGoogleAdsLinkRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.GoogleAdsLink:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateGoogleAdsLinkRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.GoogleAdsLink:
             r"""Call the update google ads link method over HTTP.
 
             Args:
@@ -4739,44 +5506,49 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{google_ads_link.name=properties/*/googleAdsLinks/*}',
-                'body': 'google_ads_link',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{google_ads_link.name=properties/*/googleAdsLinks/*}",
+                    "body": "google_ads_link",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_google_ads_link(request, metadata)
+            request, metadata = self._interceptor.pre_update_google_ads_link(
+                request, metadata
+            )
             pb_request = analytics_admin.UpdateGoogleAdsLinkRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4795,78 +5567,93 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateMeasurementProtocolSecret")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdateMeasurementProtocolSecretRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.MeasurementProtocolSecret:
+        def __call__(
+            self,
+            request: analytics_admin.UpdateMeasurementProtocolSecretRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.MeasurementProtocolSecret:
             r"""Call the update measurement
-        protocol secret method over HTTP.
+            protocol secret method over HTTP.
 
-            Args:
-                request (~.analytics_admin.UpdateMeasurementProtocolSecretRequest):
-                    The request object. Request message for
-                UpdateMeasurementProtocolSecret RPC
+                Args:
+                    request (~.analytics_admin.UpdateMeasurementProtocolSecretRequest):
+                        The request object. Request message for
+                    UpdateMeasurementProtocolSecret RPC
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.MeasurementProtocolSecret:
-                    A secret value used for sending hits
-                to Measurement Protocol.
+                Returns:
+                    ~.resources.MeasurementProtocolSecret:
+                        A secret value used for sending hits
+                    to Measurement Protocol.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
-                'body': 'measurement_protocol_secret',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}",
+                    "body": "measurement_protocol_secret",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_measurement_protocol_secret(request, metadata)
-            pb_request = analytics_admin.UpdateMeasurementProtocolSecretRequest.pb(request)
+            (
+                request,
+                metadata,
+            ) = self._interceptor.pre_update_measurement_protocol_secret(
+                request, metadata
+            )
+            pb_request = analytics_admin.UpdateMeasurementProtocolSecretRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4885,19 +5672,26 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         def __hash__(self):
             return hash("UpdateProperty")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: analytics_admin.UpdatePropertyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: float=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Property:
+        def __call__(
+            self,
+            request: analytics_admin.UpdatePropertyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Property:
             r"""Call the update property method over HTTP.
 
             Args:
@@ -4918,11 +5712,12 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta/{property.name=properties/*}',
-                'body': 'property',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1beta/{property.name=properties/*}",
+                    "body": "property",
+                },
             ]
             request, metadata = self._interceptor.pre_update_property(request, metadata)
             pb_request = analytics_admin.UpdatePropertyRequest.pb(request)
@@ -4931,31 +5726,33 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=False
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=False,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=False,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4971,380 +5768,450 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
             return resp
 
     @property
-    def acknowledge_user_data_collection(self) -> Callable[
-            [analytics_admin.AcknowledgeUserDataCollectionRequest],
-            analytics_admin.AcknowledgeUserDataCollectionResponse]:
+    def acknowledge_user_data_collection(
+        self,
+    ) -> Callable[
+        [analytics_admin.AcknowledgeUserDataCollectionRequest],
+        analytics_admin.AcknowledgeUserDataCollectionResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._AcknowledgeUserDataCollection(self._session, self._host, self._interceptor) # type: ignore
+        return self._AcknowledgeUserDataCollection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def archive_custom_dimension(self) -> Callable[
-            [analytics_admin.ArchiveCustomDimensionRequest],
-            empty_pb2.Empty]:
+    def archive_custom_dimension(
+        self,
+    ) -> Callable[[analytics_admin.ArchiveCustomDimensionRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ArchiveCustomDimension(self._session, self._host, self._interceptor) # type: ignore
+        return self._ArchiveCustomDimension(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def archive_custom_metric(self) -> Callable[
-            [analytics_admin.ArchiveCustomMetricRequest],
-            empty_pb2.Empty]:
+    def archive_custom_metric(
+        self,
+    ) -> Callable[[analytics_admin.ArchiveCustomMetricRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ArchiveCustomMetric(self._session, self._host, self._interceptor) # type: ignore
+        return self._ArchiveCustomMetric(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_conversion_event(self) -> Callable[
-            [analytics_admin.CreateConversionEventRequest],
-            resources.ConversionEvent]:
+    def create_conversion_event(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateConversionEventRequest], resources.ConversionEvent
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateConversionEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateConversionEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_custom_dimension(self) -> Callable[
-            [analytics_admin.CreateCustomDimensionRequest],
-            resources.CustomDimension]:
+    def create_custom_dimension(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateCustomDimensionRequest], resources.CustomDimension
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCustomDimension(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCustomDimension(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_custom_metric(self) -> Callable[
-            [analytics_admin.CreateCustomMetricRequest],
-            resources.CustomMetric]:
+    def create_custom_metric(
+        self,
+    ) -> Callable[[analytics_admin.CreateCustomMetricRequest], resources.CustomMetric]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCustomMetric(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCustomMetric(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_data_stream(self) -> Callable[
-            [analytics_admin.CreateDataStreamRequest],
-            resources.DataStream]:
+    def create_data_stream(
+        self,
+    ) -> Callable[[analytics_admin.CreateDataStreamRequest], resources.DataStream]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateDataStream(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateDataStream(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_firebase_link(self) -> Callable[
-            [analytics_admin.CreateFirebaseLinkRequest],
-            resources.FirebaseLink]:
+    def create_firebase_link(
+        self,
+    ) -> Callable[[analytics_admin.CreateFirebaseLinkRequest], resources.FirebaseLink]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateFirebaseLink(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateFirebaseLink(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_google_ads_link(self) -> Callable[
-            [analytics_admin.CreateGoogleAdsLinkRequest],
-            resources.GoogleAdsLink]:
+    def create_google_ads_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateGoogleAdsLinkRequest], resources.GoogleAdsLink
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateGoogleAdsLink(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateGoogleAdsLink(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_measurement_protocol_secret(self) -> Callable[
-            [analytics_admin.CreateMeasurementProtocolSecretRequest],
-            resources.MeasurementProtocolSecret]:
+    def create_measurement_protocol_secret(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateMeasurementProtocolSecretRequest],
+        resources.MeasurementProtocolSecret,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateMeasurementProtocolSecret(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateMeasurementProtocolSecret(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_property(self) -> Callable[
-            [analytics_admin.CreatePropertyRequest],
-            resources.Property]:
+    def create_property(
+        self,
+    ) -> Callable[[analytics_admin.CreatePropertyRequest], resources.Property]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateProperty(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateProperty(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_account(self) -> Callable[
-            [analytics_admin.DeleteAccountRequest],
-            empty_pb2.Empty]:
+    def delete_account(
+        self,
+    ) -> Callable[[analytics_admin.DeleteAccountRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteAccount(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteAccount(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_conversion_event(self) -> Callable[
-            [analytics_admin.DeleteConversionEventRequest],
-            empty_pb2.Empty]:
+    def delete_conversion_event(
+        self,
+    ) -> Callable[[analytics_admin.DeleteConversionEventRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteConversionEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteConversionEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_data_stream(self) -> Callable[
-            [analytics_admin.DeleteDataStreamRequest],
-            empty_pb2.Empty]:
+    def delete_data_stream(
+        self,
+    ) -> Callable[[analytics_admin.DeleteDataStreamRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteDataStream(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteDataStream(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_firebase_link(self) -> Callable[
-            [analytics_admin.DeleteFirebaseLinkRequest],
-            empty_pb2.Empty]:
+    def delete_firebase_link(
+        self,
+    ) -> Callable[[analytics_admin.DeleteFirebaseLinkRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteFirebaseLink(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteFirebaseLink(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_google_ads_link(self) -> Callable[
-            [analytics_admin.DeleteGoogleAdsLinkRequest],
-            empty_pb2.Empty]:
+    def delete_google_ads_link(
+        self,
+    ) -> Callable[[analytics_admin.DeleteGoogleAdsLinkRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteGoogleAdsLink(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteGoogleAdsLink(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_measurement_protocol_secret(self) -> Callable[
-            [analytics_admin.DeleteMeasurementProtocolSecretRequest],
-            empty_pb2.Empty]:
+    def delete_measurement_protocol_secret(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteMeasurementProtocolSecretRequest], empty_pb2.Empty
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteMeasurementProtocolSecret(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteMeasurementProtocolSecret(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_property(self) -> Callable[
-            [analytics_admin.DeletePropertyRequest],
-            resources.Property]:
+    def delete_property(
+        self,
+    ) -> Callable[[analytics_admin.DeletePropertyRequest], resources.Property]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteProperty(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteProperty(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_account(self) -> Callable[
-            [analytics_admin.GetAccountRequest],
-            resources.Account]:
+    def get_account(
+        self,
+    ) -> Callable[[analytics_admin.GetAccountRequest], resources.Account]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetAccount(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetAccount(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_conversion_event(self) -> Callable[
-            [analytics_admin.GetConversionEventRequest],
-            resources.ConversionEvent]:
+    def get_conversion_event(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetConversionEventRequest], resources.ConversionEvent
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetConversionEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetConversionEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_custom_dimension(self) -> Callable[
-            [analytics_admin.GetCustomDimensionRequest],
-            resources.CustomDimension]:
+    def get_custom_dimension(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetCustomDimensionRequest], resources.CustomDimension
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCustomDimension(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCustomDimension(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_custom_metric(self) -> Callable[
-            [analytics_admin.GetCustomMetricRequest],
-            resources.CustomMetric]:
+    def get_custom_metric(
+        self,
+    ) -> Callable[[analytics_admin.GetCustomMetricRequest], resources.CustomMetric]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCustomMetric(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCustomMetric(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_data_retention_settings(self) -> Callable[
-            [analytics_admin.GetDataRetentionSettingsRequest],
-            resources.DataRetentionSettings]:
+    def get_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDataRetentionSettingsRequest],
+        resources.DataRetentionSettings,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetDataRetentionSettings(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetDataRetentionSettings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_data_sharing_settings(self) -> Callable[
-            [analytics_admin.GetDataSharingSettingsRequest],
-            resources.DataSharingSettings]:
+    def get_data_sharing_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDataSharingSettingsRequest], resources.DataSharingSettings
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetDataSharingSettings(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetDataSharingSettings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_data_stream(self) -> Callable[
-            [analytics_admin.GetDataStreamRequest],
-            resources.DataStream]:
+    def get_data_stream(
+        self,
+    ) -> Callable[[analytics_admin.GetDataStreamRequest], resources.DataStream]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetDataStream(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetDataStream(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_measurement_protocol_secret(self) -> Callable[
-            [analytics_admin.GetMeasurementProtocolSecretRequest],
-            resources.MeasurementProtocolSecret]:
+    def get_measurement_protocol_secret(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetMeasurementProtocolSecretRequest],
+        resources.MeasurementProtocolSecret,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetMeasurementProtocolSecret(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetMeasurementProtocolSecret(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_property(self) -> Callable[
-            [analytics_admin.GetPropertyRequest],
-            resources.Property]:
+    def get_property(
+        self,
+    ) -> Callable[[analytics_admin.GetPropertyRequest], resources.Property]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetProperty(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetProperty(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_accounts(self) -> Callable[
-            [analytics_admin.ListAccountsRequest],
-            analytics_admin.ListAccountsResponse]:
+    def list_accounts(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListAccountsRequest], analytics_admin.ListAccountsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListAccounts(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListAccounts(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_account_summaries(self) -> Callable[
-            [analytics_admin.ListAccountSummariesRequest],
-            analytics_admin.ListAccountSummariesResponse]:
+    def list_account_summaries(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListAccountSummariesRequest],
+        analytics_admin.ListAccountSummariesResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListAccountSummaries(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListAccountSummaries(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_conversion_events(self) -> Callable[
-            [analytics_admin.ListConversionEventsRequest],
-            analytics_admin.ListConversionEventsResponse]:
+    def list_conversion_events(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListConversionEventsRequest],
+        analytics_admin.ListConversionEventsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListConversionEvents(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListConversionEvents(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_custom_dimensions(self) -> Callable[
-            [analytics_admin.ListCustomDimensionsRequest],
-            analytics_admin.ListCustomDimensionsResponse]:
+    def list_custom_dimensions(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListCustomDimensionsRequest],
+        analytics_admin.ListCustomDimensionsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCustomDimensions(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCustomDimensions(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_custom_metrics(self) -> Callable[
-            [analytics_admin.ListCustomMetricsRequest],
-            analytics_admin.ListCustomMetricsResponse]:
+    def list_custom_metrics(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListCustomMetricsRequest],
+        analytics_admin.ListCustomMetricsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCustomMetrics(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCustomMetrics(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_data_streams(self) -> Callable[
-            [analytics_admin.ListDataStreamsRequest],
-            analytics_admin.ListDataStreamsResponse]:
+    def list_data_streams(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDataStreamsRequest],
+        analytics_admin.ListDataStreamsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListDataStreams(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListDataStreams(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_firebase_links(self) -> Callable[
-            [analytics_admin.ListFirebaseLinksRequest],
-            analytics_admin.ListFirebaseLinksResponse]:
+    def list_firebase_links(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListFirebaseLinksRequest],
+        analytics_admin.ListFirebaseLinksResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListFirebaseLinks(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListFirebaseLinks(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_google_ads_links(self) -> Callable[
-            [analytics_admin.ListGoogleAdsLinksRequest],
-            analytics_admin.ListGoogleAdsLinksResponse]:
+    def list_google_ads_links(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListGoogleAdsLinksRequest],
+        analytics_admin.ListGoogleAdsLinksResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListGoogleAdsLinks(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListGoogleAdsLinks(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_measurement_protocol_secrets(self) -> Callable[
-            [analytics_admin.ListMeasurementProtocolSecretsRequest],
-            analytics_admin.ListMeasurementProtocolSecretsResponse]:
+    def list_measurement_protocol_secrets(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListMeasurementProtocolSecretsRequest],
+        analytics_admin.ListMeasurementProtocolSecretsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListMeasurementProtocolSecrets(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListMeasurementProtocolSecrets(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_properties(self) -> Callable[
-            [analytics_admin.ListPropertiesRequest],
-            analytics_admin.ListPropertiesResponse]:
+    def list_properties(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListPropertiesRequest], analytics_admin.ListPropertiesResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListProperties(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListProperties(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def provision_account_ticket(self) -> Callable[
-            [analytics_admin.ProvisionAccountTicketRequest],
-            analytics_admin.ProvisionAccountTicketResponse]:
+    def provision_account_ticket(
+        self,
+    ) -> Callable[
+        [analytics_admin.ProvisionAccountTicketRequest],
+        analytics_admin.ProvisionAccountTicketResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ProvisionAccountTicket(self._session, self._host, self._interceptor) # type: ignore
+        return self._ProvisionAccountTicket(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def search_change_history_events(self) -> Callable[
-            [analytics_admin.SearchChangeHistoryEventsRequest],
-            analytics_admin.SearchChangeHistoryEventsResponse]:
+    def search_change_history_events(
+        self,
+    ) -> Callable[
+        [analytics_admin.SearchChangeHistoryEventsRequest],
+        analytics_admin.SearchChangeHistoryEventsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._SearchChangeHistoryEvents(self._session, self._host, self._interceptor) # type: ignore
+        return self._SearchChangeHistoryEvents(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_account(self) -> Callable[
-            [analytics_admin.UpdateAccountRequest],
-            resources.Account]:
+    def update_account(
+        self,
+    ) -> Callable[[analytics_admin.UpdateAccountRequest], resources.Account]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateAccount(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateAccount(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_custom_dimension(self) -> Callable[
-            [analytics_admin.UpdateCustomDimensionRequest],
-            resources.CustomDimension]:
+    def update_custom_dimension(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateCustomDimensionRequest], resources.CustomDimension
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCustomDimension(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCustomDimension(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_custom_metric(self) -> Callable[
-            [analytics_admin.UpdateCustomMetricRequest],
-            resources.CustomMetric]:
+    def update_custom_metric(
+        self,
+    ) -> Callable[[analytics_admin.UpdateCustomMetricRequest], resources.CustomMetric]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCustomMetric(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCustomMetric(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_data_retention_settings(self) -> Callable[
-            [analytics_admin.UpdateDataRetentionSettingsRequest],
-            resources.DataRetentionSettings]:
+    def update_data_retention_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDataRetentionSettingsRequest],
+        resources.DataRetentionSettings,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateDataRetentionSettings(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateDataRetentionSettings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_data_stream(self) -> Callable[
-            [analytics_admin.UpdateDataStreamRequest],
-            resources.DataStream]:
+    def update_data_stream(
+        self,
+    ) -> Callable[[analytics_admin.UpdateDataStreamRequest], resources.DataStream]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateDataStream(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateDataStream(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_google_ads_link(self) -> Callable[
-            [analytics_admin.UpdateGoogleAdsLinkRequest],
-            resources.GoogleAdsLink]:
+    def update_google_ads_link(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateGoogleAdsLinkRequest], resources.GoogleAdsLink
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateGoogleAdsLink(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateGoogleAdsLink(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_measurement_protocol_secret(self) -> Callable[
-            [analytics_admin.UpdateMeasurementProtocolSecretRequest],
-            resources.MeasurementProtocolSecret]:
+    def update_measurement_protocol_secret(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateMeasurementProtocolSecretRequest],
+        resources.MeasurementProtocolSecret,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateMeasurementProtocolSecret(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateMeasurementProtocolSecret(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_property(self) -> Callable[
-            [analytics_admin.UpdatePropertyRequest],
-            resources.Property]:
+    def update_property(
+        self,
+    ) -> Callable[[analytics_admin.UpdatePropertyRequest], resources.Property]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateProperty(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateProperty(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -5354,6 +6221,4 @@ class AnalyticsAdminServiceRestTransport(AnalyticsAdminServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'AnalyticsAdminServiceRestTransport',
-)
+__all__ = ("AnalyticsAdminServiceRestTransport",)
