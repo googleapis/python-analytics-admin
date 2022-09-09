@@ -25,5 +25,5 @@ def test_accounts_delete():
         # This test ensures that the call is valid and reaches the server. No
         # account is being deleted during the test as it is not trivial to
         # provision a new account for testing.
-        with pytest.raises(Exception, match="403 The caller does not have permission"):
+        with pytest.raises(Exception, match="The caller does not have permission"):
             accounts_delete.delete_account(FAKE_ACCOUNT_ID, transport=transport)

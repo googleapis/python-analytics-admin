@@ -24,5 +24,5 @@ def test_accounts_update():
     for transport in transports:
         # This test ensures that the call is valid and reaches the server, even
         # though the operation does not succeed due to permission error.
-        with pytest.raises(Exception, match="403 The caller does not have permission"):
+        with pytest.raises(Exception, match="The caller does not have permission"):
             accounts_update.update_account(FAKE_ACCOUNT_ID, transport=transport)
