@@ -44,10 +44,12 @@ def run_sample():
     update_account_user_link(account_id, account_user_link_id)
 
 
-def update_account_user_link(account_id: str, account_user_link_id: str, transport: str = None):
+def update_account_user_link(
+    account_id: str, account_user_link_id: str, transport: str = None
+):
     """
     Updates the account user link.
-    
+
     Args:
         account_id(str): The Google Analytics Account ID.
         account_user_link_id(str): Google Analytics account user link ID.

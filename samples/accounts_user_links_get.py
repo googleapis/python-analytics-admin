@@ -37,7 +37,9 @@ def run_sample():
     get_account_user_link(account_id, account_user_link_id)
 
 
-def get_account_user_link(account_id: str, account_user_link_id: str, transport: str = None):
+def get_account_user_link(
+    account_id: str, account_user_link_id: str, transport: str = None
+):
     """
     Retrieves the account user link details.
 

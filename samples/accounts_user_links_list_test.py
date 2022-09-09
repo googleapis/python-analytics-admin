@@ -22,6 +22,8 @@ TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
 def test_accounts_user_links_list(capsys):
     transports = ["grpc", "rest"]
     for transport in transports:
-        accounts_user_links_list.list_account_user_links(TEST_ACCOUNT_ID, transport=transport)
+        accounts_user_links_list.list_account_user_links(
+            TEST_ACCOUNT_ID, transport=transport
+        )
         out, _ = capsys.readouterr()
         assert "Result" in out

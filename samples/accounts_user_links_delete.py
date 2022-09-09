@@ -44,7 +44,9 @@ def run_sample():
     delete_account_user_link(account_id, account_user_link_id)
 
 
-def delete_account_user_link(account_id: str, account_user_link_id: str, transport: str = None):
+def delete_account_user_link(
+    account_id: str, account_user_link_id: str, transport: str = None
+):
     """
     Deletes the user link for the account.
 

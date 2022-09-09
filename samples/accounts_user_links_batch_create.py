@@ -49,7 +49,9 @@ def run_sample():
     batch_create_account_user_link(account_id, email_address)
 
 
-def batch_create_account_user_link(account_id: str, email_address: str, transport: str = None):
+def batch_create_account_user_link(
+    account_id: str, email_address: str, transport: str = None
+):
     """
     Creates a user link for the account using a batch call.
 
