@@ -51,16 +51,23 @@ To install the latest published package dependency, execute the following:
 
 
 # [START ga_admin_list_accounts]
-def list_accounts():
-    """Lists the available Google Analytics accounts."""
+def list_accounts(transport: str = None):
+    """
+    Lists the available Google Analytics accounts.
+
+    Args:
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
     from google.analytics.admin import AnalyticsAdminServiceClient
 
     # Using a default constructor instructs the client to use the credentials
     # specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
-    client = AnalyticsAdminServiceClient()
+    client = AnalyticsAdminServiceClient(transport=transport)
 
     # Displays the configuration information for all Google Analytics accounts
     # available to the authenticated user.
+    print("Result:")
     for account in client.list_accounts():
         print(account)
 
