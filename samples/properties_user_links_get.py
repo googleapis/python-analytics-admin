@@ -37,7 +37,7 @@ def run_sample():
     get_property_user_link(property_id, property_user_link_id)
 
 
-def get_property_user_link(property_id, property_user_link_id, transport: str = None):
+def get_property_user_link(property_id: str, property_user_link_id: str, transport: str = None):
     """
     Retrieves the Google Analytics 4 property user link details.
 
