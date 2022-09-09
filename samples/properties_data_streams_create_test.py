@@ -25,4 +25,6 @@ def test_properties_data_streams_create():
         # This test ensures that the call is valid and reaches the server, even
         # though the operation does not succeed due to permission error.
         with pytest.raises(Exception, match="The caller does not have permission"):
-            properties_data_streams_create.create_data_stream(FAKE_PROPERTY_ID, transport=transport)
+            properties_data_streams_create.create_data_stream(
+                FAKE_PROPERTY_ID, transport=transport
+            )

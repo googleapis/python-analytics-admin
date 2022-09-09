@@ -40,7 +40,7 @@ def run_sample():
 def get_data_stream(property_id: str, stream_id: str, transport: str = None):
     """
     Retrieves the details for the data stream.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

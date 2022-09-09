@@ -42,7 +42,7 @@ def run_sample():
 def create_property(account_id: str, transport: str = None):
     """
     Creates a Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         transport(str): The transport to use. For example, "grpc"

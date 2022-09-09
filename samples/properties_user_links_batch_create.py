@@ -49,7 +49,9 @@ def run_sample():
     batch_create_property_user_link(property_id, email_address)
 
 
-def batch_create_property_user_link(property_id: str, email_address: str, transport: str = None):
+def batch_create_property_user_link(
+    property_id: str, email_address: str, transport: str = None
+):
     """
     Creates a user link for the Google Analytics 4 property using a batch
     call.

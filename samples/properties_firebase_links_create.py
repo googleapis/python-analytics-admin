@@ -44,10 +44,12 @@ def run_sample():
     create_firebase_link(property_id, firebase_project_id)
 
 
-def create_firebase_link(property_id: str, firebase_project_id: str, transport: str = None):
+def create_firebase_link(
+    property_id: str, firebase_project_id: str, transport: str = None
+):
     """
     Creates a Firebase link for the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         firebase_project_id: Firebase project ID.

@@ -43,10 +43,12 @@ def run_sample():
     delete_firebase_link(property_id, firebase_link_id)
 
 
-def delete_firebase_link(property_id: str, firebase_link_id: str, transport: str = None):
+def delete_firebase_link(
+    property_id: str, firebase_link_id: str, transport: str = None
+):
     """
     Deletes the Firebase link.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         firebase_link_id: The Firebase link ID.

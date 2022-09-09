@@ -41,10 +41,12 @@ def run_sample():
     get_measurement_protocol_secret(property_id, stream_id, secret_id)
 
 
-def get_measurement_protocol_secret(property_id: str, stream_id: str, secret_id: str, transport: str = None):
+def get_measurement_protocol_secret(
+    property_id: str, stream_id: str, secret_id: str, transport: str = None
+):
     """
     Retrieves the details for the measurement protocol secret.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

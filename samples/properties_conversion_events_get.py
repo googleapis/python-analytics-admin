@@ -37,7 +37,9 @@ def run_sample():
     get_conversion_event(property_id, conversion_event_id)
 
 
-def get_conversion_event(property_id: str, conversion_event_id: str, transport: str = None):
+def get_conversion_event(
+    property_id: str, conversion_event_id: str, transport: str = None
+):
     """
     Retrieves the details for the conversion event.
     Args:

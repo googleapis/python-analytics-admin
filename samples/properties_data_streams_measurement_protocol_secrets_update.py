@@ -47,10 +47,12 @@ def run_sample():
     update_measurement_protocol_secret(property_id, stream_id, secret_id)
 
 
-def update_measurement_protocol_secret(property_id: str, stream_id: str, secret_id: str, transport: str = None):
+def update_measurement_protocol_secret(
+    property_id: str, stream_id: str, secret_id: str, transport: str = None
+):
     """
     Updates the measurement protocol secret.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

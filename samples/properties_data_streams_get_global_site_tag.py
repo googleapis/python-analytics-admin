@@ -37,7 +37,7 @@ def run_sample():
 def get_global_site_tag(property_id: str, stream_id: str, transport: str = None):
     """
     Retrieves the Site Tag for the specified data stream.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

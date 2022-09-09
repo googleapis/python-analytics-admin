@@ -44,7 +44,9 @@ def run_sample():
     delete_property_user_link(property_id, property_user_link_id)
 
 
-def delete_property_user_link(property_id: str, property_user_link_id: str, transport: str = None):
+def delete_property_user_link(
+    property_id: str, property_user_link_id: str, transport: str = None
+):
     """
     Deletes the user link from the Google Analytics 4 property.
 

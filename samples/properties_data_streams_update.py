@@ -48,7 +48,7 @@ def run_sample():
 def update_data_stream(property_id: str, stream_id: str, transport: str = None):
     """
     Updates the data stream.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

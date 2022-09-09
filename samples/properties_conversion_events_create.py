@@ -43,7 +43,7 @@ def run_sample():
 def create_conversion_event(property_id: str, transport: str = None):
     """
     Creates a conversion event for the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         transport(str): The transport to use. For example, "grpc"

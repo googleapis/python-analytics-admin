@@ -36,7 +36,7 @@ def run_sample():
 def list_conversion_events(property_id: str, transport: str = None):
     """
     Lists conversion events for the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         transport(str): The transport to use. For example, "grpc"

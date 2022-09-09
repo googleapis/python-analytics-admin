@@ -46,7 +46,7 @@ def run_sample():
 def delete_data_stream(property_id: str, stream_id: str, transport: str = None):
     """
     Deletes the data stream from the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

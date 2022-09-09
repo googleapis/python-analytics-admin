@@ -44,10 +44,12 @@ def run_sample():
     delete_conversion_event(property_id, conversion_event_id)
 
 
-def delete_conversion_event(property_id: str, conversion_event_id: str, transport: str = None):
+def delete_conversion_event(
+    property_id: str, conversion_event_id: str, transport: str = None
+):
     """
     Deletes the conversion event for the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         conversion_event_id(str): The conversion event ID

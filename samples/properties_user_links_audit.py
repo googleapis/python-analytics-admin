@@ -38,7 +38,7 @@ def audit_property_user_links(property_id: str, transport: str = None):
     Lists all user links on the Google Analytics 4 property, including
     implicit ones that come from effective permissions granted by groups or
     organization admin roles.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         transport(str): The transport to use. For example, "grpc"

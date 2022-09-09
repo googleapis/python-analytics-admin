@@ -38,11 +38,13 @@ def run_sample():
     batch_get_property_user_link(property_id, property_user_link_id)
 
 
-def batch_get_property_user_link(property_id: str, property_user_link_id: str, transport: str = None):
+def batch_get_property_user_link(
+    property_id: str, property_user_link_id: str, transport: str = None
+):
     """
     Retrieves details for the Google Analytics 4 property user link using a
     batch call.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         property_user_link_id(str): Google Analytics account user link ID.

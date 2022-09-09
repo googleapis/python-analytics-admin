@@ -42,7 +42,7 @@ def run_sample():
 def update_property(property_id: str, transport: str = None):
     """
     Updates the Google Analytics 4 property.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         transport(str): The transport to use. For example, "grpc"

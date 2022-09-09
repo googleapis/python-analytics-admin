@@ -38,7 +38,7 @@ def list_properties(account_id: str, transport: str = None):
     """
     Lists Google Analytics 4 properties under the specified parent account
     that are available to the current user.
-    
+
     Args:
         account_id(str): The Google Analytics account ID.
         transport(str): The transport to use. For example, "grpc"

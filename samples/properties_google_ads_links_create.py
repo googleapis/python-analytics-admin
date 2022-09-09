@@ -45,7 +45,9 @@ def run_sample():
     create_google_ads_link(property_id, google_ads_customer_id)
 
 
-def create_google_ads_link(property_id: str, google_ads_customer_id: str, transport: str = None):
+def create_google_ads_link(
+    property_id: str, google_ads_customer_id: str, transport: str = None
+):
     """
     Creates a Google Ads link for the Google Analytics 4 property.
 

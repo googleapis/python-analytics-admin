@@ -34,10 +34,12 @@ def run_sample():
     list_measurement_protocol_secrets(property_id, stream_id)
 
 
-def list_measurement_protocol_secrets(property_id: str, stream_id: str, transport: str = None):
+def list_measurement_protocol_secrets(
+    property_id: str, stream_id: str, transport: str = None
+):
     """
     Lists measurement protocol secrets for the data stream.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.

@@ -45,10 +45,12 @@ def run_sample():
     delete_measurement_protocol_secret(property_id, stream_id, secret_id)
 
 
-def delete_measurement_protocol_secret(property_id: str, stream_id: str, secret_id: str, transport: str = None):
+def delete_measurement_protocol_secret(
+    property_id: str, stream_id: str, secret_id: str, transport: str = None
+):
     """
     Deletes a measurement protocol secret for the data stream.
-    
+
     Args:
         property_id(str): The Google Analytics Property ID.
         stream_id(str): The data stream ID.
