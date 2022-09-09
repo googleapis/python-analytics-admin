@@ -65,10 +65,12 @@ def list_accounts(transport: str = None):
     # specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
     client = AnalyticsAdminServiceClient(transport=transport)
 
+    results = client.list_accounts()
+
     # Displays the configuration information for all Google Analytics accounts
     # available to the authenticated user.
     print("Result:")
-    for account in client.list_accounts():
+    for account in results:
         print(account)
 
 
