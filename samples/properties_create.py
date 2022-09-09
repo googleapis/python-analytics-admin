@@ -44,7 +44,7 @@ def create_property(account_id: str, transport: str = None):
     Creates a Google Analytics 4 property.
 
     Args:
-        property_id(str): The Google Analytics Property ID.
+        account_id(str): The Google Analytics Account ID.
         transport(str): The transport to use. For example, "grpc"
             or "rest". If set to None, a transport is chosen automatically.
     """
