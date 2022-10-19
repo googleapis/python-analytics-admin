@@ -22,9 +22,11 @@ for more information.
 """
 # [START analyticsadmin_accounts_user_links_batch_update]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import BatchUpdateUserLinksRequest
-from google.analytics.admin_v1alpha.types import UpdateUserLinkRequest
-from google.analytics.admin_v1alpha.types import UserLink
+from google.analytics.admin_v1alpha.types import (
+    BatchUpdateUserLinksRequest,
+    UpdateUserLinkRequest,
+    UserLink,
+)
 
 
 def run_sample():
@@ -46,9 +48,19 @@ def run_sample():
     batch_update_account_user_link(account_id, account_user_link_id)
 
 
-def batch_update_account_user_link(account_id, account_user_link_id):
-    """Updates the account user link using a batch call."""
-    client = AnalyticsAdminServiceClient()
+def batch_update_account_user_link(
+    account_id: str, account_user_link_id: str, transport: str = None
+):
+    """
+    Updates the account user link using a batch call.
+
+    Args:
+        account_id(str): The Google Analytics Account ID.
+        account_user_link_id(str): Google Analytics account user link ID.
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
+    client = AnalyticsAdminServiceClient(transport=transport)
     # This call updates the email address and direct roles of the user link.
     # The user link to update is specified in the `name` field of the `UserLink`
     # instance.

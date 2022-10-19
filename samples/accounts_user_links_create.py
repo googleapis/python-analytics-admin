@@ -22,8 +22,7 @@ for more information.
 """
 # [START analyticsadmin_accounts_user_links_create]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import CreateUserLinkRequest
-from google.analytics.admin_v1alpha.types import UserLink
+from google.analytics.admin_v1alpha.types import CreateUserLinkRequest, UserLink
 
 
 def run_sample():
@@ -46,9 +45,19 @@ def run_sample():
     create_account_user_link(account_id, email_address)
 
 
-def create_account_user_link(account_id, email_address):
-    """Creates a user link for the account."""
-    client = AnalyticsAdminServiceClient()
+def create_account_user_link(
+    account_id: str, email_address: str, transport: str = None
+):
+    """
+    Creates a user link for the account.
+
+    Args:
+        account_id(str): The Google Analytics Account ID.
+        email_address(str): Email address of the user to link.
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
+    client = AnalyticsAdminServiceClient(transport=transport)
     user_link = client.create_user_link(
         CreateUserLinkRequest(
             parent=f"accounts/{account_id}",

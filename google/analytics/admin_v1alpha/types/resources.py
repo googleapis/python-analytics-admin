@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import proto  # type: ignore
-
 from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
-
+import proto  # type: ignore
 
 __protobuf__ = proto.module(
     package="google.analytics.admin.v1alpha",
@@ -31,14 +29,12 @@ __protobuf__ = proto.module(
         "GoogleSignalsConsent",
         "LinkProposalInitiatingProduct",
         "LinkProposalState",
+        "PropertyType",
         "Account",
         "Property",
-        "AndroidAppDataStream",
-        "IosAppDataStream",
-        "WebDataStream",
+        "DataStream",
         "UserLink",
         "AuditUserLink",
-        "EnhancedMeasurementSettings",
         "FirebaseLink",
         "GlobalSiteTag",
         "GoogleAdsLink",
@@ -56,6 +52,7 @@ __protobuf__ = proto.module(
         "CustomDimension",
         "CustomMetric",
         "DataRetentionSettings",
+        "AttributionSettings",
     },
 )
 
@@ -125,9 +122,6 @@ class ChangeHistoryResourceType(proto.Enum):
     CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED = 0
     ACCOUNT = 1
     PROPERTY = 2
-    WEB_DATA_STREAM = 3
-    ANDROID_APP_DATA_STREAM = 4
-    IOS_APP_DATA_STREAM = 5
     FIREBASE_LINK = 6
     GOOGLE_ADS_LINK = 7
     GOOGLE_SIGNALS_SETTINGS = 8
@@ -136,6 +130,11 @@ class ChangeHistoryResourceType(proto.Enum):
     CUSTOM_DIMENSION = 11
     CUSTOM_METRIC = 12
     DATA_RETENTION_SETTINGS = 13
+    DISPLAY_VIDEO_360_ADVERTISER_LINK = 14
+    DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL = 15
+    SEARCH_ADS_360_LINK = 16
+    DATA_STREAM = 18
+    ATTRIBUTION_SETTINGS = 20
 
 
 class GoogleSignalsState(proto.Enum):
@@ -176,6 +175,14 @@ class LinkProposalState(proto.Enum):
     OBSOLETE = 6
 
 
+class PropertyType(proto.Enum):
+    r"""Types of Property resources."""
+    PROPERTY_TYPE_UNSPECIFIED = 0
+    PROPERTY_TYPE_ORDINARY = 1
+    PROPERTY_TYPE_SUBPROPERTY = 2
+    PROPERTY_TYPE_ROLLUP = 3
+
+
 class Account(proto.Message):
     r"""A resource message representing a Google Analytics account.
 
@@ -203,12 +210,32 @@ class Account(proto.Message):
             requested.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    create_time = proto.Field(proto.MESSAGE, number=2, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
-    display_name = proto.Field(proto.STRING, number=4,)
-    region_code = proto.Field(proto.STRING, number=5,)
-    deleted = proto.Field(proto.BOOL, number=6,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=timestamp_pb2.Timestamp,
+    )
+    update_time = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    region_code = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    deleted = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
 
 
 class Property(proto.Message):
@@ -219,6 +246,12 @@ class Property(proto.Message):
         name (str):
             Output only. Resource name of this property. Format:
             properties/{property_id} Example: "properties/1000".
+        property_type (google.analytics.admin_v1alpha.types.PropertyType):
+            Immutable. The property type for this Property resource.
+            When creating a property, if the type is
+            "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will
+            be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot
+            yet be created via Google Analytics Admin API.
         create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when the entity was
             originally created.
@@ -229,8 +262,9 @@ class Property(proto.Message):
             Immutable. Resource name of this property's
             logical parent.
             Note: The Property-Moving UI can be used to
-            change the parent. Format: accounts/{account}
-            Example: "accounts/100".
+            change the parent. Format: accounts/{account},
+            properties/{property} Example: "accounts/100",
+            "properties/101".
         display_name (str):
             Required. Human-readable display name for
             this property.
@@ -267,142 +301,245 @@ class Property(proto.Message):
             trashed property will be permanently deleted. If
             not set, then this property is not currently in
             the trash can and is not slated to be deleted.
+        account (str):
+            Immutable. The resource name of the parent account Format:
+            accounts/{account_id} Example: "accounts/123".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp_pb2.Timestamp,)
-    parent = proto.Field(proto.STRING, number=2,)
-    display_name = proto.Field(proto.STRING, number=5,)
-    industry_category = proto.Field(proto.ENUM, number=6, enum="IndustryCategory",)
-    time_zone = proto.Field(proto.STRING, number=7,)
-    currency_code = proto.Field(proto.STRING, number=8,)
-    service_level = proto.Field(proto.ENUM, number=10, enum="ServiceLevel",)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    property_type = proto.Field(
+        proto.ENUM,
+        number=14,
+        enum="PropertyType",
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
+    update_time = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=timestamp_pb2.Timestamp,
+    )
+    parent = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    industry_category = proto.Field(
+        proto.ENUM,
+        number=6,
+        enum="IndustryCategory",
+    )
+    time_zone = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    currency_code = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    service_level = proto.Field(
+        proto.ENUM,
+        number=10,
+        enum="ServiceLevel",
+    )
     delete_time = proto.Field(
-        proto.MESSAGE, number=11, message=timestamp_pb2.Timestamp,
+        proto.MESSAGE,
+        number=11,
+        message=timestamp_pb2.Timestamp,
     )
     expire_time = proto.Field(
-        proto.MESSAGE, number=12, message=timestamp_pb2.Timestamp,
+        proto.MESSAGE,
+        number=12,
+        message=timestamp_pb2.Timestamp,
+    )
+    account = proto.Field(
+        proto.STRING,
+        number=13,
     )
 
 
-class AndroidAppDataStream(proto.Message):
-    r"""A resource message representing a Google Analytics Android
-    app stream.
+class DataStream(proto.Message):
+    r"""A resource message representing a data stream.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
+        web_stream_data (google.analytics.admin_v1alpha.types.DataStream.WebStreamData):
+            Data specific to web streams. Must be populated if type is
+            WEB_DATA_STREAM.
+
+            This field is a member of `oneof`_ ``stream_data``.
+        android_app_stream_data (google.analytics.admin_v1alpha.types.DataStream.AndroidAppStreamData):
+            Data specific to Android app streams. Must be populated if
+            type is ANDROID_APP_DATA_STREAM.
+
+            This field is a member of `oneof`_ ``stream_data``.
+        ios_app_stream_data (google.analytics.admin_v1alpha.types.DataStream.IosAppStreamData):
+            Data specific to iOS app streams. Must be populated if type
+            is IOS_APP_DATA_STREAM.
+
+            This field is a member of `oneof`_ ``stream_data``.
         name (str):
             Output only. Resource name of this Data Stream. Format:
-            properties/{property_id}/androidAppDataStreams/{stream_id}
-            Example: "properties/1000/androidAppDataStreams/2000".
-        firebase_app_id (str):
-            Output only. ID of the corresponding Android
-            app in Firebase, if any. This ID can change if
-            the Android app is deleted and recreated.
-        create_time (google.protobuf.timestamp_pb2.Timestamp):
-            Output only. Time when this stream was
-            originally created.
-        update_time (google.protobuf.timestamp_pb2.Timestamp):
-            Output only. Time when stream payload fields
-            were last updated.
-        package_name (str):
-            Immutable. The package name for the app being
-            measured. Example: "com.example.myandroidapp".
+            properties/{property_id}/dataStreams/{stream_id} Example:
+            "properties/1000/dataStreams/2000".
+        type_ (google.analytics.admin_v1alpha.types.DataStream.DataStreamType):
+            Required. Immutable. The type of this
+            DataStream resource.
         display_name (str):
             Human-readable display name for the Data
             Stream.
+            Required for web data streams.
+
             The max allowed display name length is 255
             UTF-16 code units.
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-    firebase_app_id = proto.Field(proto.STRING, number=2,)
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp_pb2.Timestamp,)
-    package_name = proto.Field(proto.STRING, number=5,)
-    display_name = proto.Field(proto.STRING, number=6,)
-
-
-class IosAppDataStream(proto.Message):
-    r"""A resource message representing a Google Analytics IOS app
-    stream.
-
-    Attributes:
-        name (str):
-            Output only. Resource name of this Data Stream. Format:
-            properties/{property_id}/iosAppDataStreams/{stream_id}
-            Example: "properties/1000/iosAppDataStreams/2000".
-        firebase_app_id (str):
-            Output only. ID of the corresponding iOS app
-            in Firebase, if any. This ID can change if the
-            iOS app is deleted and recreated.
         create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when this stream was
             originally created.
         update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Time when stream payload fields
             were last updated.
-        bundle_id (str):
-            Required. Immutable. The Apple App Store
-            Bundle ID for the app Example:
-            "com.example.myiosapp".
-        display_name (str):
-            Human-readable display name for the Data
-            Stream.
-            The max allowed display name length is 255
-            UTF-16 code units.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    firebase_app_id = proto.Field(proto.STRING, number=2,)
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp_pb2.Timestamp,)
-    bundle_id = proto.Field(proto.STRING, number=5,)
-    display_name = proto.Field(proto.STRING, number=6,)
+    class DataStreamType(proto.Enum):
+        r"""The type of the data stream."""
+        DATA_STREAM_TYPE_UNSPECIFIED = 0
+        WEB_DATA_STREAM = 1
+        ANDROID_APP_DATA_STREAM = 2
+        IOS_APP_DATA_STREAM = 3
 
+    class WebStreamData(proto.Message):
+        r"""Data specific to web streams.
 
-class WebDataStream(proto.Message):
-    r"""A resource message representing a Google Analytics web
-    stream.
+        Attributes:
+            measurement_id (str):
+                Output only. Analytics "Measurement ID",
+                without the "G-" prefix. Example: "G-1A2BCD345E"
+                would just be "1A2BCD345E".
+            firebase_app_id (str):
+                Output only. ID of the corresponding web app
+                in Firebase, if any. This ID can change if the
+                web app is deleted and recreated.
+            default_uri (str):
+                Immutable. Domain name of the web app being
+                measured, or empty. Example:
+                "http://www.google.com",
+                "https://www.google.com".
+        """
 
-    Attributes:
-        name (str):
-            Output only. Resource name of this Data Stream. Format:
-            properties/{property_id}/webDataStreams/{stream_id} Example:
-            "properties/1000/webDataStreams/2000".
-        measurement_id (str):
-            Output only. Analytics "Measurement ID",
-            without the "G-" prefix. Example: "G-1A2BCD345E"
-            would just be "1A2BCD345E".
-        firebase_app_id (str):
-            Output only. ID of the corresponding web app
-            in Firebase, if any. This ID can change if the
-            web app is deleted and recreated.
-        create_time (google.protobuf.timestamp_pb2.Timestamp):
-            Output only. Time when this stream was
-            originally created.
-        update_time (google.protobuf.timestamp_pb2.Timestamp):
-            Output only. Time when stream payload fields
-            were last updated.
-        default_uri (str):
-            Immutable. Domain name of the web app being
-            measured, or empty. Example:
-            "http://www.google.com",
-            "https://www.google.com".
-        display_name (str):
-            Required. Human-readable display name for the
-            Data Stream.
-            The max allowed display name length is 100
-            UTF-16 code units.
-    """
+        measurement_id = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        firebase_app_id = proto.Field(
+            proto.STRING,
+            number=2,
+        )
+        default_uri = proto.Field(
+            proto.STRING,
+            number=3,
+        )
 
-    name = proto.Field(proto.STRING, number=1,)
-    measurement_id = proto.Field(proto.STRING, number=2,)
-    firebase_app_id = proto.Field(proto.STRING, number=3,)
-    create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=5, message=timestamp_pb2.Timestamp,)
-    default_uri = proto.Field(proto.STRING, number=6,)
-    display_name = proto.Field(proto.STRING, number=7,)
+    class AndroidAppStreamData(proto.Message):
+        r"""Data specific to Android app streams.
+
+        Attributes:
+            firebase_app_id (str):
+                Output only. ID of the corresponding Android
+                app in Firebase, if any. This ID can change if
+                the Android app is deleted and recreated.
+            package_name (str):
+                Immutable. The package name for the app being
+                measured. Example: "com.example.myandroidapp".
+        """
+
+        firebase_app_id = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        package_name = proto.Field(
+            proto.STRING,
+            number=2,
+        )
+
+    class IosAppStreamData(proto.Message):
+        r"""Data specific to iOS app streams.
+
+        Attributes:
+            firebase_app_id (str):
+                Output only. ID of the corresponding iOS app
+                in Firebase, if any. This ID can change if the
+                iOS app is deleted and recreated.
+            bundle_id (str):
+                Required. Immutable. The Apple App Store
+                Bundle ID for the app Example:
+                "com.example.myiosapp".
+        """
+
+        firebase_app_id = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        bundle_id = proto.Field(
+            proto.STRING,
+            number=2,
+        )
+
+    web_stream_data = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        oneof="stream_data",
+        message=WebStreamData,
+    )
+    android_app_stream_data = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        oneof="stream_data",
+        message=AndroidAppStreamData,
+    )
+    ios_app_stream_data = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        oneof="stream_data",
+        message=IosAppStreamData,
+    )
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    type_ = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=DataStreamType,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=timestamp_pb2.Timestamp,
+    )
+    update_time = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=timestamp_pb2.Timestamp,
+    )
 
 
 class UserLink(proto.Message):
@@ -419,9 +556,9 @@ class UserLink(proto.Message):
             Roles directly assigned to this user for this account or
             property.
 
-            Valid values: predefinedRoles/read
-            predefinedRoles/collaborate predefinedRoles/edit
-            predefinedRoles/manage-users
+            Valid values: predefinedRoles/viewer predefinedRoles/analyst
+            predefinedRoles/editor predefinedRoles/admin
+            predefinedRoles/no-cost-data predefinedRoles/no-revenue-data
 
             Excludes roles that are inherited from a higher-level
             entity, group, or organization admin role.
@@ -430,9 +567,18 @@ class UserLink(proto.Message):
             direct_roles will be deleted.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    email_address = proto.Field(proto.STRING, number=2,)
-    direct_roles = proto.RepeatedField(proto.STRING, number=3,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    email_address = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    direct_roles = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
 
 
 class AuditUserLink(proto.Message):
@@ -448,7 +594,7 @@ class AuditUserLink(proto.Message):
         direct_roles (Sequence[str]):
             Roles directly assigned to this user for this
             entity.
-            Format: predefinedRoles/read
+            Format: predefinedRoles/viewer
 
             Excludes roles that are inherited from an
             account (if this is for a property), group, or
@@ -457,88 +603,29 @@ class AuditUserLink(proto.Message):
             Union of all permissions a user has at this
             account or property (includes direct
             permissions, group-inherited permissions, etc.).
-            Format: predefinedRoles/read
+            Format: predefinedRoles/viewer
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    email_address = proto.Field(proto.STRING, number=2,)
-    direct_roles = proto.RepeatedField(proto.STRING, number=3,)
-    effective_roles = proto.RepeatedField(proto.STRING, number=4,)
-
-
-class EnhancedMeasurementSettings(proto.Message):
-    r"""Singleton resource under a WebDataStream, configuring
-    measurement of additional site interactions and content.
-
-    Attributes:
-        name (str):
-            Output only. Resource name of this Data Stream. Format:
-            properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
-            Example:
-            "properties/1000/webDataStreams/2000/enhancedMeasurementSettings".
-        stream_enabled (bool):
-            Indicates whether Enhanced Measurement
-            Settings will be used to automatically measure
-            interactions and content on this web stream.
-            Changing this value does not affect the settings
-            themselves, but determines whether they are
-            respected.
-        page_views_enabled (bool):
-            Output only. If enabled, capture a page view
-            event each time a page loads or the website
-            changes the browser history state.
-        scrolls_enabled (bool):
-            If enabled, capture scroll events each time a
-            visitor gets to the bottom of a page.
-        outbound_clicks_enabled (bool):
-            If enabled, capture an outbound click event
-            each time a visitor clicks a link that leads
-            them away from your domain.
-        site_search_enabled (bool):
-            If enabled, capture a view search results
-            event each time a visitor performs a search on
-            your site (based on a query parameter).
-        video_engagement_enabled (bool):
-            If enabled, capture video play, progress, and
-            complete events as visitors view embedded videos
-            on your site.
-        file_downloads_enabled (bool):
-            If enabled, capture a file download event
-            each time a link is clicked with a common
-            document, compressed file, application, video,
-            or audio extension.
-        page_loads_enabled (bool):
-            Output only. If enabled, capture a page view
-            event each time a page loads.
-        page_changes_enabled (bool):
-            If enabled, capture a page view event each
-            time the website changes the browser history
-            state.
-        search_query_parameter (str):
-            Required. URL query parameters to interpret
-            as site search parameters. Max length is 1024
-            characters. Must not be empty.
-        uri_query_parameter (str):
-            Additional URL query parameters.
-            Max length is 1024 characters.
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-    stream_enabled = proto.Field(proto.BOOL, number=2,)
-    page_views_enabled = proto.Field(proto.BOOL, number=3,)
-    scrolls_enabled = proto.Field(proto.BOOL, number=4,)
-    outbound_clicks_enabled = proto.Field(proto.BOOL, number=5,)
-    site_search_enabled = proto.Field(proto.BOOL, number=7,)
-    video_engagement_enabled = proto.Field(proto.BOOL, number=9,)
-    file_downloads_enabled = proto.Field(proto.BOOL, number=10,)
-    page_loads_enabled = proto.Field(proto.BOOL, number=12,)
-    page_changes_enabled = proto.Field(proto.BOOL, number=13,)
-    search_query_parameter = proto.Field(proto.STRING, number=16,)
-    uri_query_parameter = proto.Field(proto.STRING, number=17,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    email_address = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    direct_roles = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    effective_roles = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
 
 
 class FirebaseLink(proto.Message):
-    r"""A link between an GA4 property and a Firebase project.
+    r"""A link between a GA4 property and a Firebase project.
 
     Attributes:
         name (str):
@@ -557,32 +644,50 @@ class FirebaseLink(proto.Message):
             originally created.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    project = proto.Field(proto.STRING, number=2,)
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    project = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
 
 
 class GlobalSiteTag(proto.Message):
     r"""Read-only resource with the tag for sending data from a
-    website to a WebDataStream.
+    website to a DataStream. Only present for web DataStream
+    resources.
 
     Attributes:
         name (str):
-            Output only. Resource name for this
-            GlobalSiteTag resource. Format:
-            properties/{propertyId}/globalSiteTag
+            Output only. Resource name for this GlobalSiteTag resource.
+            Format:
+            properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+            Example: "properties/123/dataStreams/456/globalSiteTag".
         snippet (str):
             Immutable. JavaScript code snippet to be
             pasted as the first item into the head tag of
             every webpage to measure.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    snippet = proto.Field(proto.STRING, number=2,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    snippet = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GoogleAdsLink(proto.Message):
-    r"""A link between an GA4 property and a Google Ads account.
+    r"""A link between a GA4 property and a Google Ads account.
 
     Attributes:
         name (str):
@@ -616,15 +721,37 @@ class GoogleAdsLink(proto.Message):
             retrieved.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    customer_id = proto.Field(proto.STRING, number=3,)
-    can_manage_clients = proto.Field(proto.BOOL, number=4,)
-    ads_personalization_enabled = proto.Field(
-        proto.MESSAGE, number=5, message=wrappers_pb2.BoolValue,
+    name = proto.Field(
+        proto.STRING,
+        number=1,
     )
-    create_time = proto.Field(proto.MESSAGE, number=7, message=timestamp_pb2.Timestamp,)
-    update_time = proto.Field(proto.MESSAGE, number=8, message=timestamp_pb2.Timestamp,)
-    creator_email_address = proto.Field(proto.STRING, number=9,)
+    customer_id = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    can_manage_clients = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    ads_personalization_enabled = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.BoolValue,
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=timestamp_pb2.Timestamp,
+    )
+    update_time = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        message=timestamp_pb2.Timestamp,
+    )
+    creator_email_address = proto.Field(
+        proto.STRING,
+        number=9,
+    )
 
 
 class DataSharingSettings(proto.Message):
@@ -657,12 +784,30 @@ class DataSharingSettings(proto.Message):
             in aggregate form with others.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    sharing_with_google_support_enabled = proto.Field(proto.BOOL, number=2,)
-    sharing_with_google_assigned_sales_enabled = proto.Field(proto.BOOL, number=3,)
-    sharing_with_google_any_sales_enabled = proto.Field(proto.BOOL, number=4,)
-    sharing_with_google_products_enabled = proto.Field(proto.BOOL, number=5,)
-    sharing_with_others_enabled = proto.Field(proto.BOOL, number=6,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    sharing_with_google_support_enabled = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    sharing_with_google_assigned_sales_enabled = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    sharing_with_google_any_sales_enabled = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    sharing_with_google_products_enabled = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    sharing_with_others_enabled = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
 
 
 class AccountSummary(proto.Message):
@@ -685,16 +830,27 @@ class AccountSummary(proto.Message):
             account.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    account = proto.Field(proto.STRING, number=2,)
-    display_name = proto.Field(proto.STRING, number=3,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    account = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
     property_summaries = proto.RepeatedField(
-        proto.MESSAGE, number=4, message="PropertySummary",
+        proto.MESSAGE,
+        number=4,
+        message="PropertySummary",
     )
 
 
 class PropertySummary(proto.Message):
-    r"""A virtual resource representing metadata for an GA4 property.
+    r"""A virtual resource representing metadata for a GA4 property.
 
     Attributes:
         property (str):
@@ -703,11 +859,35 @@ class PropertySummary(proto.Message):
             "properties/1000".
         display_name (str):
             Display name for the property referred to in
-            this account summary.
+            this property summary.
+        property_type (google.analytics.admin_v1alpha.types.PropertyType):
+            The property's property type.
+        parent (str):
+            Resource name of this property's logical
+            parent.
+            Note: The Property-Moving UI can be used to
+            change the parent. Format: accounts/{account},
+            properties/{property} Example: "accounts/100",
+            "properties/200".
     """
 
-    property = proto.Field(proto.STRING, number=1,)
-    display_name = proto.Field(proto.STRING, number=2,)
+    property = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    property_type = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum="PropertyType",
+    )
+    parent = proto.Field(
+        proto.STRING,
+        number=4,
+    )
 
 
 class MeasurementProtocolSecret(proto.Message):
@@ -718,7 +898,7 @@ class MeasurementProtocolSecret(proto.Message):
             Output only. Resource name of this secret.
             This secret may be a child of any type of
             stream. Format:
-            properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
+            properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
         display_name (str):
             Required. Human-readable display name for
             this secret.
@@ -729,9 +909,18 @@ class MeasurementProtocolSecret(proto.Message):
             property.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    display_name = proto.Field(proto.STRING, number=2,)
-    secret_value = proto.Field(proto.STRING, number=3,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    secret_value = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ChangeHistoryEvent(proto.Message):
@@ -765,13 +954,32 @@ class ChangeHistoryEvent(proto.Message):
             SearchChangeHistoryEventsRequest.
     """
 
-    id = proto.Field(proto.STRING, number=1,)
-    change_time = proto.Field(proto.MESSAGE, number=2, message=timestamp_pb2.Timestamp,)
-    actor_type = proto.Field(proto.ENUM, number=3, enum="ActorType",)
-    user_actor_email = proto.Field(proto.STRING, number=4,)
-    changes_filtered = proto.Field(proto.BOOL, number=5,)
+    id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    change_time = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=timestamp_pb2.Timestamp,
+    )
+    actor_type = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum="ActorType",
+    )
+    user_actor_email = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    changes_filtered = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
     changes = proto.RepeatedField(
-        proto.MESSAGE, number=6, message="ChangeHistoryChange",
+        proto.MESSAGE,
+        number=6,
+        message="ChangeHistoryChange",
     )
 
 
@@ -800,78 +1008,116 @@ class ChangeHistoryChange(proto.Message):
         r"""A snapshot of a resource as before or after the result of a
         change in change history.
 
+        This message has `oneof`_ fields (mutually exclusive fields).
+        For each oneof, at most one member field can be set at the same time.
+        Setting any member of the oneof automatically clears all other
+        members.
+
+        .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
         Attributes:
             account (google.analytics.admin_v1alpha.types.Account):
                 A snapshot of an Account resource in change
                 history.
+
+                This field is a member of `oneof`_ ``resource``.
             property (google.analytics.admin_v1alpha.types.Property):
                 A snapshot of a Property resource in change
                 history.
-            web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
-                A snapshot of a WebDataStream resource in
-                change history.
-            android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
-                A snapshot of an AndroidAppDataStream
-                resource in change history.
-            ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
-                A snapshot of an IosAppDataStream resource in
-                change history.
+
+                This field is a member of `oneof`_ ``resource``.
             firebase_link (google.analytics.admin_v1alpha.types.FirebaseLink):
                 A snapshot of a FirebaseLink resource in
                 change history.
+
+                This field is a member of `oneof`_ ``resource``.
             google_ads_link (google.analytics.admin_v1alpha.types.GoogleAdsLink):
                 A snapshot of a GoogleAdsLink resource in
                 change history.
+
+                This field is a member of `oneof`_ ``resource``.
             google_signals_settings (google.analytics.admin_v1alpha.types.GoogleSignalsSettings):
                 A snapshot of a GoogleSignalsSettings
                 resource in change history.
+
+                This field is a member of `oneof`_ ``resource``.
             display_video_360_advertiser_link (google.analytics.admin_v1alpha.types.DisplayVideo360AdvertiserLink):
                 A snapshot of a DisplayVideo360AdvertiserLink
                 resource in change history.
+
+                This field is a member of `oneof`_ ``resource``.
             display_video_360_advertiser_link_proposal (google.analytics.admin_v1alpha.types.DisplayVideo360AdvertiserLinkProposal):
                 A snapshot of a
                 DisplayVideo360AdvertiserLinkProposal resource
                 in change history.
+
+                This field is a member of `oneof`_ ``resource``.
             conversion_event (google.analytics.admin_v1alpha.types.ConversionEvent):
                 A snapshot of a ConversionEvent resource in
                 change history.
+
+                This field is a member of `oneof`_ ``resource``.
             measurement_protocol_secret (google.analytics.admin_v1alpha.types.MeasurementProtocolSecret):
                 A snapshot of a MeasurementProtocolSecret
                 resource in change history.
+
+                This field is a member of `oneof`_ ``resource``.
             custom_dimension (google.analytics.admin_v1alpha.types.CustomDimension):
                 A snapshot of a CustomDimension resource in
                 change history.
+
+                This field is a member of `oneof`_ ``resource``.
             custom_metric (google.analytics.admin_v1alpha.types.CustomMetric):
                 A snapshot of a CustomMetric resource in
                 change history.
+
+                This field is a member of `oneof`_ ``resource``.
             data_retention_settings (google.analytics.admin_v1alpha.types.DataRetentionSettings):
                 A snapshot of a data retention settings
                 resource in change history.
+
+                This field is a member of `oneof`_ ``resource``.
+            data_stream (google.analytics.admin_v1alpha.types.DataStream):
+                A snapshot of a DataStream resource in change
+                history.
+
+                This field is a member of `oneof`_ ``resource``.
+            attribution_settings (google.analytics.admin_v1alpha.types.AttributionSettings):
+                A snapshot of AttributionSettings resource in
+                change history.
+
+                This field is a member of `oneof`_ ``resource``.
         """
 
         account = proto.Field(
-            proto.MESSAGE, number=1, oneof="resource", message="Account",
+            proto.MESSAGE,
+            number=1,
+            oneof="resource",
+            message="Account",
         )
         property = proto.Field(
-            proto.MESSAGE, number=2, oneof="resource", message="Property",
-        )
-        web_data_stream = proto.Field(
-            proto.MESSAGE, number=3, oneof="resource", message="WebDataStream",
-        )
-        android_app_data_stream = proto.Field(
-            proto.MESSAGE, number=4, oneof="resource", message="AndroidAppDataStream",
-        )
-        ios_app_data_stream = proto.Field(
-            proto.MESSAGE, number=5, oneof="resource", message="IosAppDataStream",
+            proto.MESSAGE,
+            number=2,
+            oneof="resource",
+            message="Property",
         )
         firebase_link = proto.Field(
-            proto.MESSAGE, number=6, oneof="resource", message="FirebaseLink",
+            proto.MESSAGE,
+            number=6,
+            oneof="resource",
+            message="FirebaseLink",
         )
         google_ads_link = proto.Field(
-            proto.MESSAGE, number=7, oneof="resource", message="GoogleAdsLink",
+            proto.MESSAGE,
+            number=7,
+            oneof="resource",
+            message="GoogleAdsLink",
         )
         google_signals_settings = proto.Field(
-            proto.MESSAGE, number=8, oneof="resource", message="GoogleSignalsSettings",
+            proto.MESSAGE,
+            number=8,
+            oneof="resource",
+            message="GoogleSignalsSettings",
         )
         display_video_360_advertiser_link = proto.Field(
             proto.MESSAGE,
@@ -886,7 +1132,10 @@ class ChangeHistoryChange(proto.Message):
             message="DisplayVideo360AdvertiserLinkProposal",
         )
         conversion_event = proto.Field(
-            proto.MESSAGE, number=11, oneof="resource", message="ConversionEvent",
+            proto.MESSAGE,
+            number=11,
+            oneof="resource",
+            message="ConversionEvent",
         )
         measurement_protocol_secret = proto.Field(
             proto.MESSAGE,
@@ -895,22 +1144,54 @@ class ChangeHistoryChange(proto.Message):
             message="MeasurementProtocolSecret",
         )
         custom_dimension = proto.Field(
-            proto.MESSAGE, number=13, oneof="resource", message="CustomDimension",
+            proto.MESSAGE,
+            number=13,
+            oneof="resource",
+            message="CustomDimension",
         )
         custom_metric = proto.Field(
-            proto.MESSAGE, number=14, oneof="resource", message="CustomMetric",
+            proto.MESSAGE,
+            number=14,
+            oneof="resource",
+            message="CustomMetric",
         )
         data_retention_settings = proto.Field(
-            proto.MESSAGE, number=15, oneof="resource", message="DataRetentionSettings",
+            proto.MESSAGE,
+            number=15,
+            oneof="resource",
+            message="DataRetentionSettings",
+        )
+        data_stream = proto.Field(
+            proto.MESSAGE,
+            number=18,
+            oneof="resource",
+            message="DataStream",
+        )
+        attribution_settings = proto.Field(
+            proto.MESSAGE,
+            number=20,
+            oneof="resource",
+            message="AttributionSettings",
         )
 
-    resource = proto.Field(proto.STRING, number=1,)
-    action = proto.Field(proto.ENUM, number=2, enum="ActionType",)
+    resource = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    action = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum="ActionType",
+    )
     resource_before_change = proto.Field(
-        proto.MESSAGE, number=3, message=ChangeHistoryResource,
+        proto.MESSAGE,
+        number=3,
+        message=ChangeHistoryResource,
     )
     resource_after_change = proto.Field(
-        proto.MESSAGE, number=4, message=ChangeHistoryResource,
+        proto.MESSAGE,
+        number=4,
+        message=ChangeHistoryResource,
     )
 
 
@@ -945,28 +1226,43 @@ class DisplayVideo360AdvertiserLink(proto.Message):
         cost_data_sharing_enabled (google.protobuf.wrappers_pb2.BoolValue):
             Immutable. Enables the import of cost data from Display &
             Video 360 into the GA4 property. This can only be enabled if
-            campaign_data_import_enabled is enabled. After link
+            campaign_data_sharing_enabled is enabled. After link
             creation, this can only be updated from the Display & Video
             360 product. If this field is not set on create, it will be
             defaulted to true.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    advertiser_id = proto.Field(proto.STRING, number=2,)
-    advertiser_display_name = proto.Field(proto.STRING, number=3,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    advertiser_id = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    advertiser_display_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
     ads_personalization_enabled = proto.Field(
-        proto.MESSAGE, number=4, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.BoolValue,
     )
     campaign_data_sharing_enabled = proto.Field(
-        proto.MESSAGE, number=5, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.BoolValue,
     )
     cost_data_sharing_enabled = proto.Field(
-        proto.MESSAGE, number=6, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=6,
+        message=wrappers_pb2.BoolValue,
     )
 
 
 class DisplayVideo360AdvertiserLinkProposal(proto.Message):
-    r"""A proposal for a link between an GA4 property and a Display &
+    r"""A proposal for a link between a GA4 property and a Display &
     Video 360 advertiser.
 
     A proposal is converted to a DisplayVideo360AdvertiserLink once
@@ -1012,25 +1308,45 @@ class DisplayVideo360AdvertiserLinkProposal(proto.Message):
         cost_data_sharing_enabled (google.protobuf.wrappers_pb2.BoolValue):
             Immutable. Enables the import of cost data from Display &
             Video 360. This can only be enabled if
-            campaign_data_import_enabled is enabled. If this field is
+            campaign_data_sharing_enabled is enabled. If this field is
             not set on create, it will be defaulted to true.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    advertiser_id = proto.Field(proto.STRING, number=2,)
-    link_proposal_status_details = proto.Field(
-        proto.MESSAGE, number=3, message="LinkProposalStatusDetails",
+    name = proto.Field(
+        proto.STRING,
+        number=1,
     )
-    advertiser_display_name = proto.Field(proto.STRING, number=4,)
-    validation_email = proto.Field(proto.STRING, number=5,)
+    advertiser_id = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    link_proposal_status_details = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message="LinkProposalStatusDetails",
+    )
+    advertiser_display_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    validation_email = proto.Field(
+        proto.STRING,
+        number=5,
+    )
     ads_personalization_enabled = proto.Field(
-        proto.MESSAGE, number=6, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=6,
+        message=wrappers_pb2.BoolValue,
     )
     campaign_data_sharing_enabled = proto.Field(
-        proto.MESSAGE, number=7, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=7,
+        message=wrappers_pb2.BoolValue,
     )
     cost_data_sharing_enabled = proto.Field(
-        proto.MESSAGE, number=8, message=wrappers_pb2.BoolValue,
+        proto.MESSAGE,
+        number=8,
+        message=wrappers_pb2.BoolValue,
     )
 
 
@@ -1048,10 +1364,19 @@ class LinkProposalStatusDetails(proto.Message):
     """
 
     link_proposal_initiating_product = proto.Field(
-        proto.ENUM, number=1, enum="LinkProposalInitiatingProduct",
+        proto.ENUM,
+        number=1,
+        enum="LinkProposalInitiatingProduct",
     )
-    requestor_email = proto.Field(proto.STRING, number=2,)
-    link_proposal_state = proto.Field(proto.ENUM, number=3, enum="LinkProposalState",)
+    requestor_email = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    link_proposal_state = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum="LinkProposalState",
+    )
 
 
 class ConversionEvent(proto.Message):
@@ -1083,11 +1408,27 @@ class ConversionEvent(proto.Message):
             per property.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    event_name = proto.Field(proto.STRING, number=2,)
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp_pb2.Timestamp,)
-    deletable = proto.Field(proto.BOOL, number=4,)
-    custom = proto.Field(proto.BOOL, number=5,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    event_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    create_time = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
+    deletable = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    custom = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
 
 
 class GoogleSignalsSettings(proto.Message):
@@ -1105,9 +1446,20 @@ class GoogleSignalsSettings(proto.Message):
             Output only. Terms of Service acceptance.
     """
 
-    name = proto.Field(proto.STRING, number=1,)
-    state = proto.Field(proto.ENUM, number=3, enum="GoogleSignalsState",)
-    consent = proto.Field(proto.ENUM, number=4, enum="GoogleSignalsConsent",)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    state = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum="GoogleSignalsState",
+    )
+    consent = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum="GoogleSignalsConsent",
+    )
 
 
 class CustomDimension(proto.Message):
@@ -1122,8 +1474,8 @@ class CustomDimension(proto.Message):
             Required. Immutable. Tagging parameter name
             for this custom dimension.
             If this is a user-scoped dimension, then this is
-            the user property name. If this is an event-
-            scoped dimension, then this is the event
+            the user property name. If this is an
+            event-scoped dimension, then this is the event
             parameter name.
 
             May only contain alphanumeric and underscore
@@ -1157,12 +1509,31 @@ class CustomDimension(proto.Message):
         EVENT = 1
         USER = 2
 
-    name = proto.Field(proto.STRING, number=1,)
-    parameter_name = proto.Field(proto.STRING, number=2,)
-    display_name = proto.Field(proto.STRING, number=3,)
-    description = proto.Field(proto.STRING, number=4,)
-    scope = proto.Field(proto.ENUM, number=5, enum=DimensionScope,)
-    disallow_ads_personalization = proto.Field(proto.BOOL, number=6,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    parameter_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    description = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    scope = proto.Field(
+        proto.ENUM,
+        number=5,
+        enum=DimensionScope,
+    )
+    disallow_ads_personalization = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
 
 
 class CustomMetric(proto.Message):
@@ -1199,6 +1570,11 @@ class CustomMetric(proto.Message):
         scope (google.analytics.admin_v1alpha.types.CustomMetric.MetricScope):
             Required. Immutable. The scope of this custom
             metric.
+        restricted_metric_type (Sequence[google.analytics.admin_v1alpha.types.CustomMetric.RestrictedMetricType]):
+            Optional. Types of restricted data that this
+            metric may contain. Required for metrics with
+            CURRENCY measurement unit. Must be empty for
+            metrics with a non-CURRENCY measurement unit.
     """
 
     class MeasurementUnit(proto.Enum):
@@ -1223,12 +1599,45 @@ class CustomMetric(proto.Message):
         METRIC_SCOPE_UNSPECIFIED = 0
         EVENT = 1
 
-    name = proto.Field(proto.STRING, number=1,)
-    parameter_name = proto.Field(proto.STRING, number=2,)
-    display_name = proto.Field(proto.STRING, number=3,)
-    description = proto.Field(proto.STRING, number=4,)
-    measurement_unit = proto.Field(proto.ENUM, number=5, enum=MeasurementUnit,)
-    scope = proto.Field(proto.ENUM, number=6, enum=MetricScope,)
+    class RestrictedMetricType(proto.Enum):
+        r"""Labels that mark the data in this custom metric as data that
+        should be restricted to specific users.
+        """
+        RESTRICTED_METRIC_TYPE_UNSPECIFIED = 0
+        COST_DATA = 1
+        REVENUE_DATA = 2
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    parameter_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    display_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    description = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    measurement_unit = proto.Field(
+        proto.ENUM,
+        number=5,
+        enum=MeasurementUnit,
+    )
+    scope = proto.Field(
+        proto.ENUM,
+        number=6,
+        enum=MetricScope,
+    )
+    restricted_metric_type = proto.RepeatedField(
+        proto.ENUM,
+        number=8,
+        enum=RestrictedMetricType,
+    )
 
 
 class DataRetentionSettings(proto.Message):
@@ -1257,9 +1666,101 @@ class DataRetentionSettings(proto.Message):
         THIRTY_EIGHT_MONTHS = 5
         FIFTY_MONTHS = 6
 
-    name = proto.Field(proto.STRING, number=1,)
-    event_data_retention = proto.Field(proto.ENUM, number=2, enum=RetentionDuration,)
-    reset_user_data_on_new_activity = proto.Field(proto.BOOL, number=3,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    event_data_retention = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=RetentionDuration,
+    )
+    reset_user_data_on_new_activity = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+
+
+class AttributionSettings(proto.Message):
+    r"""The attribution settings used for a given property. This is a
+    singleton resource.
+
+    Attributes:
+        name (str):
+            Output only. Resource name of this attribution settings
+            resource. Format:
+            properties/{property_id}/attributionSettings Example:
+            "properties/1000/attributionSettings".
+        acquisition_conversion_event_lookback_window (google.analytics.admin_v1alpha.types.AttributionSettings.AcquisitionConversionEventLookbackWindow):
+            Required. The lookback window configuration
+            for acquisition conversion events. The default
+            window size is 30 days.
+        other_conversion_event_lookback_window (google.analytics.admin_v1alpha.types.AttributionSettings.OtherConversionEventLookbackWindow):
+            Required. The lookback window for all other,
+            non-acquisition conversion events. The default
+            window size is 90 days.
+        reporting_attribution_model (google.analytics.admin_v1alpha.types.AttributionSettings.ReportingAttributionModel):
+            Required. The reporting attribution model
+            used to calculate conversion credit in this
+            property's reports.
+            Changing the attribution model will apply to
+            both historical and future data. These changes
+            will be reflected in reports with conversion and
+            revenue data. User and session data will be
+            unaffected.
+    """
+
+    class AcquisitionConversionEventLookbackWindow(proto.Enum):
+        r"""How far back in time events should be considered for
+        inclusion in a converting path which leads to the first install
+        of an app or the first visit to a site.
+        """
+        ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED = 0
+        ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_7_DAYS = 1
+        ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS = 2
+
+    class OtherConversionEventLookbackWindow(proto.Enum):
+        r"""How far back in time events should be considered for
+        inclusion in a converting path for all conversions other than
+        first app install/first site visit.
+        """
+        OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED = 0
+        OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS = 1
+        OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_60_DAYS = 2
+        OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_90_DAYS = 3
+
+    class ReportingAttributionModel(proto.Enum):
+        r"""The reporting attribution model used to calculate conversion
+        credit in this property's reports.
+        """
+        REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED = 0
+        CROSS_CHANNEL_DATA_DRIVEN = 1
+        CROSS_CHANNEL_LAST_CLICK = 2
+        CROSS_CHANNEL_FIRST_CLICK = 3
+        CROSS_CHANNEL_LINEAR = 4
+        CROSS_CHANNEL_POSITION_BASED = 5
+        CROSS_CHANNEL_TIME_DECAY = 6
+        ADS_PREFERRED_LAST_CLICK = 7
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    acquisition_conversion_event_lookback_window = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=AcquisitionConversionEventLookbackWindow,
+    )
+    other_conversion_event_lookback_window = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum=OtherConversionEventLookbackWindow,
+    )
+    reporting_attribution_model = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=ReportingAttributionModel,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

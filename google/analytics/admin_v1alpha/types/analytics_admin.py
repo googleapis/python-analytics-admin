@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,16 +13,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import proto  # type: ignore
-
-from google.analytics.admin_v1alpha.types import resources
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
+import proto  # type: ignore
 
+from google.analytics.admin_v1alpha.types import access_report
+from google.analytics.admin_v1alpha.types import audience as gaa_audience
+from google.analytics.admin_v1alpha.types import resources
 
 __protobuf__ = proto.module(
     package="google.analytics.admin.v1alpha",
     manifest={
+        "RunAccessReportRequest",
+        "RunAccessReportResponse",
         "GetAccountRequest",
         "ListAccountsRequest",
         "ListAccountsResponse",
@@ -51,24 +54,6 @@ __protobuf__ = proto.module(
         "BatchUpdateUserLinksResponse",
         "DeleteUserLinkRequest",
         "BatchDeleteUserLinksRequest",
-        "GetWebDataStreamRequest",
-        "DeleteWebDataStreamRequest",
-        "UpdateWebDataStreamRequest",
-        "CreateWebDataStreamRequest",
-        "ListWebDataStreamsRequest",
-        "ListWebDataStreamsResponse",
-        "GetIosAppDataStreamRequest",
-        "DeleteIosAppDataStreamRequest",
-        "UpdateIosAppDataStreamRequest",
-        "ListIosAppDataStreamsRequest",
-        "ListIosAppDataStreamsResponse",
-        "GetAndroidAppDataStreamRequest",
-        "DeleteAndroidAppDataStreamRequest",
-        "UpdateAndroidAppDataStreamRequest",
-        "ListAndroidAppDataStreamsRequest",
-        "ListAndroidAppDataStreamsResponse",
-        "GetEnhancedMeasurementSettingsRequest",
-        "UpdateEnhancedMeasurementSettingsRequest",
         "CreateFirebaseLinkRequest",
         "DeleteFirebaseLinkRequest",
         "ListFirebaseLinksRequest",
@@ -82,6 +67,8 @@ __protobuf__ = proto.module(
         "GetDataSharingSettingsRequest",
         "ListAccountSummariesRequest",
         "ListAccountSummariesResponse",
+        "AcknowledgeUserDataCollectionRequest",
+        "AcknowledgeUserDataCollectionResponse",
         "SearchChangeHistoryEventsRequest",
         "SearchChangeHistoryEventsResponse",
         "GetMeasurementProtocolSecretRequest",
@@ -125,8 +112,213 @@ __protobuf__ = proto.module(
         "GetCustomMetricRequest",
         "GetDataRetentionSettingsRequest",
         "UpdateDataRetentionSettingsRequest",
+        "CreateDataStreamRequest",
+        "DeleteDataStreamRequest",
+        "UpdateDataStreamRequest",
+        "ListDataStreamsRequest",
+        "ListDataStreamsResponse",
+        "GetDataStreamRequest",
+        "GetAudienceRequest",
+        "ListAudiencesRequest",
+        "ListAudiencesResponse",
+        "CreateAudienceRequest",
+        "UpdateAudienceRequest",
+        "ArchiveAudienceRequest",
+        "GetAttributionSettingsRequest",
+        "UpdateAttributionSettingsRequest",
     },
 )
+
+
+class RunAccessReportRequest(proto.Message):
+    r"""The request for a Data Access Record Report.
+
+    Attributes:
+        entity (str):
+            The Data Access Report is requested for this
+            property. For example if "123" is your GA4
+            property ID, then entity should be
+            "properties/123".
+        dimensions (Sequence[google.analytics.admin_v1alpha.types.AccessDimension]):
+            The dimensions requested and displayed in the
+            response. Requests are allowed up to 9
+            dimensions.
+        metrics (Sequence[google.analytics.admin_v1alpha.types.AccessMetric]):
+            The metrics requested and displayed in the
+            response. Requests are allowed up to 10 metrics.
+        date_ranges (Sequence[google.analytics.admin_v1alpha.types.AccessDateRange]):
+            Date ranges of access records to read. If
+            multiple date ranges are requested, each
+            response row will contain a zero based date
+            range index. If two date ranges overlap, the
+            access records for the overlapping days is
+            included in the response rows for both date
+            ranges. Requests are allowed up to 2 date
+            ranges.
+        dimension_filter (google.analytics.admin_v1alpha.types.AccessFilterExpression):
+            Dimension filters allow you to restrict report response to
+            specific dimension values which match the filter. For
+            example, filtering on access records of a single user. To
+            learn more, see `Fundamentals of Dimension
+            Filters <https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters>`__
+            for examples. Metrics cannot be used in this filter.
+        metric_filter (google.analytics.admin_v1alpha.types.AccessFilterExpression):
+            Metric filters allow you to restrict report
+            response to specific metric values which match
+            the filter. Metric filters are applied after
+            aggregating the report's rows, similar to SQL
+            having-clause. Dimensions cannot be used in this
+            filter.
+        offset (int):
+            The row count of the start row. The first row is counted as
+            row 0. If offset is unspecified, it is treated as 0. If
+            offset is zero, then this method will return the first page
+            of results with ``limit`` entries.
+
+            To learn more about this pagination parameter, see
+            `Pagination <https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination>`__.
+        limit (int):
+            The number of rows to return. If unspecified, 10,000 rows
+            are returned. The API returns a maximum of 100,000 rows per
+            request, no matter how many you ask for. ``limit`` must be
+            positive.
+
+            The API may return fewer rows than the requested ``limit``,
+            if there aren't as many remaining rows as the ``limit``. For
+            instance, there are fewer than 300 possible values for the
+            dimension ``country``, so when reporting on only
+            ``country``, you can't get more than 300 rows, even if you
+            set ``limit`` to a higher value.
+
+            To learn more about this pagination parameter, see
+            `Pagination <https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination>`__.
+        time_zone (str):
+            This request's time zone if specified. If unspecified, the
+            property's time zone is used. The request's time zone is
+            used to interpret the start & end dates of the report.
+
+            Formatted as strings from the IANA Time Zone database
+            (https://www.iana.org/time-zones); for example
+            "America/New_York" or "Asia/Tokyo".
+        order_bys (Sequence[google.analytics.admin_v1alpha.types.AccessOrderBy]):
+            Specifies how rows are ordered in the
+            response.
+        return_entity_quota (bool):
+            Toggles whether to return the current state of this
+            Analytics Property's quota. Quota is returned in
+            `AccessQuota <#AccessQuota>`__.
+    """
+
+    entity = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    dimensions = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
+        message=access_report.AccessDimension,
+    )
+    metrics = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
+        message=access_report.AccessMetric,
+    )
+    date_ranges = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
+        message=access_report.AccessDateRange,
+    )
+    dimension_filter = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=access_report.AccessFilterExpression,
+    )
+    metric_filter = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        message=access_report.AccessFilterExpression,
+    )
+    offset = proto.Field(
+        proto.INT64,
+        number=7,
+    )
+    limit = proto.Field(
+        proto.INT64,
+        number=8,
+    )
+    time_zone = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    order_bys = proto.RepeatedField(
+        proto.MESSAGE,
+        number=10,
+        message=access_report.AccessOrderBy,
+    )
+    return_entity_quota = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+
+
+class RunAccessReportResponse(proto.Message):
+    r"""The customized Data Access Record Report response.
+
+    Attributes:
+        dimension_headers (Sequence[google.analytics.admin_v1alpha.types.AccessDimensionHeader]):
+            The header for a column in the report that
+            corresponds to a specific dimension. The number
+            of DimensionHeaders and ordering of
+            DimensionHeaders matches the dimensions present
+            in rows.
+        metric_headers (Sequence[google.analytics.admin_v1alpha.types.AccessMetricHeader]):
+            The header for a column in the report that
+            corresponds to a specific metric. The number of
+            MetricHeaders and ordering of MetricHeaders
+            matches the metrics present in rows.
+        rows (Sequence[google.analytics.admin_v1alpha.types.AccessRow]):
+            Rows of dimension value combinations and
+            metric values in the report.
+        row_count (int):
+            The total number of rows in the query result. ``rowCount``
+            is independent of the number of rows returned in the
+            response, the ``limit`` request parameter, and the
+            ``offset`` request parameter. For example if a query returns
+            175 rows and includes ``limit`` of 50 in the API request,
+            the response will contain ``rowCount`` of 175 but only 50
+            rows.
+
+            To learn more about this pagination parameter, see
+            `Pagination <https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination>`__.
+        quota (google.analytics.admin_v1alpha.types.AccessQuota):
+            The quota state for this Analytics property
+            including this request.
+    """
+
+    dimension_headers = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=access_report.AccessDimensionHeader,
+    )
+    metric_headers = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
+        message=access_report.AccessMetricHeader,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
+        message=access_report.AccessRow,
+    )
+    row_count = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    quota = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=access_report.AccessQuota,
+    )
 
 
 class GetAccountRequest(proto.Message):
@@ -139,7 +331,10 @@ class GetAccountRequest(proto.Message):
             Example: "accounts/100".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListAccountsRequest(proto.Message):
@@ -166,9 +361,18 @@ class ListAccountsRequest(proto.Message):
             deleted or not.
     """
 
-    page_size = proto.Field(proto.INT32, number=1,)
-    page_token = proto.Field(proto.STRING, number=2,)
-    show_deleted = proto.Field(proto.BOOL, number=3,)
+    page_size = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    show_deleted = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
 
 
 class ListAccountsResponse(proto.Message):
@@ -187,8 +391,15 @@ class ListAccountsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    accounts = proto.RepeatedField(proto.MESSAGE, number=1, message=resources.Account,)
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    accounts = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Account,
+    )
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class DeleteAccountRequest(proto.Message):
@@ -196,12 +407,15 @@ class DeleteAccountRequest(proto.Message):
 
     Attributes:
         name (str):
-            Required. The name of the Account to soft-
-            elete. Format: accounts/{account}
+            Required. The name of the Account to
+            soft-delete. Format: accounts/{account}
             Example: "accounts/100".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class UpdateAccountRequest(proto.Message):
@@ -218,9 +432,15 @@ class UpdateAccountRequest(proto.Message):
             path with the string "*" to match all fields.
     """
 
-    account = proto.Field(proto.MESSAGE, number=1, message=resources.Account,)
+    account = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Account,
+    )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -237,8 +457,15 @@ class ProvisionAccountTicketRequest(proto.Message):
             URI
     """
 
-    account = proto.Field(proto.MESSAGE, number=1, message=resources.Account,)
-    redirect_uri = proto.Field(proto.STRING, number=2,)
+    account = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Account,
+    )
+    redirect_uri = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ProvisionAccountTicketResponse(proto.Message):
@@ -249,7 +476,10 @@ class ProvisionAccountTicketResponse(proto.Message):
             The param to be passed in the ToS link.
     """
 
-    account_ticket_id = proto.Field(proto.STRING, number=1,)
+    account_ticket_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetPropertyRequest(proto.Message):
@@ -261,7 +491,10 @@ class GetPropertyRequest(proto.Message):
             properties/{property_id} Example: "properties/1000".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListPropertiesRequest(proto.Message):
@@ -271,15 +504,19 @@ class ListPropertiesRequest(proto.Message):
         filter (str):
             Required. An expression for filtering the results of the
             request. Fields eligible for filtering are:
-            ``parent:``\ (The resource name of the parent account) or
-            ``firebase_project:``\ (The id or number of the linked
-            firebase project). Some examples of filters:
+            ``parent:``\ (The resource name of the parent
+            account/property) or ``ancestor:``\ (The resource name of
+            the parent account) or ``firebase_project:``\ (The id or
+            number of the linked firebase project). Some examples of
+            filters:
 
             ::
 
                | Filter                      | Description                               |
                |-----------------------------|-------------------------------------------|
-               | parent:accounts/123         | The account with account id: 123.         |
+               | parent:accounts/123         | The account with account id: 123.       |
+               | parent:properties/123       | The property with property id: 123.       |
+               | ancestor:accounts/123       | The account with account id: 123.         |
                | firebase_project:project-id | The firebase project with id: project-id. |
                | firebase_project:123        | The firebase project with number: 123.    |
         page_size (int):
@@ -302,10 +539,22 @@ class ListPropertiesRequest(proto.Message):
             deleted or not.
     """
 
-    filter = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
-    show_deleted = proto.Field(proto.BOOL, number=4,)
+    filter = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    show_deleted = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
 
 
 class ListPropertiesResponse(proto.Message):
@@ -326,9 +575,14 @@ class ListPropertiesResponse(proto.Message):
         return self
 
     properties = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.Property,
+        proto.MESSAGE,
+        number=1,
+        message=resources.Property,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class UpdatePropertyRequest(proto.Message):
@@ -345,9 +599,15 @@ class UpdatePropertyRequest(proto.Message):
             path with the string "*" to match all fields.
     """
 
-    property = proto.Field(proto.MESSAGE, number=1, message=resources.Property,)
+    property = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Property,
+    )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -361,7 +621,11 @@ class CreatePropertyRequest(proto.Message):
             parent.
     """
 
-    property = proto.Field(proto.MESSAGE, number=1, message=resources.Property,)
+    property = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Property,
+    )
 
 
 class DeletePropertyRequest(proto.Message):
@@ -373,7 +637,10 @@ class DeletePropertyRequest(proto.Message):
             properties/{property_id} Example: "properties/1000".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetUserLinkRequest(proto.Message):
@@ -385,7 +652,10 @@ class GetUserLinkRequest(proto.Message):
             accounts/1234/userLinks/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class BatchGetUserLinksRequest(proto.Message):
@@ -405,8 +675,14 @@ class BatchGetUserLinksRequest(proto.Message):
             accounts/{accountId}/userLinks/{userLinkId}
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    names = proto.RepeatedField(proto.STRING, number=2,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    names = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
 
 
 class BatchGetUserLinksResponse(proto.Message):
@@ -418,7 +694,9 @@ class BatchGetUserLinksResponse(proto.Message):
     """
 
     user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.UserLink,
     )
 
 
@@ -442,9 +720,18 @@ class ListUserLinksRequest(proto.Message):
             token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListUserLinksResponse(proto.Message):
@@ -465,9 +752,14 @@ class ListUserLinksResponse(proto.Message):
         return self
 
     user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.UserLink,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class AuditUserLinksRequest(proto.Message):
@@ -490,9 +782,18 @@ class AuditUserLinksRequest(proto.Message):
             page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class AuditUserLinksResponse(proto.Message):
@@ -513,9 +814,14 @@ class AuditUserLinksResponse(proto.Message):
         return self
 
     user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AuditUserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.AuditUserLink,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class CreateUserLinkRequest(proto.Message):
@@ -539,9 +845,19 @@ class CreateUserLinkRequest(proto.Message):
             Required. The user link to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    notify_new_user = proto.Field(proto.BOOL, number=2,)
-    user_link = proto.Field(proto.MESSAGE, number=3, message=resources.UserLink,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    notify_new_user = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    user_link = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=resources.UserLink,
+    )
 
 
 class BatchCreateUserLinksRequest(proto.Message):
@@ -566,10 +882,18 @@ class BatchCreateUserLinksRequest(proto.Message):
             can be created in a batch.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    notify_new_users = proto.Field(proto.BOOL, number=2,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    notify_new_users = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
     requests = proto.RepeatedField(
-        proto.MESSAGE, number=3, message="CreateUserLinkRequest",
+        proto.MESSAGE,
+        number=3,
+        message="CreateUserLinkRequest",
     )
 
 
@@ -582,7 +906,9 @@ class BatchCreateUserLinksResponse(proto.Message):
     """
 
     user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.UserLink,
     )
 
 
@@ -594,7 +920,11 @@ class UpdateUserLinkRequest(proto.Message):
             Required. The user link to update.
     """
 
-    user_link = proto.Field(proto.MESSAGE, number=1, message=resources.UserLink,)
+    user_link = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.UserLink,
+    )
 
 
 class BatchUpdateUserLinksRequest(proto.Message):
@@ -613,9 +943,14 @@ class BatchUpdateUserLinksRequest(proto.Message):
             can be updated in a batch.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     requests = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="UpdateUserLinkRequest",
+        proto.MESSAGE,
+        number=2,
+        message="UpdateUserLinkRequest",
     )
 
 
@@ -628,7 +963,9 @@ class BatchUpdateUserLinksResponse(proto.Message):
     """
 
     user_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.UserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.UserLink,
     )
 
 
@@ -641,7 +978,10 @@ class DeleteUserLinkRequest(proto.Message):
             accounts/1234/userLinks/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class BatchDeleteUserLinksRequest(proto.Message):
@@ -660,358 +1000,14 @@ class BatchDeleteUserLinksRequest(proto.Message):
             can be updated in a batch.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     requests = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="DeleteUserLinkRequest",
-    )
-
-
-class GetWebDataStreamRequest(proto.Message):
-    r"""Request message for GetWebDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the web data stream to lookup. Format:
-            properties/{property_id}/webDataStreams/{stream_id} Example:
-            "properties/123/webDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class DeleteWebDataStreamRequest(proto.Message):
-    r"""Request message for DeleteWebDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the web data stream to delete. Format:
-            properties/{property_id}/webDataStreams/{stream_id} Example:
-            "properties/123/webDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class UpdateWebDataStreamRequest(proto.Message):
-    r"""Request message for UpdateWebDataStream RPC.
-
-    Attributes:
-        web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
-            Required. The web stream to update. The ``name`` field is
-            used to identify the web stream to be updated.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            Required. The list of fields to be updated. Field names must
-            be in snake case (e.g., "field_to_update"). Omitted fields
-            will not be updated. To replace the entire entity, use one
-            path with the string "*" to match all fields.
-    """
-
-    web_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
-    )
-    update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
-    )
-
-
-class CreateWebDataStreamRequest(proto.Message):
-    r"""Request message for CreateWebDataStream RPC.
-
-    Attributes:
-        web_data_stream (google.analytics.admin_v1alpha.types.WebDataStream):
-            Required. The web stream to create.
-        parent (str):
-            Required. The parent resource where this web
-            data stream will be created. Format:
-            properties/123
-    """
-
-    web_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
-    )
-    parent = proto.Field(proto.STRING, number=2,)
-
-
-class ListWebDataStreamsRequest(proto.Message):
-    r"""Request message for ListWebDataStreams RPC.
-
-    Attributes:
-        parent (str):
-            Required. The name of the parent property.
-            For example, to list results of web streams
-            under the property with Id 123: "properties/123".
-        page_size (int):
-            The maximum number of resources to return.
-            If unspecified, at most 50 resources will be
-            returned. The maximum value is 200; (higher
-            values will be coerced to the maximum)
-        page_token (str):
-            A page token, received from a previous
-            ``ListWebDataStreams`` call. Provide this to retrieve the
-            subsequent page. When paginating, all other parameters
-            provided to ``ListWebDataStreams`` must match the call that
-            provided the page token.
-    """
-
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
-
-
-class ListWebDataStreamsResponse(proto.Message):
-    r"""Request message for ListWebDataStreams RPC.
-
-    Attributes:
-        web_data_streams (Sequence[google.analytics.admin_v1alpha.types.WebDataStream]):
-            Results that matched the filter criteria and
-            were accessible to the caller.
-        next_page_token (str):
-            A token, which can be sent as ``page_token`` to retrieve the
-            next page. If this field is omitted, there are no subsequent
-            pages.
-    """
-
-    @property
-    def raw_page(self):
-        return self
-
-    web_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.WebDataStream,
-    )
-    next_page_token = proto.Field(proto.STRING, number=2,)
-
-
-class GetIosAppDataStreamRequest(proto.Message):
-    r"""Request message for GetIosAppDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the iOS app data stream to lookup.
-            Format:
-            properties/{property_id}/iosAppDataStreams/{stream_id}
-            Example: "properties/123/iosAppDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class DeleteIosAppDataStreamRequest(proto.Message):
-    r"""Request message for DeleteIosAppDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the iOS app data stream to delete.
-            Format:
-            properties/{property_id}/iosAppDataStreams/{stream_id}
-            Example: "properties/123/iosAppDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class UpdateIosAppDataStreamRequest(proto.Message):
-    r"""Request message for UpdateIosAppDataStream RPC.
-
-    Attributes:
-        ios_app_data_stream (google.analytics.admin_v1alpha.types.IosAppDataStream):
-            Required. The iOS app stream to update. The ``name`` field
-            is used to identify the iOS app stream to be updated.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            Required. The list of fields to be updated. Field names must
-            be in snake case (e.g., "field_to_update"). Omitted fields
-            will not be updated. To replace the entire entity, use one
-            path with the string "*" to match all fields.
-    """
-
-    ios_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
-    )
-    update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
-    )
-
-
-class ListIosAppDataStreamsRequest(proto.Message):
-    r"""Request message for ListIosAppDataStreams RPC.
-
-    Attributes:
-        parent (str):
-            Required. The name of the parent property.
-            For example, to list results of app streams
-            under the property with Id 123: "properties/123".
-        page_size (int):
-            The maximum number of resources to return.
-            If unspecified, at most 50 resources will be
-            returned. The maximum value is 200; (higher
-            values will be coerced to the maximum)
-        page_token (str):
-            A page token, received from a previous
-            ``ListIosAppDataStreams`` call. Provide this to retrieve the
-            subsequent page. When paginating, all other parameters
-            provided to ``ListIosAppDataStreams`` must match the call
-            that provided the page token.
-    """
-
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
-
-
-class ListIosAppDataStreamsResponse(proto.Message):
-    r"""Request message for ListIosAppDataStreams RPC.
-
-    Attributes:
-        ios_app_data_streams (Sequence[google.analytics.admin_v1alpha.types.IosAppDataStream]):
-            Results that matched the filter criteria and
-            were accessible to the caller.
-        next_page_token (str):
-            A token, which can be sent as ``page_token`` to retrieve the
-            next page. If this field is omitted, there are no subsequent
-            pages.
-    """
-
-    @property
-    def raw_page(self):
-        return self
-
-    ios_app_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.IosAppDataStream,
-    )
-    next_page_token = proto.Field(proto.STRING, number=2,)
-
-
-class GetAndroidAppDataStreamRequest(proto.Message):
-    r"""Request message for GetAndroidAppDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the android app data stream to lookup.
-            Format:
-            properties/{property_id}/androidAppDataStreams/{stream_id}
-            Example: "properties/123/androidAppDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class DeleteAndroidAppDataStreamRequest(proto.Message):
-    r"""Request message for DeleteAndroidAppDataStream RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the android app data stream to delete.
-            Format:
-            properties/{property_id}/androidAppDataStreams/{stream_id}
-            Example: "properties/123/androidAppDataStreams/456".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class UpdateAndroidAppDataStreamRequest(proto.Message):
-    r"""Request message for UpdateAndroidAppDataStream RPC.
-
-    Attributes:
-        android_app_data_stream (google.analytics.admin_v1alpha.types.AndroidAppDataStream):
-            Required. The android app stream to update. The ``name``
-            field is used to identify the android app stream to be
-            updated.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            Required. The list of fields to be updated. Field names must
-            be in snake case (e.g., "field_to_update"). Omitted fields
-            will not be updated. To replace the entire entity, use one
-            path with the string "*" to match all fields.
-    """
-
-    android_app_data_stream = proto.Field(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
-    )
-    update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
-    )
-
-
-class ListAndroidAppDataStreamsRequest(proto.Message):
-    r"""Request message for ListAndroidAppDataStreams RPC.
-
-    Attributes:
-        parent (str):
-            Required. The name of the parent property.
-            For example, to limit results to app streams
-            under the property with Id 123: "properties/123".
-        page_size (int):
-            The maximum number of resources to return.
-            If unspecified, at most 50 resources will be
-            returned. The maximum value is 200; (higher
-            values will be coerced to the maximum)
-        page_token (str):
-            A page token, received from a previous call. Provide this to
-            retrieve the subsequent page. When paginating, all other
-            parameters provided to ``ListAndroidAppDataStreams`` must
-            match the call that provided the page token.
-    """
-
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
-
-
-class ListAndroidAppDataStreamsResponse(proto.Message):
-    r"""Request message for ListAndroidDataStreams RPC.
-
-    Attributes:
-        android_app_data_streams (Sequence[google.analytics.admin_v1alpha.types.AndroidAppDataStream]):
-            Results that matched the filter criteria and
-            were accessible to the caller.
-        next_page_token (str):
-            A token, which can be sent as ``page_token`` to retrieve the
-            next page. If this field is omitted, there are no subsequent
-            pages.
-    """
-
-    @property
-    def raw_page(self):
-        return self
-
-    android_app_data_streams = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AndroidAppDataStream,
-    )
-    next_page_token = proto.Field(proto.STRING, number=2,)
-
-
-class GetEnhancedMeasurementSettingsRequest(proto.Message):
-    r"""Request message for GetEnhancedMeasurementSettings RPC.
-
-    Attributes:
-        name (str):
-            Required. The name of the settings to lookup. Format:
-            properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
-            Example:
-            "properties/1000/webDataStreams/2000/enhancedMeasurementSettings".
-    """
-
-    name = proto.Field(proto.STRING, number=1,)
-
-
-class UpdateEnhancedMeasurementSettingsRequest(proto.Message):
-    r"""Request message for UpdateEnhancedMeasurementSettings RPC.
-
-    Attributes:
-        enhanced_measurement_settings (google.analytics.admin_v1alpha.types.EnhancedMeasurementSettings):
-            Required. The settings to update. The ``name`` field is used
-            to identify the settings to be updated.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
-            Required. The list of fields to be updated. Field names must
-            be in snake case (e.g., "field_to_update"). Omitted fields
-            will not be updated. To replace the entire entity, use one
-            path with the string "*" to match all fields.
-    """
-
-    enhanced_measurement_settings = proto.Field(
-        proto.MESSAGE, number=1, message=resources.EnhancedMeasurementSettings,
-    )
-    update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message="DeleteUserLinkRequest",
     )
 
 
@@ -1026,9 +1022,14 @@ class CreateFirebaseLinkRequest(proto.Message):
             Required. The Firebase link to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     firebase_link = proto.Field(
-        proto.MESSAGE, number=2, message=resources.FirebaseLink,
+        proto.MESSAGE,
+        number=2,
+        message=resources.FirebaseLink,
     )
 
 
@@ -1042,7 +1043,10 @@ class DeleteFirebaseLinkRequest(proto.Message):
             Example: properties/1234/firebaseLinks/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListFirebaseLinksRequest(proto.Message):
@@ -1067,9 +1071,18 @@ class ListFirebaseLinksRequest(proto.Message):
             page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListFirebaseLinksResponse(proto.Message):
@@ -1091,9 +1104,14 @@ class ListFirebaseLinksResponse(proto.Message):
         return self
 
     firebase_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.FirebaseLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.FirebaseLink,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetGlobalSiteTagRequest(proto.Message):
@@ -1103,11 +1121,14 @@ class GetGlobalSiteTagRequest(proto.Message):
         name (str):
             Required. The name of the site tag to lookup. Note that site
             tags are singletons and do not have unique IDs. Format:
-            properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag
-            Example: "properties/123/webDataStreams/456/globalSiteTag".
+            properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+            Example: "properties/123/dataStreams/456/globalSiteTag".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class CreateGoogleAdsLinkRequest(proto.Message):
@@ -1120,9 +1141,14 @@ class CreateGoogleAdsLinkRequest(proto.Message):
             Required. The GoogleAdsLink to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     google_ads_link = proto.Field(
-        proto.MESSAGE, number=2, message=resources.GoogleAdsLink,
+        proto.MESSAGE,
+        number=2,
+        message=resources.GoogleAdsLink,
     )
 
 
@@ -1140,10 +1166,14 @@ class UpdateGoogleAdsLinkRequest(proto.Message):
     """
 
     google_ads_link = proto.Field(
-        proto.MESSAGE, number=1, message=resources.GoogleAdsLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.GoogleAdsLink,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -1156,7 +1186,10 @@ class DeleteGoogleAdsLinkRequest(proto.Message):
             properties/1234/googleAdsLinks/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListGoogleAdsLinksRequest(proto.Message):
@@ -1180,9 +1213,18 @@ class ListGoogleAdsLinksRequest(proto.Message):
             page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListGoogleAdsLinksResponse(proto.Message):
@@ -1202,9 +1244,14 @@ class ListGoogleAdsLinksResponse(proto.Message):
         return self
 
     google_ads_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.GoogleAdsLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.GoogleAdsLink,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetDataSharingSettingsRequest(proto.Message):
@@ -1217,7 +1264,10 @@ class GetDataSharingSettingsRequest(proto.Message):
             Example: "accounts/1000/dataSharingSettings".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListAccountSummariesRequest(proto.Message):
@@ -1240,8 +1290,14 @@ class ListAccountSummariesRequest(proto.Message):
             that provided the page token.
     """
 
-    page_size = proto.Field(proto.INT32, number=1,)
-    page_token = proto.Field(proto.STRING, number=2,)
+    page_size = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ListAccountSummariesResponse(proto.Message):
@@ -1262,9 +1318,48 @@ class ListAccountSummariesResponse(proto.Message):
         return self
 
     account_summaries = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.AccountSummary,
+        proto.MESSAGE,
+        number=1,
+        message=resources.AccountSummary,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class AcknowledgeUserDataCollectionRequest(proto.Message):
+    r"""Request message for AcknowledgeUserDataCollection RPC.
+
+    Attributes:
+        property (str):
+            Required. The property for which to
+            acknowledge user data collection.
+        acknowledgement (str):
+            Required. An acknowledgement that the caller
+            of this method understands the terms of user
+            data collection.
+            This field must contain the exact value:
+            "I acknowledge that I have the necessary privacy
+            disclosures and rights from my end users for the
+            collection and processing of their data,
+            including the association of such data with the
+            visitation information Google Analytics collects
+            from my site and/or app property.".
+    """
+
+    property = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    acknowledgement = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class AcknowledgeUserDataCollectionResponse(proto.Message):
+    r"""Response message for AcknowledgeUserDataCollection RPC."""
 
 
 class SearchChangeHistoryEventsRequest(proto.Message):
@@ -1309,21 +1404,46 @@ class SearchChangeHistoryEventsRequest(proto.Message):
             call that provided the page token.
     """
 
-    account = proto.Field(proto.STRING, number=1,)
-    property = proto.Field(proto.STRING, number=2,)
-    resource_type = proto.RepeatedField(
-        proto.ENUM, number=3, enum=resources.ChangeHistoryResourceType,
+    account = proto.Field(
+        proto.STRING,
+        number=1,
     )
-    action = proto.RepeatedField(proto.ENUM, number=4, enum=resources.ActionType,)
-    actor_email = proto.RepeatedField(proto.STRING, number=5,)
+    property = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    resource_type = proto.RepeatedField(
+        proto.ENUM,
+        number=3,
+        enum=resources.ChangeHistoryResourceType,
+    )
+    action = proto.RepeatedField(
+        proto.ENUM,
+        number=4,
+        enum=resources.ActionType,
+    )
+    actor_email = proto.RepeatedField(
+        proto.STRING,
+        number=5,
+    )
     earliest_change_time = proto.Field(
-        proto.MESSAGE, number=6, message=timestamp_pb2.Timestamp,
+        proto.MESSAGE,
+        number=6,
+        message=timestamp_pb2.Timestamp,
     )
     latest_change_time = proto.Field(
-        proto.MESSAGE, number=7, message=timestamp_pb2.Timestamp,
+        proto.MESSAGE,
+        number=7,
+        message=timestamp_pb2.Timestamp,
     )
-    page_size = proto.Field(proto.INT32, number=8,)
-    page_token = proto.Field(proto.STRING, number=9,)
+    page_size = proto.Field(
+        proto.INT32,
+        number=8,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=9,
+    )
 
 
 class SearchChangeHistoryEventsResponse(proto.Message):
@@ -1343,9 +1463,14 @@ class SearchChangeHistoryEventsResponse(proto.Message):
         return self
 
     change_history_events = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.ChangeHistoryEvent,
+        proto.MESSAGE,
+        number=1,
+        message=resources.ChangeHistoryEvent,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetMeasurementProtocolSecretRequest(proto.Message):
@@ -1355,13 +1480,13 @@ class GetMeasurementProtocolSecretRequest(proto.Message):
         name (str):
             Required. The name of the measurement
             protocol secret to lookup. Format:
-            properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-            Note: Any type of stream (WebDataStream,
-            IosAppDataStream, AndroidAppDataStream) may be a
-            parent.
+            properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class CreateMeasurementProtocolSecretRequest(proto.Message):
@@ -1370,19 +1495,21 @@ class CreateMeasurementProtocolSecretRequest(proto.Message):
     Attributes:
         parent (str):
             Required. The parent resource where this
-            secret will be created. Any type of stream
-            (WebDataStream, IosAppDataStream,
-            AndroidAppDataStream) may be a parent.
-            Format:
-            properties/{property}/webDataStreams/{webDataStream}
+            secret will be created. Format:
+            properties/{property}/dataStreams/{dataStream}
         measurement_protocol_secret (google.analytics.admin_v1alpha.types.MeasurementProtocolSecret):
             Required. The measurement protocol secret to
             create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     measurement_protocol_secret = proto.Field(
-        proto.MESSAGE, number=2, message=resources.MeasurementProtocolSecret,
+        proto.MESSAGE,
+        number=2,
+        message=resources.MeasurementProtocolSecret,
     )
 
 
@@ -1393,13 +1520,13 @@ class DeleteMeasurementProtocolSecretRequest(proto.Message):
         name (str):
             Required. The name of the
             MeasurementProtocolSecret to delete. Format:
-            properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-            Note: Any type of stream (WebDataStream,
-            IosAppDataStream, AndroidAppDataStream) may be a
-            parent.
+            properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class UpdateMeasurementProtocolSecretRequest(proto.Message):
@@ -1415,10 +1542,14 @@ class UpdateMeasurementProtocolSecretRequest(proto.Message):
     """
 
     measurement_protocol_secret = proto.Field(
-        proto.MESSAGE, number=1, message=resources.MeasurementProtocolSecret,
+        proto.MESSAGE,
+        number=1,
+        message=resources.MeasurementProtocolSecret,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -1428,11 +1559,8 @@ class ListMeasurementProtocolSecretsRequest(proto.Message):
     Attributes:
         parent (str):
             Required. The resource name of the parent
-            stream. Any type of stream (WebDataStream,
-            IosAppDataStream, AndroidAppDataStream) may be a
-            parent.
-            Format:
-            properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+            stream. Format:
+            properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
         page_size (int):
             The maximum number of resources to return.
             If unspecified, at most 10 resources will be
@@ -1446,9 +1574,18 @@ class ListMeasurementProtocolSecretsRequest(proto.Message):
             must match the call that provided the page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListMeasurementProtocolSecretsResponse(proto.Message):
@@ -1469,9 +1606,14 @@ class ListMeasurementProtocolSecretsResponse(proto.Message):
         return self
 
     measurement_protocol_secrets = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.MeasurementProtocolSecret,
+        proto.MESSAGE,
+        number=1,
+        message=resources.MeasurementProtocolSecret,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetGoogleSignalsSettingsRequest(proto.Message):
@@ -1484,7 +1626,10 @@ class GetGoogleSignalsSettingsRequest(proto.Message):
             properties/{property}/googleSignalsSettings
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class UpdateGoogleSignalsSettingsRequest(proto.Message):
@@ -1502,10 +1647,14 @@ class UpdateGoogleSignalsSettingsRequest(proto.Message):
     """
 
     google_signals_settings = proto.Field(
-        proto.MESSAGE, number=1, message=resources.GoogleSignalsSettings,
+        proto.MESSAGE,
+        number=1,
+        message=resources.GoogleSignalsSettings,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -1522,9 +1671,14 @@ class CreateConversionEventRequest(proto.Message):
     """
 
     conversion_event = proto.Field(
-        proto.MESSAGE, number=1, message=resources.ConversionEvent,
+        proto.MESSAGE,
+        number=1,
+        message=resources.ConversionEvent,
     )
-    parent = proto.Field(proto.STRING, number=2,)
+    parent = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetConversionEventRequest(proto.Message):
@@ -1538,7 +1692,10 @@ class GetConversionEventRequest(proto.Message):
             Example: "properties/123/conversionEvents/456".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class DeleteConversionEventRequest(proto.Message):
@@ -1552,7 +1709,10 @@ class DeleteConversionEventRequest(proto.Message):
             Example: "properties/123/conversionEvents/456".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListConversionEventsRequest(proto.Message):
@@ -1575,9 +1735,18 @@ class ListConversionEventsRequest(proto.Message):
             that provided the page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListConversionEventsResponse(proto.Message):
@@ -1597,9 +1766,14 @@ class ListConversionEventsResponse(proto.Message):
         return self
 
     conversion_events = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.ConversionEvent,
+        proto.MESSAGE,
+        number=1,
+        message=resources.ConversionEvent,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetDisplayVideo360AdvertiserLinkRequest(proto.Message):
@@ -1613,7 +1787,10 @@ class GetDisplayVideo360AdvertiserLinkRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLink/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListDisplayVideo360AdvertiserLinksRequest(proto.Message):
@@ -1637,9 +1814,18 @@ class ListDisplayVideo360AdvertiserLinksRequest(proto.Message):
             that provided the page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListDisplayVideo360AdvertiserLinksResponse(proto.Message):
@@ -1659,9 +1845,14 @@ class ListDisplayVideo360AdvertiserLinksResponse(proto.Message):
         return self
 
     display_video_360_advertiser_links = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.DisplayVideo360AdvertiserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.DisplayVideo360AdvertiserLink,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class CreateDisplayVideo360AdvertiserLinkRequest(proto.Message):
@@ -1675,9 +1866,14 @@ class CreateDisplayVideo360AdvertiserLinkRequest(proto.Message):
             to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     display_video_360_advertiser_link = proto.Field(
-        proto.MESSAGE, number=2, message=resources.DisplayVideo360AdvertiserLink,
+        proto.MESSAGE,
+        number=2,
+        message=resources.DisplayVideo360AdvertiserLink,
     )
 
 
@@ -1692,7 +1888,10 @@ class DeleteDisplayVideo360AdvertiserLinkRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLinks/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class UpdateDisplayVideo360AdvertiserLinkRequest(proto.Message):
@@ -1708,10 +1907,14 @@ class UpdateDisplayVideo360AdvertiserLinkRequest(proto.Message):
     """
 
     display_video_360_advertiser_link = proto.Field(
-        proto.MESSAGE, number=1, message=resources.DisplayVideo360AdvertiserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.DisplayVideo360AdvertiserLink,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -1727,7 +1930,10 @@ class GetDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLinkProposals/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListDisplayVideo360AdvertiserLinkProposalsRequest(proto.Message):
@@ -1752,9 +1958,18 @@ class ListDisplayVideo360AdvertiserLinkProposalsRequest(proto.Message):
             the call that provided the page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListDisplayVideo360AdvertiserLinkProposalsResponse(proto.Message):
@@ -1780,7 +1995,10 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse(proto.Message):
         number=1,
         message=resources.DisplayVideo360AdvertiserLinkProposal,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class CreateDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
@@ -1795,7 +2013,10 @@ class CreateDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
             DisplayVideo360AdvertiserLinkProposal to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     display_video_360_advertiser_link_proposal = proto.Field(
         proto.MESSAGE,
         number=2,
@@ -1815,7 +2036,10 @@ class DeleteDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLinkProposals/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ApproveDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
@@ -1830,7 +2054,10 @@ class ApproveDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLinkProposals/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ApproveDisplayVideo360AdvertiserLinkProposalResponse(proto.Message):
@@ -1844,7 +2071,9 @@ class ApproveDisplayVideo360AdvertiserLinkProposalResponse(proto.Message):
     """
 
     display_video_360_advertiser_link = proto.Field(
-        proto.MESSAGE, number=1, message=resources.DisplayVideo360AdvertiserLink,
+        proto.MESSAGE,
+        number=1,
+        message=resources.DisplayVideo360AdvertiserLink,
     )
 
 
@@ -1860,7 +2089,10 @@ class CancelDisplayVideo360AdvertiserLinkProposalRequest(proto.Message):
             properties/1234/displayVideo360AdvertiserLinkProposals/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class CreateCustomDimensionRequest(proto.Message):
@@ -1873,9 +2105,14 @@ class CreateCustomDimensionRequest(proto.Message):
             Required. The CustomDimension to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     custom_dimension = proto.Field(
-        proto.MESSAGE, number=2, message=resources.CustomDimension,
+        proto.MESSAGE,
+        number=2,
+        message=resources.CustomDimension,
     )
 
 
@@ -1892,10 +2129,14 @@ class UpdateCustomDimensionRequest(proto.Message):
     """
 
     custom_dimension = proto.Field(
-        proto.MESSAGE, number=1, message=resources.CustomDimension,
+        proto.MESSAGE,
+        number=1,
+        message=resources.CustomDimension,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -1920,9 +2161,18 @@ class ListCustomDimensionsRequest(proto.Message):
             the page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListCustomDimensionsResponse(proto.Message):
@@ -1942,9 +2192,14 @@ class ListCustomDimensionsResponse(proto.Message):
         return self
 
     custom_dimensions = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.CustomDimension,
+        proto.MESSAGE,
+        number=1,
+        message=resources.CustomDimension,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ArchiveCustomDimensionRequest(proto.Message):
@@ -1957,7 +2212,10 @@ class ArchiveCustomDimensionRequest(proto.Message):
             properties/1234/customDimensions/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetCustomDimensionRequest(proto.Message):
@@ -1970,7 +2228,10 @@ class GetCustomDimensionRequest(proto.Message):
             properties/1234/customDimensions/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class CreateCustomMetricRequest(proto.Message):
@@ -1983,9 +2244,14 @@ class CreateCustomMetricRequest(proto.Message):
             Required. The CustomMetric to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
     custom_metric = proto.Field(
-        proto.MESSAGE, number=2, message=resources.CustomMetric,
+        proto.MESSAGE,
+        number=2,
+        message=resources.CustomMetric,
     )
 
 
@@ -2002,10 +2268,14 @@ class UpdateCustomMetricRequest(proto.Message):
     """
 
     custom_metric = proto.Field(
-        proto.MESSAGE, number=1, message=resources.CustomMetric,
+        proto.MESSAGE,
+        number=1,
+        message=resources.CustomMetric,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 
@@ -2029,9 +2299,18 @@ class ListCustomMetricsRequest(proto.Message):
             page token.
     """
 
-    parent = proto.Field(proto.STRING, number=1,)
-    page_size = proto.Field(proto.INT32, number=2,)
-    page_token = proto.Field(proto.STRING, number=3,)
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListCustomMetricsResponse(proto.Message):
@@ -2051,9 +2330,14 @@ class ListCustomMetricsResponse(proto.Message):
         return self
 
     custom_metrics = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.CustomMetric,
+        proto.MESSAGE,
+        number=1,
+        message=resources.CustomMetric,
     )
-    next_page_token = proto.Field(proto.STRING, number=2,)
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ArchiveCustomMetricRequest(proto.Message):
@@ -2066,7 +2350,10 @@ class ArchiveCustomMetricRequest(proto.Message):
             properties/1234/customMetrics/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetCustomMetricRequest(proto.Message):
@@ -2079,7 +2366,10 @@ class GetCustomMetricRequest(proto.Message):
             properties/1234/customMetrics/5678
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetDataRetentionSettingsRequest(proto.Message):
@@ -2093,7 +2383,10 @@ class GetDataRetentionSettingsRequest(proto.Message):
             Example: "properties/1000/dataRetentionSettings".
     """
 
-    name = proto.Field(proto.STRING, number=1,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class UpdateDataRetentionSettingsRequest(proto.Message):
@@ -2111,10 +2404,331 @@ class UpdateDataRetentionSettingsRequest(proto.Message):
     """
 
     data_retention_settings = proto.Field(
-        proto.MESSAGE, number=1, message=resources.DataRetentionSettings,
+        proto.MESSAGE,
+        number=1,
+        message=resources.DataRetentionSettings,
     )
     update_mask = proto.Field(
-        proto.MESSAGE, number=2, message=field_mask_pb2.FieldMask,
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
+    )
+
+
+class CreateDataStreamRequest(proto.Message):
+    r"""Request message for CreateDataStream RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        data_stream (google.analytics.admin_v1alpha.types.DataStream):
+            Required. The DataStream to create.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    data_stream = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=resources.DataStream,
+    )
+
+
+class DeleteDataStreamRequest(proto.Message):
+    r"""Request message for DeleteDataStream RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the DataStream to
+            delete. Example format:
+            properties/1234/dataStreams/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class UpdateDataStreamRequest(proto.Message):
+    r"""Request message for UpdateDataStream RPC.
+
+    Attributes:
+        data_stream (google.analytics.admin_v1alpha.types.DataStream):
+            The DataStream to update
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. The list of fields to be updated. Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
+    """
+
+    data_stream = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.DataStream,
+    )
+    update_mask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
+    )
+
+
+class ListDataStreamsRequest(proto.Message):
+    r"""Request message for ListDataStreams RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        page_size (int):
+            The maximum number of resources to return.
+            If unspecified, at most 50 resources will be
+            returned. The maximum value is 200 (higher
+            values will be coerced to the maximum).
+        page_token (str):
+            A page token, received from a previous ``ListDataStreams``
+            call. Provide this to retrieve the subsequent page.
+
+            When paginating, all other parameters provided to
+            ``ListDataStreams`` must match the call that provided the
+            page token.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+
+
+class ListDataStreamsResponse(proto.Message):
+    r"""Response message for ListDataStreams RPC.
+
+    Attributes:
+        data_streams (Sequence[google.analytics.admin_v1alpha.types.DataStream]):
+            List of DataStreams.
+        next_page_token (str):
+            A token, which can be sent as ``page_token`` to retrieve the
+            next page. If this field is omitted, there are no subsequent
+            pages.
+    """
+
+    @property
+    def raw_page(self):
+        return self
+
+    data_streams = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=resources.DataStream,
+    )
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class GetDataStreamRequest(proto.Message):
+    r"""Request message for GetDataStream RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the DataStream to get.
+            Example format: properties/1234/dataStreams/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class GetAudienceRequest(proto.Message):
+    r"""Request message for GetAudience RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the Audience to get.
+            Example format: properties/1234/audiences/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class ListAudiencesRequest(proto.Message):
+    r"""Request message for ListAudiences RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        page_size (int):
+            The maximum number of resources to return.
+            If unspecified, at most 50 resources will be
+            returned. The maximum value is 200 (higher
+            values will be coerced to the maximum).
+        page_token (str):
+            A page token, received from a previous ``ListAudiences``
+            call. Provide this to retrieve the subsequent page.
+
+            When paginating, all other parameters provided to
+            ``ListAudiences`` must match the call that provided the page
+            token.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    page_size = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    page_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+
+
+class ListAudiencesResponse(proto.Message):
+    r"""Response message for ListAudiences RPC.
+
+    Attributes:
+        audiences (Sequence[google.analytics.admin_v1alpha.types.Audience]):
+            List of Audiences.
+        next_page_token (str):
+            A token, which can be sent as ``page_token`` to retrieve the
+            next page. If this field is omitted, there are no subsequent
+            pages.
+    """
+
+    @property
+    def raw_page(self):
+        return self
+
+    audiences = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=gaa_audience.Audience,
+    )
+    next_page_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class CreateAudienceRequest(proto.Message):
+    r"""Request message for CreateAudience RPC.
+
+    Attributes:
+        parent (str):
+            Required. Example format: properties/1234
+        audience (google.analytics.admin_v1alpha.types.Audience):
+            Required. The audience to create.
+    """
+
+    parent = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    audience = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gaa_audience.Audience,
+    )
+
+
+class UpdateAudienceRequest(proto.Message):
+    r"""Request message for UpdateAudience RPC.
+
+    Attributes:
+        audience (google.analytics.admin_v1alpha.types.Audience):
+            Required. The audience to update. The audience's ``name``
+            field is used to identify the audience to be updated.
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. The list of fields to be updated. Field names must
+            be in snake case (e.g., "field_to_update"). Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
+    """
+
+    audience = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=gaa_audience.Audience,
+    )
+    update_mask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
+    )
+
+
+class ArchiveAudienceRequest(proto.Message):
+    r"""Request message for ArchiveAudience RPC.
+
+    Attributes:
+        name (str):
+            Required. Example format:
+            properties/1234/audiences/5678
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class GetAttributionSettingsRequest(proto.Message):
+    r"""Request message for GetAttributionSettings RPC.
+
+    Attributes:
+        name (str):
+            Required. The name of the attribution
+            settings to retrieve. Format:
+            properties/{property}/attributionSettings
+    """
+
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class UpdateAttributionSettingsRequest(proto.Message):
+    r"""Request message for UpdateAttributionSettings RPC
+
+    Attributes:
+        attribution_settings (google.analytics.admin_v1alpha.types.AttributionSettings):
+            Required. The attribution settings to update. The ``name``
+            field is used to identify the settings to be updated.
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. The list of fields to be updated. Field names must
+            be in snake case (e.g., "field_to_update"). Omitted fields
+            will not be updated. To replace the entire entity, use one
+            path with the string "*" to match all fields.
+    """
+
+    attribution_settings = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=resources.AttributionSettings,
+    )
+    update_mask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
     )
 
 

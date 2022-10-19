@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,22 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple, Union
+import warnings
 
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import grpc_helpers_async  # type: ignore
+from google.api_core import gapic_v1, grpc_helpers_async
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
-import packaging.version
-
+from google.protobuf import empty_pb2  # type: ignore
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.analytics.admin_v1alpha.types import analytics_admin
+from google.analytics.admin_v1alpha.types import audience
+from google.analytics.admin_v1alpha.types import audience as gaa_audience
 from google.analytics.admin_v1alpha.types import resources
-from google.protobuf import empty_pb2  # type: ignore
-from .base import AnalyticsAdminServiceTransport, DEFAULT_CLIENT_INFO
+
+from .base import DEFAULT_CLIENT_INFO, AnalyticsAdminServiceTransport
 from .grpc import AnalyticsAdminServiceGrpcTransport
 
 
@@ -106,6 +106,7 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
         quota_project_id=None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
         always_use_jwt_access: Optional[bool] = False,
+        api_audience: Optional[str] = None,
     ) -> None:
         """Instantiate the transport.
 
@@ -201,13 +202,17 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
             quota_project_id=quota_project_id,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
+            api_audience=api_audience,
         )
 
         if not self._grpc_channel:
             self._grpc_channel = type(self).create_channel(
                 self._host,
+                # use the credentials which are saved
                 credentials=self._credentials,
-                credentials_file=credentials_file,
+                # Set ``credentials_file`` to ``None`` here as
+                # the credentials that we saved earlier should be used.
+                credentials_file=None,
                 scopes=self._scopes,
                 ssl_credentials=self._ssl_channel_credentials,
                 quota_project_id=quota_project_id,
@@ -870,464 +875,6 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
         return self._stubs["batch_delete_user_links"]
 
     @property
-    def get_web_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.GetWebDataStreamRequest], Awaitable[resources.WebDataStream]
-    ]:
-        r"""Return a callable for the get web data stream method over gRPC.
-
-        Lookup for a single WebDataStream
-
-        Returns:
-            Callable[[~.GetWebDataStreamRequest],
-                    Awaitable[~.WebDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "get_web_data_stream" not in self._stubs:
-            self._stubs["get_web_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream",
-                request_serializer=analytics_admin.GetWebDataStreamRequest.serialize,
-                response_deserializer=resources.WebDataStream.deserialize,
-            )
-        return self._stubs["get_web_data_stream"]
-
-    @property
-    def delete_web_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.DeleteWebDataStreamRequest], Awaitable[empty_pb2.Empty]
-    ]:
-        r"""Return a callable for the delete web data stream method over gRPC.
-
-        Deletes a web stream on a property.
-
-        Returns:
-            Callable[[~.DeleteWebDataStreamRequest],
-                    Awaitable[~.Empty]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "delete_web_data_stream" not in self._stubs:
-            self._stubs["delete_web_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream",
-                request_serializer=analytics_admin.DeleteWebDataStreamRequest.serialize,
-                response_deserializer=empty_pb2.Empty.FromString,
-            )
-        return self._stubs["delete_web_data_stream"]
-
-    @property
-    def update_web_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.UpdateWebDataStreamRequest], Awaitable[resources.WebDataStream]
-    ]:
-        r"""Return a callable for the update web data stream method over gRPC.
-
-        Updates a web stream on a property.
-
-        Returns:
-            Callable[[~.UpdateWebDataStreamRequest],
-                    Awaitable[~.WebDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_web_data_stream" not in self._stubs:
-            self._stubs["update_web_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream",
-                request_serializer=analytics_admin.UpdateWebDataStreamRequest.serialize,
-                response_deserializer=resources.WebDataStream.deserialize,
-            )
-        return self._stubs["update_web_data_stream"]
-
-    @property
-    def create_web_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.CreateWebDataStreamRequest], Awaitable[resources.WebDataStream]
-    ]:
-        r"""Return a callable for the create web data stream method over gRPC.
-
-        Creates a web stream with the specified location and
-        attributes.
-
-        Returns:
-            Callable[[~.CreateWebDataStreamRequest],
-                    Awaitable[~.WebDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "create_web_data_stream" not in self._stubs:
-            self._stubs["create_web_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream",
-                request_serializer=analytics_admin.CreateWebDataStreamRequest.serialize,
-                response_deserializer=resources.WebDataStream.deserialize,
-            )
-        return self._stubs["create_web_data_stream"]
-
-    @property
-    def list_web_data_streams(
-        self,
-    ) -> Callable[
-        [analytics_admin.ListWebDataStreamsRequest],
-        Awaitable[analytics_admin.ListWebDataStreamsResponse],
-    ]:
-        r"""Return a callable for the list web data streams method over gRPC.
-
-        Returns child web data streams under the specified
-        parent property.
-        Web data streams will be excluded if the caller does not
-        have access. Returns an empty list if no relevant web
-        data streams are found.
-
-        Returns:
-            Callable[[~.ListWebDataStreamsRequest],
-                    Awaitable[~.ListWebDataStreamsResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "list_web_data_streams" not in self._stubs:
-            self._stubs["list_web_data_streams"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams",
-                request_serializer=analytics_admin.ListWebDataStreamsRequest.serialize,
-                response_deserializer=analytics_admin.ListWebDataStreamsResponse.deserialize,
-            )
-        return self._stubs["list_web_data_streams"]
-
-    @property
-    def get_ios_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.GetIosAppDataStreamRequest],
-        Awaitable[resources.IosAppDataStream],
-    ]:
-        r"""Return a callable for the get ios app data stream method over gRPC.
-
-        Lookup for a single IosAppDataStream
-
-        Returns:
-            Callable[[~.GetIosAppDataStreamRequest],
-                    Awaitable[~.IosAppDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "get_ios_app_data_stream" not in self._stubs:
-            self._stubs["get_ios_app_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream",
-                request_serializer=analytics_admin.GetIosAppDataStreamRequest.serialize,
-                response_deserializer=resources.IosAppDataStream.deserialize,
-            )
-        return self._stubs["get_ios_app_data_stream"]
-
-    @property
-    def delete_ios_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.DeleteIosAppDataStreamRequest], Awaitable[empty_pb2.Empty]
-    ]:
-        r"""Return a callable for the delete ios app data stream method over gRPC.
-
-        Deletes an iOS app stream on a property.
-
-        Returns:
-            Callable[[~.DeleteIosAppDataStreamRequest],
-                    Awaitable[~.Empty]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "delete_ios_app_data_stream" not in self._stubs:
-            self._stubs["delete_ios_app_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream",
-                request_serializer=analytics_admin.DeleteIosAppDataStreamRequest.serialize,
-                response_deserializer=empty_pb2.Empty.FromString,
-            )
-        return self._stubs["delete_ios_app_data_stream"]
-
-    @property
-    def update_ios_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.UpdateIosAppDataStreamRequest],
-        Awaitable[resources.IosAppDataStream],
-    ]:
-        r"""Return a callable for the update ios app data stream method over gRPC.
-
-        Updates an iOS app stream on a property.
-
-        Returns:
-            Callable[[~.UpdateIosAppDataStreamRequest],
-                    Awaitable[~.IosAppDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_ios_app_data_stream" not in self._stubs:
-            self._stubs["update_ios_app_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream",
-                request_serializer=analytics_admin.UpdateIosAppDataStreamRequest.serialize,
-                response_deserializer=resources.IosAppDataStream.deserialize,
-            )
-        return self._stubs["update_ios_app_data_stream"]
-
-    @property
-    def list_ios_app_data_streams(
-        self,
-    ) -> Callable[
-        [analytics_admin.ListIosAppDataStreamsRequest],
-        Awaitable[analytics_admin.ListIosAppDataStreamsResponse],
-    ]:
-        r"""Return a callable for the list ios app data streams method over gRPC.
-
-        Returns child iOS app data streams under the
-        specified parent property.
-        iOS app data streams will be excluded if the caller does
-        not have access. Returns an empty list if no relevant
-        iOS app data streams are found.
-
-        Returns:
-            Callable[[~.ListIosAppDataStreamsRequest],
-                    Awaitable[~.ListIosAppDataStreamsResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "list_ios_app_data_streams" not in self._stubs:
-            self._stubs["list_ios_app_data_streams"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams",
-                request_serializer=analytics_admin.ListIosAppDataStreamsRequest.serialize,
-                response_deserializer=analytics_admin.ListIosAppDataStreamsResponse.deserialize,
-            )
-        return self._stubs["list_ios_app_data_streams"]
-
-    @property
-    def get_android_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.GetAndroidAppDataStreamRequest],
-        Awaitable[resources.AndroidAppDataStream],
-    ]:
-        r"""Return a callable for the get android app data stream method over gRPC.
-
-        Lookup for a single AndroidAppDataStream
-
-        Returns:
-            Callable[[~.GetAndroidAppDataStreamRequest],
-                    Awaitable[~.AndroidAppDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "get_android_app_data_stream" not in self._stubs:
-            self._stubs["get_android_app_data_stream"] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream",
-                request_serializer=analytics_admin.GetAndroidAppDataStreamRequest.serialize,
-                response_deserializer=resources.AndroidAppDataStream.deserialize,
-            )
-        return self._stubs["get_android_app_data_stream"]
-
-    @property
-    def delete_android_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.DeleteAndroidAppDataStreamRequest], Awaitable[empty_pb2.Empty]
-    ]:
-        r"""Return a callable for the delete android app data stream method over gRPC.
-
-        Deletes an android app stream on a property.
-
-        Returns:
-            Callable[[~.DeleteAndroidAppDataStreamRequest],
-                    Awaitable[~.Empty]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "delete_android_app_data_stream" not in self._stubs:
-            self._stubs[
-                "delete_android_app_data_stream"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream",
-                request_serializer=analytics_admin.DeleteAndroidAppDataStreamRequest.serialize,
-                response_deserializer=empty_pb2.Empty.FromString,
-            )
-        return self._stubs["delete_android_app_data_stream"]
-
-    @property
-    def update_android_app_data_stream(
-        self,
-    ) -> Callable[
-        [analytics_admin.UpdateAndroidAppDataStreamRequest],
-        Awaitable[resources.AndroidAppDataStream],
-    ]:
-        r"""Return a callable for the update android app data stream method over gRPC.
-
-        Updates an android app stream on a property.
-
-        Returns:
-            Callable[[~.UpdateAndroidAppDataStreamRequest],
-                    Awaitable[~.AndroidAppDataStream]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_android_app_data_stream" not in self._stubs:
-            self._stubs[
-                "update_android_app_data_stream"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream",
-                request_serializer=analytics_admin.UpdateAndroidAppDataStreamRequest.serialize,
-                response_deserializer=resources.AndroidAppDataStream.deserialize,
-            )
-        return self._stubs["update_android_app_data_stream"]
-
-    @property
-    def list_android_app_data_streams(
-        self,
-    ) -> Callable[
-        [analytics_admin.ListAndroidAppDataStreamsRequest],
-        Awaitable[analytics_admin.ListAndroidAppDataStreamsResponse],
-    ]:
-        r"""Return a callable for the list android app data streams method over gRPC.
-
-        Returns child android app streams under the specified
-        parent property.
-        Android app streams will be excluded if the caller does
-        not have access. Returns an empty list if no relevant
-        android app streams are found.
-
-        Returns:
-            Callable[[~.ListAndroidAppDataStreamsRequest],
-                    Awaitable[~.ListAndroidAppDataStreamsResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "list_android_app_data_streams" not in self._stubs:
-            self._stubs[
-                "list_android_app_data_streams"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams",
-                request_serializer=analytics_admin.ListAndroidAppDataStreamsRequest.serialize,
-                response_deserializer=analytics_admin.ListAndroidAppDataStreamsResponse.deserialize,
-            )
-        return self._stubs["list_android_app_data_streams"]
-
-    @property
-    def get_enhanced_measurement_settings(
-        self,
-    ) -> Callable[
-        [analytics_admin.GetEnhancedMeasurementSettingsRequest],
-        Awaitable[resources.EnhancedMeasurementSettings],
-    ]:
-        r"""Return a callable for the get enhanced measurement
-        settings method over gRPC.
-
-        Returns the singleton enhanced measurement settings
-        for this web stream. Note that the stream must enable
-        enhanced measurement for these settings to take effect.
-
-        Returns:
-            Callable[[~.GetEnhancedMeasurementSettingsRequest],
-                    Awaitable[~.EnhancedMeasurementSettings]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "get_enhanced_measurement_settings" not in self._stubs:
-            self._stubs[
-                "get_enhanced_measurement_settings"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings",
-                request_serializer=analytics_admin.GetEnhancedMeasurementSettingsRequest.serialize,
-                response_deserializer=resources.EnhancedMeasurementSettings.deserialize,
-            )
-        return self._stubs["get_enhanced_measurement_settings"]
-
-    @property
-    def update_enhanced_measurement_settings(
-        self,
-    ) -> Callable[
-        [analytics_admin.UpdateEnhancedMeasurementSettingsRequest],
-        Awaitable[resources.EnhancedMeasurementSettings],
-    ]:
-        r"""Return a callable for the update enhanced measurement
-        settings method over gRPC.
-
-        Updates the singleton enhanced measurement settings
-        for this web stream. Note that the stream must enable
-        enhanced measurement for these settings to take effect.
-
-        Returns:
-            Callable[[~.UpdateEnhancedMeasurementSettingsRequest],
-                    Awaitable[~.EnhancedMeasurementSettings]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "update_enhanced_measurement_settings" not in self._stubs:
-            self._stubs[
-                "update_enhanced_measurement_settings"
-            ] = self.grpc_channel.unary_unary(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings",
-                request_serializer=analytics_admin.UpdateEnhancedMeasurementSettingsRequest.serialize,
-                response_deserializer=resources.EnhancedMeasurementSettings.deserialize,
-            )
-        return self._stubs["update_enhanced_measurement_settings"]
-
-    @property
     def create_firebase_link(
         self,
     ) -> Callable[
@@ -1746,6 +1293,42 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
                 response_deserializer=resources.MeasurementProtocolSecret.deserialize,
             )
         return self._stubs["update_measurement_protocol_secret"]
+
+    @property
+    def acknowledge_user_data_collection(
+        self,
+    ) -> Callable[
+        [analytics_admin.AcknowledgeUserDataCollectionRequest],
+        Awaitable[analytics_admin.AcknowledgeUserDataCollectionResponse],
+    ]:
+        r"""Return a callable for the acknowledge user data
+        collection method over gRPC.
+
+        Acknowledges the terms of user data collection for
+        the specified property.
+        This acknowledgement must be completed (either in the
+        Google Analytics UI or via this API) before
+        MeasurementProtocolSecret resources may be created.
+
+        Returns:
+            Callable[[~.AcknowledgeUserDataCollectionRequest],
+                    Awaitable[~.AcknowledgeUserDataCollectionResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "acknowledge_user_data_collection" not in self._stubs:
+            self._stubs[
+                "acknowledge_user_data_collection"
+            ] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/AcknowledgeUserDataCollection",
+                request_serializer=analytics_admin.AcknowledgeUserDataCollectionRequest.serialize,
+                response_deserializer=analytics_admin.AcknowledgeUserDataCollectionResponse.deserialize,
+            )
+        return self._stubs["acknowledge_user_data_collection"]
 
     @property
     def search_change_history_events(
@@ -2672,6 +2255,387 @@ class AnalyticsAdminServiceGrpcAsyncIOTransport(AnalyticsAdminServiceTransport):
                 response_deserializer=resources.DataRetentionSettings.deserialize,
             )
         return self._stubs["update_data_retention_settings"]
+
+    @property
+    def create_data_stream(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateDataStreamRequest], Awaitable[resources.DataStream]
+    ]:
+        r"""Return a callable for the create data stream method over gRPC.
+
+        Creates a DataStream.
+
+        Returns:
+            Callable[[~.CreateDataStreamRequest],
+                    Awaitable[~.DataStream]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "create_data_stream" not in self._stubs:
+            self._stubs["create_data_stream"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDataStream",
+                request_serializer=analytics_admin.CreateDataStreamRequest.serialize,
+                response_deserializer=resources.DataStream.deserialize,
+            )
+        return self._stubs["create_data_stream"]
+
+    @property
+    def delete_data_stream(
+        self,
+    ) -> Callable[
+        [analytics_admin.DeleteDataStreamRequest], Awaitable[empty_pb2.Empty]
+    ]:
+        r"""Return a callable for the delete data stream method over gRPC.
+
+        Deletes a DataStream on a property.
+
+        Returns:
+            Callable[[~.DeleteDataStreamRequest],
+                    Awaitable[~.Empty]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "delete_data_stream" not in self._stubs:
+            self._stubs["delete_data_stream"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDataStream",
+                request_serializer=analytics_admin.DeleteDataStreamRequest.serialize,
+                response_deserializer=empty_pb2.Empty.FromString,
+            )
+        return self._stubs["delete_data_stream"]
+
+    @property
+    def update_data_stream(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateDataStreamRequest], Awaitable[resources.DataStream]
+    ]:
+        r"""Return a callable for the update data stream method over gRPC.
+
+        Updates a DataStream on a property.
+
+        Returns:
+            Callable[[~.UpdateDataStreamRequest],
+                    Awaitable[~.DataStream]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "update_data_stream" not in self._stubs:
+            self._stubs["update_data_stream"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataStream",
+                request_serializer=analytics_admin.UpdateDataStreamRequest.serialize,
+                response_deserializer=resources.DataStream.deserialize,
+            )
+        return self._stubs["update_data_stream"]
+
+    @property
+    def list_data_streams(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListDataStreamsRequest],
+        Awaitable[analytics_admin.ListDataStreamsResponse],
+    ]:
+        r"""Return a callable for the list data streams method over gRPC.
+
+        Lists DataStreams on a property.
+
+        Returns:
+            Callable[[~.ListDataStreamsRequest],
+                    Awaitable[~.ListDataStreamsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_data_streams" not in self._stubs:
+            self._stubs["list_data_streams"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDataStreams",
+                request_serializer=analytics_admin.ListDataStreamsRequest.serialize,
+                response_deserializer=analytics_admin.ListDataStreamsResponse.deserialize,
+            )
+        return self._stubs["list_data_streams"]
+
+    @property
+    def get_data_stream(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetDataStreamRequest], Awaitable[resources.DataStream]
+    ]:
+        r"""Return a callable for the get data stream method over gRPC.
+
+        Lookup for a single DataStream.
+
+        Returns:
+            Callable[[~.GetDataStreamRequest],
+                    Awaitable[~.DataStream]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_data_stream" not in self._stubs:
+            self._stubs["get_data_stream"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataStream",
+                request_serializer=analytics_admin.GetDataStreamRequest.serialize,
+                response_deserializer=resources.DataStream.deserialize,
+            )
+        return self._stubs["get_data_stream"]
+
+    @property
+    def get_audience(
+        self,
+    ) -> Callable[[analytics_admin.GetAudienceRequest], Awaitable[audience.Audience]]:
+        r"""Return a callable for the get audience method over gRPC.
+
+        Lookup for a single Audience.
+        Audiences created before 2020 may not be supported.
+
+        Returns:
+            Callable[[~.GetAudienceRequest],
+                    Awaitable[~.Audience]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_audience" not in self._stubs:
+            self._stubs["get_audience"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAudience",
+                request_serializer=analytics_admin.GetAudienceRequest.serialize,
+                response_deserializer=audience.Audience.deserialize,
+            )
+        return self._stubs["get_audience"]
+
+    @property
+    def list_audiences(
+        self,
+    ) -> Callable[
+        [analytics_admin.ListAudiencesRequest],
+        Awaitable[analytics_admin.ListAudiencesResponse],
+    ]:
+        r"""Return a callable for the list audiences method over gRPC.
+
+        Lists Audiences on a property.
+        Audiences created before 2020 may not be supported.
+
+        Returns:
+            Callable[[~.ListAudiencesRequest],
+                    Awaitable[~.ListAudiencesResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "list_audiences" not in self._stubs:
+            self._stubs["list_audiences"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAudiences",
+                request_serializer=analytics_admin.ListAudiencesRequest.serialize,
+                response_deserializer=analytics_admin.ListAudiencesResponse.deserialize,
+            )
+        return self._stubs["list_audiences"]
+
+    @property
+    def create_audience(
+        self,
+    ) -> Callable[
+        [analytics_admin.CreateAudienceRequest], Awaitable[gaa_audience.Audience]
+    ]:
+        r"""Return a callable for the create audience method over gRPC.
+
+        Creates an Audience.
+
+        Returns:
+            Callable[[~.CreateAudienceRequest],
+                    Awaitable[~.Audience]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "create_audience" not in self._stubs:
+            self._stubs["create_audience"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAudience",
+                request_serializer=analytics_admin.CreateAudienceRequest.serialize,
+                response_deserializer=gaa_audience.Audience.deserialize,
+            )
+        return self._stubs["create_audience"]
+
+    @property
+    def update_audience(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateAudienceRequest], Awaitable[gaa_audience.Audience]
+    ]:
+        r"""Return a callable for the update audience method over gRPC.
+
+        Updates an Audience on a property.
+
+        Returns:
+            Callable[[~.UpdateAudienceRequest],
+                    Awaitable[~.Audience]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "update_audience" not in self._stubs:
+            self._stubs["update_audience"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAudience",
+                request_serializer=analytics_admin.UpdateAudienceRequest.serialize,
+                response_deserializer=gaa_audience.Audience.deserialize,
+            )
+        return self._stubs["update_audience"]
+
+    @property
+    def archive_audience(
+        self,
+    ) -> Callable[[analytics_admin.ArchiveAudienceRequest], Awaitable[empty_pb2.Empty]]:
+        r"""Return a callable for the archive audience method over gRPC.
+
+        Archives an Audience on a property.
+
+        Returns:
+            Callable[[~.ArchiveAudienceRequest],
+                    Awaitable[~.Empty]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "archive_audience" not in self._stubs:
+            self._stubs["archive_audience"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveAudience",
+                request_serializer=analytics_admin.ArchiveAudienceRequest.serialize,
+                response_deserializer=empty_pb2.Empty.FromString,
+            )
+        return self._stubs["archive_audience"]
+
+    @property
+    def get_attribution_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.GetAttributionSettingsRequest],
+        Awaitable[resources.AttributionSettings],
+    ]:
+        r"""Return a callable for the get attribution settings method over gRPC.
+
+        Lookup for a AttributionSettings singleton.
+
+        Returns:
+            Callable[[~.GetAttributionSettingsRequest],
+                    Awaitable[~.AttributionSettings]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_attribution_settings" not in self._stubs:
+            self._stubs["get_attribution_settings"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAttributionSettings",
+                request_serializer=analytics_admin.GetAttributionSettingsRequest.serialize,
+                response_deserializer=resources.AttributionSettings.deserialize,
+            )
+        return self._stubs["get_attribution_settings"]
+
+    @property
+    def update_attribution_settings(
+        self,
+    ) -> Callable[
+        [analytics_admin.UpdateAttributionSettingsRequest],
+        Awaitable[resources.AttributionSettings],
+    ]:
+        r"""Return a callable for the update attribution settings method over gRPC.
+
+        Updates attribution settings on a property.
+
+        Returns:
+            Callable[[~.UpdateAttributionSettingsRequest],
+                    Awaitable[~.AttributionSettings]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "update_attribution_settings" not in self._stubs:
+            self._stubs["update_attribution_settings"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAttributionSettings",
+                request_serializer=analytics_admin.UpdateAttributionSettingsRequest.serialize,
+                response_deserializer=resources.AttributionSettings.deserialize,
+            )
+        return self._stubs["update_attribution_settings"]
+
+    @property
+    def run_access_report(
+        self,
+    ) -> Callable[
+        [analytics_admin.RunAccessReportRequest],
+        Awaitable[analytics_admin.RunAccessReportResponse],
+    ]:
+        r"""Return a callable for the run access report method over gRPC.
+
+        Returns a customized report of data access records. The report
+        provides records of each time a user reads Google Analytics
+        reporting data. Access records are retained for up to 2 years.
+
+        Data Access Reports can be requested for a property. The
+        property must be in Google Analytics 360. This method is only
+        available to Administrators.
+
+        These data access records include GA4 UI Reporting, GA4 UI
+        Explorations, GA4 Data API, and other products like Firebase &
+        Admob that can retrieve data from Google Analytics through a
+        linkage. These records don't include property configuration
+        changes like adding a stream or changing a property's time zone.
+        For configuration change history, see
+        `searchChangeHistoryEvents <https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents>`__.
+
+        Returns:
+            Callable[[~.RunAccessReportRequest],
+                    Awaitable[~.RunAccessReportResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "run_access_report" not in self._stubs:
+            self._stubs["run_access_report"] = self.grpc_channel.unary_unary(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport",
+                request_serializer=analytics_admin.RunAccessReportRequest.serialize,
+                response_deserializer=analytics_admin.RunAccessReportResponse.deserialize,
+            )
+        return self._stubs["run_access_report"]
 
     def close(self):
         return self.grpc_channel.close()

@@ -22,8 +22,10 @@ for more information.
 """
 # [START analyticsadmin_properties_user_links_batch_delete]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import BatchDeleteUserLinksRequest
-from google.analytics.admin_v1alpha.types import DeleteUserLinkRequest
+from google.analytics.admin_v1alpha.types import (
+    BatchDeleteUserLinksRequest,
+    DeleteUserLinkRequest,
+)
 
 
 def run_sample():
@@ -45,9 +47,19 @@ def run_sample():
     batch_delete_property_user_link(property_id, property_user_link_id)
 
 
-def batch_delete_property_user_link(property_id, property_user_link_id):
-    """Deletes the GA4 property user link using a batch call."""
-    client = AnalyticsAdminServiceClient()
+def batch_delete_property_user_link(
+    property_id: str, property_user_link_id: str, transport: str = None
+):
+    """
+    Deletes the GA4 property user link using a batch call.
+
+    Args:
+        property_id(str): The Google Analytics Property ID.
+        property_user_link_id(str): Google Analytics account user link ID.
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
+    client = AnalyticsAdminServiceClient(transport=transport)
     client.batch_delete_user_links(
         BatchDeleteUserLinksRequest(
             parent=f"properties/{property_id}",

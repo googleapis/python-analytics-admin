@@ -21,14 +21,13 @@ See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alp
 for more information.
 """
 # [START analyticsadmin_properties_conversion_events_create]
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 
-from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin import SearchChangeHistoryEventsRequest
-from google.analytics.admin_v1alpha.types import ActionType
-from google.analytics.admin_v1alpha.types import ActorType
-
+from google.analytics.admin import (
+    AnalyticsAdminServiceClient,
+    SearchChangeHistoryEventsRequest,
+)
+from google.analytics.admin_v1alpha.types import ActionType, ActorType
 from google.protobuf.timestamp_pb2 import Timestamp
 
 
@@ -44,10 +43,20 @@ def run_sample():
     search_change_history_events(account_id, property_id)
 
 
-def search_change_history_events(account_id: str, property_id: str):
-    """Lists the change history events for the Google Analytics 4 property
-  within the specified date range."""
-    client = AnalyticsAdminServiceClient()
+def search_change_history_events(
+    account_id: str, property_id: str, transport: str = None
+):
+    """
+    Lists the change history events for the Google Analytics 4 property
+    within the specified date range.
+
+    Args:
+        account_id(str): The Google Analytics Account ID.
+        property_id(str): The Google Analytics Property ID.
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
+    client = AnalyticsAdminServiceClient(transport=transport)
     # Create a timestamp object and subtract 7 days from the current date/time.
     earliest_change_time = Timestamp()
     earliest_change_time.FromDatetime(datetime.now() - timedelta(days=7))
@@ -86,12 +95,8 @@ def print_resource(resource):
         print("  Property resource")
     elif resource.account:
         print("  Account resource")
-    elif resource.web_data_stream:
-        print("  WebDataStream resource")
-    elif resource.android_app_data_stream:
-        print("  AndroidAppDataStream resource")
-    elif resource.ios_app_data_stream:
-        print("  IosAppDataStream resource")
+    elif resource.data_stream:
+        print("  DataStream resource")
     elif resource.firebase_link:
         print("  FirebaseLink resource")
     elif resource.google_ads_link:

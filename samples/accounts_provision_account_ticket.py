@@ -39,8 +39,7 @@ for more information.
 """
 # [START analyticsadmin_accounts_provision_account_ticket]
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import Account
-from google.analytics.admin_v1alpha.types import ProvisionAccountTicketRequest
+from google.analytics.admin_v1alpha.types import Account, ProvisionAccountTicketRequest
 
 
 def run_sample():
@@ -59,9 +58,18 @@ def run_sample():
     provision_account_ticket(redirect_uri)
 
 
-def provision_account_ticket(redirect_uri: str):
-    """Provisions the Google Analytics account creation ticket."""
-    client = AnalyticsAdminServiceClient()
+def provision_account_ticket(redirect_uri: str, transport: str = None):
+    """
+    Provisions the Google Analytics account creation ticket.
+
+    Args:
+        redirect_uri(str): Redirect URI where the user will be sent
+            after accepting Terms of Service. Must be configured in
+            Developers Console as a Redirect URI.
+        transport(str): The transport to use. For example, "grpc"
+            or "rest". If set to None, a transport is chosen automatically.
+    """
+    client = AnalyticsAdminServiceClient(transport=transport)
     response = client.provision_account_ticket(
         ProvisionAccountTicketRequest(
             account=Account(display_name="Test Account", region_code="US"),
