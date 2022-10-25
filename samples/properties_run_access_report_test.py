@@ -16,14 +16,18 @@ import os
 
 import properties_run_access_report
 
-TEST_ACCOUNT_ID = os.getenv("GA_TEST_ACCOUNT_ID")
+TEST_PROPERTY_ID = os.getenv("GA_TEST_PROPERTY_ID")
 
 
 def test_properties_run_access_report(capsys):
     transports = ["grpc", "rest"]
     for transport in transports:
-        properties_run_access_report.run_access_report(
-            TEST_ACCOUNT_ID, transport=transport
-        )
-        out, _ = capsys.readouterr()
-        assert "Result" in out
+        # This test ensures that the call is valid and reaches the server, even
+        # though the operation does not succeed due to permission error.
+        with pytest.raises(
+            Exception,
+            match="User does not have sufficient permissions for this property.",
+        ):
+            properties_run_access_report.run_access_report(
+                TEST_PROPERTY_ID, transport=transport
+            )
