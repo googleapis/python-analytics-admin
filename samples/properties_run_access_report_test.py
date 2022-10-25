@@ -28,7 +28,7 @@ def test_properties_run_access_report(capsys):
         # though the operation does not succeed due to permission error.
         with pytest.raises(
             Exception,
-            match="User does not have sufficient permissions for this property.",
+            match="Access record reports are only allowed on Google Analytics 360 properties.",
         ):
             properties_run_access_report.run_access_report(
                 TEST_PROPERTY_ID, transport=transport
