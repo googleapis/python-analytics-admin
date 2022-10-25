@@ -17,7 +17,7 @@
 """Google Analytics Admin API sample application which runs an access report
 on a property.
 
-See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/get
+See https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties/runAccessReport
 for more information.
 """
 # [START analyticsadmin_properties_run_access_report]
