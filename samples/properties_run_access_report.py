@@ -24,10 +24,12 @@ for more information.
 from datetime import datetime
 
 from google.analytics.admin import AnalyticsAdminServiceClient
-from google.analytics.admin_v1alpha.types import AccessDateRange
-from google.analytics.admin_v1alpha.types import AccessDimension
-from google.analytics.admin_v1alpha.types import AccessMetric
-from google.analytics.admin_v1alpha.types import RunAccessReportRequest
+from google.analytics.admin_v1alpha.types import (
+    AccessDateRange,
+    AccessDimension,
+    AccessMetric,
+    RunAccessReportRequest,
+)
 
 
 def run_sample():
