@@ -15,18 +15,16 @@
 #
 from typing import MutableMapping, MutableSequence
 
+from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
-from google.protobuf import timestamp_pb2  # type: ignore
-
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'ExpandedDataSetFilter',
-        'ExpandedDataSetFilterExpression',
-        'ExpandedDataSetFilterExpressionList',
-        'ExpandedDataSet',
+        "ExpandedDataSetFilter",
+        "ExpandedDataSetFilterExpression",
+        "ExpandedDataSetFilterExpressionList",
+        "ExpandedDataSet",
     },
 )
 
@@ -72,6 +70,7 @@ class ExpandedDataSetFilter(proto.Message):
                 the match is case-insensitive. Must be true when match_type
                 is EXACT. Must be false when match_type is CONTAINS.
         """
+
         class MatchType(proto.Enum):
             r"""The match type for the string filter.
 
@@ -87,10 +86,10 @@ class ExpandedDataSetFilter(proto.Message):
             EXACT = 1
             CONTAINS = 2
 
-        match_type: 'ExpandedDataSetFilter.StringFilter.MatchType' = proto.Field(
+        match_type: "ExpandedDataSetFilter.StringFilter.MatchType" = proto.Field(
             proto.ENUM,
             number=1,
-            enum='ExpandedDataSetFilter.StringFilter.MatchType',
+            enum="ExpandedDataSetFilter.StringFilter.MatchType",
         )
         value: str = proto.Field(
             proto.STRING,
@@ -127,13 +126,13 @@ class ExpandedDataSetFilter(proto.Message):
     string_filter: StringFilter = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='one_filter',
+        oneof="one_filter",
         message=StringFilter,
     )
     in_list_filter: InListFilter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='one_filter',
+        oneof="one_filter",
         message=InListFilter,
     )
     field_name: str = proto.Field(
@@ -175,23 +174,23 @@ class ExpandedDataSetFilterExpression(proto.Message):
             This field is a member of `oneof`_ ``expr``.
     """
 
-    and_group: 'ExpandedDataSetFilterExpressionList' = proto.Field(
+    and_group: "ExpandedDataSetFilterExpressionList" = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='expr',
-        message='ExpandedDataSetFilterExpressionList',
+        oneof="expr",
+        message="ExpandedDataSetFilterExpressionList",
     )
-    not_expression: 'ExpandedDataSetFilterExpression' = proto.Field(
+    not_expression: "ExpandedDataSetFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='expr',
-        message='ExpandedDataSetFilterExpression',
+        oneof="expr",
+        message="ExpandedDataSetFilterExpression",
     )
-    filter: 'ExpandedDataSetFilter' = proto.Field(
+    filter: "ExpandedDataSetFilter" = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='expr',
-        message='ExpandedDataSetFilter',
+        oneof="expr",
+        message="ExpandedDataSetFilter",
     )
 
 
@@ -203,10 +202,12 @@ class ExpandedDataSetFilterExpressionList(proto.Message):
             A list of ExpandedDataSet filter expressions.
     """
 
-    filter_expressions: MutableSequence['ExpandedDataSetFilterExpression'] = proto.RepeatedField(
+    filter_expressions: MutableSequence[
+        "ExpandedDataSetFilterExpression"
+    ] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='ExpandedDataSetFilterExpression',
+        message="ExpandedDataSetFilterExpression",
     )
 
 
@@ -264,10 +265,10 @@ class ExpandedDataSet(proto.Message):
         proto.STRING,
         number=5,
     )
-    dimension_filter_expression: 'ExpandedDataSetFilterExpression' = proto.Field(
+    dimension_filter_expression: "ExpandedDataSetFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=6,
-        message='ExpandedDataSetFilterExpression',
+        message="ExpandedDataSetFilterExpression",
     )
     data_collection_start_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
