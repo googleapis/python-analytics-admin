@@ -19,15 +19,14 @@ from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'ChannelGroupFilter',
-        'ChannelGroupFilterExpression',
-        'ChannelGroupFilterExpressionList',
-        'GroupingRule',
-        'ChannelGroup',
+        "ChannelGroupFilter",
+        "ChannelGroupFilterExpression",
+        "ChannelGroupFilterExpressionList",
+        "GroupingRule",
+        "ChannelGroup",
     },
 )
 
@@ -70,6 +69,7 @@ class ChannelGroupFilter(proto.Message):
                 Required. The string value to be matched
                 against.
         """
+
         class MatchType(proto.Enum):
             r"""How the filter will be used to determine a match.
 
@@ -99,10 +99,10 @@ class ChannelGroupFilter(proto.Message):
             FULL_REGEXP = 5
             PARTIAL_REGEXP = 6
 
-        match_type: 'ChannelGroupFilter.StringFilter.MatchType' = proto.Field(
+        match_type: "ChannelGroupFilter.StringFilter.MatchType" = proto.Field(
             proto.ENUM,
             number=1,
-            enum='ChannelGroupFilter.StringFilter.MatchType',
+            enum="ChannelGroupFilter.StringFilter.MatchType",
         )
         value: str = proto.Field(
             proto.STRING,
@@ -127,13 +127,13 @@ class ChannelGroupFilter(proto.Message):
     string_filter: StringFilter = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='value_filter',
+        oneof="value_filter",
         message=StringFilter,
     )
     in_list_filter: InListFilter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='value_filter',
+        oneof="value_filter",
         message=InListFilter,
     )
     field_name: str = proto.Field(
@@ -179,29 +179,29 @@ class ChannelGroupFilterExpression(proto.Message):
             This field is a member of `oneof`_ ``expr``.
     """
 
-    and_group: 'ChannelGroupFilterExpressionList' = proto.Field(
+    and_group: "ChannelGroupFilterExpressionList" = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='expr',
-        message='ChannelGroupFilterExpressionList',
+        oneof="expr",
+        message="ChannelGroupFilterExpressionList",
     )
-    or_group: 'ChannelGroupFilterExpressionList' = proto.Field(
+    or_group: "ChannelGroupFilterExpressionList" = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='expr',
-        message='ChannelGroupFilterExpressionList',
+        oneof="expr",
+        message="ChannelGroupFilterExpressionList",
     )
-    not_expression: 'ChannelGroupFilterExpression' = proto.Field(
+    not_expression: "ChannelGroupFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='expr',
-        message='ChannelGroupFilterExpression',
+        oneof="expr",
+        message="ChannelGroupFilterExpression",
     )
-    filter: 'ChannelGroupFilter' = proto.Field(
+    filter: "ChannelGroupFilter" = proto.Field(
         proto.MESSAGE,
         number=4,
-        oneof='expr',
-        message='ChannelGroupFilter',
+        oneof="expr",
+        message="ChannelGroupFilter",
     )
 
 
@@ -213,10 +213,12 @@ class ChannelGroupFilterExpressionList(proto.Message):
             A list of Channel Group filter expressions.
     """
 
-    filter_expressions: MutableSequence['ChannelGroupFilterExpression'] = proto.RepeatedField(
+    filter_expressions: MutableSequence[
+        "ChannelGroupFilterExpression"
+    ] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='ChannelGroupFilterExpression',
+        message="ChannelGroupFilterExpression",
     )
 
 
@@ -237,10 +239,10 @@ class GroupingRule(proto.Message):
         proto.STRING,
         number=1,
     )
-    expression: 'ChannelGroupFilterExpression' = proto.Field(
+    expression: "ChannelGroupFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='ChannelGroupFilterExpression',
+        message="ChannelGroupFilterExpression",
     )
 
 
@@ -278,10 +280,10 @@ class ChannelGroup(proto.Message):
         proto.STRING,
         number=3,
     )
-    grouping_rule: MutableSequence['GroupingRule'] = proto.RepeatedField(
+    grouping_rule: MutableSequence["GroupingRule"] = proto.RepeatedField(
         proto.MESSAGE,
         number=4,
-        message='GroupingRule',
+        message="GroupingRule",
     )
     system_defined: bool = proto.Field(
         proto.BOOL,
