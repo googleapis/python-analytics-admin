@@ -19,13 +19,12 @@ from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'ParameterMutation',
-        'EventCreateRule',
-        'MatchingCondition',
+        "ParameterMutation",
+        "EventCreateRule",
+        "MatchingCondition",
     },
 )
 
@@ -114,19 +113,19 @@ class EventCreateRule(proto.Message):
         proto.STRING,
         number=2,
     )
-    event_conditions: MutableSequence['MatchingCondition'] = proto.RepeatedField(
+    event_conditions: MutableSequence["MatchingCondition"] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
-        message='MatchingCondition',
+        message="MatchingCondition",
     )
     source_copy_parameters: bool = proto.Field(
         proto.BOOL,
         number=4,
     )
-    parameter_mutations: MutableSequence['ParameterMutation'] = proto.RepeatedField(
+    parameter_mutations: MutableSequence["ParameterMutation"] = proto.RepeatedField(
         proto.MESSAGE,
         number=5,
-        message='ParameterMutation',
+        message="ParameterMutation",
     )
 
 
@@ -156,6 +155,7 @@ class MatchingCondition(proto.Message):
             negated. For example, if ``negated`` is true, then 'equals'
             comparisons would function as 'not equals'.
     """
+
     class ComparisonType(proto.Enum):
         r"""Comparison type for matching condition
 
