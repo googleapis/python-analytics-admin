@@ -436,9 +436,9 @@ class ListAccountsRequest(proto.Message):
             token.
         show_deleted (bool):
             Whether to include soft-deleted (ie:
-            "trashed") Accounts in the results. Accounts can
-            be inspected to determine whether they are
-            deleted or not.
+            "trashed") Accounts in the
+            results. Accounts can be inspected to determine
+            whether they are deleted or not.
     """
 
     page_size: int = proto.Field(
@@ -613,9 +613,9 @@ class ListPropertiesRequest(proto.Message):
             page token.
         show_deleted (bool):
             Whether to include soft-deleted (ie:
-            "trashed") Properties in the results. Properties
-            can be inspected to determine whether they are
-            deleted or not.
+            "trashed") Properties in the
+            results. Properties can be inspected to
+            determine whether they are deleted or not.
     """
 
     filter: str = proto.Field(
@@ -2976,9 +2976,9 @@ class GetAccessBindingRequest(proto.Message):
             Required. The name of the access binding to
             retrieve. Formats:
             -
-            accounts/{account}/accessBindings/{accessBinding}
+              accounts/{account}/accessBindings/{accessBinding}
             -
-            properties/{property}/accessBindings/{accessBinding}
+              properties/{property}/accessBindings/{accessBinding}
     """
 
     name: str = proto.Field(
@@ -3003,9 +3003,9 @@ class BatchGetAccessBindingsRequest(proto.Message):
             retrieve. A maximum of 1000 access bindings can
             be retrieved in a batch. Formats:
             -
-            accounts/{account}/accessBindings/{accessBinding}
+              accounts/{account}/accessBindings/{accessBinding}
             -
-            properties/{property}/accessBindings/{accessBinding}
+              properties/{property}/accessBindings/{accessBinding}
     """
 
     parent: str = proto.Field(
@@ -3229,9 +3229,9 @@ class DeleteAccessBindingRequest(proto.Message):
         name (str):
             Required. Formats:
             -
-            accounts/{account}/accessBindings/{accessBinding}
+              accounts/{account}/accessBindings/{accessBinding}
             -
-            properties/{property}/accessBindings/{accessBinding}
+              properties/{property}/accessBindings/{accessBinding}
     """
 
     name: str = proto.Field(

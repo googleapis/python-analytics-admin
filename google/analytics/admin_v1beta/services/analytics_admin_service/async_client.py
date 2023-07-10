@@ -482,6 +482,7 @@ class AnalyticsAdminServiceAsyncClient:
     ) -> None:
         r"""Marks target Account as soft-deleted (ie: "trashed")
         and returns it.
+
         This API does not have a method to restore soft-deleted
         accounts. However, they can be restored using the Trash
         Can UI.
@@ -1163,6 +1164,7 @@ class AnalyticsAdminServiceAsyncClient:
     ) -> resources.Property:
         r"""Marks target Property as soft-deleted (ie: "trashed")
         and returns it.
+
         This API does not have a method to restore soft-deleted
         properties. However, they can be restored using the
         Trash Can UI.

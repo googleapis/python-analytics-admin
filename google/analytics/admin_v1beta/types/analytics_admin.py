@@ -331,9 +331,9 @@ class ListAccountsRequest(proto.Message):
             token.
         show_deleted (bool):
             Whether to include soft-deleted (ie:
-            "trashed") Accounts in the results. Accounts can
-            be inspected to determine whether they are
-            deleted or not.
+            "trashed") Accounts in the
+            results. Accounts can be inspected to determine
+            whether they are deleted or not.
     """
 
     page_size: int = proto.Field(
@@ -508,9 +508,9 @@ class ListPropertiesRequest(proto.Message):
             page token.
         show_deleted (bool):
             Whether to include soft-deleted (ie:
-            "trashed") Properties in the results. Properties
-            can be inspected to determine whether they are
-            deleted or not.
+            "trashed") Properties in the
+            results. Properties can be inspected to
+            determine whether they are deleted or not.
     """
 
     filter: str = proto.Field(
