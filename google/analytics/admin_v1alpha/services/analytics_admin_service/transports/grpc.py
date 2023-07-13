@@ -1859,6 +1859,7 @@ class AnalyticsAdminServiceGrpcTransport(AnalyticsAdminServiceTransport):
 
         Cancels a DisplayVideo360AdvertiserLinkProposal.
         Cancelling can mean either:
+
         - Declining a proposal initiated from Display & Video
           360
         - Withdrawing a proposal initiated from Google Analytics

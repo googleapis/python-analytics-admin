@@ -3465,6 +3465,7 @@ class AnalyticsAdminServiceAsyncClient:
             name (:class:`str`):
                 Required. The name of the measurement
                 protocol secret to lookup. Format:
+
                 properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
 
                 This corresponds to the ``name`` field
@@ -3572,6 +3573,7 @@ class AnalyticsAdminServiceAsyncClient:
             parent (:class:`str`):
                 Required. The resource name of the
                 parent stream. Format:
+
                 properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
 
                 This corresponds to the ``parent`` field
@@ -3808,6 +3810,7 @@ class AnalyticsAdminServiceAsyncClient:
                 Required. The name of the
                 MeasurementProtocolSecret to delete.
                 Format:
+
                 properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
 
                 This corresponds to the ``name`` field
@@ -5978,6 +5981,7 @@ class AnalyticsAdminServiceAsyncClient:
     ) -> resources.DisplayVideo360AdvertiserLinkProposal:
         r"""Cancels a DisplayVideo360AdvertiserLinkProposal.
         Cancelling can mean either:
+
         - Declining a proposal initiated from Display & Video
           360
         - Withdrawing a proposal initiated from Google Analytics
@@ -7195,6 +7199,7 @@ class AnalyticsAdminServiceAsyncClient:
             name (:class:`str`):
                 Required. The name of the settings to
                 lookup. Format:
+
                 properties/{property}/dataRetentionSettings
                 Example:
                 "properties/1000/dataRetentionSettings"
@@ -9369,6 +9374,7 @@ class AnalyticsAdminServiceAsyncClient:
                 CreateAccessBinding RPC.
             parent (:class:`str`):
                 Required. Formats:
+
                 - accounts/{account}
                 - properties/{property}
 
@@ -9482,6 +9488,7 @@ class AnalyticsAdminServiceAsyncClient:
             name (:class:`str`):
                 Required. The name of the access
                 binding to retrieve. Formats:
+
                 -
                   accounts/{account}/accessBindings/{accessBinding}
                 -
@@ -9695,6 +9702,7 @@ class AnalyticsAdminServiceAsyncClient:
                 DeleteAccessBinding RPC.
             name (:class:`str`):
                 Required. Formats:
+
                 -
                   accounts/{account}/accessBindings/{accessBinding}
                 -
@@ -9794,6 +9802,7 @@ class AnalyticsAdminServiceAsyncClient:
                 ListAccessBindings RPC.
             parent (:class:`str`):
                 Required. Formats:
+
                 - accounts/{account}
                 - properties/{property}
 
@@ -13211,6 +13220,7 @@ class AnalyticsAdminServiceAsyncClient:
                 DeleteEventCreateRule RPC.
             name (:class:`str`):
                 Required. Example format:
+
                 properties/123/dataStreams/456/eventCreateRules/789
 
                 This corresponds to the ``name`` field
