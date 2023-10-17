@@ -36052,7 +36052,8 @@ def test_update_account_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -36065,7 +36066,8 @@ def test_update_account_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["account"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["account"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -36088,7 +36090,8 @@ def test_update_account_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -37309,7 +37312,8 @@ def test_create_property_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -37322,7 +37326,8 @@ def test_create_property_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["property"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["property"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -37345,7 +37350,8 @@ def test_create_property_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -37950,7 +37956,8 @@ def test_update_property_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -37963,7 +37970,8 @@ def test_update_property_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["property"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["property"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -37986,7 +37994,8 @@ def test_update_property_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -39428,7 +39437,8 @@ def test_create_user_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -39441,7 +39451,8 @@ def test_create_user_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["user_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["user_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -39464,7 +39475,8 @@ def test_create_user_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -40003,7 +40015,8 @@ def test_update_user_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -40016,7 +40029,8 @@ def test_update_user_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["user_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["user_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -40039,7 +40053,8 @@ def test_update_user_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -41021,7 +41036,8 @@ def test_create_firebase_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -41034,7 +41050,8 @@ def test_create_firebase_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["firebase_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["firebase_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -41057,7 +41074,8 @@ def test_create_firebase_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -42248,7 +42266,8 @@ def test_create_google_ads_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -42261,7 +42280,8 @@ def test_create_google_ads_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["google_ads_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["google_ads_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -42284,7 +42304,8 @@ def test_create_google_ads_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -42612,7 +42633,8 @@ def test_update_google_ads_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -42625,7 +42647,8 @@ def test_update_google_ads_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["google_ads_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["google_ads_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -42648,7 +42671,8 @@ def test_update_google_ads_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -44486,7 +44510,8 @@ def test_create_measurement_protocol_secret_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -44499,7 +44524,10 @@ def test_create_measurement_protocol_secret_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["measurement_protocol_secret"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "measurement_protocol_secret"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -44522,7 +44550,8 @@ def test_create_measurement_protocol_secret_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -45125,7 +45154,8 @@ def test_update_measurement_protocol_secret_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -45138,7 +45168,10 @@ def test_update_measurement_protocol_secret_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["measurement_protocol_secret"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "measurement_protocol_secret"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -45161,7 +45194,8 @@ def test_update_measurement_protocol_secret_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -46050,7 +46084,8 @@ def test_create_sk_ad_network_conversion_value_schema_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -46063,7 +46098,10 @@ def test_create_sk_ad_network_conversion_value_schema_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["skadnetwork_conversion_value_schema"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "skadnetwork_conversion_value_schema"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -46086,7 +46124,8 @@ def test_create_sk_ad_network_conversion_value_schema_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -46724,7 +46763,8 @@ def test_update_sk_ad_network_conversion_value_schema_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -46737,7 +46777,10 @@ def test_update_sk_ad_network_conversion_value_schema_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["skadnetwork_conversion_value_schema"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "skadnetwork_conversion_value_schema"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -46760,7 +46803,8 @@ def test_update_sk_ad_network_conversion_value_schema_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -48049,7 +48093,8 @@ def test_update_google_signals_settings_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -48062,7 +48107,10 @@ def test_update_google_signals_settings_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["google_signals_settings"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "google_signals_settings"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -48085,7 +48133,8 @@ def test_update_google_signals_settings_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -48420,7 +48469,8 @@ def test_create_conversion_event_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -48433,7 +48483,8 @@ def test_create_conversion_event_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["conversion_event"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["conversion_event"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -48456,7 +48507,8 @@ def test_create_conversion_event_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -48789,7 +48841,8 @@ def test_update_conversion_event_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -48802,7 +48855,8 @@ def test_update_conversion_event_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["conversion_event"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["conversion_event"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -48825,7 +48879,8 @@ def test_update_conversion_event_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -50690,7 +50745,8 @@ def test_create_display_video360_advertiser_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -50703,7 +50759,10 @@ def test_create_display_video360_advertiser_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["display_video_360_advertiser_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "display_video_360_advertiser_link"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -50726,7 +50785,8 @@ def test_create_display_video360_advertiser_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -51338,7 +51398,8 @@ def test_update_display_video360_advertiser_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -51351,7 +51412,10 @@ def test_update_display_video360_advertiser_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["display_video_360_advertiser_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "display_video_360_advertiser_link"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -51374,7 +51438,8 @@ def test_update_display_video360_advertiser_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -52414,7 +52479,8 @@ def test_create_display_video360_advertiser_link_proposal_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -52427,9 +52493,10 @@ def test_create_display_video360_advertiser_link_proposal_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
     for field, value in request_init[
         "display_video_360_advertiser_link_proposal"
-    ].items():
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -52452,7 +52519,8 @@ def test_create_display_video360_advertiser_link_proposal_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -53572,7 +53640,8 @@ def test_create_custom_dimension_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -53585,7 +53654,8 @@ def test_create_custom_dimension_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["custom_dimension"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["custom_dimension"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -53608,7 +53678,8 @@ def test_create_custom_dimension_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -53940,7 +54011,8 @@ def test_update_custom_dimension_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -53953,7 +54025,8 @@ def test_update_custom_dimension_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["custom_dimension"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["custom_dimension"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -53976,7 +54049,8 @@ def test_update_custom_dimension_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -55178,7 +55252,8 @@ def test_create_custom_metric_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -55191,7 +55266,8 @@ def test_create_custom_metric_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["custom_metric"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["custom_metric"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -55214,7 +55290,8 @@ def test_create_custom_metric_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -55550,7 +55627,8 @@ def test_update_custom_metric_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -55563,7 +55641,8 @@ def test_update_custom_metric_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["custom_metric"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["custom_metric"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -55586,7 +55665,8 @@ def test_update_custom_metric_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -57077,7 +57157,8 @@ def test_update_data_retention_settings_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -57090,7 +57171,10 @@ def test_update_data_retention_settings_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["data_retention_settings"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "data_retention_settings"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -57113,7 +57197,8 @@ def test_update_data_retention_settings_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -57458,7 +57543,8 @@ def test_create_data_stream_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -57471,7 +57557,8 @@ def test_create_data_stream_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["data_stream"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["data_stream"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -57494,7 +57581,8 @@ def test_create_data_stream_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -58085,7 +58173,8 @@ def test_update_data_stream_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -58098,7 +58187,8 @@ def test_update_data_stream_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["data_stream"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["data_stream"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -58121,7 +58211,8 @@ def test_update_data_stream_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -59729,7 +59820,8 @@ def test_create_audience_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -59742,7 +59834,8 @@ def test_create_audience_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["audience"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["audience"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -59765,7 +59858,8 @@ def test_create_audience_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -60147,7 +60241,8 @@ def test_update_audience_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -60160,7 +60255,8 @@ def test_update_audience_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["audience"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["audience"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -60183,7 +60279,8 @@ def test_update_audience_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -61335,7 +61432,8 @@ def test_create_search_ads360_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -61348,7 +61446,8 @@ def test_create_search_ads360_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["search_ads_360_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["search_ads_360_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -61371,7 +61470,8 @@ def test_create_search_ads360_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -61952,7 +62052,8 @@ def test_update_search_ads360_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -61965,7 +62066,8 @@ def test_update_search_ads360_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["search_ads_360_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["search_ads_360_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -61988,7 +62090,8 @@ def test_update_search_ads360_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -62600,7 +62703,8 @@ def test_update_attribution_settings_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -62613,7 +62717,10 @@ def test_update_attribution_settings_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["attribution_settings"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "attribution_settings"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -62636,7 +62743,8 @@ def test_update_attribution_settings_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -63104,7 +63212,8 @@ def test_create_access_binding_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -63117,7 +63226,8 @@ def test_create_access_binding_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["access_binding"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["access_binding"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -63140,7 +63250,8 @@ def test_create_access_binding_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -63734,7 +63845,8 @@ def test_update_access_binding_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -63747,7 +63859,8 @@ def test_update_access_binding_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["access_binding"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["access_binding"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -63770,7 +63883,8 @@ def test_update_access_binding_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -66222,7 +66336,8 @@ def test_create_expanded_data_set_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -66235,7 +66350,8 @@ def test_create_expanded_data_set_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["expanded_data_set"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["expanded_data_set"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -66258,7 +66374,8 @@ def test_create_expanded_data_set_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -66604,7 +66721,8 @@ def test_update_expanded_data_set_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -66617,7 +66735,8 @@ def test_update_expanded_data_set_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["expanded_data_set"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["expanded_data_set"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -66640,7 +66759,8 @@ def test_update_expanded_data_set_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -67853,7 +67973,8 @@ def test_create_channel_group_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -67866,7 +67987,8 @@ def test_create_channel_group_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["channel_group"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["channel_group"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -67889,7 +68011,8 @@ def test_create_channel_group_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -68229,7 +68352,8 @@ def test_update_channel_group_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -68242,7 +68366,8 @@ def test_update_channel_group_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["channel_group"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["channel_group"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -68265,7 +68390,8 @@ def test_update_channel_group_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -70252,7 +70378,8 @@ def test_update_enhanced_measurement_settings_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -70265,7 +70392,10 @@ def test_update_enhanced_measurement_settings_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["enhanced_measurement_settings"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init[
+        "enhanced_measurement_settings"
+    ].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -70288,7 +70418,8 @@ def test_update_enhanced_measurement_settings_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -71600,7 +71731,8 @@ def test_create_ad_sense_link_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -71613,7 +71745,8 @@ def test_create_ad_sense_link_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["adsense_link"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["adsense_link"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -71636,7 +71769,8 @@ def test_create_ad_sense_link_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -73187,7 +73321,8 @@ def test_create_event_create_rule_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -73200,7 +73335,8 @@ def test_create_event_create_rule_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["event_create_rule"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["event_create_rule"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -73223,7 +73359,8 @@ def test_create_event_create_rule_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
@@ -73559,7 +73696,8 @@ def test_update_event_create_rule_rest(request_type):
 
             if is_field_type_proto_plus_type:
                 message_fields = field.message.meta.fields.values()
-            else:
+            # Add `# pragma: NO COVER` because there may not be any `*_pb2` field types
+            else:  # pragma: NO COVER
                 message_fields = field.message.DESCRIPTOR.fields
         return message_fields
 
@@ -73572,7 +73710,8 @@ def test_update_event_create_rule_rest(request_type):
     subfields_not_in_runtime = []
 
     # For each item in the sample request, create a list of sub fields which are not present at runtime
-    for field, value in request_init["event_create_rule"].items():
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for field, value in request_init["event_create_rule"].items():  # pragma: NO COVER
         result = None
         is_repeated = False
         # For repeated fields
@@ -73595,7 +73734,8 @@ def test_update_event_create_rule_rest(request_type):
                     )
 
     # Remove fields from the sample request which are not present in the runtime version of the dependency
-    for subfield_to_delete in subfields_not_in_runtime:
+    # Add `# pragma: NO COVER` because this test code will not run if all subfields are present at runtime
+    for subfield_to_delete in subfields_not_in_runtime:  # pragma: NO COVER
         field = subfield_to_delete.get("field")
         field_repeated = subfield_to_delete.get("is_repeated")
         subfield = subfield_to_delete.get("subfield")
