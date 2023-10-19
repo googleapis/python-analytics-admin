@@ -19,15 +19,14 @@ from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
 __protobuf__ = proto.module(
-    package='google.analytics.admin.v1alpha',
+    package="google.analytics.admin.v1alpha",
     manifest={
-        'SubpropertyEventFilterCondition',
-        'SubpropertyEventFilterExpression',
-        'SubpropertyEventFilterExpressionList',
-        'SubpropertyEventFilterClause',
-        'SubpropertyEventFilter',
+        "SubpropertyEventFilterCondition",
+        "SubpropertyEventFilterExpression",
+        "SubpropertyEventFilterExpressionList",
+        "SubpropertyEventFilterClause",
+        "SubpropertyEventFilter",
     },
 )
 
@@ -72,6 +71,7 @@ class SubpropertyEventFilterCondition(proto.Message):
                 sensitive. If false, the match is
                 case-insensitive.
         """
+
         class MatchType(proto.Enum):
             r"""How the filter will be used to determine a match.
 
@@ -101,10 +101,12 @@ class SubpropertyEventFilterCondition(proto.Message):
             FULL_REGEXP = 5
             PARTIAL_REGEXP = 6
 
-        match_type: 'SubpropertyEventFilterCondition.StringFilter.MatchType' = proto.Field(
-            proto.ENUM,
-            number=1,
-            enum='SubpropertyEventFilterCondition.StringFilter.MatchType',
+        match_type: "SubpropertyEventFilterCondition.StringFilter.MatchType" = (
+            proto.Field(
+                proto.ENUM,
+                number=1,
+                enum="SubpropertyEventFilterCondition.StringFilter.MatchType",
+            )
         )
         value: str = proto.Field(
             proto.STRING,
@@ -118,12 +120,12 @@ class SubpropertyEventFilterCondition(proto.Message):
     null_filter: bool = proto.Field(
         proto.BOOL,
         number=2,
-        oneof='one_filter',
+        oneof="one_filter",
     )
     string_filter: StringFilter = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='one_filter',
+        oneof="one_filter",
         message=StringFilter,
     )
     field_name: str = proto.Field(
@@ -163,23 +165,23 @@ class SubpropertyEventFilterExpression(proto.Message):
             This field is a member of `oneof`_ ``expr``.
     """
 
-    or_group: 'SubpropertyEventFilterExpressionList' = proto.Field(
+    or_group: "SubpropertyEventFilterExpressionList" = proto.Field(
         proto.MESSAGE,
         number=1,
-        oneof='expr',
-        message='SubpropertyEventFilterExpressionList',
+        oneof="expr",
+        message="SubpropertyEventFilterExpressionList",
     )
-    not_expression: 'SubpropertyEventFilterExpression' = proto.Field(
+    not_expression: "SubpropertyEventFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=2,
-        oneof='expr',
-        message='SubpropertyEventFilterExpression',
+        oneof="expr",
+        message="SubpropertyEventFilterExpression",
     )
-    filter_condition: 'SubpropertyEventFilterCondition' = proto.Field(
+    filter_condition: "SubpropertyEventFilterCondition" = proto.Field(
         proto.MESSAGE,
         number=3,
-        oneof='expr',
-        message='SubpropertyEventFilterCondition',
+        oneof="expr",
+        message="SubpropertyEventFilterCondition",
     )
 
 
@@ -192,10 +194,12 @@ class SubpropertyEventFilterExpressionList(proto.Message):
             Subproperty event filter expressions
     """
 
-    filter_expressions: MutableSequence['SubpropertyEventFilterExpression'] = proto.RepeatedField(
+    filter_expressions: MutableSequence[
+        "SubpropertyEventFilterExpression"
+    ] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='SubpropertyEventFilterExpression',
+        message="SubpropertyEventFilterExpression",
     )
 
 
@@ -212,6 +216,7 @@ class SubpropertyEventFilterClause(proto.Message):
             Required. The logical expression for what
             events are sent to the subproperty.
     """
+
     class FilterClauseType(proto.Enum):
         r"""Specifies whether this is an include or exclude filter
         clause.
@@ -235,10 +240,10 @@ class SubpropertyEventFilterClause(proto.Message):
         number=1,
         enum=FilterClauseType,
     )
-    filter_expression: 'SubpropertyEventFilterExpression' = proto.Field(
+    filter_expression: "SubpropertyEventFilterExpression" = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='SubpropertyEventFilterExpression',
+        message="SubpropertyEventFilterExpression",
     )
 
 
@@ -275,10 +280,12 @@ class SubpropertyEventFilter(proto.Message):
         number=2,
         optional=True,
     )
-    filter_clauses: MutableSequence['SubpropertyEventFilterClause'] = proto.RepeatedField(
+    filter_clauses: MutableSequence[
+        "SubpropertyEventFilterClause"
+    ] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
-        message='SubpropertyEventFilterClause',
+        message="SubpropertyEventFilterClause",
     )
 
 
